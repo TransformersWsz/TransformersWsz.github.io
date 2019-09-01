@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Algorithm,Neural Networks,Linear Regression,">
 
 
 
@@ -86,16 +86,22 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Swift的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Algorithm/index.html">
+<meta name="description" content="为什么要引入GLM？我们知道了”回归“一般是用于预测样本的值，这个值通常是连续的。但是受限于其连续的特性，一般用它来进行分类的效果往往很不理想。为了保留线性回归”简单效果又不错“的特点，又想让它能够进行分类，因此需要对预测值再做一次处理。这个多出来的处理过程，就是GLM所做的最主要的事。而处理过程的这个函数，我们把它叫做连接函数。 如下图是一个广义模型的流程：  图中，当一个处理样本的回归模型是线">
+<meta name="keywords" content="Algorithm,Neural Networks,Linear Regression">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GLM">
+<meta property="og:url" content="http://yoursite.com/2019/05/29/GLM/index.html">
 <meta property="og:site_name" content="Swift的博客">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="为什么要引入GLM？我们知道了”回归“一般是用于预测样本的值，这个值通常是连续的。但是受限于其连续的特性，一般用它来进行分类的效果往往很不理想。为了保留线性回归”简单效果又不错“的特点，又想让它能够进行分类，因此需要对预测值再做一次处理。这个多出来的处理过程，就是GLM所做的最主要的事。而处理过程的这个函数，我们把它叫做连接函数。 如下图是一个广义模型的流程：  图中，当一个处理样本的回归模型是线">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/GLM/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/GLM/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/05/29/GLM/3.png">
+<meta property="og:updated_time" content="2019-06-24T08:22:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift的博客">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="GLM">
+<meta name="twitter:description" content="为什么要引入GLM？我们知道了”回归“一般是用于预测样本的值，这个值通常是连续的。但是受限于其连续的特性，一般用它来进行分类的效果往往很不理想。为了保留线性回归”简单效果又不错“的特点，又想让它能够进行分类，因此需要对预测值再做一次处理。这个多出来的处理过程，就是GLM所做的最主要的事。而处理过程的这个函数，我们把它叫做连接函数。 如下图是一个广义模型的流程：  图中，当一个处理样本的回归模型是线">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/29/GLM/1.jpg">
 
 
 
@@ -125,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Algorithm/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/29/GLM/">
 
 
 
 
 
-  <title>标签: Algorithm | Swift的博客</title>
+  <title>GLM | Swift的博客</title>
   
 
 
@@ -150,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,104 +250,268 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Algorithm<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/GLM/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Swift">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://navianter.github.io/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swift的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/06/22/SVM/" itemprop="url">
-              
-                <span itemprop="name">SVM</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">GLM</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-22T22:01:08+08:00" content="2019-06-22">
-          06-22
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T21:55:37+08:00">
+                2019-05-29
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/05/29/GLM/" class="leancloud_visitors" data-flag-title="GLM">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/06/02/CNN/" itemprop="url">
-              
-                <span itemprop="name">CNN</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-02T21:11:54+08:00" content="2019-06-02">
-          06-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/05/29/GLM/" itemprop="url">
-              
-                <span itemprop="name">GLM</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-05-29T21:55:37+08:00" content="2019-05-29">
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h2 id="为什么要引入GLM？"><a href="#为什么要引入GLM？" class="headerlink" title="为什么要引入GLM？"></a>为什么要引入GLM？</h2><p>我们知道了”回归“一般是用于预测样本的值，这个值通常是连续的。但是受限于其连续的特性，一般用它来进行分类的效果往往很不理想。为了保留线性回归”简单效果又不错“的特点，又想让它能够进行分类，因此需要对预测值再做一次处理。这个多出来的处理过程，就是GLM所做的最主要的事。而处理过程的这个函数，我们把它叫做连接函数。</p>
+<p>如下图是一个广义模型的流程：</p>
+<img src="/2019/05/29/GLM/1.jpg">
+<p>图中，当一个处理样本的回归模型是线性模型，且连接函数满足一定特性（特性下面说明）时，我们把模型叫做广义线性模型。因为广义模型的最后输出可以为离散，也可以为连续，因此，用广义模型进行分类、回归都是可以的。</p>
+<p>但是为什么线性回归是广义线性模型的子类呢，因为连接函数是 $f(x)=x$ 本身的时候，也就是不做任何处理时，它其实就是一个线性回归。</p>
+<p>所以模型的问题就转化成获得合适的连接函数？以及有了连接函数，怎么求其预测函数 $h_\theta(x)$ ？</p>
+<a id="more"></a>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>刚才说了，只有连接函数满足一定特性才属于广义线性模型。特性是什么呢？先简单描述下背景。</p>
+<p>在广义线性模型中，为了提高可操作性，因此限定了概率分布必须满足指数族分布：</p>
+<script type="math/tex; mode=display">
+p(y;\eta) = b(y)e^{ {\eta^T}{T(y)-a(\eta)} }</script><blockquote>
+<ul>
+<li>$\eta$ 称为这个分布的 <strong>自然参数(natural parameter)</strong> 或者 <strong>规范参数(canonical parameter)</strong>。$\eta=\theta^TX$ ，即自然参数=参数与自变量X的线性组合。</li>
+<li>$T(y)$ 称为 <strong>充分统计量(sufficient statistic)</strong>。</li>
+<li>$a(\eta)$ 称为 <strong>对数分割函数(log partition function)</strong>，$e^{-a(\eta)}$ 是分布 $p(y;\eta)$ 的归一化常数，用来确保该分布对 $y$ 的积分为 1。</li>
+<li>当 $T,a,b$ 固定之后，也就确定了这样一个以 $\eta$ 为参数的分布族。</li>
+</ul>
+</blockquote>
+<h3 id="广义线性模型的三个假设"><a href="#广义线性模型的三个假设" class="headerlink" title="广义线性模型的三个假设"></a>广义线性模型的三个假设</h3><ul>
+<li>$(y|x;\theta)\sim Exponential Family(\eta)$：给定样本 $x$ 和 参数 $\theta$ ，样本分类 $y$ 服从指数分布。</li>
+<li>给定一个 $x$ ，我们需要的目标函数为 $h_\theta(x) = E[T(y) | x]$ 。</li>
+<li>$\eta = (\vec \theta)^T \vec X$ ，即自然参数 $\eta$ 和 输入 $\vec X$ 满足线性关系。</li>
+</ul>
+<h2 id="连接函数的获取"><a href="#连接函数的获取" class="headerlink" title="连接函数的获取"></a>连接函数的获取</h2><p>从上图可以看到 $\eta$ 为函数的输入，而 $h_\theta(x)$ 为函数的输出，所以有公式：</p>
+<script type="math/tex; mode=display">
+h_\theta(x) = f(\eta)</script><p>但是我们会把 $f$ 的逆 $f^{-1}$ 称为<strong>连接函数</strong> ， 也即以 $h_\theta(x)$ 为自变量，$\eta$ 为因变量的函数为连接函数：</p>
+<script type="math/tex; mode=display">
+\eta = f^{-1}(h_\theta(x))</script><p>所以求连接函数的步骤也就变成：</p>
+<ol>
+<li>将 $\vec Y$ 、$\vec X$ 所满足的分布转换成指数分布形式。</li>
+<li>在指数分布形式中获得 $T(y)$ 的函数形式和 $\eta$  的值。</li>
+<li>算出 $E[T(y)|x]$ 和 $\eta$ 的关系，并把 $(\vec \theta)^T$ 代入到$\eta$ 中，获得连接函数。</li>
+</ol>
+<h2 id="常见连接函数求解及对应回归"><a href="#常见连接函数求解及对应回归" class="headerlink" title="常见连接函数求解及对应回归"></a>常见连接函数求解及对应回归</h2><h3 id="伯努利分布-—-gt-Logistic-回归"><a href="#伯努利分布-—-gt-Logistic-回归" class="headerlink" title="伯努利分布 —-&gt; Logistic 回归"></a>伯努利分布 —-&gt; Logistic 回归</h3><p>伯努利分布只有0、1两种情况，因此它的概率分布可以写成：</p>
+<script type="math/tex; mode=display">
+p(y;\phi) = \phi^y(1-\phi)^{1-y} \qquad y=[0,1] \qquad \phi: 实验为1发生的概率</script><p>下面是逻辑回归的推导过程：</p>
+<img src="/2019/05/29/GLM/2.png">
+<h3 id="多项分布-—-gt-softmax-回归"><a href="#多项分布-—-gt-softmax-回归" class="headerlink" title="多项分布 —-&gt; softmax 回归"></a>多项分布 —-&gt; softmax 回归</h3><p>前面说过的分类问题都是处理那些分两类的问题。比如区分猫或者狗的问题，就是一类是或者否的问题。但是现实生活中还有更加多的多类问题。比如猫分类，有田园猫，布偶猫，暹罗猫各种猫，这里就不能够用两分类来做了。 </p>
+<p>这里先设问题需要区分 $k$ 类，即 $y \in \lbrace1, 2, 3, …, k\rbrace$ 。此处无疑使用多项式来建模。多项式分布是二项分布的一个扩展，其取值可以从$\lbrace1, 2, 3, …, k\rbrace$ 中取，可以简单建模如下：</p>
+<script type="math/tex; mode=display">
+\left[
+\begin{matrix}
+ 1      & 0      & \cdots & 0      \\
+ 0      & 1      & \cdots & 0      \\
+ \vdots & \vdots & \ddots & \vdots \\
+ 0      & 0      & \cdots & 1      \\
+\end{matrix}
+\right]</script><p>例如当$y=2$ 时，第二个数为1，其它数为0，因此它的概率分布如下：</p>
+<img src="/2019/05/29/GLM/3.png">
+<hr>
+<p>参考自：</p>
+<ul>
+<li><a href="https://blog.csdn.net/xierhacker/article/details/53364408" target="_blank" rel="noopener">https://blog.csdn.net/xierhacker/article/details/53364408</a></li>
+<li><a href="https://www.cnblogs.com/BYRans/p/4905420.html" target="_blank" rel="noopener">https://www.cnblogs.com/BYRans/p/4905420.html</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1005793" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1005793</a></li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Swift 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Swift 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tags"></i> Algorithm</a>
+          
+            <a href="/tags/Neural-Networks/" rel="tag"><i class="fa fa-tags"></i> Neural Networks</a>
+          
+            <a href="/tags/Linear-Regression/" rel="tag"><i class="fa fa-tags"></i> Linear Regression</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/02/CNN/" rel="prev" title="CNN">
+                CNN <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -349,6 +519,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -369,8 +543,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -498,6 +681,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要引入GLM？"><span class="nav-number">1.</span> <span class="nav-text">为什么要引入GLM？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">2.</span> <span class="nav-text">定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#广义线性模型的三个假设"><span class="nav-number">2.1.</span> <span class="nav-text">广义线性模型的三个假设</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接函数的获取"><span class="nav-number">3.</span> <span class="nav-text">连接函数的获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见连接函数求解及对应回归"><span class="nav-number">4.</span> <span class="nav-text">常见连接函数求解及对应回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#伯努利分布-—-gt-Logistic-回归"><span class="nav-number">4.1.</span> <span class="nav-text">伯努利分布 —-&gt; Logistic 回归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项分布-—-gt-softmax-回归"><span class="nav-number">4.2.</span> <span class="nav-text">多项分布 —-&gt; softmax 回归</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -638,6 +837,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
