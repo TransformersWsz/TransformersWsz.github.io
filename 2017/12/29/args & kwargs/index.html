@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,可变参数,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本概念Python支持可变参数，最简单的方法莫过于使用默认参数。123456789101112131415def test_defargs(one, two=2):    # 参数one没有默认值，two的默认值为2   print(&apos;Required argument: &apos;, one)   print(&apos;Optional argument: &apos;, two)test_defargs(1)&apos;&apos;&apos;R">
+<meta name="keywords" content="python,可变参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="args &amp; kwargs">
+<meta property="og:url" content="http://yoursite.com/2017/12/29/args & kwargs/index.html">
+<meta property="og:site_name" content="Swift的博客">
+<meta property="og:description" content="基本概念Python支持可变参数，最简单的方法莫过于使用默认参数。123456789101112131415def test_defargs(one, two=2):    # 参数one没有默认值，two的默认值为2   print(&apos;Required argument: &apos;, one)   print(&apos;Optional argument: &apos;, two)test_defargs(1)&apos;&apos;&apos;R">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-01T16:06:51.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="args &amp; kwargs">
+<meta name="twitter:description" content="基本概念Python支持可变参数，最简单的方法莫过于使用默认参数。123456789101112131415def test_defargs(one, two=2):    # 参数one没有默认值，two的默认值为2   print(&apos;Required argument: &apos;, one)   print(&apos;Optional argument: &apos;, two)test_defargs(1)&apos;&apos;&apos;R">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/29/args & kwargs/">
+
+
+
+
+
+  <title>args & kwargs | Swift的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Swift的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/args & kwargs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Swift">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://navianter.github.io/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swift的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">args & kwargs</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T21:24:18+08:00">
+                2017-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程语言/" itemprop="url" rel="index">
+                    <span itemprop="name">编程语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/29/args & kwargs/" class="leancloud_visitors" data-flag-title="args & kwargs">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>Python支持可变参数，最简单的方法莫过于使用默认参数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_defargs</span><span class="params">(one, two=<span class="number">2</span>)</span>:</span>    <span class="comment"># 参数one没有默认值，two的默认值为2</span></span><br><span class="line">   print(<span class="string">'Required argument: '</span>, one)</span><br><span class="line">   print(<span class="string">'Optional argument: '</span>, two)</span><br><span class="line"></span><br><span class="line">test_defargs(<span class="number">1</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Required argument: 1</span></span><br><span class="line"><span class="string">Optional argument: 2</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">test_defargs(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Required argument: 1</span></span><br><span class="line"><span class="string">Optional argument: 3</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<p>另外一种达到可变参数 (Variable Argument) 的方法：<br>使用 <code>*args</code> 和 <code>**kwargs</code> 语法。<br><code>*args</code> 是可变的位置参数(positional arguments)列表，<br><code>**kwargs</code> 是可变的关键词参数(keyword arguments)列表。<br>并且规定位置参数必须位于关键词参数之前，即 <code>*args</code> 必须位于 <code>**kwargs</code> 之前。</p>
+<a id="more"></a>
+<h2 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hello</span><span class="params">(name, sex)</span>:</span></span><br><span class="line">    sex_dict = &#123;<span class="number">0</span>: <span class="string">'先生'</span>, <span class="number">1</span>: <span class="string">'女士'</span>&#125;    <span class="comment"># key: value</span></span><br><span class="line">    print(<span class="string">'hello %s %s, welcome to Python world!'</span> %(name, sex_dict.get(sex%<span class="number">2</span>, <span class="string">'先生'</span>)))    <span class="comment"># if no such a key, print '先生'</span></span><br><span class="line"></span><br><span class="line">print_hello(<span class="string">'Chen'</span>, <span class="number">2</span>)    <span class="comment"># 位置参数要求先后顺序，对应name和sex</span></span><br><span class="line">print_hello(<span class="string">'Chen'</span>, <span class="number">3</span>)    <span class="comment"># 两个参数的顺序必须一一对应，且少一个参数都不可以</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">hello Chen 女士, welcome to Python world!</span></span><br><span class="line"><span class="string">hello Chen 先生, welcome to Python world!</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h2><p>用于函数调用，通过“键-值”形式加以指定。<br>使用关键词参数可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。</p>
+<p>以下是用关键字参数正确调用函数的实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print_hello(<span class="string">'Chen'</span>, sex=<span class="number">1</span>)    <span class="comment"># 有位置参数时，位置参数必须在关键字参数的前面</span></span><br><span class="line">print_hello(name=<span class="string">'Chen'</span>, sex=<span class="number">1</span>)    <span class="comment"># 关键字参数之间不存在先后顺序的</span></span><br><span class="line">print_hello(sex=<span class="number">1</span>, name=<span class="string">'Chen'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>以下是错误的调用方式:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print_hello(name=<span class="string">'Chen'</span>, <span class="number">1</span>)    <span class="comment"># 有位置参数时，位置参数必须在关键字参数的前面</span></span><br><span class="line">print_hello(sex=<span class="number">1</span>, <span class="string">'Chen'</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><p>使用关键词参数时，可为参数提供默认值，调用函数时可传可不传该默认参数的值（注意：所有位置参数必须出现在默认参数前，包括函数定义和调用）</p>
+<p>正确的默认参数定义方式 —&gt; 位置参数在前，默认参数在后:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hello2</span><span class="params">(name, sex=<span class="number">1</span>)</span>:</span>    <span class="comment"># 默认sex=1</span></span><br><span class="line">    sex_dict = &#123;<span class="number">1</span>: <span class="string">'先生'</span>, <span class="number">2</span>: <span class="string">'女士'</span>&#125;    <span class="comment"># key: value</span></span><br><span class="line">    print(<span class="string">'hello %s %s, welcome to circus!'</span> %(name, sex_dict.get(sex, <span class="string">'先生'</span>)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 错误的定义方式</span></span><br><span class="line"><span class="comment"># def print_hello2(sex=1, name):</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用时不传sex的值，则使用默认值1</span></span><br><span class="line">print_hello2(<span class="string">'Chen'</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">hello Chen 先生, welcome to circus!</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用时传入sex的值，并指定为2。无视原来的sex=1，仅本次生效，不会改变函数sex的默认值</span></span><br><span class="line">print_hello2(<span class="string">'Liu'</span>, sex=<span class="number">2</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">hello Liu 女士, welcome to circus!</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="收集参数-Packing"><a href="#收集参数-Packing" class="headerlink" title="收集参数(Packing)"></a>收集参数(Packing)</h2><blockquote>
+<p>被收集到一起的位置参数或关键词参数</p>
+</blockquote>
+<p>有些时候，我们在定义参数时不确定会传递多少个参数（或者不传递），甚至我们想要根据实际情况传入任意个参数，这个时候 <code>packing</code> 就派上了用场。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_args</span><span class="params">(*args)</span>:</span></span><br><span class="line">    print(args)</span><br><span class="line"></span><br><span class="line">print_args(<span class="number">1</span>)</span><br><span class="line">print_args(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">(1,)</span></span><br><span class="line"><span class="string">(1, 2, 3)</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看到，结果是作为一个元组(tuple)打印出来的，因为仅传入1时，输出的括号里面有一个逗号。实际上，<code>*args</code> 前的 <code>*</code> 可以理解为将我们需要传入的所有值放置在了同一个元组里面，这就是收集 (packing) 的过程。</p>
+<h3 id="位置参数的收集传递-————-packing"><a href="#位置参数的收集传递-————-packing" class="headerlink" title="位置参数的收集传递 ———— *packing"></a>位置参数的收集传递 ———— *packing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_args2</span><span class="params">(num, *args)</span>:</span></span><br><span class="line">    print(num)</span><br><span class="line">    print(args)</span><br><span class="line"></span><br><span class="line">print_args2(<span class="number">1</span>)</span><br><span class="line">print_args2(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">1    print(num)</span></span><br><span class="line"><span class="string">()    print(args) --&gt; 一个空元组</span></span><br><span class="line"><span class="string">1    print(num)</span></span><br><span class="line"><span class="string">(2, 3)    print(args) --&gt; 剩余的参数组成的元组！</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<p>那么这么说来 <code>*</code> 的意思就是“把剩余的所有参数收集 packing 起来”！</p>
+<h3 id="关键词参数的收集传递-————-packing"><a href="#关键词参数的收集传递-————-packing" class="headerlink" title="关键词参数的收集传递 ———— **packing"></a>关键词参数的收集传递 ———— **packing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_kargs</span><span class="params">(**kargs)</span>:</span></span><br><span class="line">    print(kargs)</span><br><span class="line"></span><br><span class="line">print_kargs(x=<span class="number">1</span>, y=<span class="number">2</span>, z=<span class="number">3</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123;'z': 3, 'y': 2, 'x': 1&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<p>结果输出了一个字典(dic)，双星号 <code>**</code> 收集了所有关键词参数。</p>
+<h3 id="分割参数"><a href="#分割参数" class="headerlink" title="分割参数"></a>分割参数</h3><p><code>*</code> 和 <code>**</code> 也可以在函数调用过程中使用，称之为分割 (unpacking)。</p>
+<h4 id="在传递元组时，让元组的每一个元素对应一个位置参数"><a href="#在传递元组时，让元组的每一个元素对应一个位置参数" class="headerlink" title="在传递元组时，让元组的每一个元素对应一个位置参数"></a>在传递元组时，让元组的每一个元素对应一个位置参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_hello</span><span class="params">(name, sex)</span>:</span></span><br><span class="line">    print(name, sex)</span><br><span class="line"></span><br><span class="line">args = (<span class="string">'Chen'</span>, <span class="string">'男'</span>)</span><br><span class="line">print_hello(*args)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Chen 男</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h4 id="在传递词典字典时，让词典的每个键值对作为一个关键字参数传递给函数"><a href="#在传递词典字典时，让词典的每个键值对作为一个关键字参数传递给函数" class="headerlink" title="在传递词典字典时，让词典的每个键值对作为一个关键字参数传递给函数"></a>在传递词典字典时，让词典的每个键值对作为一个关键字参数传递给函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_info</span><span class="params">(**kargs)</span>:</span></span><br><span class="line">    print(kargs)</span><br><span class="line"></span><br><span class="line">kargs = &#123;<span class="string">'name'</span>: <span class="string">'Chen'</span>, <span class="string">'sex'</span>: <span class="string">'男'</span>, <span class="string">'time'</span>: <span class="string">'13'</span>&#125;</span><br><span class="line">print_info(**kargs)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">&#123;'name': 'Chen', 'sex':'男','time':'13'&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="位置参数、关键词参数（默认参数）、收集参数的混合使用"><a href="#位置参数、关键词参数（默认参数）、收集参数的混合使用" class="headerlink" title="位置参数、关键词参数（默认参数）、收集参数的混合使用"></a>位置参数、关键词参数（默认参数）、收集参数的混合使用</h2><p>基本原则是：先位置参数，默认参数，收集位置参数，收集关键字参数(定义和调用都应遵循)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(name, age, sex=<span class="number">1</span>, *args, **kargs)</span>:</span></span><br><span class="line">    print(name, age, sex, args, kargs)</span><br><span class="line"></span><br><span class="line">func(<span class="string">'Chen'</span>, <span class="number">25</span>, <span class="number">2</span>, <span class="string">'Geo'</span>, <span class="string">'SR'</span>, level=<span class="number">2</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Chen 25 2 ('Geo', 'SR') &#123;'level': 2&#125;</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<p>总结一下就是，星号 <code>*</code> 只有在定义需要使用不定数目的参数的函数，或者调用“分割”字典和序列时才有必要添加。</p>
+<h2 id="各类参数混合使用"><a href="#各类参数混合使用" class="headerlink" title="各类参数混合使用"></a>各类参数混合使用</h2><h3 id="EXAMPLE-1"><a href="#EXAMPLE-1" class="headerlink" title="EXAMPLE 1"></a>EXAMPLE 1</h3><h4 id="Tell-a-story"><a href="#Tell-a-story" class="headerlink" title="Tell a story"></a>Tell a story</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">story1</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Once upon a time, there was a %(job)s called %(name)s.'</span> % kwargs</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">story2</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'In the year of our lord %(year)d, there once lived a %(job)s of a royal line.'</span> % kwargs</span><br><span class="line"></span><br><span class="line">print(story1(name=<span class="string">'Robin'</span>, job=<span class="string">'brave knight'</span>))</span><br><span class="line">print(story1(job=<span class="string">'king'</span>, name=<span class="string">'Charlie'</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Once upon a time, there was a brave knight called Robin.</span></span><br><span class="line"><span class="string">Once upon a time, there was a king called Charlie.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">kwargs = &#123;<span class="string">'name'</span>: <span class="string">'Abel'</span>, <span class="string">'job'</span>: <span class="string">'bard'</span>&#125;</span><br><span class="line">print(story1(**kwargs))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Once upon a time, there was a bard called Abel.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">kwargs.pop(<span class="string">'job'</span>)    <span class="comment"># delete key['job'] --&gt; kwargs = &#123;'name': 'Abel',&#125;</span></span><br><span class="line">print(story1(job=<span class="string">'witch'</span>, **kwargs))    <span class="comment"># redefine key['job']</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Once upon a time, there was a witch called Abel.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">print(story2(year=<span class="number">1239</span>, job=<span class="string">'prince'</span>))</span><br><span class="line">print(story2(job=<span class="string">'princess'</span>, year=<span class="number">1239</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">In the year of our lord 1239, there once lived a prince of a royal line.</span></span><br><span class="line"><span class="string">In the year of our lord 1239, there once lived a princess of a royal line.</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="EXAMPLE-2"><a href="#EXAMPLE-2" class="headerlink" title="EXAMPLE 2"></a>EXAMPLE 2</h3><h4 id="x-to-the-yth-power"><a href="#x-to-the-yth-power" class="headerlink" title="x to the yth power"></a>x to the yth power</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">power</span><span class="params">(x, y, *args)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> args:</span><br><span class="line">        print(<span class="string">'Received redundant parameters:'</span>, args)</span><br><span class="line">    <span class="keyword">return</span> pow(x, y)    </span><br><span class="line"></span><br><span class="line">print(power(<span class="number">2</span>, <span class="number">3</span>))    <span class="comment"># 2 to the 3rd power</span></span><br><span class="line">print(power(<span class="number">3</span>, <span class="number">2</span>))    <span class="comment"># 3 to the 2nd power</span></span><br><span class="line">print(power(x=<span class="number">2</span>, y=<span class="number">3</span>))    <span class="comment"># 2 to the 3rd power</span></span><br><span class="line">print(power(y=<span class="number">3</span>, x=<span class="number">2</span>))    <span class="comment"># no order for keyword arguments</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">8</span></span><br><span class="line"><span class="string">9</span></span><br><span class="line"><span class="string">8</span></span><br><span class="line"><span class="string">8</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">args = (<span class="number">5</span>,) * <span class="number">2</span>    <span class="comment"># '(5,) * 2': copy elements in the tuple 2 times. The outcome is (5, 5)</span></span><br><span class="line">print(power(*args))    <span class="comment"># 5 to the 5th power</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">3125</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">print(power(<span class="number">2</span>, <span class="number">5</span>, <span class="string">'Keep on trying'</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Received redundant parameters: ('Keep on trying',)</span></span><br><span class="line"><span class="string">32    # 2 to the 5th power</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h3 id="EXAMPLE-3"><a href="#EXAMPLE-3" class="headerlink" title="EXAMPLE 3"></a>EXAMPLE 3</h3><h4 id="Bulid-a-function-to-realize-range-for-step-gt-0"><a href="#Bulid-a-function-to-realize-range-for-step-gt-0" class="headerlink" title="Bulid a function to realize range() for step&gt;0"></a>Bulid a function to realize range() for step&gt;0</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">interval</span><span class="params">(start=<span class="number">0</span>, stop=None, step=<span class="number">1</span>)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> stop <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        start, stop = <span class="number">0</span>, start</span><br><span class="line">    result = []</span><br><span class="line">    i = start</span><br><span class="line">    <span class="keyword">while</span> i &lt; stop:</span><br><span class="line">        result.append(i)</span><br><span class="line">        i += step</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">print(interval(<span class="number">10</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">print(interval(<span class="number">1</span>, <span class="number">6</span>))</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">[1, 2, 3, 4, 5]</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line">print(interval(<span class="number">3</span>, <span class="number">15</span>, <span class="number">3</span>))</span><br><span class="line">[<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">12</span>]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="POSTSCRIPT"><a href="#POSTSCRIPT" class="headerlink" title="POSTSCRIPT"></a>POSTSCRIPT</h2><p>在Python 3.X当中加入了”部分剩余参数”的概念。举例如下 :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a,\*b,c = range(<span class="number">5</span>)</span><br></pre></td></tr></table></figure></p>
+<p>中间的 *b 实际上是收集到了3个参数。</p>
+<p>下面这个例子更加直观 :<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">(x, y, *args, z=<span class="number">1</span>)</span>:</span>    <span class="comment"># z=1 在函数参数中最后定义</span></span><br><span class="line">    print(x, y, args, z)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func1(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">1 2 (3, 4, 5) 1</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<p>Python 3.X 当中，默认参数 z=1 在函数参数中最后定义，Python 就会知道除了 传给 x 和 y, 以及 z=1 的部分，其他的剩余参数 (3, 4, 5) 都是传入到 *args 当中。</p>
+<font color="red">但在Python 2.X 并没有这一特性，所以 Python 2.X 的 z=1 必须在args和*kwargs这种剩余参数收集之前。</font>
+
+<p>默认参数 z=1 不是在函数参数中最后定义时，情况又是怎样？<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func2</span><span class="params">(x, y, z=<span class="number">1</span>, *args)</span>:</span></span><br><span class="line">    print(x, y, z, args)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">func2(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">1 2 3 (4, 5)</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure></p>
+<p>3传入到 z ，而 args=(4, 5)</p>
+<hr>
+<p>参考自 : <a href="https://www.jianshu.com/p/61507f60fa29" target="_blank" rel="noopener">https://www.jianshu.com/p/61507f60fa29</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Swift 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Swift 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tags"></i> python</a>
+          
+            <a href="/tags/可变参数/" rel="tag"><i class="fa fa-tags"></i> 可变参数</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/20/chmod & chown/" rel="next" title="chmod & chown">
+                <i class="fa fa-chevron-left"></i> chmod & chown
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/08/v-model & v-bind/" rel="prev" title="v-model & v-bind">
+                v-model & v-bind <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://navianter.github.io/images/avatar.jpeg" alt="Swift">
+            
+              <p class="site-author-name" itemprop="name">Swift</p>
+              <p class="site-description motion-element" itemprop="description">Talk is cheap. Show me the code.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TransformersWsz/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/transformer_WSZ" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://litten.me/" title="litten" target="_blank">litten</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.ibilidi.cn/" title="南溪" target="_blank">南溪</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.mythsman.com/" title="Myths" target="_blank">Myths</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hebin.me/" title="以夕阳落款" target="_blank">以夕阳落款</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.xiaohansong.com/" title="肖汉松" target="_blank">肖汉松</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://imququ.com/" title="Jerry Qu" target="_blank">Jerry Qu</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://heary.cn/" title="heary" target="_blank">heary</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qiyiran.github.io" title="戚逸然" target="_blank">戚逸然</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/pinard/" title="Pinard" target="_blank">Pinard</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chehongshu.blog.csdn.net/" title="车弘书" target="_blank">车弘书</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置参数"><span class="nav-number">2.</span> <span class="nav-text">位置参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键字参数"><span class="nav-number">3.</span> <span class="nav-text">关键字参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认参数"><span class="nav-number">4.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#收集参数-Packing"><span class="nav-number">5.</span> <span class="nav-text">收集参数(Packing)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位置参数的收集传递-————-packing"><span class="nav-number">5.1.</span> <span class="nav-text">位置参数的收集传递 ———— *packing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键词参数的收集传递-————-packing"><span class="nav-number">5.2.</span> <span class="nav-text">关键词参数的收集传递 ———— **packing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分割参数"><span class="nav-number">5.3.</span> <span class="nav-text">分割参数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在传递元组时，让元组的每一个元素对应一个位置参数"><span class="nav-number">5.3.1.</span> <span class="nav-text">在传递元组时，让元组的每一个元素对应一个位置参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在传递词典字典时，让词典的每个键值对作为一个关键字参数传递给函数"><span class="nav-number">5.3.2.</span> <span class="nav-text">在传递词典字典时，让词典的每个键值对作为一个关键字参数传递给函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#位置参数、关键词参数（默认参数）、收集参数的混合使用"><span class="nav-number">6.</span> <span class="nav-text">位置参数、关键词参数（默认参数）、收集参数的混合使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各类参数混合使用"><span class="nav-number">7.</span> <span class="nav-text">各类参数混合使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EXAMPLE-1"><span class="nav-number">7.1.</span> <span class="nav-text">EXAMPLE 1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tell-a-story"><span class="nav-number">7.1.1.</span> <span class="nav-text">Tell a story</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXAMPLE-2"><span class="nav-number">7.2.</span> <span class="nav-text">EXAMPLE 2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#x-to-the-yth-power"><span class="nav-number">7.2.1.</span> <span class="nav-text">x to the yth power</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXAMPLE-3"><span class="nav-number">7.3.</span> <span class="nav-text">EXAMPLE 3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bulid-a-function-to-realize-range-for-step-gt-0"><span class="nav-number">7.3.1.</span> <span class="nav-text">Bulid a function to realize range() for step&gt;0</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#POSTSCRIPT"><span class="nav-number">8.</span> <span class="nav-text">POSTSCRIPT</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Swift</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("iHuenLb712woqfKShjKM5VH7-gzGzoHsz", "h7BH7tOy1bqjlmQunWAHUIQF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

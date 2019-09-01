@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Bash,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="chmod chmod 指令是更改文件读写执行权限的。文件权限可以通过 ls -a 或 ll 来看,在每个文件前有10个字符,第一个是 d 是文件夹,否则为 - 。后面三组 rwx ，分别是读取，写入和执行的权限； 三组分别是用户自己,同组以及其他人的相应 rwx 权限。没有执行权限, 脚本和程序也不能直接跑；没有写权限,就没法生成和保存文件；没有读的权限就连访问都难。一般文件权限是 755 ，下">
+<meta name="keywords" content="Bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chmod &amp; chown">
+<meta property="og:url" content="http://yoursite.com/2017/12/20/chmod & chown/index.html">
+<meta property="og:site_name" content="Swift的博客">
+<meta property="og:description" content="chmod chmod 指令是更改文件读写执行权限的。文件权限可以通过 ls -a 或 ll 来看,在每个文件前有10个字符,第一个是 d 是文件夹,否则为 - 。后面三组 rwx ，分别是读取，写入和执行的权限； 三组分别是用户自己,同组以及其他人的相应 rwx 权限。没有执行权限, 脚本和程序也不能直接跑；没有写权限,就没法生成和保存文件；没有读的权限就连访问都难。一般文件权限是 755 ，下">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-01T16:01:56.508Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="chmod &amp; chown">
+<meta name="twitter:description" content="chmod chmod 指令是更改文件读写执行权限的。文件权限可以通过 ls -a 或 ll 来看,在每个文件前有10个字符,第一个是 d 是文件夹,否则为 - 。后面三组 rwx ，分别是读取，写入和执行的权限； 三组分别是用户自己,同组以及其他人的相应 rwx 权限。没有执行权限, 脚本和程序也不能直接跑；没有写权限,就没法生成和保存文件；没有读的权限就连访问都难。一般文件权限是 755 ，下">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/20/chmod & chown/">
+
+
+
+
+
+  <title>chmod & chown | Swift的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Swift的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/20/chmod & chown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Swift">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://navianter.github.io/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swift的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">chmod & chown</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-20T16:54:56+08:00">
+                2017-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/20/chmod & chown/" class="leancloud_visitors" data-flag-title="chmod & chown">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h1><p> <code>chmod</code> 指令是更改文件读写执行权限的。<br>文件权限可以通过 <code>ls -a</code> 或 <code>ll</code> 来看,在每个文件前有10个字符,第一个是 <code>d</code> 是文件夹,否则为 <code>-</code> 。后面三组 <code>rwx</code> ，分别是读取，写入和执行的权限； 三组分别是用户自己,同组以及其他人的相应 <code>rwx</code> 权限。没有执行权限, 脚本和程序也不能直接跑；没有写权限,就没法生成和保存文件；没有读的权限就连访问都难。一般文件权限是 <code>755</code> ，下面将介绍。</p>
+<a id="more"></a>
+<h2 id="权限有两种表示方式"><a href="#权限有两种表示方式" class="headerlink" title="权限有两种表示方式 :"></a>权限有两种表示方式 :</h2><ul>
+<li><code>rwx</code> 方式</li>
+<li><p>数字方式</p>
+<ul>
+<li><code>r</code> 权限代表 <code>1</code></li>
+<li><code>w</code> 权限代表 <code>2</code></li>
+<li><code>x</code> 权限代表 <code>4</code></li>
+<li><p>无权限代表 <code>0</code></p>
+<p><code>rwx</code> 权限数字的值累加起来，就是一个 <code>用户/组/其余人</code> 的相应权限，例如 <code>775</code> 代表用户和组具有 <code>rwx</code> 权限，而其他人只有 <code>rx</code> 权限没有写权限。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="命令格式-chmod-选项-权限模式-文件"><a href="#命令格式-chmod-选项-权限模式-文件" class="headerlink" title="命令格式 : chmod [选项] 权限模式 文件"></a>命令格式 : chmod [选项] 权限模式 文件</h2><h3 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h3><ul>
+<li><code>-c or --changes</code> : 效果类似”-v”参数，但仅汇报更改的部分</li>
+<li><code>-f or --quiet</code> : 强制执行,不显示错误信息</li>
+<li><code>-R or --recursive</code> : 递归处理，将指令目录下的所有文件及子目录一并处理</li>
+<li><code>-v or --verbose</code> : 显示指令执行过程</li>
+<li><code>--reference=&lt;参考文件或目录&gt;</code> : 把指定文件或目录的所属群组全部设成和参考文件或目录的所属群组相同</li>
+</ul>
+<h3 id="权限模式"><a href="#权限模式" class="headerlink" title="权限模式"></a>权限模式</h3><ul>
+<li><code>&lt;权限范围&gt;+&lt;权限值&gt;</code> : 开启权限范围的文件或目录的该选项权限设置</li>
+<li><code>&lt;权限范围&gt;-&lt;权限值&gt;</code> : 关闭权限范围的文件或目录的该选项权限设置</li>
+<li><code>&lt;权限范围&gt;=&lt;权限值&gt;</code> : 指定权限范围的文件或目录的该选项权限设置</li>
+</ul>
+<h4 id="权限范围"><a href="#权限范围" class="headerlink" title="权限范围"></a>权限范围</h4><ul>
+<li><code>u</code> : <code>User</code> , 即文件或目录的拥有者</li>
+<li><code>g</code> : <code>Group</code> , 即文件或目录的所属群组</li>
+<li><code>o</code> : <code>Other</code> , 除了文件或目录拥有者或所属群组之外，其他用户皆属于这个范围</li>
+<li><code>a</code> : <code>All</code> , 即全部的用户，包含拥有者，所属群组以及其他用户</li>
+</ul>
+<h4 id="权限值"><a href="#权限值" class="headerlink" title="权限值"></a>权限值</h4><ul>
+<li><code>r</code> : 读取权限，数字代号为 <code>4</code></li>
+<li><code>w</code> : 写入权限，数字代号为 <code>2</code></li>
+<li><code>x</code> : 执行或切换权限，数字代号为 <code>1</code></li>
+<li><code>-</code> : 不具任何权限，数字代号为 <code>0</code></li>
+<li><code>s</code> : 特殊功能说明 : 变更文件或目录的权限</li>
+<li>不指明权限范围时默认为 <code>All</code> 所有人</li>
+</ul>
+<h4 id="两种设置方式："><a href="#两种设置方式：" class="headerlink" title="两种设置方式："></a>两种设置方式：</h4><ol>
+<li><code>权限范围+/-/=权限值</code> , 例如 <code>u+x</code> 就是用户增加执行权限；不同组别设置使用 <code>,</code> 分隔，例如 <code>u+wx,g+w,o-wx</code> ； 也可以 <code>ug+wx</code> 写。<code>o=r</code> 就是只有读权限 <code>(r–)</code> ; <code>+x</code> 就是三个组都增加执行权限。</li>
+<li>三个数字模式，例如 <code>755</code> 代表用户具有 <code>rwx</code> ，组和其他人有 <code>rx</code> 。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x,g+w f01　　#为文件f01设置自己可以执行，组员可以写入的权限 </span><br><span class="line">chmod u=rwx,g=rw,o=r f01  #rwxrw-r--</span><br><span class="line">chmod 764 f01    #rwx-wx--x权限</span><br><span class="line">chmod a+x f01　　#对文件f01的u,g,o都增加可执行属性</span><br><span class="line">chmod -R +x DirName #对整个文件夹及里面内容都增加执行权限</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="chown"><a href="#chown" class="headerlink" title="chown"></a>chown</h1><p>chown指令是更改文件归属的，归属哪个用户，用户组是什么。对应将影响chmod里rwx效果。</p>
+<p>用户可以是用户或者是用户D，用户组可以是组名或组id。文件名可以使由空格分开的文件列表，在文件名中可以包含通配符。-R选项后可以对整个文件夹操作。 只有文件主(改变自己的文件)和超级用户(改变他人的)才可以便用该命令。非root管理员慎用。</p>
+<h2 id="命令格式-chown-选项-用户-组-文件"><a href="#命令格式-chown-选项-用户-组-文件" class="headerlink" title="命令格式: chown [选项] 用户:组 文件"></a>命令格式: chown [选项] 用户:组 文件</h2><ul>
+<li><code>-c或--changes</code> : 效果类似 “-v” 参数，但仅汇报更改的部分</li>
+<li><code>-f或--quite或--silent</code> : 强制执行,不显示错误信息</li>
+<li><code>-h或--no-dereference</code> : 只对符号连接的文件作修改，而不更改其他任何相关文件</li>
+<li><code>-R或--recursive</code> : 递归处理，将指定目录下的所有文件及子目录一并处理</li>
+<li><code>-v或--version</code> : 显示指令执行过程</li>
+<li><code>--dereference</code> : 效果和“-h”参数相同</li>
+<li><code>--help</code> : 在线帮助</li>
+<li><code>--reference=&lt;参考文件或目录&gt;</code> : 把指定文件或目录的拥有者与所属群组全部设成和参考文件或目录的拥有者与所属群组相同</li>
+<li><code>--version</code> : 显示版本信息。</li>
+</ul>
+<p>记住 <code>用户:组</code> 的写法就可以了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Swift 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Swift 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Bash/" rel="tag"><i class="fa fa-tags"></i> Bash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/15/四种常见的POST提交数据方式/" rel="next" title="四种常见的POST提交数据方式">
+                <i class="fa fa-chevron-left"></i> 四种常见的POST提交数据方式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/29/args & kwargs/" rel="prev" title="args & kwargs">
+                args & kwargs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://navianter.github.io/images/avatar.jpeg" alt="Swift">
+            
+              <p class="site-author-name" itemprop="name">Swift</p>
+              <p class="site-description motion-element" itemprop="description">Talk is cheap. Show me the code.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/TransformersWsz/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/transformer_WSZ" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://litten.me/" title="litten" target="_blank">litten</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.ibilidi.cn/" title="南溪" target="_blank">南溪</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.mythsman.com/" title="Myths" target="_blank">Myths</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://hebin.me/" title="以夕阳落款" target="_blank">以夕阳落款</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.xiaohansong.com/" title="肖汉松" target="_blank">肖汉松</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://imququ.com/" title="Jerry Qu" target="_blank">Jerry Qu</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://heary.cn/" title="heary" target="_blank">heary</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://qiyiran.github.io" title="戚逸然" target="_blank">戚逸然</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/pinard/" title="Pinard" target="_blank">Pinard</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://chehongshu.blog.csdn.net/" title="车弘书" target="_blank">车弘书</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chmod"><span class="nav-number">1.</span> <span class="nav-text">chmod</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#权限有两种表示方式"><span class="nav-number">1.1.</span> <span class="nav-text">权限有两种表示方式 :</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式-chmod-选项-权限模式-文件"><span class="nav-number">1.2.</span> <span class="nav-text">命令格式 : chmod [选项] 权限模式 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选项"><span class="nav-number">1.2.1.</span> <span class="nav-text">选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限模式"><span class="nav-number">1.2.2.</span> <span class="nav-text">权限模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#权限范围"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">权限范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#权限值"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">权限值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种设置方式："><span class="nav-number">1.2.2.3.</span> <span class="nav-text">两种设置方式：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chown"><span class="nav-number">2.</span> <span class="nav-text">chown</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#命令格式-chown-选项-用户-组-文件"><span class="nav-number">2.1.</span> <span class="nav-text">命令格式: chown [选项] 用户:组 文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Swift</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("iHuenLb712woqfKShjKM5VH7-gzGzoHsz", "h7BH7tOy1bqjlmQunWAHUIQF");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
