@@ -367,7 +367,9 @@
 <ul>
 <li>保护现场：即使命令行的工作只进行到一半，关闭终端后还可以重新进入到操作现场，继续工作。对于ssh远程连接而言，即使网络不稳定也没有关系，掉线后重新连接，可以直奔现场，之前运行中的任务，依旧在跑，就好像从来没有离开过一样；特别是在远程服务器上运行耗时的任务，tmux可以帮你一直保持住会话。如此一来，你就可以随时随地放心地进行移动办公，只要你附近的计算机装有tmux（没有你也可以花几分钟装一个），你就能继续刚才的工作。</li>
 <li>分屏：tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧保持着，如此一来，我就可以随意的增删pane，非常灵活。</li>
-<li>会话共享：将tmux会话的地址分享给他人，这样他们就可以通过 SSH 接入该会话。<h2 id="session-amp-window-amp-pane"><a href="#session-amp-window-amp-pane" class="headerlink" title="session &amp; window &amp; pane"></a>session &amp; window &amp; pane</h2></li>
+<li>会话共享：将tmux会话的地址分享给他人，这样他们就可以通过 SSH 接入该会话。</li>
+</ul>
+<h2 id="session-amp-window-amp-pane"><a href="#session-amp-window-amp-pane" class="headerlink" title="session &amp; window &amp; pane"></a>session &amp; window &amp; pane</h2><ul>
 <li>一个tmux session（会话）可以包含多个window（窗口），窗口默认充满会话界面，因此这些窗口中可以运行相关性不大的任务。</li>
 <li>一个window又可以包含多个pane（面板），窗口下的面板，都处于同一界面下，这些面板适合运行相关性高的任务，以便同时观察到它们的运行情况。</li>
 </ul>
