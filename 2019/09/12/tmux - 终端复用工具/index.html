@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。">
+<meta name="description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。基于上述两个痛点，tmux就派上用场">
 <meta name="keywords" content="tmux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tmux - 终端复用工具">
 <meta property="og:url" content="http://yoursite.com/2019/09/12/tmux - 终端复用工具/index.html">
 <meta property="og:site_name" content="Swift的博客">
-<meta property="og:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。">
+<meta property="og:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。基于上述两个痛点，tmux就派上用场">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-12T08:47:36.877Z">
+<meta property="og:updated_time" content="2019-09-12T08:57:41.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tmux - 终端复用工具">
-<meta name="twitter:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。">
+<meta name="twitter:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。基于上述两个痛点，tmux就派上用场">
 
 
 
@@ -360,15 +360,15 @@
       
 
       
-        <p>当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 <code>nohup</code> 。<code>nohup</code> 有个缺点就是它会将输出重定向到 <code>nohup.out</code> 文件，虽然也有其他方法能够在终端实时查看 <code>nohup</code> 输出，但重新登录服务器的时候，这些输出将会丢失。<br><a id="more"></a><br>同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。<br>基于上述两个痛点，tmux就派上用场了。tmux主要有如下三大功能：</p>
+        <p>当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 <code>nohup</code> 。<code>nohup</code> 有个缺点就是它会将输出重定向到 <code>nohup.out</code> 文件，虽然也有其他方法能够在终端实时查看 <code>nohup</code> 输出，但重新登录服务器的时候，这些输出将会丢失。<br>同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。<br>基于上述两个痛点，tmux就派上用场了。tmux主要有如下三大功能：</p>
 <ul>
 <li>保护现场：即使命令行的工作只进行到一半，关闭终端后还可以重新进入到操作现场，继续工作。对于ssh远程连接而言，即使网络不稳定也没有关系，掉线后重新连接，可以直奔现场，之前运行中的任务，依旧在跑，就好像从来没有离开过一样；特别是在远程服务器上运行耗时的任务，tmux可以帮你一直保持住会话。如此一来，你就可以随时随地放心地进行移动办公，只要你附近的计算机装有tmux（没有你也可以花几分钟装一个），你就能继续刚才的工作。</li>
 <li>分屏：tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧保持着，如此一来，我就可以随意的增删pane，非常灵活。</li>
 <li>会话共享：将tmux会话的地址分享给他人，这样他们就可以通过 SSH 接入该会话。<h2 id="session-amp-window-amp-pane"><a href="#session-amp-window-amp-pane" class="headerlink" title="session &amp; window &amp; pane"></a>session &amp; window &amp; pane</h2></li>
 <li>一个tmux session（会话）可以包含多个window（窗口），窗口默认充满会话界面，因此这些窗口中可以运行相关性不大的任务。</li>
-<li>一个window又可以包含多个pane（面板），窗口下的面板，都处于同一界面下，这些面板适合运行相关性高的任务，以便同时观察到它们的运行情况。<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y tmux</span><br></pre></td></tr></table></figure>
-</li>
+<li>一个window又可以包含多个pane（面板），窗口下的面板，都处于同一界面下，这些面板适合运行相关性高的任务，以便同时观察到它们的运行情况。</li>
 </ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y tmux</span><br></pre></td></tr></table></figure>
 <h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><h4 id="新建会话"><a href="#新建会话" class="headerlink" title="新建会话"></a>新建会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s <span class="built_in">test</span> <span class="comment"># 新建一个名叫test的会话</span></span><br></pre></td></tr></table></figure>
 <h4 id="断开当前会话"><a href="#断开当前会话" class="headerlink" title="断开当前会话"></a>断开当前会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux detach</span><br></pre></td></tr></table></figure>
 <p>也可以使用快捷键，先按 <code>ctrl + b</code> ，再按 <code>d</code> 。</p>
@@ -377,10 +377,73 @@
 <h4 id="查看会话"><a href="#查看会话" class="headerlink" title="查看会话"></a>查看会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux ls</span><br></pre></td></tr></table></figure>
 <p>也可以使用快捷键 <code>ctrl + b + s</code> ，此时tmux将打开会话列表。按上下键可切换会话，按左右键可收起或展开会话。</p>
 <h2 id="tmux快捷键"><a href="#tmux快捷键" class="headerlink" title="tmux快捷键"></a>tmux快捷键</h2><ul>
-<li><p>系统指令<br>|   前缀   |   指令   |            说明            |<br>| :———: | :———: | :————————————: |<br>| <code>ctrl+b</code> |   <code>?</code>    |     显示快捷键帮助文档     |<br>| <code>ctrl+b</code> |   <code>d</code>    |        断开当前会话        |<br>| <code>ctrl+b</code> |   <code>D</code>    |      选择要断开的会话      |<br>| <code>ctrl+b</code> | <code>ctrl+z</code> |        挂起当前会话        |<br>| <code>ctrl+b</code> |   <code>r</code>    |      强制重载当前会话      |<br>| <code>ctrl+b</code> |   <code>s</code>    | 显示会话列表用于选择并切换 |<br>| <code>ctrl+b</code> |   <code>:</code>    |       进入命令行模式       |<br>| <code>ctrl+b</code> |   <code>[</code>    |        进入复制模式        |<br>| <code>ctrl+b</code> |   <code>]</code>    |  粘贴复制模式中复制的文本  |<br>| <code>ctrl+b</code> |   <code>~</code>    |      列出提示信息缓存      |</p>
-</li>
-<li><p>窗口(window)命令</p>
-</li>
+<li>系统指令</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">前缀</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:center">显示快捷键帮助文档</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>d</code></td>
+<td style="text-align:center">断开当前会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>D</code></td>
+<td style="text-align:center">选择要断开的会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>ctrl+z</code></td>
+<td style="text-align:center">挂起当前会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>r</code></td>
+<td style="text-align:center">强制重载当前会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>s</code></td>
+<td style="text-align:center">显示会话列表用于选择并切换</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>:</code></td>
+<td style="text-align:center">进入命令行模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>[</code></td>
+<td style="text-align:center">进入复制模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>]</code></td>
+<td style="text-align:center">粘贴复制模式中复制的文本</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>~</code></td>
+<td style="text-align:center">列出提示信息缓存</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>窗口(window)命令</li>
 </ul>
 <div class="table-container">
 <table>
