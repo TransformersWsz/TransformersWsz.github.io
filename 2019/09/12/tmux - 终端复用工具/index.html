@@ -86,18 +86,18 @@
 
 
 
-<meta name="description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。基于上述两个痛点，tmux就派上用场">
+<meta name="description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。">
 <meta name="keywords" content="tmux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tmux - 终端复用工具">
 <meta property="og:url" content="http://yoursite.com/2019/09/12/tmux - 终端复用工具/index.html">
 <meta property="og:site_name" content="Swift的博客">
-<meta property="og:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。基于上述两个痛点，tmux就派上用场">
+<meta property="og:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-12T08:59:31.102Z">
+<meta property="og:updated_time" content="2019-09-16T07:19:35.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tmux - 终端复用工具">
-<meta name="twitter:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。基于上述两个痛点，tmux就派上用场">
+<meta name="twitter:description" content="当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 nohup 。nohup 有个缺点就是它会将输出重定向到 nohup.out 文件，虽然也有其他方法能够在终端实时查看 nohup 输出，但重新登录服务器的时候，这些输出将会丢失。">
 
 
 
@@ -360,7 +360,7 @@
       
 
       
-        <p>当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 <code>nohup</code> 。<code>nohup</code> 有个缺点就是它会将输出重定向到 <code>nohup.out</code> 文件，虽然也有其他方法能够在终端实时查看 <code>nohup</code> 输出，但重新登录服务器的时候，这些输出将会丢失。<br>同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。<br>基于上述两个痛点，tmux就派上用场了。tmux主要有如下三大功能：</p>
+        <p>当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 <code>nohup</code> 。<code>nohup</code> 有个缺点就是它会将输出重定向到 <code>nohup.out</code> 文件，虽然也有其他方法能够在终端实时查看 <code>nohup</code> 输出，但重新登录服务器的时候，这些输出将会丢失。<br><a id="more"></a><br>同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。<br>基于上述两个痛点，tmux就派上用场了。tmux主要有如下三大功能：</p>
 <ul>
 <li>保护现场：即使命令行的工作只进行到一半，关闭终端后还可以重新进入到操作现场，继续工作。对于ssh远程连接而言，即使网络不稳定也没有关系，掉线后重新连接，可以直奔现场，之前运行中的任务，依旧在跑，就好像从来没有离开过一样；特别是在远程服务器上运行耗时的任务，tmux可以帮你一直保持住会话。如此一来，你就可以随时随地放心地进行移动办公，只要你附近的计算机装有tmux（没有你也可以花几分钟装一个），你就能继续刚才的工作。</li>
 <li>分屏：tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧保持着，如此一来，我就可以随意的增删pane，非常灵活。</li>
