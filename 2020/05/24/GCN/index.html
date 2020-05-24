@@ -86,21 +86,21 @@
 
 
 
-<meta name="description" content="最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。 图卷积起缘我们先探讨一个问题：为什么研究者们要设计图卷积操作，传统的卷积不能直接用在图上吗？ 要理解这个问题，我们首先要理解能够应用传统卷积的图像(欧式空间)与图(非欧空间)的区别。如果把图像中的每个像素点视作一个结点，如下图左侧所示，一张图片就可以看作一个非常稠密的图；下图右侧则是一个普通的图。阴影部分代表卷积核">
+<meta name="description" content="最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。">
 <meta name="keywords" content="GNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GCN">
 <meta property="og:url" content="http://yoursite.com/2020/05/24/GCN/index.html">
 <meta property="og:site_name" content="Swift的博客">
-<meta property="og:description" content="最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。 图卷积起缘我们先探讨一个问题：为什么研究者们要设计图卷积操作，传统的卷积不能直接用在图上吗？ 要理解这个问题，我们首先要理解能够应用传统卷积的图像(欧式空间)与图(非欧空间)的区别。如果把图像中的每个像素点视作一个结点，如下图左侧所示，一张图片就可以看作一个非常稠密的图；下图右侧则是一个普通的图。阴影部分代表卷积核">
+<meta property="og:description" content="最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2020/05/24/GCN/convolution.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/24/GCN/framework.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/24/GCN/spatial.png">
-<meta property="og:updated_time" content="2020-05-24T04:42:17.286Z">
+<meta property="og:updated_time" content="2020-05-24T04:42:45.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GCN">
-<meta name="twitter:description" content="最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。 图卷积起缘我们先探讨一个问题：为什么研究者们要设计图卷积操作，传统的卷积不能直接用在图上吗？ 要理解这个问题，我们首先要理解能够应用传统卷积的图像(欧式空间)与图(非欧空间)的区别。如果把图像中的每个像素点视作一个结点，如下图左侧所示，一张图片就可以看作一个非常稠密的图；下图右侧则是一个普通的图。阴影部分代表卷积核">
+<meta name="twitter:description" content="最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。">
 <meta name="twitter:image" content="http://yoursite.com/2020/05/24/GCN/convolution.png">
 
 
@@ -365,6 +365,7 @@
 
       
         <p>最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。</p>
+<a id="more"></a>
 <h2 id="图卷积起缘"><a href="#图卷积起缘" class="headerlink" title="图卷积起缘"></a>图卷积起缘</h2><p>我们先探讨一个问题：<strong>为什么研究者们要设计图卷积操作，传统的卷积不能直接用在图上吗？</strong> 要理解这个问题，我们首先要理解能够应用传统卷积的<strong>图像(欧式空间)</strong>与<strong>图(非欧空间)</strong>的区别。如果把图像中的每个像素点视作一个结点，如下图左侧所示，一张图片就可以看作一个非常稠密的图；下图右侧则是一个普通的图。阴影部分代表<strong>卷积核</strong>，左侧是一个传统的卷积核，右侧则是一个图卷积核。</p>
 <img src="/2020/05/24/GCN/convolution.png">
 <p>仔细观察上图，可以发现两点不同：</p>
