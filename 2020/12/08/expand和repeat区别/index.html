@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="tensor,">
 
 
 
@@ -86,16 +86,18 @@
 
 
 
-<meta name="description" content="Talk is cheap. Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Swift的博客">
-<meta property="og:url" content="http://yoursite.com/tags/存储过程/index.html">
+<meta name="description" content="expand 和 repeat 都是对张量进行扩维，这里记录下使用区别。">
+<meta name="keywords" content="tensor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="expand和repeat区别">
+<meta property="og:url" content="http://yoursite.com/2020/12/08/expand和repeat区别/index.html">
 <meta property="og:site_name" content="Swift的博客">
-<meta property="og:description" content="Talk is cheap. Show me the code.">
+<meta property="og:description" content="expand 和 repeat 都是对张量进行扩维，这里记录下使用区别。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-08T14:08:13.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift的博客">
-<meta name="twitter:description" content="Talk is cheap. Show me the code.">
+<meta name="twitter:title" content="expand和repeat区别">
+<meta name="twitter:description" content="expand 和 repeat 都是对张量进行扩维，这里记录下使用区别。">
 
 
 
@@ -125,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/存储过程/">
+  <link rel="canonical" href="http://yoursite.com/2020/12/08/expand和repeat区别/">
 
 
 
 
 
-  <title>标签: 存储过程 | Swift的博客</title>
+  <title>expand和repeat区别 | Swift的博客</title>
   
 
 
@@ -150,7 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,52 +246,229 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>存储过程<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/08/expand和repeat区别/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Swift">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="https://navianter.github.io/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Swift的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/06/06/用Sql Server编写一个存储过程/" itemprop="url">
-              
-                <span itemprop="name">用Sql Server编写一个存储过程</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">expand和repeat区别</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-06-06T22:54:00+08:00" content="2017-06-06">
-          06-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-08T22:06:34+08:00">
+                2020-12-08
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pytorch学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">pytorch学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/12/08/expand和repeat区别/" class="leancloud_visitors" data-flag-title="expand和repeat区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p><code>expand</code> 和 <code>repeat</code> 都是对张量进行扩维，这里记录下使用区别。<br><a id="more"></a></p>
+<h1 id="expand"><a href="#expand" class="headerlink" title="expand()"></a>expand()</h1><blockquote>
+<p>Returns a new view of the :attr:<code>self</code> tensor with singleton dimensions expanded to a larger size.</p>
+</blockquote>
+<p>将张量<code>=1</code>的维度进行扩展，<code>&gt;1</code>的维度保持不变。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor([[<span class="number">12</span>, <span class="number">3</span>, <span class="number">4</span>]])</span><br><span class="line">a.expand(<span class="number">3</span>,<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[12,  3,  4],
+        [12,  3,  4],
+        [12,  3,  4]])
+</code></pre><h1 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h1><blockquote>
+<p>Repeats this tensor along the specified dimensions.</p>
+</blockquote>
+<p>将张量沿着特定维度进行复制。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b = torch.tensor([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line">b.repeat(<span class="number">3</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[1, 2, 4, 1, 2, 4],
+        [4, 5, 6, 4, 5, 6],
+        [1, 2, 4, 1, 2, 4],
+        [4, 5, 6, 4, 5, 6],
+        [1, 2, 4, 1, 2, 4],
+        [4, 5, 6, 4, 5, 6]])
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Swift 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Swift 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tensor/" rel="tag"><i class="fa fa-tags"></i> tensor</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/08/pytorch中的二分类及多分类交叉熵损失函数/" rel="next" title="pytorch中的二分类及多分类交叉熵损失函数">
+                <i class="fa fa-chevron-left"></i> pytorch中的二分类及多分类交叉熵损失函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -297,6 +476,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -317,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -450,6 +642,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#expand"><span class="nav-number">1.</span> <span class="nav-text">expand()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#repeat"><span class="nav-number">2.</span> <span class="nav-text">repeat()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -590,6 +798,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
