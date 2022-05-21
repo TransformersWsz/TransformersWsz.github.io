@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            SVM常见面试问答 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">SVM常见面试问答</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-06-17 23:47:58</span>
+        <span class="mobile">2021-06-17 23:47</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>记录一下SVM的常见面试问答：</p>
+<span id="more"></span>
+<h2 id="1-SVM原理"><a href="#1-SVM原理" class="headerlink" title="1. SVM原理"></a>1. SVM原理</h2><p>SVM 是一种二类分类模型。它的基本模型是在特征空间中寻找间隔最大化的分离超平面的线性分类器。</p>
+<ul>
+<li>当训练样本线性可分时，通过硬间隔最大化，学习一个线性分类器，即硬间隔支持向量机；</li>
+<li>当训练数据近似线性可分时，引入松弛变量，通过软间隔最大化，学习一个线性分类器，即软间隔支持向量机；</li>
+<li>当训练数据线性不可分时，通过使用核技巧及软间隔最大化，学习非线性支持向量机。</li>
+</ul>
+<h2 id="2-SVM为什么采用间隔最大化？"><a href="#2-SVM为什么采用间隔最大化？" class="headerlink" title="2. SVM为什么采用间隔最大化？"></a>2. SVM为什么采用间隔最大化？</h2><ul>
+<li>唯一解：当训练数据线性可分时，存在无穷多个超平面可以将两类数据正确分开。线性可分支持向量利用间隔最大化求得最优超平面，此时，解是唯一的。</li>
+<li>强泛化性：划分超平面所产生的分类结果是最鲁棒的，对未见示例的泛化能力最强。</li>
+</ul>
+<h2 id="3-SVM为什么要从原始问题变为对偶问题来求解？"><a href="#3-SVM为什么要从原始问题变为对偶问题来求解？" class="headerlink" title="3. SVM为什么要从原始问题变为对偶问题来求解？"></a>3. SVM为什么要从原始问题变为对偶问题来求解？</h2><p>原问题：</p>
+<script type="math/tex; mode=display">
+\min _{w, b} \max _{\lambda} L(w, b, \lambda)=\frac{1}{2}\|w\|^{2}+\sum_{i=1}^{n} \lambda_{i}\left[1-y_{i}\left(w^{T} x_{i}+b\right)\right]</script><p>对偶问题：</p>
+<script type="math/tex; mode=display">
+\max _{\lambda} \min _{w, b} L(w, b, \lambda)=\frac{1}{2}\|w\|^{2}+\sum_{i=1}^{n} \lambda_{i}\left[1-y_{i}\left(w^{T} x_{i}+b\right)\right]</script><ul>
+<li>对偶问题往往更易求解：<ul>
+<li>问题复杂度降低：由求特征向量 $w$ 转化为求比例系数 $\lambda$，在原始问题下，求解的复杂度与 $w$ 的维度有关。在对偶问题下，只与样本数量 $n$ 有关；</li>
+<li>求解更高效：因为只用求解比例系数 $\lambda$ ，而 $\lambda$ 只有支持向量才为非0，其他全为0；</li>
+</ul>
+</li>
+<li>可以自然引入核函数，进而推广到非线性分类问题。</li>
+</ul>
+<h2 id="4-KKT条件的作用"><a href="#4-KKT条件的作用" class="headerlink" title="4. KKT条件的作用"></a>4. KKT条件的作用</h2><script type="math/tex; mode=display">
+d^{*}=\max _{\alpha, \beta: \alpha_{i} \geq 0} \min _{w} \mathcal{L}(w, \alpha, \beta) \leq \min _{w} \max _{\alpha, \beta: \alpha_{i} \geq 0} \mathcal{L}(w, \alpha, \beta)=p^{*}</script><h2 id="5-SMO基本原理"><a href="#5-SMO基本原理" class="headerlink" title="5. SMO基本原理"></a>5. SMO基本原理</h2><p>SMO每次选择两个变量 $\alpha_i$ 和 $\alpha_j$ ，并固定其它参数。在参数初始化后，SMO不断执行如下两个步骤直至收敛：</p>
+<ol>
+<li>选取一对需更新的变量 $\alpha_i$ 和 $\alpha_j$ ；</li>
+<li>固定 $\alpha_i$ 和 $\alpha_j$ 以外的参数，求解对偶问题 $max_{\alpha} (\sum_{i=1}^{n} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} \alpha_{i} \alpha_{j} y_{i} y_{j} x_{i}^{T} x_{j})$ 以获得更新后的  $\alpha_i$ 和 $\alpha_j$  .</li>
+</ol>
+<p>至于如何选取，SMO采用了启发式方法：使选取的两变量所对应的样本之间的间隔最大。直观解释：这样的两变量有很大的差别，与对两个相似的变量进行更新相比，对它们进行更新会带给目标函数值更大的变化。</p>
+<h2 id="6-什么是软间隔支持向量机？"><a href="#6-什么是软间隔支持向量机？" class="headerlink" title="6. 什么是软间隔支持向量机？"></a>6. 什么是软间隔支持向量机？</h2><blockquote>
+<p>当训练数据近似线性可分时，软间隔最大化允许出现分类错误，此时超平面不能将所有训练数据点都分类正确。</p>
+</blockquote>
+<p>引入松弛变量 $\xi$ 来量化分类器的违规行为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\min _{W, b, \xi} \frac{1}{2}\|W\|^{2}+C \sum_{i=1}^{n} \xi_{i} \\
+&\text { s.t. } y_{i}\left(X_{i}^{T} W+b\right) \geq 1-\xi_{i} \\
+&\xi_{i} \geq 0, i=1,2, \ldots n
+\end{aligned}</script><p>$C$ 是惩罚参数，越小对误分类惩罚越小，容易欠拟合；越大对误分类惩罚越大，容易过拟合。</p>
+<h2 id="7-核函数作用以及如何选取核函数？"><a href="#7-核函数作用以及如何选取核函数？" class="headerlink" title="7. 核函数作用以及如何选取核函数？"></a>7. 核函数作用以及如何选取核函数？</h2><blockquote>
+<p>当样本在原始空间线性不可分时，核函数可将样本从原始空间映射到一个更高维的特征空间，使得样本在这个特征空间内线性可分。</p>
+</blockquote>
+<p>核函数有如下几种：</p>
+<ul>
+<li>线性核</li>
+<li>多项式核</li>
+<li>高斯核（RBF核）</li>
+<li>Sigmoid核</li>
+</ul>
+<p>核函数选取技巧：</p>
+<ul>
+<li>如果特征的数量大到和样本数量差不多，则选用LR或者线性核函数；</li>
+<li>如果特征的数量小，样本的数量正常，则选用高斯核函数；</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/43827793" >SVM 高频面试题<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35755150" >推导 | SVM详解（1）SVM基本型<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33940537" >支持向量机SVM总结之拉格朗日对偶问题<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/93715996" >【机器学习面试总结】—— SVM<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/breezezz/p/11303722.html" >拉格朗日对偶性<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Algorithm/">#Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/07/06/Bagging%20&amp;%20RF/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Bagging &amp; RF</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/06/02/C++%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">C++常见面试题</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-SVM%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">1. SVM原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-SVM%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8%E9%97%B4%E9%9A%94%E6%9C%80%E5%A4%A7%E5%8C%96%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2. SVM为什么采用间隔最大化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SVM%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BB%8E%E5%8E%9F%E5%A7%8B%E9%97%AE%E9%A2%98%E5%8F%98%E4%B8%BA%E5%AF%B9%E5%81%B6%E9%97%AE%E9%A2%98%E6%9D%A5%E6%B1%82%E8%A7%A3%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3. SVM为什么要从原始问题变为对偶问题来求解？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-KKT%E6%9D%A1%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">4. KKT条件的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-SMO%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">5. SMO基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AF%E8%BD%AF%E9%97%B4%E9%9A%94%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">6. 什么是软间隔支持向量机？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%A0%B8%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E9%80%89%E5%8F%96%E6%A0%B8%E5%87%BD%E6%95%B0%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7. 核函数作用以及如何选取核函数？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

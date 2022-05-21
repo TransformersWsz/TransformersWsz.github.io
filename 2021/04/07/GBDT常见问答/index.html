@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            GBDT常见问答 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">GBDT常见问答</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-04-07 00:14:55</span>
+        <span class="mobile">2021-04-07 00:14</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>关于GBDT的算法原理和实例讲解可见：</p>
+<span id="more"></span>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/zpalyq110/article/details/79527653?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control" >GBDT算法原理以及实例讲解<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/105497113" >GBDT总结<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>下面是涉及到的GBDT的面试问答：</p>
+<ol>
+<li><p>基本原理</p>
+<p>通过多轮迭代，每轮迭代产生一个弱分类器（利用CART回归树构建），每个分类器在上一轮分类器的残差基础上进行训练。最后将这些弱分类器线性组合成一个强学习器。</p>
+</li>
+<li><p>GBDT如何做特征选择？</p>
+<ol>
+<li>遍历样本的特征，对于每个特征，遍历样本的切分点，选择最优的特征的最优切分点；</li>
+<li>判断最优时使用平方误差。使用一个特征及其切分点可将样本分为两部分，每部分都计算一个标签的平均值，计算标签平均值与标签的平方误差之和，平方误差最小的特征–切分点组合即是最优的。</li>
+</ol>
+</li>
+<li><p>GBDT如何构建特征？</p>
+<p>gbdt 本身是不能产生特征的，但是我们可以利用gbdt去产生特征的组合。</p>
+<img src="/2021/04/07/GBDT%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/combine_features.png" class="">
+<p>如上图所示，使用 GBDT 生成了两棵树，两颗树一共有五个叶子节点。我们将样本 X 输入到两颗树当中去，样本X 落在了第一棵树的第二个叶子节点，第二颗树的第一个叶子节点，于是我们便可以依次构建一个五纬的特征向量，每一个纬度代表了一个叶子节点，样本落在这个叶子节点上面的话那么值为1，没有落在该叶子节点的话，那么值为0。</p>
+<p>​    于是对于该样本，我们可以得到一个向量 $[0,1,0,1,0]$ 作为该样本的组合特征，和原来的特征一起输入到逻辑回归当中进行训练。实验证明这样会得到比较显著的效果提升。</p>
+</li>
+<li><p>GBDT如何用于分类？</p>
+<p>GBDT无论用于分类还是回归一直都是使用的CART 回归树。因为gbdt 每轮的训练是在上一轮的训练的残差基础之上进行训练的。这里的残差就是当前模型的负梯度值 。这个要求每轮迭代的时候，弱分类器的输出的结果相减是有意义的。残差相减是有意义的。如果选用的弱分类器是分类树，类别相减是没有意义的。上一轮输出的是样本 $x$ 属于A类，本一轮训练输出的是样本 $x$ 属于B类。 A 和 B 很多时候甚至都没有比较的意义，A类-B类是没有意义的。</p>
+<p>​    具体到多分类这个任务上来，假设样本 $X$ 总共有 $K$ 类。来了一个样本  $x$ ，我们需要使用GBDT来判断 $x$ 属于样本的哪一类。</p>
+<p>​    第一步 我们在训练的时候，是针对样本 $X$ 每个可能的类都训练一个分类回归树。举例说明，目前样本有三类，也就是 $K = 3$ 。样本 $x$ 属于第二类。那么针对该样本 $x$ 的分类结果，其实我们可以用一个 三维向量 $[0,1,0]$ 来表示。 $0$ 表示样本不属于该类， $1$ 表示样本属于该类。由于样本已经属于第二类了，所以第二类对应的向量维度为 $1$，其他位置为 $0$ 。</p>
+<p>​    针对样本有三类的情况，我们实质上是在每轮的训练的时候是同时训练三颗树。第一颗树针对样本x的第一类，输入为 $(x,0)$ 。第二颗树输入针对样本x的第二类，输入为 $(x,1)$ 。第三颗树针对样本x的第三类，输入为 $(x,0)$</p>
+<p>​    在这里每颗树的训练过程其实就是就是我们之前已经提到过的CATR TREE 的生成过程。在此处我们参照之前的生成树的程序 即可以就解出三颗树，以及三颗树对 $x$ 类别的预测值 $f_1(x),f_2(x),f_3(x)$ 。那么在此类训练中，我们仿照多分类的逻辑回归 ，使用softmax来产生概率，则属于类别 $1$ 的概率：</p>
+<script type="math/tex; mode=display">
+p_1 = \frac{e^{f_1(x)}}{\sum_{k=1}^3 e^{f_k(x)}}</script><p>​    并且我们我们可以针对类别1求出残差$y_1 = 0-p_1(x)$；类别2 求出残差$y_2 = 0-p_2(x)$；类别3 求出残差$y_3 = 0-p_3(x)$</p>
+<p>​    然后开始第二轮训练 针对第一类 输入为$(x, y_1(x))$， 针对第二类输入为$(x, y_2(x))$，针对 第三类输入为$(x, y_3(x))$。继续训练出三颗树。一直迭代M轮。每轮构建3颗树。</p>
+<p>​    所以当 $K=3$ ，我们其实应该有三个式子：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&F_{1 M}(x)=\sum_{m=1}^{M} \hat{C_{1 m}} I\left(x \epsilon R_{1 m}\right) \\
+&F_{2 M}(x)=\sum_{m=1}^{M} C_{2 m} I\left(x \epsilon R_{2 m}\right) \\
+&F_{3 M}(x)=\sum_{m=1}^{M} \hat{C_{3 m}} I\left(x \epsilon R_{3 m}\right)
+\end{aligned}</script><p>​    当训练完毕以后，新来一个样本x，我们需要预测该样本的类别的时候，便可以有这三个式子产生三个值$F_{1M}(x),F_{2M}(x),F_{3M}(x)$。样本属于 某个类别c的概率为：</p>
+<script type="math/tex; mode=display">
+p_c = \frac{e^{F_{cM}(x)}}{\sum_{k=1}^3 e^{F_{kM}(x)}}</script></li>
+</ol>
+<ol>
+<li><p>GBDT通过什么方式减少误差？</p>
+<p>每棵树都是在拟合当前模型的预测值和真实值之间的误差，GBDT是通过不断迭代来使得误差见小的过程。</p>
+</li>
+<li><p>GBDT的效果相比于传统的LR，SVM效果为什么好一些 ？</p>
+<p>GBDT基于树模型，继承了树模型的优点（对异常点鲁棒（使用了Huber损失函数和Quantile损失函数）、不相关的特征干扰性低（LR需要加正则）、可以很好地处理缺失值、受噪音的干扰小）</p>
+<p>注：相对于RF，GBDT对异常值比较敏感，原因是当前的错误会延续给下一棵树。</p>
+</li>
+<li><p>RF和GBDT的异同</p>
+<ul>
+<li>相同点：都是由多棵树组成，最终结果由多棵树一起决定。</li>
+<li>不同点：</li>
+<li>集成学习：RF属于bagging思想，而GBDT是boosting思想</li>
+<li>偏差-方差权衡：RF不断的降低模型的方差，而GBDT不断的降低模型的偏差</li>
+<li>训练样本：RF每次迭代的样本是从全部训练集中有放回抽样形成的，而GBDT每次使用全部样本</li>
+<li>并行性：RF的树可以并行生成，而GBDT只能顺序生成(需要等上一棵树完全生成)</li>
+<li>最终结果：RF最终是多棵树进行多数表决（回归问题是取平均），而GBDT是加权融合</li>
+<li>数据敏感性：RF对异常值不敏感，而GBDT对异常值比较敏感</li>
+<li>泛化能力：RF不易过拟合，而GBDT容易过拟合</li>
+</ul>
+</li>
+<li><p>比较LR和GBDT，说说什么情景下GBDT不如LR？</p>
+<ul>
+<li>LR是线性模型，可解释性强，很容易并行化，但学习能力有限，需要大量的人工特征工程。</li>
+<li>GBDT是非线性模型，具有天然的特征组合优势，特征表达能力强，但是树与树之间无法并行训练，而且树模型很容易过拟合。</li>
+</ul>
+<p>当在高维稀疏特征的场景下，LR的效果一般会比GBDT好。具体示例见：<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/156047718" >12. 比较LR和GBDT，说说什么情景下GBDT不如LR<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>GBDT的参数有哪些，如何调参 ？</p>
+<ul>
+<li>学习率</li>
+<li>最大弱学习器的个数（太小欠拟合，太大过拟合 ）</li>
+<li>子采样（防止过拟合，太小欠拟合。GBDT中是不放回采样 ）</li>
+<li>最大特征数</li>
+<li>最大树深（太大过拟合）</li>
+<li>内部节点再划分所需最小样本数（越大越防过拟合 ）</li>
+<li>叶子节点最小的样本权重和（如果存在较多样本有缺失值，或者分类树样本的分布类别偏差很大，就会引入样本权重。越大越防过拟合） </li>
+<li>最大叶子节点数（太大过拟合）</li>
+</ul>
+</li>
+<li><p>GBDT的优缺点？</p>
+<p>优点：</p>
+<ul>
+<li><p>可以灵活处理各种类型的数据，包括连续值和离散值。 </p>
+</li>
+<li><p>在相对少的调参时间情况下，预测的准确率也可以比较高。这个是相对SVM来说的。 </p>
+</li>
+<li><p>使用一些健壮的损失函数，对异常值的鲁棒性非常强</p>
+<p>缺点：由于弱学习器之间存在依赖关系，难以并行训练数据。</p>
+</li>
+</ul>
+</li>
+<li><p>GBDT的“梯度提升”体现在哪个阶段？</p>
+<p>在构建CART树时使用了损失函数的负梯度，而不是所谓的残差=真值-预测值；实际上是一种更宽广的概念，但是在平方损失的情况下，上面等式是成立的。另外使用损失函数的梯度可以保证损失函数最小值。所以GBDT的梯度提升体现在构建CART树的所需的负梯度阶段，其利用最速下降的近似方法。</p>
+</li>
+<li><p>怎样设置单棵树的停止生长条件？</p>
+<ul>
+<li>最大深度</li>
+<li>最多叶子结点数</li>
+<li>结点分裂时的最小样本数</li>
+<li>loss满足约束条件</li>
+</ul>
+</li>
+<li><p>GBDT哪些部分可以并行？</p>
+<ul>
+<li>计算并更新每个样本的负梯度；</li>
+<li>分裂挑选最佳特征及其分割点时，对特征计算相应的误差及均值时；</li>
+<li>最后预测过程中，每个样本将之前的所有树的结果累加的时候。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/132726342" >GBDT详解<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/xwl198937/article/details/79749048" >GBDT几问<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/YangTinTin/article/details/104930839" >GBDT算法原理及常见面试问题<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25496196" >N问GBDT<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/ModifyRong/p/7744987.html" >机器学习算法GBDT的面试要点总结-上篇<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Algorithm/">#Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/04/09/%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">常用排序算法的比较</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/04/07/%E5%86%B3%E7%AD%96%E6%A0%91/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">决策树</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">1.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

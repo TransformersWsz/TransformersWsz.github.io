@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            pytorch中的二分类及多分类交叉熵损失函数 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">pytorch中的二分类及多分类交叉熵损失函数</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-12-08 21:55:51</span>
+        <span class="mobile">2020-12-08 21:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">pytorch学习笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">损失函数</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/pytorch/">pytorch</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>本文主要记录一下pytorch里面的二分类及多分类交叉熵损失函数的使用。</p>
+<span id="more"></span>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line">torch.manual_seed(<span class="number">2020</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;torch._C.Generator at 0x7f4e8b3298b0&gt;
+</code></pre><h2 id="二分类交叉熵损失函数"><a href="#二分类交叉熵损失函数" class="headerlink" title="二分类交叉熵损失函数"></a>二分类交叉熵损失函数</h2><h4 id="Single"><a href="#Single" class="headerlink" title="Single"></a>Single</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">m = nn.Sigmoid()</span><br><span class="line">loss = nn.BCELoss()</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">3</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">input</span>)</span><br><span class="line">target = torch.empty(<span class="number">3</span>).random_(<span class="number">2</span>)</span><br><span class="line">output = loss(m(<span class="built_in">input</span>), target)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br><span class="line">f_output = F.binary_cross_entropy(m(<span class="built_in">input</span>), target)</span><br><span class="line"><span class="built_in">print</span>(f_output)</span><br><span class="line">l_output = nn.BCEWithLogitsLoss()(<span class="built_in">input</span>, target)</span><br><span class="line"><span class="built_in">print</span>(l_output)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([ 1.2372, -0.9604,  1.5415], requires_grad=True)
+tensor(0.2576, grad_fn=&lt;BinaryCrossEntropyBackward&gt;)
+tensor(0.2576, grad_fn=&lt;BinaryCrossEntropyBackward&gt;)
+tensor(0.2576, grad_fn=&lt;BinaryCrossEntropyWithLogitsBackward&gt;)
+</code></pre><h4 id="Batch"><a href="#Batch" class="headerlink" title="Batch"></a>Batch</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">m = nn.Sigmoid()</span><br><span class="line">loss = nn.BCELoss()</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">32</span>,<span class="number">5</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">target = torch.empty(<span class="number">32</span>,<span class="number">5</span>).random_(<span class="number">2</span>)</span><br><span class="line">output = loss(m(<span class="built_in">input</span>), target)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br><span class="line">f_output = F.binary_cross_entropy(m(<span class="built_in">input</span>), target)</span><br><span class="line"><span class="built_in">print</span>(f_output)</span><br><span class="line">l_output = nn.BCEWithLogitsLoss()(<span class="built_in">input</span>, target)</span><br><span class="line"><span class="built_in">print</span>(l_output)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 1.2986,  1.5832, -1.1648,  0.8027, -0.9628],
+        [-1.5793, -0.2155,  0.4706, -1.2511,  0.7105],
+        [-0.1274, -1.9361,  0.8374,  0.0081, -0.1504],
+        [ 0.1521,  1.1443,  0.2171, -1.1438,  0.9341],
+        [-3.3199,  1.2998,  0.3918,  0.8327,  1.2411],
+        [-0.8507, -0.1016, -1.2434, -0.5755,  0.1871],
+        [-0.3064,  1.3751,  1.8478,  0.0326,  0.2032],
+        [ 0.1782,  2.3037,  1.5948, -1.4731,  1.5312],
+        [-0.9075, -1.7135,  0.4650, -1.7061,  0.0625],
+        [-1.1904,  0.1130, -1.6609, -0.2000, -0.1422],
+        [ 0.3307, -0.8395, -1.3068, -0.8891,  0.9858],
+        [ 0.5484,  0.7461, -1.0738, -2.2162,  0.6801],
+        [-0.8803,  0.9934, -1.6438,  0.3860,  0.4111],
+        [-1.1078, -0.9629, -0.9534, -0.6207,  0.6885],
+        [-0.0175,  1.9496,  0.9740, -0.4687, -0.6127],
+        [ 0.3713,  0.8074,  0.3072,  1.1604, -0.2669],
+        [-0.1773, -0.2787,  0.1926,  0.7492,  0.7492],
+        [-0.3126, -0.3321, -1.7287, -3.0126,  0.1194],
+        [ 1.0486, -0.1890, -0.5853,  0.4353,  0.2619],
+        [ 1.9726, -0.5510, -0.1826, -0.8600, -0.9906],
+        [ 0.7551,  0.8431, -0.8461, -1.2120,  0.2908],
+        [-0.0932, -0.7151, -0.0631,  1.7554,  0.7374],
+        [-0.1494, -0.6990, -0.1666,  2.0430,  1.3968],
+        [ 0.2280, -0.3187,  1.0309, -0.1067,  1.1622],
+        [-1.5120, -0.8617,  1.4165, -0.2361, -0.0355],
+        [-0.8757, -0.6554,  0.1121, -0.1669, -0.2628],
+        [-0.8023,  0.2305, -1.1792,  0.4314, -0.3653],
+        [ 0.7487,  0.5358, -0.2677, -0.8128,  0.3029],
+        [ 1.4439, -0.5677,  0.5564, -0.2485, -0.3281],
+        [-2.0259,  1.1038,  1.0615,  1.7317, -0.0531],
+        [ 0.9083, -0.8274,  0.8101, -1.1375, -1.2009],
+        [ 0.3300, -0.8760,  1.3459, -1.0209, -0.5313]], requires_grad=True)
+tensor(0.8165, grad_fn=&lt;BinaryCrossEntropyBackward&gt;)
+tensor(0.8165, grad_fn=&lt;BinaryCrossEntropyBackward&gt;)
+tensor(0.8165, grad_fn=&lt;BinaryCrossEntropyWithLogitsBackward&gt;)
+</code></pre><h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><ul>
+<li>二分类交叉熵损失函数的input和target的shape是一致的</li>
+<li><code>nn.BCELoss()</code> 与 <code>F.binary_cross_entropy</code> 计算结果是等价的，具体两者差距可见<a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/66782101" >PyTorch 中，nn 与 nn.functional 有什么区别？<i class="fas fa-external-link-alt"></i></a></li>
+<li><blockquote>
+<p><code>nn.BCEWithLogitsLoss</code>: combines a Sigmoid layer and the BCELoss in one single class. This version is more numerically stable than using a plain Sigmoid followed by a BCELoss as, by combining the operations into one layer, we take advantage of the log-sum-exp trick for numerical stability. 至于为什么更稳定，见 <a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u010630669/article/details/105599067" >https://blog.csdn.net/u010630669/article/details/105599067<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="多分类交叉熵损失函数"><a href="#多分类交叉熵损失函数" class="headerlink" title="多分类交叉熵损失函数"></a>多分类交叉熵损失函数</h2><h4 id="Single-1"><a href="#Single-1" class="headerlink" title="Single"></a>Single</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">3</span>, <span class="number">5</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">target = torch.empty(<span class="number">3</span>, dtype=torch.long).random_(<span class="number">5</span>)</span><br><span class="line">output = loss(<span class="built_in">input</span>, target)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br><span class="line">f_output = F.cross_entropy(<span class="built_in">input</span>, target)</span><br><span class="line"><span class="built_in">print</span>(f_output)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor(1.7541, grad_fn=&lt;NllLossBackward&gt;)
+tensor(1.7541, grad_fn=&lt;NllLossBackward&gt;)
+</code></pre><h4 id="Batch-1"><a href="#Batch-1" class="headerlink" title="Batch"></a>Batch</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">loss = nn.CrossEntropyLoss()</span><br><span class="line"><span class="built_in">input</span> = torch.randn(<span class="number">32</span>, <span class="number">10</span>, <span class="number">5</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">target = torch.empty(<span class="number">32</span>, <span class="number">5</span>, dtype=torch.long).random_(<span class="number">10</span>)</span><br><span class="line">output = loss(<span class="built_in">input</span>, target)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br><span class="line">f_output = F.cross_entropy(<span class="built_in">input</span>, target)</span><br><span class="line"><span class="built_in">print</span>(f_output)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor(2.7944, grad_fn=&lt;NllLoss2DBackward&gt;)
+tensor(2.7944, grad_fn=&lt;NllLoss2DBackward&gt;)
+</code></pre><h3 id="Note-1"><a href="#Note-1" class="headerlink" title="Note"></a>Note</h3><ul>
+<li><code>nn.CrossEntropyLoss</code> 与 <code>F.cross_entropy</code> 计算结果是等价的。两个函数都结合了 <code>LogSoftmax</code> and <code>NLLLoss</code> 运算</li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss"><code>nn.CrossEntropyLoss</code></a> 的公式为：<script type="math/tex; mode=display">
+\operatorname{loss}(\mathrm{x}, \text { class })=-\log \left(\frac{\exp (\mathrm{x}[\mathrm{class}])}{\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])}\right)=-\mathrm{x}[\mathrm{class}]+\log \left(\sum_{\mathrm{j}} \exp (\mathrm{x}[\mathrm{j}])\right)</script>这与我们平时见到的多分类交叉熵损失函数有点不同，具体的推导过程见<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/marsggbo/p/10401215.html" >Pytorch里的CrossEntropyLoss详解<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html?highlight=crossentropyloss#torch.nn.CrossEntropyLoss" >Docs &gt; torch.nn &gt; CrossEntropyLoss<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.BCELoss.html?highlight=bceloss#torch.nn.BCELoss" >Docs &gt; torch.nn &gt; BCELoss<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/marsggbo/p/10401215.html" >Pytorch里的CrossEntropyLoss详解<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/">#损失函数</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/pytorch/">#pytorch</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/12/08/expand%E5%92%8Crepeat%E5%8C%BA%E5%88%AB/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">expand和repeat区别</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/05/24/GCN/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">GCN</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E7%B1%BB%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">二分类交叉熵损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Single"><span class="nav-number">1.0.1.</span> <span class="nav-text">Single</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Batch"><span class="nav-number">1.0.2.</span> <span class="nav-text">Batch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note"><span class="nav-number">1.1.</span> <span class="nav-text">Note</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">多分类交叉熵损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Single-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">Single</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Batch-1"><span class="nav-number">2.0.2.</span> <span class="nav-text">Batch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Note-1"><span class="nav-number">2.1.</span> <span class="nav-text">Note</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

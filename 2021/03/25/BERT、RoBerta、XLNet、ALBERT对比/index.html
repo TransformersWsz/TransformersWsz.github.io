@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            BERT、RoBerta、XLNet、ALBERT对比 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">BERT、RoBerta、XLNet、ALBERT对比</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-03-25 23:04:36</span>
+        <span class="mobile">2021-03-25 23:04</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Transformer/">Transformer</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>记录一下BERT变体的比较。</p>
+<span id="more"></span>
+<h2 id="BERT"><a href="#BERT" class="headerlink" title="BERT"></a>BERT</h2><p>BERT堆叠了多层Transformer的Encoder模块，设计了两个任务来完成预训练：</p>
+<ul>
+<li>Masked LM：随机mask掉15%的token，其中80%替换为[MASK]，10%替换为其它token，10%保留原单词。</li>
+<li>Next Sentence Prediction(NSP)：从训练集中抽取A和B句，50%为A的下一句，50%为其它句子。</li>
+</ul>
+<h2 id="RoBerta"><a href="#RoBerta" class="headerlink" title="RoBerta"></a>RoBerta</h2><h4 id="静态Mask-VS-动态Mask"><a href="#静态Mask-VS-动态Mask" class="headerlink" title="静态Mask VS 动态Mask"></a>静态Mask VS 动态Mask</h4><ul>
+<li>静态Mask：BERT对每一个序列随机选择15%的tokens替换成[MASK]，而一旦被选中，之后的N个epoch就不能再改变。</li>
+<li>动态Mask：RoBERTa一开始把预训练的数据复制10份，每一份都随机选择15%的Tokens进行Mask，也就是说，同样的一句话有10种不同的mask方式。然后每份数据都训练N/10个epoch。</li>
+</ul>
+<h4 id="NSP-VS-w-o-NSP"><a href="#NSP-VS-w-o-NSP" class="headerlink" title="NSP VS w/o NSP"></a>NSP VS w/o NSP</h4><p>RoBerta去除了NSP任务，每次输入连续的多个句子，直到最大长度512（可以跨文章）。这种训练方式叫做（FULL - SENTENCES），而原来的Bert每次只输入两个句子。</p>
+<h4 id="hyper-parameter"><a href="#hyper-parameter" class="headerlink" title="hyper-parameter"></a>hyper-parameter</h4><ul>
+<li>更大的batch_size</li>
+<li>更多的数据</li>
+<li>更高的学习率</li>
+<li>更长时间的训练</li>
+</ul>
+<h2 id="XLNet"><a href="#XLNet" class="headerlink" title="XLNet"></a>XLNet</h2><p><strong>AR LM</strong>：利用上下文单词预测下一个单词的一种模型。但是在这里，上下文单词被限制在两个方向，要么向前，要么向后。</p>
+<p><strong>AE LM</strong>：从损坏的输入中重建原始数据的一种模型。它可以同时在向前向后两个方向看到上下文。</p>
+<p>BERT存在的问题：</p>
+<ul>
+<li>掩码导致的微调差异：预训练阶段因为采取引入[Mask]标记来Mask掉部分单词的训练模式，而Fine-tuning阶段是看不到这种被强行加入的Mask标记的，所以两个阶段存在使用模式不一致的情形，这可能会带来一定的性能损失。</li>
+<li>预测的标记彼此独立：Bert在第一个预训练阶段，假设句子中多个单词被Mask掉，这些被Mask掉的单词之间没有任何关系，是条件独立的，而有时候这些单词之间是有关系的，XLNet则考虑了这种关系。</li>
+</ul>
+<p>XLNet在输入侧维持表面的X句子单词顺序，在Transformer内部，看到的已经是被重新排列组合后的顺序，是通过Attention Mask来实现的。从X的输入单词里面，也就是Ti的上文和下文单词中，随机选择i-1个，放到Ti的上文位置中，把其它单词的输入通过Attention Mask隐藏掉，于是就能够达成我们期望的目标。</p>
+<h3 id="双流自注意力机制"><a href="#双流自注意力机制" class="headerlink" title="双流自注意力机制"></a>双流自注意力机制</h3><img src="/2021/03/25/BERT%E3%80%81RoBerta%E3%80%81XLNet%E3%80%81ALBERT%E5%AF%B9%E6%AF%94/1.png" class="">
+<ul>
+<li>content stream self-attention $h_{\theta}\left(\mathbf{x}_{\mathbf{z}_{\leq t}}\right)$：标准的Transformer计算，能同时接触到单词x的特征信息和位置信息。</li>
+<li>query stream self-attention $g_{\theta}\left(\mathbf{x}_{\mathbf{z}_{&lt;t}}, z_{t}\right)$：只能接触到单词x的位置信息。</li>
+</ul>
+<p>计算过程如下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&g_{z_{t}}^{(m)} \leftarrow \text { Attention }\left(\mathrm{Q}=g_{z_{t}}^{(m-1)}, \mathrm{KV}=\mathbf{h}_{\mathrm{z}<t}^{(m-1)} ; \theta\right), \quad\left(\text { query stream: use } z_{t} \text { but cannot see } x_{z_{t}}\right)\\
+&h_{z_{t}}^{(m)} \leftarrow \text { Attention }\left(\mathrm{Q}=h_{z_{t}}^{(m-1)}, \mathrm{KV}=\mathbf{h}_{\mathrm{z}<t}^{(m-1)} ; \theta\right), \quad\left(\text { content stream: use both } z_{t} \text { and } x_{z_{t}}\right)
+\end{aligned}</script><h4 id="其它改进措施："><a href="#其它改进措施：" class="headerlink" title="其它改进措施："></a>其它改进措施：</h4><ul>
+<li>引入Transformer-XL：相对位置编码以及分段RNN机制。解决Transformer对长文档应用不友好的问题。</li>
+<li>使用更多更高质量的数据。</li>
+</ul>
+<h2 id="ALBert"><a href="#ALBert" class="headerlink" title="ALBert"></a>ALBert</h2><h4 id="词嵌入向量参数的因式分解-Factorized-embedding-parameterization"><a href="#词嵌入向量参数的因式分解-Factorized-embedding-parameterization" class="headerlink" title="词嵌入向量参数的因式分解(Factorized embedding parameterization)"></a>词嵌入向量参数的因式分解(<strong>Factorized embedding parameterization</strong>)</h4><script type="math/tex; mode=display">
+V \times H > V \times E + E \times H</script><p>在BERT、XLNet中，词表的embedding size(E)和transformer层的hidden size(H)是等同的，所以E=H。但实际上词库的大小一般都很大，这就导致模型参数个数就会变得很大。为了解决这些问题他们提出了一个基于factorization的方法。</p>
+<h4 id="跨层参数共享-Cross-layer-parameter-sharing"><a href="#跨层参数共享-Cross-layer-parameter-sharing" class="headerlink" title="跨层参数共享(Cross-layer parameter sharing)"></a>跨层参数共享(Cross-layer parameter sharing)</h4><p>每一层的Transformer可以共享参数，这样一来参数的个数不会以层数的增加而增加。</p>
+<h4 id="段落连续性任务-Inter-sentence-coherence-loss"><a href="#段落连续性任务-Inter-sentence-coherence-loss" class="headerlink" title="段落连续性任务(Inter-sentence coherence loss)"></a>段落连续性任务(Inter-sentence coherence loss)</h4><p>后续的研究表示NSP过于简单，性能不可靠。使用段落连续性任务。正例，使用从一个文档中连续的两个文本段落；负例，使用从一个文档中连续的两个文本段落，但位置调换了。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/70257427" >XLNet:运行机制及和Bert的异同比较<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://hackerxiaobai.github.io/2019/10/10/Bert-XLNet-RoBerta-ALBert/" >Bert XLNet RoBerta ALBert<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/84559048" >从BERT, XLNet, RoBERTa到ALBERT<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Transformer/">#Transformer</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/03/30/%E5%B8%B8%E8%A7%81NLP%E9%9D%A2%E8%AF%95%E9%97%AE%E7%AD%94/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">常见NLP面试问答</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/03/24/CRF%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8EViterbi%E7%AE%97%E6%B3%95/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CRF损失函数与Viterbi算法</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT"><span class="nav-number">1.</span> <span class="nav-text">BERT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RoBerta"><span class="nav-number">2.</span> <span class="nav-text">RoBerta</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81Mask-VS-%E5%8A%A8%E6%80%81Mask"><span class="nav-number">2.0.1.</span> <span class="nav-text">静态Mask VS 动态Mask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSP-VS-w-o-NSP"><span class="nav-number">2.0.2.</span> <span class="nav-text">NSP VS w&#x2F;o NSP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hyper-parameter"><span class="nav-number">2.0.3.</span> <span class="nav-text">hyper-parameter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XLNet"><span class="nav-number">3.</span> <span class="nav-text">XLNet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E6%B5%81%E8%87%AA%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6"><span class="nav-number">3.1.</span> <span class="nav-text">双流自注意力机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E6%94%B9%E8%BF%9B%E6%8E%AA%E6%96%BD%EF%BC%9A"><span class="nav-number">3.1.1.</span> <span class="nav-text">其它改进措施：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ALBert"><span class="nav-number">4.</span> <span class="nav-text">ALBert</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E5%B5%8C%E5%85%A5%E5%90%91%E9%87%8F%E5%8F%82%E6%95%B0%E7%9A%84%E5%9B%A0%E5%BC%8F%E5%88%86%E8%A7%A3-Factorized-embedding-parameterization"><span class="nav-number">4.0.1.</span> <span class="nav-text">词嵌入向量参数的因式分解(Factorized embedding parameterization)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E5%B1%82%E5%8F%82%E6%95%B0%E5%85%B1%E4%BA%AB-Cross-layer-parameter-sharing"><span class="nav-number">4.0.2.</span> <span class="nav-text">跨层参数共享(Cross-layer parameter sharing)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD%E8%BF%9E%E7%BB%AD%E6%80%A7%E4%BB%BB%E5%8A%A1-Inter-sentence-coherence-loss"><span class="nav-number">4.0.3.</span> <span class="nav-text">段落连续性任务(Inter-sentence coherence loss)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

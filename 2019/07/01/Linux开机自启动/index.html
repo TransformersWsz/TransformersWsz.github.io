@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            Linux开机自启动 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Linux开机自启动</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-07-01 16:23:16</span>
+        <span class="mobile">2019-07-01 16:23</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>记录一下Linux开机自启动的原理与实践。</p>
+<span id="more"></span>
+<blockquote>
+<p>实验环境：CentOS7</p>
+</blockquote>
+<h1 id="etc-init-d"><a href="#etc-init-d" class="headerlink" title="/etc/init.d"></a><code>/etc/init.d</code></h1><p>这是指向 <code>/etc/rc.d/init.d</code> 的软链接。这个目录存放的是一些脚本，一般是linux以rpm包安装时设定的一些服务的启动脚本。系统在安装时装了很多rpm包，这里面就有很多对应的脚本。执行这些脚本可以用来<code>start || stop || reload || status || restart</code> 这些服务。举个例子来说，如果你要重新启动 sendmail 的话，而且你的 sendmail 是以 rpm 来安装的，那么使用 <code>/etc/rc.d/init.d/sendmail restart</code> 就可以直接启动 sendmail 了。</p>
+<h2 id="runlevel"><a href="#runlevel" class="headerlink" title="runlevel"></a><code>runlevel</code></h2><p><code>/etc/rc.d/init.d/</code> 这个目录下的脚本就类似与windows中的注册表，在系统启动的时候执行。程序运行到这里(init进程读取了运行级别)， 是该运行init.d里的脚本了，但是并不是直接运行，而是有选择的。因为系统并不需要启动所有的服务。系统是如何选择哪些需要启动哪些不要呢？这时 <code>runlevel</code> 就起作用了。在RH9和FC7的源码中它都是一开始就 <code>check_runlevel()</code> ，知道了运行级别之后，对于每一个运行级别，在 <code>/etc/rc.d/</code> 下都有一个子目录分别是 <code>rc0.d, rc1.d ... rc6.d</code> 。每个目录下都是到 <code>/etc/rc.d/init.d/</code> 目录的一部分脚本一些软链接。每个级别要执行哪些服务就在相对应的目录下，比如级别6要启动的服务就都放在rc6.d下，但是放在这个rc6.d下的都是一些软链接文件，链接到 <code>/etc/rc.d/init.d/</code> 中相对应的文件，真正干活的是 <code>/etc/rc.d/init.d/</code> 里的脚本。<br>(<code>/etc/</code> 下的 <code>rc0.d, rc1.d ... rc6.d</code> 是指向 <code>/etc/rc.d/</code> 下的 <code>rc0.d, rc1.d ... rc6.d</code> 的软链接。)</p>
+<h2 id="KS"><a href="#KS" class="headerlink" title="KS"></a><code>KS</code></h2><p>如上图所示，你会发现许多 <code>rc#.d</code> 形式存在的目录，这里 <code>#</code> 代表一个指定的初始化级别，范围是0~6）:</p>
+<ul>
+<li><strong><em>0</em></strong>：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动</li>
+<li><strong><em>1</em></strong>：单用户工作状态，root权限，用于系统维护，禁止远程登陆</li>
+<li><strong><em>2</em></strong>：多用户状态(没有NFS)</li>
+<li><strong><em>3</em></strong>：完全的多用户状态(有NFS)，登陆后进入控制台命令行模式</li>
+<li><strong><em>4</em></strong>：系统未使用，保留</li>
+<li><strong><em>5</em></strong>：X11控制台，登陆后进入图形GUI模式</li>
+<li><strong><em>6</em></strong>：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</li>
+</ul>
+<p>在这些目录之下，包含了许多对进程进行控制的脚本。这些脚本要么以 <code>K##</code> 开头，要么以 <code>S##</code> 开头：</p>
+<ul>
+<li><strong><em>K</em></strong>：kill，系统将终止对应的服务</li>
+<li><strong>S</strong>：start，系统将启动对应的服务</li>
+<li><strong>##</strong>：同一运行级别下脚本执行的顺序，数值小的先执行，数值大的后执行。很多时候这些执行顺序是很重要的，比如要启动Apache服务，就必须先配置网络接口。</li>
+</ul>
+<h1 id="etc-rc-local"><a href="#etc-rc-local" class="headerlink" title="/etc/rc.local"></a><code>/etc/rc.local</code></h1><p>这是指向 <code>/etc/rc.d/rc.local</code> 的软链接。这是使用者自订开机启动程序,把需要开机自动运行的程序写在这个脚本里。也就是说，我有任何想要在开机时就进行的工作时，直接将他写入 <code>/etc/rc.d/rc.local</code> ， 那么该工作就会在开机的时候自动被载入。这一点和windows里面的“启动”菜单有点像。该脚本是在系统初始化级别脚本运行之后再执行的，因此可以安全地在里面添加你想在系统启动之后执行的脚本。常见的情况是开机自启动 <code>mongod</code> 服务：<br></p>
+<h1 id="开机自启动"><a href="#开机自启动" class="headerlink" title="开机自启动"></a>开机自启动</h1><p>常见的开机自启动有两种方法：</p>
+<ul>
+<li>通过将 shell script写入到 <code>/etc/rc.d/rc.local</code></li>
+<li>通过 <code>/etc/rc.d/init.d/</code>。假设 <code>/etc/rc.d/init.d/radisd</code> 已存在，文件内容有两行注释如下：</li>
+</ul>
+
+<p>表示 <code>redisd</code> 的运行级别是 <code>2 3 4 5</code>，各级别 <strong><em>S(2 3 4 5)</em></strong> 分数为90，<strong><em>K(0 6)</em></strong> 分数为10。<code>chkconfig redisd on</code> 即可将 <code>redisd</code> 添加到系统服务中。这样我们以后就可以通过 <code>systemctl start redisd || systemctl stop redisd</code> 来启动和关闭 <code>redisd</code> 服务。同样的，在 <code>/etc/rc.d/rc(2\3\4\5).d</code> 文件夹下就会有 <code>S90redisd</code> 软链接到 <code>/etc/rc.d/init.d/redisd</code> ，在 <code>/etc/rc.d/rc(0\6).d</code> 文件夹下就会有 <code>K10redisd</code> 软链接到 <code>/etc/rc.d/init.d/redisd</code> 。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/songpeiying/article/details/79933181" >查看Linux服务器的运行级别<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/fatt/p/4790561.html" >/etc/rc.local 与 /etc/init.d Linux 开机自动运行程序<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/07/07/LSTM/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">LSTM</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/06/30/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%A6%BB%E6%95%A3%E5%9E%8B%E5%88%86%E5%B8%83%E5%BE%8B/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">常见的离散型分布律</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#etc-init-d"><span class="nav-number">1.</span> <span class="nav-text">&#x2F;etc&#x2F;init.d</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#runlevel"><span class="nav-number">1.1.</span> <span class="nav-text">runlevel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KS"><span class="nav-number">1.2.</span> <span class="nav-text">KS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#etc-rc-local"><span class="nav-number">2.</span> <span class="nav-text">&#x2F;etc&#x2F;rc.local</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-number">3.</span> <span class="nav-text">开机自启动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

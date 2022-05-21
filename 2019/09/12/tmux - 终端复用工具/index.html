@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            tmux - 终端复用工具 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">tmux - 终端复用工具</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-09-12 16:19:34</span>
+        <span class="mobile">2019-09-12 16:19</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Linux/">Linux</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/tmux/">tmux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>当运行一个web应用时，我们希望在退出登录或关闭终端的时候，web应用仍然能够运行，这时候就要用到 <code>nohup</code> 。<code>nohup</code> 有个缺点就是它会将输出重定向到 <code>nohup.out</code> 文件，虽然也有其他方法能够在终端实时查看 <code>nohup</code> 输出，但重新登录服务器的时候，这些输出将会丢失。</p>
+<span id="more"></span>
+<p>同样的，当我们想在终端进行其他活动时，就必须打开一个新的终端，这显然不够greek。<br>基于上述两个痛点，tmux就派上用场了。tmux主要有如下三大功能：</p>
+<ul>
+<li>保护现场：即使命令行的工作只进行到一半，关闭终端后还可以重新进入到操作现场，继续工作。对于ssh远程连接而言，即使网络不稳定也没有关系，掉线后重新连接，可以直奔现场，之前运行中的任务，依旧在跑，就好像从来没有离开过一样；特别是在远程服务器上运行耗时的任务，tmux可以帮你一直保持住会话。如此一来，你就可以随时随地放心地进行移动办公，只要你附近的计算机装有tmux（没有你也可以花几分钟装一个），你就能继续刚才的工作。</li>
+<li>分屏：tmux窗口中，新开的pane，默认进入到之前的路径，如果是ssh连接，登录状态也依旧保持着，如此一来，我就可以随意的增删pane，非常灵活。</li>
+<li>会话共享：将tmux会话的地址分享给他人，这样他们就可以通过 SSH 接入该会话。</li>
+</ul>
+<h2 id="session-amp-window-amp-pane"><a href="#session-amp-window-amp-pane" class="headerlink" title="session &amp; window &amp; pane"></a>session &amp; window &amp; pane</h2><ul>
+<li>一个tmux session（会话）可以包含多个window（窗口），窗口默认充满会话界面，因此这些窗口中可以运行相关性不大的任务。</li>
+<li>一个window又可以包含多个pane（面板），窗口下的面板，都处于同一界面下，这些面板适合运行相关性高的任务，以便同时观察到它们的运行情况。</li>
+</ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y tmux</span><br></pre></td></tr></table></figure>
+<h3 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h3><h4 id="新建会话"><a href="#新建会话" class="headerlink" title="新建会话"></a>新建会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux new -s <span class="built_in">test</span> <span class="comment"># 新建一个名叫test的会话</span></span><br></pre></td></tr></table></figure>
+<h4 id="断开当前会话"><a href="#断开当前会话" class="headerlink" title="断开当前会话"></a>断开当前会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux detach</span><br></pre></td></tr></table></figure>
+<p>也可以使用快捷键，先按 <code>ctrl + b</code> ，再按 <code>d</code> 。</p>
+<h4 id="进入之前的会话"><a href="#进入之前的会话" class="headerlink" title="进入之前的会话"></a>进入之前的会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux a -t <span class="built_in">test</span> <span class="comment"># 进入名叫test的会话</span></span><br></pre></td></tr></table></figure>
+<h4 id="关闭会话"><a href="#关闭会话" class="headerlink" title="关闭会话"></a>关闭会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tmux kill-session -t <span class="built_in">test</span> <span class="comment"># 关闭test会话</span></span><br><span class="line">tmux kill-server <span class="comment"># 关闭服务器，所有会话都将关闭</span></span><br></pre></td></tr></table></figure>
+<h4 id="查看会话"><a href="#查看会话" class="headerlink" title="查看会话"></a>查看会话</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux <span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+<p>也可以使用快捷键 <code>ctrl + b + s</code> ，此时tmux将打开会话列表。按上下键可切换会话，按左右键可收起或展开会话。</p>
+<h2 id="tmux快捷键"><a href="#tmux快捷键" class="headerlink" title="tmux快捷键"></a>tmux快捷键</h2><ul>
+<li>系统指令</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">前缀</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:center">显示快捷键帮助文档</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>d</code></td>
+<td style="text-align:center">断开当前会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>D</code></td>
+<td style="text-align:center">选择要断开的会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>ctrl+z</code></td>
+<td style="text-align:center">挂起当前会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>r</code></td>
+<td style="text-align:center">强制重载当前会话</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>s</code></td>
+<td style="text-align:center">显示会话列表用于选择并切换</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>:</code></td>
+<td style="text-align:center">进入命令行模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>[</code></td>
+<td style="text-align:center">进入复制模式</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>]</code></td>
+<td style="text-align:center">粘贴复制模式中复制的文本</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>~</code></td>
+<td style="text-align:center">列出提示信息缓存</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>窗口(window)命令</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">前缀</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>c</code></td>
+<td style="text-align:center">新建窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>&amp;</code></td>
+<td style="text-align:center">关闭当前窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>0~9</code></td>
+<td style="text-align:center">切换到指定窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>p</code></td>
+<td style="text-align:center">切换到上一窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>n</code></td>
+<td style="text-align:center">切换到下一窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>w</code></td>
+<td style="text-align:center">打开窗口列表且切换窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>,</code></td>
+<td style="text-align:center">重命名当前窗口</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:center">修改当前窗口编号</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>f</code></td>
+<td style="text-align:center">快速定位到窗口</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>面板(pane)指令</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">前缀</th>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>&quot;</code></td>
+<td style="text-align:center">当前面板上下一分为二，下侧新建面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>%</code></td>
+<td style="text-align:center">当前面板左右一分为二，右侧新建面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>x</code></td>
+<td style="text-align:center">关闭当前面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>z</code></td>
+<td style="text-align:center">最大化当前面板，再重复一次按键后恢复正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>!</code></td>
+<td style="text-align:center">将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>;</code></td>
+<td style="text-align:center">切换到最后一次使用的面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>q</code></td>
+<td style="text-align:center">显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>&#123;</code></td>
+<td style="text-align:center">向前置换当前面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>&#125;</code></td>
+<td style="text-align:center">向后置换当前面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>ctrl+o</code></td>
+<td style="text-align:center">顺时针旋转当前窗口中的所有面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center">方向键</td>
+<td style="text-align:center">移动光标切换面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>o</code></td>
+<td style="text-align:center">选择下一面板</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>space</code></td>
+<td style="text-align:center">在自带的面板布局中循环切换</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>alt+方向键</code></td>
+<td style="text-align:center">以5个单元格为单位调整当前面板边缘</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>ctrl+方向键</code></td>
+<td style="text-align:center">以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>ctrl+b</code></td>
+<td style="text-align:center"><code>t</code></td>
+<td style="text-align:center">显示时钟</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>关于tmux的高阶应用，如个性化配置、保存会话、会话共享等，请参照：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://louiszhai.github.io/2017/09/30/tmux/" >Tmux使用手册<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/kaiye/p/6275207.html" >十分钟学会 tmux<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Linux/">#Linux</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/tmux/">#tmux</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/09/19/picture%20bed/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">picture bed</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/07/28/BERT/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">BERT</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#session-amp-window-amp-pane"><span class="nav-number">1.</span> <span class="nav-text">session &amp; window &amp; pane</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">2.</span> <span class="nav-text">最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.2.</span> <span class="nav-text">会话</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.2.1.</span> <span class="nav-text">新建会话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%AD%E5%BC%80%E5%BD%93%E5%89%8D%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.2.2.</span> <span class="nav-text">断开当前会话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5%E4%B9%8B%E5%89%8D%E7%9A%84%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.2.3.</span> <span class="nav-text">进入之前的会话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.2.4.</span> <span class="nav-text">关闭会话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.2.5.</span> <span class="nav-text">查看会话</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">3.</span> <span class="nav-text">tmux快捷键</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

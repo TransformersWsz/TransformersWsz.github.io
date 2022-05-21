@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            iOS内存管理 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">iOS内存管理</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2017-08-21 20:40:45</span>
+        <span class="mobile">2017-08-21 20:40</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/OS/">OS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/iOS/">iOS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Objective-C/">Objective-C</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>现在iOS开发已经是ARC的时代，但是内存管理仍是一个重点关注的问题。它是程序设计中很重要的一部分。程序在运行的过程中消耗内存，运行结束后释放占用的内存。如果程序运行时一直分配内存而不及时释放无用的内存，程序占用的内存会越来越大，直至内存消耗殆尽，程序因无内存可用导致崩溃，这就是所谓的内存泄漏。本文将介绍ObjC的内存管理方式。</p>
+<span id="more"></span>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p>ObjC采用引用计数来进行内存管理:</p>
+<ol>
+<li>每个对象都有一个关联的整数，称为引用计数器</li>
+<li>当代码需要使用该对象时，则将对象的引用计数加1</li>
+<li>当代码结束使用该对象时，则将对象的引用计数减1</li>
+<li>当引用计数的值变为0时，表示对象没有被任何代码使用，此时对象占用的内存将被释放</li>
+</ol>
+<p>与之对应的消息发送方法如下:</p>
+<ol>
+<li>当对象被创建(<code>alloc 、new 、copy</code> 等方法)时，其引用计数初始值为1</li>
+<li>给对象发送 <code>retain</code> 消息，其引用计数加1</li>
+<li>给对象发送 <code>release</code> 消息，其引用计数减1</li>
+<li>当对象引用计数归0时，ObjC给对象发送 <code>dealloc</code> 消息销毁对象</li>
+</ol>
+<p>下面通过一个例子来说明(关闭Xcode的 Automatic Reference Counting 功能):</p>
+<p>场景: 有一个宠物中心（内存），可以派出小动物（对象）陪小朋友们玩耍（对象引用者），现在xiaoming想和小狗一起玩耍。</p>
+<p>新建Dog类，重写其创建和销毁的方法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&quot;Dog.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">self</span> = [<span class="keyword">super</span> init])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;小狗已被派出，%lu&quot;</span>,<span class="keyword">self</span>.retainCount);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;小狗回到宠物中心&quot;</span>);</span><br><span class="line">    [<span class="keyword">super</span> dealloc];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>在main方法中创建dog对象，给dog发送消息</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="string">&quot;Dog.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">//模拟：宠物中心派出小狗</span></span><br><span class="line">        Dog * dog = [[Dog alloc]init];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//模拟：xiaoming需要和小狗玩耍，需要将其引用计数加1</span></span><br><span class="line">        [dog <span class="keyword">retain</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;小狗的引用计数为 %ld&quot;</span>,dog.retainCount);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//模拟：xiaoming不和小狗玩耍了，需要将其引用计数减1</span></span><br><span class="line">        [dog release];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;小狗的引用计数为 %ld&quot;</span>,dog.retainCount);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//没人需要和小狗玩耍了，将其引用计数减1</span></span><br><span class="line">        [dog release];</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将指针置nil，否则变为野指针</span></span><br><span class="line">        dog = <span class="literal">nil</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b25cf4b2f5204a84591887f6dd0aef0f.png" alt="结果"></p>
+<p>可以看到，引用计数帮助宠物中心很好的标记了小狗的使用状态，在完成任务的时候及时收回到宠物中心。</p>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h3><ol>
+<li>NSString 引用计数问题</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span>* str = <span class="string">@&quot;hello world!&quot;</span>;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%ld&quot;</span>, str.retainCount);</span><br></pre></td></tr></table></figure>
+<p>结果输出为-1，这可以理解为str实际上是一个字符串常量，它存储在常量存储区，是没有引用计数的。</p>
+<ol>
+<li>赋值不会拥有某个对象</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dog* dog1 = dog;</span><br></pre></td></tr></table></figure>
+<font color=red>这里仅仅是指针赋值操作，并不会增加dog的引用计数，需要持有对象必须要发送retain消息</font>
+
+<ol>
+<li><p>dealloc<br>由于释放对象是会调用dealloc方法，因此重写dealloc方法来查看对象释放的情况，如果没有调用则会造成内存泄露。在上面的例子中我们通过重写dealloc让小狗被释放的时候打印日志来告诉我们已经完成释放。</p>
+</li>
+<li><p>在上面的例子中，如果再增加这样一个操作:</p>
+</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//没人需要和小狗玩耍了，将其引用计数减1</span></span><br><span class="line">[dog release];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%ld&quot;</span>,dog.retainCount);</span><br></pre></td></tr></table></figure>
+<p>会发现引用计数为1，为什么不是0呢？这是因为对引用计数为1的对象release时，系统知道该对象将被回收，就不会再对该对象的引用计数进行减1操作，这样可以增加对象回收的效率。</p>
+<p>另外，对已释放的对象发送消息是不可取的，因为对象的内存已被回收，如果发送消息时，该内存已经被其他对象使用了，得到的结果是无法确定的，甚至会造成崩溃。</p>
+<h2 id="自动释放池"><a href="#自动释放池" class="headerlink" title="自动释放池"></a>自动释放池</h2><p>当不再使用一个对象时应该将其释放，但是在某些情况下，我们很难理清一个对象什么时候不再使用（比如xiaoming和小狗玩耍结束的时间不确定），这应该如何处理？</p>
+<p>ObjC提供autorelease方法来解决这个问题，当给一个对象发送autorelease消息时，方法会在未来某个时间给这个对象发送release消息将其释放，在这个时间段内，对象还是可以使用的。</p>
+<h3 id="autorelease-的工作原理"><a href="#autorelease-的工作原理" class="headerlink" title="autorelease 的工作原理"></a>autorelease 的工作原理</h3><p>当对象接收到autorelease消息时，它会被添加到了当前的自动释放池中，当自动释放池被销毁时，会给池里所有的对象发送release消息。这里就引出了自动释放池这个概念，顾名思义，就是一个池，这个池可以容纳对象，而且可以自动释放，这就大大增加了我们处理对象的灵活性。</p>
+<p>ObjC提供两种方法创建自动释放池：</p>
+<ol>
+<li>使用NSAutoreleasePool来创建</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSAutoreleasePool</span> * pool = [[<span class="built_in">NSAutoreleasePool</span> alloc]init];</span><br><span class="line"><span class="comment">//这里写代码</span></span><br><span class="line">[pool release];</span><br></pre></td></tr></table></figure>
+<ol>
+<li>使用@autoreleasepool创建</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line"><span class="comment">//这里写代码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自动释放池创建后，就会成为活动的池子，释放池子后，池子将释放其所包含的所有对象。以上两种方法推荐第二种，因为第二种方法效率更高。</p>
+<h4 id="自动释放池什么时候创建"><a href="#自动释放池什么时候创建" class="headerlink" title="自动释放池什么时候创建?"></a>自动释放池什么时候创建?</h4><p>自动释放池的销毁时间是确定的，一般是在程序事件处理之后释放，或者由我们自己手动释放。<br>下面举例说明自动释放池的工作流程：<br>场景：现在xiaoming和xiaohong都想和小狗一起玩耍，但是他们的需求不一样，他们的玩耍时间不一样。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个自动释放池</span></span><br><span class="line"><span class="built_in">NSAutoreleasePool</span> * pool = [[<span class="built_in">NSAutoreleasePool</span> alloc] init];</span><br><span class="line"><span class="comment">//模拟：宠物中心派出小狗</span></span><br><span class="line">Dog * dog = [[Dog alloc]init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟：xiaoming需要和小狗玩耍，需要将其引用计数加1</span></span><br><span class="line">[dog <span class="keyword">retain</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;小狗的引用计数为 %ld&quot;</span>,dog.retainCount);</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟：xiaohong需要和小狗玩耍，需要将其引用计数加1</span></span><br><span class="line">[dog <span class="keyword">retain</span>];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;小狗的引用计数为 %ld&quot;</span>,dog.retainCount);</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟：xiaoming确定不想和小狗玩耍了，需要将其引用计数减1</span></span><br><span class="line">[dog release];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;小狗的引用计数为 %ld&quot;</span>,dog.retainCount);</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟：xiaohong不确定何时不想和小狗玩耍了，将其设置为自动释放</span></span><br><span class="line">[dog autorelease];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;小狗的引用计数为 %ld&quot;</span>,dog.retainCount);</span><br><span class="line"></span><br><span class="line"><span class="comment">//没人需要和小狗玩耍了，将其引用计数减1</span></span><br><span class="line">[dog release];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;释放池子&quot;</span>);</span><br><span class="line">[pool release];</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/08148f61a2a6260ab599542d6a87b8fe.png" alt="结果"></p>
+<p>可以看到，当池子释放后，dog对象才被释放，因此在池子释放之前，xiaohong都可以尽情地和小狗玩耍。</p>
+<h4 id="使用自动释放池需要注意"><a href="#使用自动释放池需要注意" class="headerlink" title="使用自动释放池需要注意"></a>使用自动释放池需要注意</h4><ol>
+<li>自动释放池实质上只是在释放的时候給池中所有对象对象发送release消息，不保证对象一定会销毁，如果自动释放池向对象发送release消息后对象的引用计数仍大于1，对象就无法销毁。</li>
+<li>自动释放池中的对象会集中同一时间释放，如果操作需要生成的对象较多占用内存空间大，可以使用多个释放池来进行优化。比如在一个循环中需要创建大量的临时变量，可以创建内部的池子来降低内存占用峰值。</li>
+<li><font color=red>autorelease不会改变对象的引用计数</font>
+
+</li>
+</ol>
+<h4 id="自动释放池的常见问题"><a href="#自动释放池的常见问题" class="headerlink" title="自动释放池的常见问题"></a>自动释放池的常见问题</h4><p>在管理对象释放的问题上，自动帮助我们释放池节省了大量的时间，但是有时候它却未必会达到我们期望的效果，比如在一个循环事件中，如果循环次数较大或者事件处理占用内存较大，就会导致内存占用不断增长，可能会导致不希望看到的后果。</p>
+<p>示例代码:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i ++) &#123;</span><br><span class="line">    <span class="built_in">NSString</span> * log  = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%d&quot;</span>, i];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, log);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>前面讲过，自动释放池的释放时间是确定的，这个例子中自动释放池会在循环事件结束时释放，那问题来了：在这个十万次的循环中，每次都会生成一个字符串并打印，这些字符串对象都放在池子中并直到循环结束才会释放，因此在循环期间内存不增长。</p>
+<p>这类问题的解决方案是在循环中创建新的自动释放池，多少个循环释放一次由我们自行决定。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000</span>; i ++) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">NSString</span> * log  = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%d&quot;</span>, i];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, log);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="iOS的内存管理规则"><a href="#iOS的内存管理规则" class="headerlink" title="iOS的内存管理规则"></a>iOS的内存管理规则</h2><h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><ol>
+<li>当你通过new、alloc或copy方法创建一个对象时，它的引用计数为1，当不再使用该对象时，应该向对象发送release或者autorelease消息释放对象</li>
+<li>当你通过其他方法获得一个对象时，如果对象引用计数为1且被设置为autorelease，则不需要执行任何释放对象的操作</li>
+<li>如果你打算取得对象所有权，就需要保留对象并在操作完成之后释放，且必须保证retain和release的次数对等</li>
+</ol>
+<p>应用到文章开头的例子中，小朋友每申请一个小狗（生成对象），最后都要归还到宠物中心（释放对象），如果只申请而不归还（对象创建了没有释放），那宠物中心的小狗就会越来越少（可用内存越来越少），到最后一个小狗都没有了（内存被耗尽），其他小朋友就再也没有小狗可申请了（无资源可申请使用），因此，必须要遵守规则：申请必须归还（规则1），申请几个必须归还几个（规则3），如果小狗被设定归还时间则不用小朋友主动归还（规则2）</p>
+<h3 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h3><p>在MRC时代，必须严格遵守以上规则，否则内存问题将成为恶魔一样的存在，然而来到ARC时代，事情似乎变得轻松了，不用再写无止尽的ratain和release似乎让开发变得轻松了，对初学者变得更友好。</p>
+<p>ObjC2.0引入了垃圾回收机制，然而由于垃圾回收机制会对移动设备产生某些不好的影响（例如由于垃圾清理造成的卡顿），iOS并不支持这个机制，苹果的解决方案就是ARC（自动引用计数）。</p>
+<p>iOS5以后，我们可以开启ARC模式，ARC可以理解成一位管家，这个管家会帮我们向对象发送retain和release语句，不再需要我们手动添加了，我们可以更舒心地创建或引用对象，简化内存管理步骤，节省大量的开发时间。</p>
+<p>实际上，ARC不是垃圾回收，也并不是不需要内存管理了，它是隐式的内存管理，编译器在编译的时候会在代码插入合适的ratain和release语句，相当于在背后帮我们完成了内存管理的工作。</p>
+<p>下面将自动释放池的例子转化为ARC来看看：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line"></span><br><span class="line">    Dog * dog = [[Dog alloc]init];</span><br><span class="line"></span><br><span class="line">    [xiaoming playWithDog:dog];</span><br><span class="line"></span><br><span class="line">    [xiaohong playWithDog:dog];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;释放池子&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>如果你的工程历史比较久，可以将其从MRC转换成ARC，跟上时代的步伐更好地维护</li>
+<li>如果你的工程引用了某些不支持ARC的库，可以在Build Phases的Compile Sources将对应的m文件的编译器参数配置为-fno-objc-arc</li>
+<li><font color=red>ARC能帮我们简化内存管理问题，但不代表它是万能的，还是有它不能处理的情况，这就需要我们自己手动处理，比如循环引用、非ObjC对象、Core Foundation中的malloc()或者free()等等</font>
+
+</li>
+</ul>
+<h3 id="ARC的修饰符"><a href="#ARC的修饰符" class="headerlink" title="ARC的修饰符"></a>ARC的修饰符</h3><p>ARC提供四种修饰符，分别是：</p>
+<ul>
+<li><code>strong</code>, </li>
+<li><code>weak</code>, </li>
+<li><code>autoreleasing</code>, </li>
+<li><code>unsafe_unretained</code></li>
+</ul>
+<p>下面举例说明：</p>
+<ul>
+<li><code>_strong</code> : 强引用，持有所指向对象的所有权，无修饰符情况下的默认值。如需强制释放，可置nil。</li>
+</ul>
+<p>比如我们常用的定时器：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSTimer</span> * timer = [<span class="built_in">NSTimer</span> timerWith...];</span><br></pre></td></tr></table></figure><br>相当于<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSTimer</span> * __<span class="keyword">strong</span> timer = [<span class="built_in">NSTimer</span> timerWith...];</span><br></pre></td></tr></table></figure><br>当不需要使用时，强制销毁定时器<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[timer invalidate];</span><br><span class="line">timer = <span class="literal">nil</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>_weak</code> : 弱引用，不持有所指向对象的所有权，引用指向的对象内存被回收之后，引用本身会置nil，避免野指针。</li>
+</ul>
+<p>比如避免循环引用的弱引用声明：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> __<span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>__autoreleasing</code> : 自动释放对象的引用，一般用于传递参数</li>
+</ul>
+<p>比如一个读取数据的方法:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)loadData:(<span class="built_in">NSError</span> **)error;</span><br></pre></td></tr></table></figure><br>当你调用时会发现这样的提示<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSError</span> * error;</span><br><span class="line">[dataTool loadData:(<span class="built_in">NSError</span> *__autoreleasing *)]</span><br></pre></td></tr></table></figure><br>这时编译器自动帮我们插入以下代码：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSError</span> * error;</span><br><span class="line"><span class="built_in">NSError</span> * __autoreleasing tmpErr = error;</span><br><span class="line">[dataTool loadData:&amp;tmpErr];</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>__unsafe_unretained</code> : 为兼容iOS5以下版本的产物，可以理解成MRC下的weak，现在基本用不到，这里不作描述。</li>
+</ul>
+<h3 id="属性的内存管理"><a href="#属性的内存管理" class="headerlink" title="属性的内存管理"></a>属性的内存管理</h3><p>ObjC2.0引入了@property，提供成员变量访问方法、权限、环境、内存管理类型的声明，下面主要说明ARC中属性的内存管理。</p>
+<p>属性的参数分为三类，基本数据类型默认为(atomic,readwrite,assign)，对象类型默认为(atomic,readwrite,strong)，其中第三个参数就是该属性的内存管理方式修饰，修饰词可以是以下之一：</p>
+<ul>
+<li><p><code>assign</code> : 一般用来修饰基本数据类型</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span> count;</span><br></pre></td></tr></table></figure>
+<p>当然也可以修饰ObjC对象，但是不推荐，因为被assign修饰的对象释放后，指针还是指向释放前的内存，在后续操作中可能会导致内存问题引发崩溃。</p>
+</li>
+<li><p><code>retain</code> : release旧值，再retain新值（引用计数＋1）</p>
+</li>
+</ul>
+<p>retain和strong一样，都用来修饰ObjC对象。使用set方法赋值时，实质上是会先保留新值，再释放旧值，再设置新值，避免新旧值一样时导致对象被释放的的问题。</p>
+<p>MRC写法如下：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setCount:(<span class="built_in">NSObject</span> *)count &#123;</span><br><span class="line">    [count <span class="keyword">retain</span>];</span><br><span class="line">    [_count release];</span><br><span class="line">    _count = count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>ARC写法如下：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)setCount:(<span class="built_in">NSObject</span> *)count &#123;</span><br><span class="line">    _count = count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>copy</code> : release旧值，再copy新值（拷贝内容）</li>
+</ul>
+<p>一般用来修饰String、Dict、Array等需要保护其封装性的对象，尤其是在其内容可变的情况下，因此会拷贝（深拷贝）一份内容給属性使用，避免可能造成的对源内容进行改动。</p>
+<p>使用set方法赋值时，实质上是会先拷贝新值，再释放旧值，再设置新值。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span>* name;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>weak</code> : ARC新引入修饰词，可代替assign，比assign多增加一个特性（置nil，见上文）。</li>
+</ul>
+<p>weak和strong一样用来修饰ObjC对象。使用set方法赋值时，实质上不保留新值，也不释放旧值，只设置新值。</p>
+<p>比如常用的代理的声明：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>) <span class="keyword">id</span>&lt;MyDelegate&gt; delegate;</span><br></pre></td></tr></table></figure></p>
+<p>Xib控件的引用：<br>@property (weak, nonatomic) IBOutlet UIImageView* productImage;</p>
+<ul>
+<li><code>strong</code> : ARC新引入修饰词，可代替retain</li>
+</ul>
+<p>可参照retain，这里不再作描述。</p>
+<h3 id="block的内存管理"><a href="#block的内存管理" class="headerlink" title="block的内存管理"></a>block的内存管理</h3><p>iOS中使用block必须自己管理内存，错误的内存管理将导致循环引用等内存泄漏问题，这里主要说明在ARC下block声明和使用的时候需要注意的两点：</p>
+<ul>
+<li>如果你使用@property去声明一个block的时候，一般使用copy来进行修饰（当然也可以不写，编译器自动进行copy操作），尽量不要使用retain。</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="keyword">void</span>(^block)(<span class="built_in">NSData</span>* data);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>block会对内部使用的对象进行强引用，因此在使用的时候应该确定不会引起循环引用，当然保险的做法就是添加弱引用标记。<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="经典内存泄漏及其解决方案"><a href="#经典内存泄漏及其解决方案" class="headerlink" title="经典内存泄漏及其解决方案"></a>经典内存泄漏及其解决方案</h2><p>虽然ARC好处多多，然而也并无法避免内存泄漏问题，下面介绍在ARC中常见的内存泄漏。</p>
+<h3 id="僵尸对象和野指针"><a href="#僵尸对象和野指针" class="headerlink" title="僵尸对象和野指针"></a>僵尸对象和野指针</h3><font color=orange>僵尸对象：内存已经被回收的对象</font>
+
+<font color=orange>野指针：指向僵尸对象的指针，向野指针发送消息会导致崩溃</font>
+
+<p>野指针错误形式在Xcode中通常表现为：Thread 1：EXC_BAD_ACCESS，因为你访问了一块已经不属于你的内存。</p>
+<p>例子代码：(没有出现错误的多运行几遍，因为获取野指针指向的结果是不确定的)<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Dog * dog = [[Dog alloc]init];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;before&quot;</span>);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%s&quot;</span>,object_getClassName(dog));</span><br><span class="line">[dog release];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;after&quot;</span>);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;%s&quot;</span>,object_getClassName(dog));</span><br></pre></td></tr></table></figure><br>运行结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2b5c91ee80037ab5ecc3b6309ed5e131.png" alt="结果"></p>
+<p>可以看到，当运行到第六行的时候崩溃了，并给出了EXC_BAD_ACCESS的提示。</p>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>对象已经被释放后，应将其指针置为空指针（没有指向任何对象的指针，给空指针发送消息不会报错）。</p>
+<p>然而在实际开发中实际遇到EXC_BAD_ACCESS错误时，往往很难定位到错误点，幸好Xcode提供方便的工具給我们来定位及分析错误。</p>
+<ul>
+<li>在product－scheme－edit scheme－diagnostics中将enable zombie objects勾选上，下次再出现这样的错误就可以准确定位了。</li>
+<li>在Xcode－open developer tool－Instruments打开工具集，选择Zombies工具可以对已安装的应用进行僵尸对象检测。</li>
+</ul>
+<h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><p>循环引用是ARC中最常出现的问题，对于可能引发循环引用的一些原因在有一篇文章<a class="link"   target="_blank" rel="noopener" href="http://www.jianshu.com/p/bcc0bcaadd6c" >iOS总结篇：影响控制器正常释放的常见问题<i class="fas fa-external-link-alt"></i></a>中有提及。</p>
+<p>一般来讲循环引用也是可以使用工具来检测到的，分为两种：</p>
+<ul>
+<li>在 product－Analyze 中使用静态分析来检测代码中可能存在循环引用的问题。</li>
+<li>在 Xcode－open developer tool－Instruments 打开工具集，选择Leaks工具可以对已安装的应用进行内存泄漏检测，此工具能检测静态分析不会提示，但是到运行时才会出现的内存泄漏问题。</li>
+</ul>
+<p>Leaks工具虽然强大，但是它不能检测到block循环引用导致的内存泄漏，这种情况一般需要自行排查问题（考验你的基本功时候到了）。</p>
+<h3 id="循环中对象占用内存大"><a href="#循环中对象占用内存大" class="headerlink" title="循环中对象占用内存大"></a>循环中对象占用内存大</h3><p>这个问题常见于循环次数较大，循环体生成的对象占用内存较大的情景。</p>
+<p>例子代码：我需要10000个演员来打仗<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i ++) &#123;</span><br><span class="line">    Person * soldier = [[Person alloc]init];</span><br><span class="line">    [soldier fight];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>该循环内产生大量的临时对象，直至循环结束才释放，可能导致内存泄漏，解决方法和上文中提到的自动释放池常见问题类似：在循环中创建自己的autoReleasePool，及时释放占用内存大的临时变量，减少内存占用峰值。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i ++) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        Person * soldier = [[Person alloc]init];</span><br><span class="line">        [soldier fight];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然而有时候autoReleasePool也不是万能的：</p>
+<p>例子：假如有2000张图片，每张1M左右，现在需要获取所有图片的尺寸，你会怎么做？<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2000</span>; i ++) &#123;</span><br><span class="line">    <span class="built_in">CGSize</span> size = [<span class="built_in">UIImage</span> imageNamed:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@&quot;%d.jpg&quot;</span>,i]].size;</span><br><span class="line">    <span class="comment">//add size to array</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>用imageNamed方法加载图片占用Cache的内存，autoReleasePool也不能释放，对此问题需要另外的解决方法，当然保险的当然是双管齐下了:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2000</span>; i ++) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="built_in">CGSize</span> size = [<span class="built_in">UIImage</span> imageWithContentsOfFile:filePath].size;</span><br><span class="line">        <span class="comment">//add siez to array</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="无限循环"><a href="#无限循环" class="headerlink" title="无限循环"></a>无限循环</h3><p>无论你出于什么原因，当你启动了一个无限循环的时候，ARC会默认该方法用不会执行完毕，方法里面的对象就永不释放，内存无限上涨，导致内存泄漏。</p>
+<p>例子：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;start !&quot;</span>);</span><br><span class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="built_in">BOOL</span> isSucc = <span class="literal">YES</span>;</span><br><span class="line">    <span class="keyword">while</span> (isSucc) &#123;</span><br><span class="line">        [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">1.0</span>];</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;create an obj&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>对于这样的问题还是很好解决的，只要设置相关条件判断就能避免。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于iOS内存管理的知识点还有很多，在这里先做基础储备，后续在实战中会继续补充。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="http://www.jianshu.com/p/8b1ed04b3ba9" >iOS内功篇：内存管理<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/iOS/">#iOS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Objective-C/">#Objective-C</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">#内存管理</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2017/09/17/PowerDesigner%E8%BF%9E%E6%8E%A5MySQL%E9%80%86%E5%90%91%E7%94%9F%E6%88%90%E7%89%A9%E7%90%86%E6%A8%A1%E5%9E%8B/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">PowerDesigner连接MySQL逆向生成物理模型</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2017/06/06/%E7%94%A8Sql%20Server%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">用Sql Server编写一个存储过程</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">引用计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">注意事项：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0"><span class="nav-number">2.</span> <span class="nav-text">自动释放池</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#autorelease-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">autorelease 的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%88%9B%E5%BB%BA"><span class="nav-number">2.1.1.</span> <span class="nav-text">自动释放池什么时候创建?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用自动释放池需要注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%87%8A%E6%94%BE%E6%B1%A0%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.3.</span> <span class="nav-text">自动释放池的常见问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E8%A7%84%E5%88%99"><span class="nav-number">3.</span> <span class="nav-text">iOS的内存管理规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="nav-number">3.1.</span> <span class="nav-text">基本规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC"><span class="nav-number">3.2.</span> <span class="nav-text">ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">3.2.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">3.3.</span> <span class="nav-text">ARC的修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">3.4.</span> <span class="nav-text">属性的内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-number">3.5.</span> <span class="nav-text">block的内存管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%8F%8A%E5%85%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">4.</span> <span class="nav-text">经典内存泄漏及其解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%83%B5%E5%B0%B8%E5%AF%B9%E8%B1%A1%E5%92%8C%E9%87%8E%E6%8C%87%E9%92%88"><span class="nav-number">4.1.</span> <span class="nav-text">僵尸对象和野指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">4.1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="nav-number">4.2.</span> <span class="nav-text">循环引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E4%B8%AD%E5%AF%B9%E8%B1%A1%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7"><span class="nav-number">4.3.</span> <span class="nav-text">循环中对象占用内存大</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E9%99%90%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.4.</span> <span class="nav-text">无限循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

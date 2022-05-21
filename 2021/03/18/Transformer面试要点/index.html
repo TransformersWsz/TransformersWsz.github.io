@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            Transformer面试要点 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Transformer面试要点</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-03-18 23:50:13</span>
+        <span class="mobile">2021-03-18 23:50</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Attention/">Attention</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Transformer/">Transformer</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>记录一下常见的Transformer面试要点：</p>
+<span id="more"></span>
+<p>Transformer的核心在如下两张图上：</p>
+<img src="/2021/03/18/Transformer%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9/1.png" class="">
+<h2 id="1-为什么Transformer-需要进行-Multi-head-Attention？"><a href="#1-为什么Transformer-需要进行-Multi-head-Attention？" class="headerlink" title="1. 为什么Transformer 需要进行 Multi-head Attention？"></a>1. 为什么Transformer 需要进行 Multi-head Attention？</h2><img src="/2021/03/18/Transformer%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9/2.png" class="">
+<ul>
+<li>将模型分为多个头，形成多个子空间，让模型去关注不同方面的信息；</li>
+<li>把多头注意力看作一个ensemble，模型内部的集成，类似于CNN中使用的多个卷积核，所以很多时候可以认为多头注意力可以帮助我们捕捉到更为丰富的特征信息。</li>
+</ul>
+<h2 id="2-Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"><a href="#2-Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？" class="headerlink" title="2. Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？"></a>2. Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？</h2><p>如果Q,K,V都是一个值,那么就变为了Self-Attention的形式：</p>
+<img src="/2021/03/18/Transformer%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9/3.png" class="">
+<p>在实践中，Q和K的乘法是为了得到二者的相似度，一般我们的K和V是相同的，Q和K进行操作是为了得到一个attention score矩阵，这样可以得到Q关于V的表示，但一般我们再计算Q,K,V的时候会先都分别乘上一个不同的矩阵W，这么做可以增加模型的表达能力，实践中经常也会带来一定的帮助。</p>
+<h2 id="3-Transformer中的attention为什么要进行scaled？"><a href="#3-Transformer中的attention为什么要进行scaled？" class="headerlink" title="3. Transformer中的attention为什么要进行scaled？"></a>3. Transformer中的attention为什么要进行scaled？</h2><p>softmax的计算公式如下：</p>
+<img src="/2021/03/18/Transformer%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9/4.png" class="">
+<ul>
+<li>非常大的$d_k$值会将softmax推向梯度非常小的区域，梯度消失为0，造成参数更新困难</li>
+<li>$\frac{1}{\sqrt{d_k}}$ 使得$D(\frac{qk}{\sqrt{d_k}})=1$，有效地控制了梯度消失的问题</li>
+</ul>
+<h2 id="4-Attention相对于CNN、RNN的优势？"><a href="#4-Attention相对于CNN、RNN的优势？" class="headerlink" title="4. Attention相对于CNN、RNN的优势？"></a>4. Attention相对于CNN、RNN的优势？</h2><ul>
+<li>参数少，算力要求低</li>
+<li>并行化，速度快</li>
+<li>可解释性强，不会遗忘长文本的信息</li>
+</ul>
+<h2 id="5-Attention的计算方式"><a href="#5-Attention的计算方式" class="headerlink" title="5. Attention的计算方式"></a>5. Attention的计算方式</h2><ul>
+<li>多层MLP：$a(q, k)=w_{2}^{T} \tanh \left(W_{1}[q ; k]\right)$</li>
+<li>BiLinear: $a(q, k)=q^{T} W k$</li>
+<li>Scaled-Dot Product: $a(q, k)=\frac{q^{T} k}{\sqrt{d_{k}}}$</li>
+<li>欧式距离</li>
+<li>cosine</li>
+</ul>
+<h2 id="6-残差网络的作用"><a href="#6-残差网络的作用" class="headerlink" title="6. 残差网络的作用"></a>6. 残差网络的作用</h2><p>ResNet的目标是在网络加深的情况下解决网络退化的问题。</p>
+<h2 id="7-LayerNorm的作用，为什么不用BN？"><a href="#7-LayerNorm的作用，为什么不用BN？" class="headerlink" title="7. LayerNorm的作用，为什么不用BN？"></a>7. LayerNorm的作用，为什么不用BN？</h2><p>归一化的作用：</p>
+<ul>
+<li>保持每一层特征分布的稳定性，将梯度从饱和区拉回非饱和区，从而加快模型训练速度，缓解过拟合</li>
+</ul>
+<p>LN not BN：</p>
+<ul>
+<li><p>BN对batch_size很敏感，LN不存在这个问题</p>
+</li>
+<li><p>CV使用BN是认为不同卷积核feature map（channel维）之间的差异性很重要，LN会损失channel的差异性，对于batch内的不同样本，同一卷积核提取特征的目的性是一致的，所以使用BN仅是为了进一步保证同一个卷积核在不同样本上提取特征的稳定性。</p>
+<p>而NLP使用LN是认为batch内不同样本同一位置token之间的差异性更重要，而embedding维，网络对于不同token提取的特征目的性是一致的，使用LN是为了进一步保证在不同token上提取的稳定性。NLP每个序列的长度是不一致的，BN不适用。</p>
+</li>
+</ul>
+<h2 id="8-Position-Encoding的设计思路"><a href="#8-Position-Encoding的设计思路" class="headerlink" title="8. Position Encoding的设计思路"></a>8. Position Encoding的设计思路</h2><script type="math/tex; mode=display">
+PE(pos, 2i) = sin(\frac{pos}{10000^{\frac{2i}{d_{model}}}}) \\
+PE(pos, 2i+1) = cos(\frac{pos}{10000^{\frac{2i}{d_{model}}}})</script><h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><ul>
+<li>单词在句子中的位置和排列顺序非常重要，它们不仅是一个句子的语法结构的组成部分，更是表达语义的重要概念；</li>
+<li>Transformer使用纯attention结构，丢失了词序信息，有必要把词序信号加到词向量上帮助模型学习这些信息。</li>
+</ul>
+<h3 id="线性分配一个数值给每个时间步的缺点？"><a href="#线性分配一个数值给每个时间步的缺点？" class="headerlink" title="线性分配一个数值给每个时间步的缺点？"></a>线性分配一个数值给每个时间步的缺点？</h3><ul>
+<li>数值巨大，且模型可能遇到比训练集所有句子都要长的句子；</li>
+<li>数据集中不一定在所有数值上都会包含相对应长度的句子，也就是模型很有可能没有看到过任何一个这样的长度的样本句子，这会严重影响模型的泛化能力；</li>
+</ul>
+<h4 id="良好的PE方案需满足以下要求："><a href="#良好的PE方案需满足以下要求：" class="headerlink" title="良好的PE方案需满足以下要求："></a>良好的PE方案需满足以下要求：</h4><ul>
+<li>它能为每个时间步输出一个独一无二的编码；</li>
+<li>不同长度的句子之间，任何两个时间步之间的距离应该保持一致；</li>
+<li>模型应该能毫不费力地泛化到更长的句子。它的值应该是有界的；</li>
+<li>它必须是确定性的。</li>
+</ul>
+<h3 id="相对位置的线性关系"><a href="#相对位置的线性关系" class="headerlink" title="相对位置的线性关系"></a>相对位置的线性关系</h3><p>正弦曲线函数的位置编码的另一个特点是，它能让模型毫不费力地关注相对位置信息。具体公式推导见<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106644634" >More: 相对位置的线性关系<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Attention/">#Attention</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Transformer/">#Transformer</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/03/21/BERT%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">BERT面试要点</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/03/12/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">寻找两个正序数组的中位数</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88Transformer-%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C-Multi-head-Attention%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 为什么Transformer 需要进行 Multi-head Attention？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Transformer%E4%B8%BA%E4%BB%80%E4%B9%88Q%E5%92%8CK%E4%BD%BF%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%9D%83%E9%87%8D%E7%9F%A9%E9%98%B5%E7%94%9F%E6%88%90%EF%BC%8C%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E5%80%BC%E8%BF%9B%E8%A1%8C%E8%87%AA%E8%BA%AB%E7%9A%84%E7%82%B9%E4%B9%98%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2. Transformer为什么Q和K使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Transformer%E4%B8%AD%E7%9A%84attention%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%9B%E8%A1%8Cscaled%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3. Transformer中的attention为什么要进行scaled？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Attention%E7%9B%B8%E5%AF%B9%E4%BA%8ECNN%E3%80%81RNN%E7%9A%84%E4%BC%98%E5%8A%BF%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">4. Attention相对于CNN、RNN的优势？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Attention%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">5. Attention的计算方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">6. 残差网络的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-LayerNorm%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8BN%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7. LayerNorm的作用，为什么不用BN？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Position-Encoding%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF"><span class="nav-number">8.</span> <span class="nav-text">8. Position Encoding的设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="nav-number">8.1.</span> <span class="nav-text">原因：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%88%86%E9%85%8D%E4%B8%80%E4%B8%AA%E6%95%B0%E5%80%BC%E7%BB%99%E6%AF%8F%E4%B8%AA%E6%97%B6%E9%97%B4%E6%AD%A5%E7%9A%84%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="nav-number">8.2.</span> <span class="nav-text">线性分配一个数值给每个时间步的缺点？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%89%AF%E5%A5%BD%E7%9A%84PE%E6%96%B9%E6%A1%88%E9%9C%80%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="nav-number">8.2.1.</span> <span class="nav-text">良好的PE方案需满足以下要求：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E4%BD%8D%E7%BD%AE%E7%9A%84%E7%BA%BF%E6%80%A7%E5%85%B3%E7%B3%BB"><span class="nav-number">8.3.</span> <span class="nav-text">相对位置的线性关系</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

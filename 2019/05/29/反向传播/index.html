@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            反向传播 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">反向传播</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-05-29 21:56:21</span>
+        <span class="mobile">2019-05-29 21:56</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Neural-Networks/">Neural Networks</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>误差反向传播算法简称反向传播算法(Back Propagation)。使用反向传播算法的多层感知器又称为BP神经网络。</p>
+<span id="more"></span>
+<p>BP算法是一个迭代算法，它的基本思想如下：</p>
+<ol>
+<li>将训练集数据输入到神经网络的输入层，经过隐藏层，最后达到输出层并输出结果，这就是前向传播过程。</li>
+<li>由于神经网络的输出结果与实际结果有误差，则计算估计值与实际值之间的误差，并将该误差从输出层向隐藏层反向传播，直至传播到输入层；</li>
+<li>在反向传播的过程中，根据误差调整各种参数的值（相连神经元的权重），使得总损失函数减小。</li>
+<li>迭代上述三个步骤（即对数据进行反复训练），直到满足停止准则。</li>
+</ol>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>有如下一个神经网络：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190518224358906.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="1.png"></p>
+<p>第一层是输入层，包含两个神经元 $i_1$，$i_2$ 和偏置项 $b_1$；第二层是隐藏层，包含两个神经元 $h_1$，$h_2$ 和偏置项 $b_2$；第三层是输出 $o_1$，$o_2$。每条线上标的 $w_i$ 是层与层之间连接的权重。激活函数是 $sigmod$ 函数。我们用 $z$ 表示某神经元的加权输入和；用 $a$ 表示某神经元的输出。</p>
+<p>上述各参数赋值如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$i_1$</td>
+<td style="text-align:center">0.05</td>
+</tr>
+<tr>
+<td style="text-align:center">$i_2$</td>
+<td style="text-align:center">0.10</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_1$</td>
+<td style="text-align:center">0.15</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_2$</td>
+<td style="text-align:center">0.20</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_3$</td>
+<td style="text-align:center">0.25</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_4$</td>
+<td style="text-align:center">0.30</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_5$</td>
+<td style="text-align:center">0.40</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_6$</td>
+<td style="text-align:center">0.45</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_7$</td>
+<td style="text-align:center">0.50</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_8$</td>
+<td style="text-align:center">0.55</td>
+</tr>
+<tr>
+<td style="text-align:center">$b_1$</td>
+<td style="text-align:center">0.35</td>
+</tr>
+<tr>
+<td style="text-align:center">$b_2$</td>
+<td style="text-align:center">0.60</td>
+</tr>
+<tr>
+<td style="text-align:center">$o_1$</td>
+<td style="text-align:center">0.01</td>
+</tr>
+<tr>
+<td style="text-align:center">$o_2$</td>
+<td style="text-align:center">0.99</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Step-1-前向传播"><a href="#Step-1-前向传播" class="headerlink" title="Step 1 前向传播"></a>Step 1 前向传播</h2><h3 id="输入层-—-gt-隐藏层"><a href="#输入层-—-gt-隐藏层" class="headerlink" title="输入层 —-&gt; 隐藏层"></a>输入层 —-&gt; 隐藏层</h3><p>神经元 $h_1$ 的输入加权和：<br><img src="https://img-blog.csdnimg.cn/20190518224522132.PNG" alt="输入加权和"><br>神经元 $h_1$ 的输出 $a_{h1}$ ：</p>
+<script type="math/tex; mode=display">
+a_{h1} = \frac{1}{1+e^{-z_{h1}}} = \frac{1}{1+e^{-0.3775}} = 0.593269992</script><p>同理可得，神经元 $h_2$ 的输出 $a_{h2}$ ：</p>
+<script type="math/tex; mode=display">
+a_{h2} = 0.596884378</script><h3 id="隐藏层-—-gt-输出层"><a href="#隐藏层-—-gt-输出层" class="headerlink" title="隐藏层 —-&gt; 输出层"></a>隐藏层 —-&gt; 输出层</h3><p>计算输出层神经元 $o1$ 和 $o2$ 的值：<br><img src="https://img-blog.csdnimg.cn/201905182246056.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="隐藏层-&gt;输出层"><br>前向传播的过程就结束了，我们得到的输出值是 $[0.751365069, 0.772928465]$ ，与实际值 $[0.01, 0.99]$ 相差还很远。接下来我们对误差进行反向传播，更新权值，重新计算输出。</p>
+<h2 id="Step-2-反向传播"><a href="#Step-2-反向传播" class="headerlink" title="Step 2 反向传播"></a>Step 2 反向传播</h2><ol>
+<li>计算损失函数：</li>
+</ol>
+<script type="math/tex; mode=display">
+E_{total} = \sum\frac{1}{2}(target - output)^2</script><p>但是有两个输出，所以分别计算 $o_1$ 和 $o_2$ 的损失值，总误差为两者之和：</p>
+<script type="math/tex; mode=display">
+E_{o_1} = \frac {1}{2}(0.01 - 0.751365069)^2 = 0.274811083 \\
+E_{o_2} = \frac {1}{2}(0.99 - 0.772928465)^2 = 0.023560026 \\
+E_{total} = E_{o_1} + E_{o_2} = 0.274811083 + 0.023560026 = 0.298371109</script><ol>
+<li>隐藏层 —-&gt; 输出层的权值更新</li>
+</ol>
+<p>以权重参数 $w_5$ 为例，如果我们想知道 $w_5$ 对整体损失产生了多少影响，可以用整体损失对 $w_5$ 求偏导：</p>
+<script type="math/tex; mode=display">
+\frac{\partial E_{total}}{\partial w_5} = {\frac {\partial E_{total}}{\partial a_{o_1}}}*{\frac {\partial a_{o_1}}{\partial z_{o_1}} }*{ \frac {\partial z_{o_1}} {\partial w_5} }</script><p>下面的图可以更直观了解误差是如何反向传播的：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190518224659584.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="2.png"></p>
+<p>我们现在分别来计算每个式子的值：</p>
+<p>计算 $\frac {\partial E_{total}} {\partial a_{o_1}}$ ：</p>
+<script type="math/tex; mode=display">
+E_{total} = \frac {1}{2}(target_{o_1} - a_{o_1})^2 + \frac {1}{2}(target_{o_2} - a_{o_1})^2 \\
+\frac {\partial E_{total}} {\partial a_{o_1}} = 2 * \frac {1}{2} (target_{o_1} - a_{o_1})*-1 \\
+\frac {\partial E_{total}} {\partial a_{o_1}} = -(target_{o_1} - a_{o_1}) = 0.751365069-0.01=0.741365069 \\</script><p>计算 $\frac {\partial E_{total}} {\partial a_{o_1}}$ ：</p>
+<script type="math/tex; mode=display">
+a_{o_1} = \frac {1}{1+e^{-z_{o_1}}} \\
+\frac {\partial a_{o_1}} {\partial z_{o_1}} = a_{o_1}*(1-a_{o_1}) = 0.751365069*(1-0.751365069) = 0.186815602</script><p>计算 $\frac {\partial z_{o_1}} {\partial w_5}$ ：</p>
+<script type="math/tex; mode=display">
+z_{o_1} = w_5*a_{h1} + w_6*a_{h2} + b_2*1 \\
+\frac {\partial z_{o_1}} {\partial w_5} = a_{h_1} = 0.593269992</script><p>最后三者相乘：</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{total}} {\partial w_5} = 0.741365069*0.186815602*0.593269992 = 0.082167041</script><p>这样我们就算出整体损失 $E_{total}$ 对 $w_5$ 的偏导值。</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{total}} {\partial w_5} = -(target_{o_1} - a_{o_1}) * a_{o_1}*(1-a_{o_1}) * a_{h_1}</script><p>针对上述公式，为了表达方便，使用 $\delta_{o_1}$ 来表示输出层的误差：</p>
+<script type="math/tex; mode=display">
+\delta_{o_1} = {\frac {\partial E_{total}}{\partial a_{o_1}}}*{\frac {\partial a_{o_1}}{\partial z_{o_1}} } = \frac {\partial E_{total}} {\partial z_{o_1}} \\
+\delta_{o_1} = -(target_{o_1} - a_{o_1}) * a_{o_1}*(1-a_{o_1})</script><p>因此整体损失 $E_{total}$ 对 $w_5$ 的偏导值可以表示为：</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{total}}{\partial w_5} = \delta_{o_1}*a_{h_1}</script><p>最后我们来更新 $w_5$ 的值：</p>
+<script type="math/tex; mode=display">
+w_5^+ = w_5 - \eta * \frac {\partial E_{total}} {\partial w_5} = 0.4 - 0.5*0.082167041 = 0.35891648 \qquad \eta: 学习率</script><p>同理可更新 $w_6, w_7, w_8$ ：</p>
+<script type="math/tex; mode=display">
+w_6^+ = 0.408666186 \\
+w_7^+ = 0.511301270 \\
+w_8^+ = 0.561370121</script><ol>
+<li>隐藏层 —-&gt; 隐藏层的权值更新：</li>
+</ol>
+<p>计算 $\frac {\partial E_{total}} {\partial w_1}$ 与上述方法类似，但需要注意下图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190518224736113.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="3.png"></p>
+<p>计算 $\frac {\partial E_{total}} {\partial a_{h_1}}$ ：</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{total}} {\partial a_{h_1}} = \frac {\partial E_{o_1}} {\partial a_{h_1}} + \frac {\partial E_{o_2}} {\partial a_{h_1}}</script><p>先计算 $\frac {\partial E_{o_1}} {\partial a_{h_1}}$ ：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190518224838154.PNG" alt="o1h1"></p>
+<p>同理可得：</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{o_2}} {\partial a_{h_1}} = -0.019049119</script><p>两者相加得：</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{total}} {\partial a_{h_1}} = 0.055399425 - 0.019049119 = 0.036350306</script><p>计算 $\frac {a_{h_1}} {z_{h_1}}$ ：</p>
+<script type="math/tex; mode=display">
+\frac {a_{h_1}} {z_{h_1}} = a_{h_1} * (1-a_{h_1}) = 0.593269992*(1-0.593269992) = 0.2413007086</script><p>计算 $\frac {\partial z_{h_1}} {\partial w_1}$</p>
+<script type="math/tex; mode=display">
+\frac {\partial z_{h_1}} {\partial w_1} = i_1 = 0.05</script><p>最后三者相互乘：</p>
+<script type="math/tex; mode=display">
+\frac {\partial E_{total}} {\partial w_1} = 0.036350306 * 0.2413007086 * 0.05 = 0.000438568</script><p>为了简化公式，用 $\delta_{h_1}$ 表示隐藏层单元 $h_1$ 的误差： </p>
+<p><img src="https://img-blog.csdnimg.cn/20190518225048268.PNG" alt="simplify"></p>
+<p>最后更新 $w_1$ 的权值：</p>
+<script type="math/tex; mode=display">
+w_1^+ = w_1 - \eta * \frac {\partial E_{total}} {\partial w_1} = 0.15 - 0.5*0.000438568 = 0.149780716</script><p>同理，更新 $w_2, w_3, w_4$ 权值：</p>
+<script type="math/tex; mode=display">
+w_2^+ = 0.19956143 \\
+w_3^+ = 0.24975114 \\
+w_4^+ = 0.29950229</script><p>这样，反向传播算法就完成了，最后我们再把更新的权值重新计算，不停地迭代。在这个例子中第一次迭代之后，总误差 $E_{total}$ 由0.298371109下降至0.291027924。迭代10000次后，总误差为0.000035085，输出为$[0.015912196,0.984065734](原输入为[0.01,0.99]$ ，证明效果还是不错的。</p>
+<h1 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h1><p><img src="https://img-blog.csdnimg.cn/20190518225132914.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="4.png"></p>
+<h2 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$n_l$</td>
+<td style="text-align:center">网络层数</td>
+</tr>
+<tr>
+<td style="text-align:center">$y_j$</td>
+<td style="text-align:center">输出层第 $j$ 类标签</td>
+</tr>
+<tr>
+<td style="text-align:center">$S_l$</td>
+<td style="text-align:center">第 $l$ 层神经元个数（不包括偏置项）</td>
+</tr>
+<tr>
+<td style="text-align:center">$g(x)$</td>
+<td style="text-align:center">激活函数</td>
+</tr>
+<tr>
+<td style="text-align:center">$w_{ij}^{l}$</td>
+<td style="text-align:center">第 $l-1$ 层的第 $j$ 个神经元连接到第 $l$ 层第 $i$ 个神经元的权重</td>
+</tr>
+<tr>
+<td style="text-align:center">$b_i^{l}$</td>
+<td style="text-align:center">第 $l$ 层的第 $i$ 个神经元的偏置</td>
+</tr>
+<tr>
+<td style="text-align:center">$z_i^{l}$</td>
+<td style="text-align:center">第 $l$ 层的第 $i$ 个神经元的输入加权和</td>
+</tr>
+<tr>
+<td style="text-align:center">$a_i^{l}$</td>
+<td style="text-align:center">第 $l$ 层的第 $i$ 个神经元的输出（激活值）</td>
+</tr>
+<tr>
+<td style="text-align:center">$\delta_i^{l}$</td>
+<td style="text-align:center">第 $l$ 层的第 $i$ 个神经元产生的错误</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><h3 id="基本公式"><a href="#基本公式" class="headerlink" title="基本公式"></a>基本公式</h3><p><img src="https://img-blog.csdnimg.cn/20190518225230965.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="basic expresssion"></p>
+<h3 id="梯度方向传播公式推导"><a href="#梯度方向传播公式推导" class="headerlink" title="梯度方向传播公式推导"></a>梯度方向传播公式推导</h3><h4 id="初始条件"><a href="#初始条件" class="headerlink" title="初始条件"></a>初始条件</h4><p><img src="https://img-blog.csdnimg.cn/20190518225308345.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="6"></p>
+<h4 id="递推公式"><a href="#递推公式" class="headerlink" title="递推公式"></a>递推公式</h4><p><img src="https://img-blog.csdnimg.cn/20190518225340289.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="7"></p>
+<h2 id="反向传播伪代码"><a href="#反向传播伪代码" class="headerlink" title="反向传播伪代码"></a>反向传播伪代码</h2><ol>
+<li>输入训练集。</li>
+<li>对于训练集的每个样本 $\vec x$ ，设输入层对应的激活值为 $a^l$ ：<ul>
+<li>前向传播：$z^l = w^l*a^{l-1}+b^l, a^l = g(z^l)$</li>
+<li>计算输出层产生的误差：$\delta^L = \frac {\partial J(\theta)} {\partial a^L} \odot g’(z^L)$</li>
+<li>反向传播错误：$\delta^l = ((w^{l+1})^T*\delta^{l+1}) \odot g’(z^l)$</li>
+</ul>
+</li>
+<li>使用梯度下降训练参数：<ul>
+<li>$w^l \dashrightarrow w^l - \frac {\alpha} {m} \sum_x\delta^{x, l}*(a^{x, l-1})^T$</li>
+<li>$b^l \dashrightarrow  b^l - \frac {\eta} {m} \sum_x\delta^{x, l}$</li>
+</ul>
+</li>
+</ol>
+<h1 id="交叉熵损失函数推导"><a href="#交叉熵损失函数推导" class="headerlink" title="交叉熵损失函数推导"></a>交叉熵损失函数推导</h1><p>对于多分类问题，$softmax$ 函数可以将神经网络的输出变成一个概率分布。它只是一个额外的处理层，下图展示了加上了 $softmax$ 回归的神经网络结构图：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190518225454143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="softmax"></p>
+<p>递推公式仍然和上述递推公式保持一致。初始条件如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190518225634644.PNG" alt="8"></p>
+<p>$softmax$ 偏导数计算：</p>
+<script type="math/tex; mode=display">
+\frac {\partial y_j^p} {\partial a_i^{nl}} =
+\left\{
+\begin{aligned}
+-y_i^p*y_j^p \qquad i \neq j \\
+y_i^p*(1-y_i^p) i = j
+\end{aligned}
+\right.</script><h2 id="推导过程-1"><a href="#推导过程-1" class="headerlink" title="推导过程"></a>推导过程</h2><p><img src="https://img-blog.csdnimg.cn/20190518225717464.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RyYW5zZm9ybWVyX1dTWg==,size_16,color_FFFFFF,t_70" alt="9"></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/charlotte77/p/5629865.html?tdsourcetag=s_pcqq_aiomsg" >一文弄懂神经网络中的反向传播法——BackPropagation<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/u014313009/article/details/51039334" >反向传播算法（过程及公式推导）<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/nowgood/p/backprop2.html?tdsourcetag=s_pcqq_aiomsg" >反向传播公式推导<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Algorithm/">#Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Neural-Networks/">#Neural Networks</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/06/02/CNN/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CNN</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/05/29/GLM/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">GLM</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-1-%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">1.1.</span> <span class="nav-text">Step 1 前向传播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%B1%82-%E2%80%94-gt-%E9%9A%90%E8%97%8F%E5%B1%82"><span class="nav-number">1.1.1.</span> <span class="nav-text">输入层 —-&gt; 隐藏层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8F%E5%B1%82-%E2%80%94-gt-%E8%BE%93%E5%87%BA%E5%B1%82"><span class="nav-number">1.1.2.</span> <span class="nav-text">隐藏层 —-&gt; 输出层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-2-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD"><span class="nav-number">1.2.</span> <span class="nav-text">Step 2 反向传播</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E8%AF%B4%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.</span> <span class="nav-text">推导过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">基本公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E6%96%B9%E5%90%91%E4%BC%A0%E6%92%AD%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.2.2.</span> <span class="nav-text">梯度方向传播公式推导</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">初始条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">递推公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text">反向传播伪代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%8E%A8%E5%AF%BC"><span class="nav-number">3.</span> <span class="nav-text">交叉熵损失函数推导</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC%E8%BF%87%E7%A8%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">推导过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.2.</span> <span class="nav-text">参考</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            AdaBoost |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">AdaBoost</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-07-08 23:53:14</span>
+        <span class="mobile">2021-07-08 23:53</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><code>AdaBoost</code> 是属于 <code>boosting</code> 的一种经典算法。</p>
+<span id="more"></span>
+<h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><img src="/2021/07/08/AdaBoost/1.png" class="">
+<p>AdaBoost算法的工作机制是首先从训练集用初始权重训练出一个弱学习器1，根据弱学习的学习误差率表现来更新训练样本的权重，使得之前弱学习器1学习误差率高的训练样本点的权重变高，使得这些误差率高的点在后面的弱学习器2中得到更多的重视。然后基于调整权重后的训练集来训练弱学习器2。如此重复进行，直到弱学习器数达到事先指定的数目 $T$ ，最终将这 $T$ 个弱学习器通过集合策略进行整合，得到最终的强学习器。</p>
+<h2 id="AdaBoost分类算法流程"><a href="#AdaBoost分类算法流程" class="headerlink" title="AdaBoost分类算法流程"></a>AdaBoost分类算法流程</h2><p>输入样本集 $\boldsymbol{T}=\left\{\left(x, y_{1}\right),\left(x_{2}, y_{2}\right), \ldots\left(x_{m}, y_{m}\right)\right\}$ ，类别为$\{ -1, +1 \}$，弱分类器迭代次数 $K$。输出为最终的强分类器 $f(x)$ 。</p>
+<ol>
+<li><p>初始化样本集权重为：</p>
+<script type="math/tex; mode=display">
+D(1)=\left(w_{11}, w_{12}, \ldots w_{1 m}\right) ; \quad w_{1 i}=\frac{1}{m} ; \quad i=1,2 \ldots m</script></li>
+<li><p>对于 $k=1, 2, \dots, K$ ：</p>
+<ol>
+<li><p>使用具有权重 $D_k$ 的样本集来训练数据，得到弱分类器 $G_k(x)$</p>
+</li>
+<li><p>计算 $G_k(x)$ 的分类误差率：</p>
+<script type="math/tex; mode=display">
+e_{k}=P\left(G_{k}\left(x_{i}\right) \neq y_{i}\right)=\sum_{i=1}^{m} w_{k i} I\left(G_{k}\left(x_{i}\right) \neq y_{i}\right)</script></li>
+<li><p>计算弱分类器的权重系数：</p>
+<script type="math/tex; mode=display">
+\alpha_{k}=\frac{1}{2} \log \frac{1-e_{k}}{e_{k}}</script><p>从上式可以看出，如果分类误差率 $e_k$ 越大，则对应的弱分类器权重系数 $\alpha_{k}$ 越小。即误差率小的弱分类器权重系数越大。</p>
+</li>
+<li><p>更新样本集的权重分布：</p>
+<script type="math/tex; mode=display">
+w_{k+1, i}=\frac{w_{k i}}{Z_{K}} \exp \left(-\alpha_{k} y_{i} G_{k}\left(x_{i}\right)\right) \quad i=1,2, \ldots m</script><p>其中 $Z_K$ 是归一化因子：</p>
+<script type="math/tex; mode=display">
+Z_{k}=\sum_{i=1}^{m} w_{k i} \exp \left(-\alpha_{k} y_{i} G_{k}\left(x_{i}\right)\right)</script><p>从上式可以看出，如果第 $i$ 个样本分类错误，则 $y_{i} G_{k} &lt; 0$ ，导致样本的权重在第 $k+1$ 个弱分类器中增大；如果分类正确，则权重在第 $k+1$ 个弱分类器中减少。</p>
+</li>
+</ol>
+</li>
+<li><p>构建最终分类器：</p>
+<script type="math/tex; mode=display">
+f(x)=\operatorname{sign}\left(\sum_{k=1}^{K} \alpha_{k} G_{k}(x)\right)</script></li>
+</ol>
+<p>对于Adaboost多元分类算法，其原理和二元分类类似。最主要区别在弱分类器的系数上。比如Adaboost SAMME算法，它的弱分类器的系数：</p>
+<script type="math/tex; mode=display">
+\alpha_{k}=\frac{1}{2} \log \frac{1-e_{k}}{e_{k}}+\log (R-1)</script><p>其中 $R$ 为类别数。如果 $R=2$ ，那么上式即是二分类的弱分类器系数。</p>
+<h2 id="AdaBoost回归算法流程"><a href="#AdaBoost回归算法流程" class="headerlink" title="AdaBoost回归算法流程"></a>AdaBoost回归算法流程</h2><p>输入样本集 $\boldsymbol{T}=\left\{\left(x, y_{1}\right),\left(x_{2}, y_{2}\right), \ldots\left(x_{m}, y_{m}\right)\right\}$ ，弱分类器迭代次数 $K$。输出为最终的强分类器 $f(x)$ 。</p>
+<ol>
+<li><p>初始化样本集权重为：</p>
+<script type="math/tex; mode=display">
+D(1)=\left(w_{11}, w_{12}, \ldots w_{1 m}\right) ; \quad w_{1 i}=\frac{1}{m} ; \quad i=1,2 \ldots m</script></li>
+<li><p>对于 $k=1, 2, \dots, K$ ：</p>
+<ol>
+<li><p>使用具有权重 $D_k$ 的样本集来训练数据，得到弱分类器 $G_k(x)$</p>
+</li>
+<li><p>计算训练集上的最大误差：</p>
+<script type="math/tex; mode=display">
+E_{k}=\max \left|y_{i}-G_{k}\left(x_{i}\right)\right| i=1,2 \ldots m</script></li>
+<li><p>计算每个样本的相对误差：</p>
+<ul>
+<li>线性误差：$e_{k i}=\frac{\left|y_{i}-G_{k}\left(x_{i}\right)\right|}{E_{k}}$</li>
+<li>平方误差：$e_{k i}=\frac{(y_{i}-G_{k}(x_{i}))^2}{E_{k}^2}$</li>
+<li>指数误差：$e_{k i}=1-\exp \left(\frac{-\left|y_{i}-G_{k}\left(x_{i}\right)\right|}{E_{k}}\right)$</li>
+</ul>
+</li>
+<li><p>计算回归误差率：</p>
+<script type="math/tex; mode=display">
+e_k = \sum_{i=1}^m w_{ki} e_{ki}</script></li>
+<li><p>计算弱学习器的权重系数：</p>
+<script type="math/tex; mode=display">
+a_k = \frac{1-e_k}{e_k}</script></li>
+<li><p>更新样本集的权重分布：</p>
+<script type="math/tex; mode=display">
+w_{k+1, i}=\frac{w_{k i}}{Z_{k}} \alpha_{k}^{1-e_{k i}}</script><p>其中 $Z_K$ 是归一化因子：</p>
+<script type="math/tex; mode=display">
+Z_{k}=\sum_{i=1}^{m} w_{k i} \alpha_{k}^{1-e_{k i}}</script></li>
+</ol>
+</li>
+<li><p>构建最终强学习器：</p>
+<script type="math/tex; mode=display">
+f(x)=G_{k^{*}}(x)</script></li>
+</ol>
+<p>即取所有 $ ln \frac{1}{\alpha_{k}}, k=1,2, \ldots . K$ 的中位数值对于序号 $k^{*}$ 对应的弱学习器。</p>
+<h2 id="AdaBoost正则化"><a href="#AdaBoost正则化" class="headerlink" title="AdaBoost正则化"></a>AdaBoost正则化</h2><p>为了防止AdaBoost过拟合，我们加入正则化项：</p>
+<script type="math/tex; mode=display">
+f_{k}(x)=f_{k-1}(x)+v \alpha_{k} G_{k}(x), \quad 0 < v <= 1</script><p>与GBDT类似，该正则化项称作学习率。对于同样的训练集学习效果，较小的 $v$ 意味着我们需要更多的弱学习器的迭代次数。</p>
+<h2 id="AdaBoost总结"><a href="#AdaBoost总结" class="headerlink" title="AdaBoost总结"></a>AdaBoost总结</h2><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>Adaboost作为分类器时，分类精度很高</li>
+<li>在Adaboost的框架下，可以使用各种回归分类模型来构建弱学习器，非常灵活</li>
+<li>不容易发生过拟合</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>对异常样本敏感，异常样本在迭代中可能会获得较高的权重，影响最终的强学习器的预测准确性</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/px_528/article/details/72963977" >Adaboost入门教程——最通俗易懂的原理介绍（图文实例）<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6133937.html" >集成学习之Adaboost算法原理小结<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Algorithm/">#Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/07/16/shell%E4%B8%AD2_&amp;1%E7%9A%84%E5%90%AB%E4%B9%89/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">shell中2&gt;&amp;1的含义</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/07/06/Bagging%20&amp;%20RF/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Bagging &amp; RF</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaBoost%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">AdaBoost分类算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaBoost%E5%9B%9E%E5%BD%92%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">AdaBoost回归算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaBoost%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">AdaBoost正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AdaBoost%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">AdaBoost总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">5.0.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">5.0.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

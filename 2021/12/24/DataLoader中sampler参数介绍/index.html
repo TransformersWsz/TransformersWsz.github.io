@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            DataLoader中sampler参数介绍 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">DataLoader中sampler参数介绍</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-12-24 14:42:06</span>
+        <span class="mobile">2021-12-24 14:42</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/pytorch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">pytorch学习笔记</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/DataLoader/">DataLoader</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/sampler/">sampler</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><code>Sampler</code> 决定了 <code>Dataset</code> 的采样顺序。</p>
+<span id="more"></span>
+<h2 id="DataLoader-Sampler-DataSet-关系"><a href="#DataLoader-Sampler-DataSet-关系" class="headerlink" title="DataLoader | Sampler | DataSet 关系"></a><code>DataLoader</code> | <code>Sampler</code> | <code>DataSet</code> 关系</h2><img src="/2021/12/24/DataLoader%E4%B8%ADsampler%E5%8F%82%E6%95%B0%E4%BB%8B%E7%BB%8D/relation.png" class="">
+<ul>
+<li><code>Sampler</code> : 提供数据集中元素的索引</li>
+<li><code>DataSet</code> : 根据 <code>Sampler</code> 提供的索引来检索数据</li>
+<li><code>DataLoader</code> : 批量加载数据用于后续的训练和测试</li>
+</ul>
+<h2 id="Sampler"><a href="#Sampler" class="headerlink" title="Sampler"></a><code>Sampler</code></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Sampler</span>(<span class="title class_ inherited__">object</span>):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;Base class for all Samplers.</span></span><br><span class="line"><span class="string">    Every Sampler subclass has to provide an __iter__ method, providing a way</span></span><br><span class="line"><span class="string">    to iterate over indices of dataset elements, and a __len__ method that</span></span><br><span class="line"><span class="string">    returns the length of the returned iterators.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_source</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError</span><br></pre></td></tr></table></figure>
+<p>PyTorch官网已经实现了多种 <code>Sampler</code> :</p>
+<h3 id="SequentialSampler"><a href="#SequentialSampler" class="headerlink" title="SequentialSampler"></a><code>SequentialSampler</code></h3><blockquote>
+<p>若 <code>shuffle=False</code> ，且未指定 <code>sampler</code> ，默认使用</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SequentialSampler</span>(<span class="title class_ inherited__">Sampler</span>):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;Samples elements sequentially, always in the same order.</span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">        data_source (Dataset): dataset to sample from</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_source</span>):</span><br><span class="line">        self.data_source = data_source</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">iter</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(self.data_source)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.data_source)</span><br></pre></td></tr></table></figure>
+<h3 id="RandomSampler"><a href="#RandomSampler" class="headerlink" title="RandomSampler"></a><code>RandomSampler</code></h3><blockquote>
+<p>若 <code>shuffle=True</code> ，且未指定 <code>sampler</code> ，默认使用</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RandomSampler</span>(<span class="title class_ inherited__">Sampler</span>):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;Samples elements randomly. If without replacement, then sample from a shuffled dataset.</span></span><br><span class="line"><span class="string">    If with replacement, then user can specify ``num_samples`` to draw.</span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">        data_source (Dataset): dataset to sample from</span></span><br><span class="line"><span class="string">        replacement (bool): samples are drawn with replacement if ``True``, default=``False``</span></span><br><span class="line"><span class="string">        num_samples (int): number of samples to draw, default=`len(dataset)`. This argument</span></span><br><span class="line"><span class="string">            is supposed to be specified only when `replacement` is ``True``.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, data_source</span>):</span><br><span class="line">        self.data_source = data_source</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        n = <span class="built_in">len</span>(self.data_source)</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">iter</span>(torch.randperm(n).tolist())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self.num_samples</span><br></pre></td></tr></table></figure>
+<h3 id="BatchSampler"><a href="#BatchSampler" class="headerlink" title="BatchSampler"></a><code>BatchSampler</code></h3><blockquote>
+<p>like <code>sampler</code>, but returns a batch of indices at a time. Mutually exclusive with <code>batch_size</code>, <code>shuffle</code>, <code>sampler</code>, and <code>drop_last</code></p>
+</blockquote>
+<ul>
+<li>在 <code>DataLoader</code> 中设置 <code>batch_sampler=batch_sampler</code> 的时候，上面四个参数都必须是默认值。也很好理解，每次采样返回一个batch，那么 <code>batch_size</code> 肯定为 <code>1</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BatchSampler</span>(<span class="title class_ inherited__">Sampler</span>):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;Wraps another sampler to yield a mini-batch of indices.</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        sampler (Sampler): Base sampler.</span></span><br><span class="line"><span class="string">        batch_size (int): Size of mini-batch.</span></span><br><span class="line"><span class="string">        drop_last (bool): If ``True``, the sampler will drop the last batch if</span></span><br><span class="line"><span class="string">            its size would be less than ``batch_size``</span></span><br><span class="line"><span class="string">    Example:</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; list(BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=False))</span></span><br><span class="line"><span class="string">        [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; list(BatchSampler(SequentialSampler(range(10)), batch_size=3, drop_last=True))</span></span><br><span class="line"><span class="string">        [[0, 1, 2], [3, 4, 5], [6, 7, 8]]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, sampler, batch_size, drop_last</span>):</span><br><span class="line">        self.sampler = sampler</span><br><span class="line">        self.batch_size = batch_size</span><br><span class="line">        self.drop_last = drop_last</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line">        batch = []</span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> self.sampler:</span><br><span class="line">            batch.append(idx)</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(batch) == self.batch_size:</span><br><span class="line">                <span class="keyword">yield</span> batch</span><br><span class="line">                batch = []</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(batch) &gt; <span class="number">0</span> <span class="keyword">and</span> <span class="keyword">not</span> self.drop_last:</span><br><span class="line">            <span class="keyword">yield</span> batch</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">if</span> self.drop_last:</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">len</span>(self.sampler) // self.batch_size</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> (<span class="built_in">len</span>(self.sampler) + self.batch_size - <span class="number">1</span>) // self.batch_size</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以看到在构造 <code>BatchSampler</code> 实例的时候，需要传入一个sampler作为实参</li>
+</ul>
+<hr>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>最近看到一篇推文，分享了一个使模型训练速度提升20%的Trick—<a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/xGvaW87UQFjetc5xFmKxWg" >BlockShuffle<i class="fas fa-external-link-alt"></i></a> 。fork了原作者的代码，并自定义了 <code>batch_sampler</code> ，源码见：<a class="link"   target="_blank" rel="noopener" href="https://github.com/TransformersWsz/BlockShuffleTest" >TransformersWsz/BlockShuffleTest<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/xGvaW87UQFjetc5xFmKxWg" >一个使模型训练速度提升20%的Trick—BlockShuffle<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.zdaiot.com/MLFrameworks/Pytorch/Pytorch%20DataLoader%E8%AF%A6%E8%A7%A3/" >Pytorch DataLoader详解<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/data.html?highlight=dataloader#torch.utils.data.DataLoader" >torch.utils.data — PyTorch 1.10.1 documentation<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.codeleading.com/article/79575865698/" >pytorch中用Mnist数据集dataloader 自定义batchsampler - 代码先锋网 (codeleading.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.tqwba.com/x_d/jishu/415752.html" >pytorch 实现一个自定义的dataloader，每个batch都可以实现类别数量均衡 (tqwba.com)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76893455" >一文弄懂Pytorch的DataLoader, DataSet, Sampler之间的关系<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/DataLoader/">#DataLoader</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/sampler/">#sampler</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/01/12/VAE/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">VAE</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/11/09/scp%E4%BD%BF%E7%94%A8/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">scp使用</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataLoader-Sampler-DataSet-%E5%85%B3%E7%B3%BB"><span class="nav-number">1.</span> <span class="nav-text">DataLoader | Sampler | DataSet 关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sampler"><span class="nav-number">2.</span> <span class="nav-text">Sampler</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SequentialSampler"><span class="nav-number">2.1.</span> <span class="nav-text">SequentialSampler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RandomSampler"><span class="nav-number">2.2.</span> <span class="nav-text">RandomSampler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BatchSampler"><span class="nav-number">2.3.</span> <span class="nav-text">BatchSampler</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">3.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

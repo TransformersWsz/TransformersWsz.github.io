@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            SimCSE论文及源码解读 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">SimCSE论文及源码解读</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-01 16:46:40</span>
+        <span class="mobile">2022-05-01 16:46</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/NLP/">NLP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Paper-Reading/">Paper Reading</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Dropout/">Dropout</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Contrastive-Learning/">Contrastive Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>对比学习的思想是拉近同类样本的距离，增大不同类样本的距离，目标是要从样本中学习到一个好的语义表示空间。SimCSE是一种简单的无监督对比学习框架，它通过对同一句子两次Dropout得到一对正样例，将该句子与同一个batch内的其它句子作为一对负样例。模型结构如下所示：</p>
+<span id="more"></span>
+<p><img src="https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/simcse.ldig50thwww.jpg" alt="simcse"></p>
+<p>损失函数为：</p>
+<script type="math/tex; mode=display">
+\ell_{i}=-\log \frac{e^{\operatorname{sim}\left(\mathbf{h}_{i}^{z_{i}}, \mathbf{h}_{i}^{z_{i}^{\prime}}\right) / \tau}}{\sum_{j=1}^{N} e^{\operatorname{sim}\left(\mathbf{h}_{i}^{z_{i}}, \mathbf{h}_{j}^{z_{j}^{\prime}}\right) / \tau}}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>在作者的代码中，并不是将一个句子输入到模型中两次，而是复制一份放到同一个batch里。模型的核心是 <a target="_blank" rel="noopener" href="https://github.com/princeton-nlp/SimCSE/blob/e3aa97b6d04c3d84f6bc46abb06c1bd056cab6d7/simcse/models.py#L97"><code>cl_forward</code></a> 函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">cl_forward</span>(<span class="params">cls,</span></span><br><span class="line"><span class="params">    encoder,</span></span><br><span class="line"><span class="params">    input_ids=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    attention_mask=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    token_type_ids=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    position_ids=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    head_mask=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    inputs_embeds=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    labels=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    output_attentions=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    output_hidden_states=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    return_dict=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    mlm_input_ids=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    mlm_labels=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params"></span>):</span><br><span class="line">    return_dict = return_dict <span class="keyword">if</span> return_dict <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> cls.config.use_return_dict</span><br><span class="line">    ori_input_ids = input_ids    <span class="comment"># 形状为[bs, num_sent, sent_len], bs=32</span></span><br><span class="line">    batch_size = input_ids.size(<span class="number">0</span>)</span><br><span class="line">    <span class="comment"># Number of sentences in one instance</span></span><br><span class="line">    <span class="comment"># 2: pair instance，[自己，自己]; 3: pair instance with a hard negative，[自己，自己，难例]</span></span><br><span class="line">    num_sent = input_ids.size(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    mlm_outputs = <span class="literal">None</span></span><br><span class="line">    <span class="comment"># Flatten input for encoding</span></span><br><span class="line">    input_ids = input_ids.view((-<span class="number">1</span>, input_ids.size(-<span class="number">1</span>))) <span class="comment"># [bs * num_sent, sent_len]</span></span><br><span class="line">    attention_mask = attention_mask.view((-<span class="number">1</span>, attention_mask.size(-<span class="number">1</span>))) <span class="comment"># [bs * num_sent, sent_len]</span></span><br><span class="line">    <span class="keyword">if</span> token_type_ids <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        token_type_ids = token_type_ids.view((-<span class="number">1</span>, token_type_ids.size(-<span class="number">1</span>))) <span class="comment"># [bs * num_sent, sent_len]</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Get raw embeddings, [bs, num_sent, sent_len, hidden_size]</span></span><br><span class="line">    outputs = encoder(</span><br><span class="line">        input_ids,</span><br><span class="line">        attention_mask=attention_mask,</span><br><span class="line">        token_type_ids=token_type_ids,</span><br><span class="line">        position_ids=position_ids,</span><br><span class="line">        head_mask=head_mask,</span><br><span class="line">        inputs_embeds=inputs_embeds,</span><br><span class="line">        output_attentions=output_attentions,</span><br><span class="line">        output_hidden_states=<span class="literal">True</span> <span class="keyword">if</span> cls.model_args.pooler_type <span class="keyword">in</span> [<span class="string">&#x27;avg_top2&#x27;</span>, <span class="string">&#x27;avg_first_last&#x27;</span>] <span class="keyword">else</span> <span class="literal">False</span>,</span><br><span class="line">        return_dict=<span class="literal">True</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># MLM auxiliary objective</span></span><br><span class="line">    <span class="keyword">if</span> mlm_input_ids <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        mlm_input_ids = mlm_input_ids.view((-<span class="number">1</span>, mlm_input_ids.size(-<span class="number">1</span>)))</span><br><span class="line">        mlm_outputs = encoder(</span><br><span class="line">            mlm_input_ids,</span><br><span class="line">            attention_mask=attention_mask,</span><br><span class="line">            token_type_ids=token_type_ids,</span><br><span class="line">            position_ids=position_ids,</span><br><span class="line">            head_mask=head_mask,</span><br><span class="line">            inputs_embeds=inputs_embeds,</span><br><span class="line">            output_attentions=output_attentions,</span><br><span class="line">            output_hidden_states=<span class="literal">True</span> <span class="keyword">if</span> cls.model_args.pooler_type <span class="keyword">in</span> [<span class="string">&#x27;avg_top2&#x27;</span>, <span class="string">&#x27;avg_first_last&#x27;</span>] <span class="keyword">else</span> <span class="literal">False</span>,</span><br><span class="line">            return_dict=<span class="literal">True</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Pooling</span></span><br><span class="line">    pooler_output = cls.pooler(attention_mask, outputs)</span><br><span class="line">    pooler_output = pooler_output.view((batch_size, num_sent, pooler_output.size(-<span class="number">1</span>))) <span class="comment"># (bs, num_sent, hidden_size)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># If using &quot;cls&quot;, we add an extra MLP layer</span></span><br><span class="line">    <span class="comment"># (same as BERT&#x27;s original implementation) over the representation.</span></span><br><span class="line">    <span class="keyword">if</span> cls.pooler_type == <span class="string">&quot;cls&quot;</span>:</span><br><span class="line">        pooler_output = cls.mlp(pooler_output)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Separate representation, [bs, hidden_size], 同一样本经过“两次Dropout”得到的两个句向量</span></span><br><span class="line">    z1, z2 = pooler_output[:,<span class="number">0</span>], pooler_output[:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Hard negative</span></span><br><span class="line">    <span class="keyword">if</span> num_sent == <span class="number">3</span>:</span><br><span class="line">        z3 = pooler_output[:, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Gather all embeddings if using distributed training</span></span><br><span class="line">    <span class="keyword">if</span> dist.is_initialized() <span class="keyword">and</span> cls.training:</span><br><span class="line">        <span class="comment"># Gather hard negative</span></span><br><span class="line">        <span class="keyword">if</span> num_sent &gt;= <span class="number">3</span>:</span><br><span class="line">            z3_list = [torch.zeros_like(z3) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(dist.get_world_size())]</span><br><span class="line">            dist.all_gather(tensor_list=z3_list, tensor=z3.contiguous())</span><br><span class="line">            z3_list[dist.get_rank()] = z3</span><br><span class="line">            z3 = torch.cat(z3_list, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Dummy vectors for allgather</span></span><br><span class="line">        z1_list = [torch.zeros_like(z1) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(dist.get_world_size())]</span><br><span class="line">        z2_list = [torch.zeros_like(z2) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(dist.get_world_size())]</span><br><span class="line">        <span class="comment"># Allgather</span></span><br><span class="line">        dist.all_gather(tensor_list=z1_list, tensor=z1.contiguous())</span><br><span class="line">        dist.all_gather(tensor_list=z2_list, tensor=z2.contiguous())</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Since allgather results do not have gradients, we replace the</span></span><br><span class="line">        <span class="comment"># current process&#x27;s corresponding embeddings with original tensors</span></span><br><span class="line">        z1_list[dist.get_rank()] = z1</span><br><span class="line">        z2_list[dist.get_rank()] = z2</span><br><span class="line">        <span class="comment"># Get full batch embeddings: (bs x N, hidden)</span></span><br><span class="line">        z1 = torch.cat(z1_list, <span class="number">0</span>)</span><br><span class="line">        z2 = torch.cat(z2_list, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># [bs, bs]，计算该样本与其它样本的相似度</span></span><br><span class="line">    cos_sim = cls.sim(z1.unsqueeze(<span class="number">1</span>), z2.unsqueeze(<span class="number">0</span>))</span><br><span class="line">    <span class="comment"># Hard negative</span></span><br><span class="line">    <span class="keyword">if</span> num_sent &gt;= <span class="number">3</span>:</span><br><span class="line">        z1_z3_cos = cls.sim(z1.unsqueeze(<span class="number">1</span>), z3.unsqueeze(<span class="number">0</span>))</span><br><span class="line">        cos_sim = torch.cat([cos_sim, z1_z3_cos], <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># [bs, ], 内容为[0,1,...,bs-1]，表示每个样本最相似的样本下标</span></span><br><span class="line">    labels = torch.arange(cos_sim.size(<span class="number">0</span>)).long().to(cls.device)</span><br><span class="line">    <span class="comment"># 此处显示出对比学习loss和常规交叉熵loss的区别，</span></span><br><span class="line">    <span class="comment"># 对比学习的label数是[bs,bs]，而交叉熵的label数是[bs, label_nums]</span></span><br><span class="line">    loss_fct = nn.CrossEntropyLoss()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calculate loss with hard negatives</span></span><br><span class="line">    <span class="keyword">if</span> num_sent == <span class="number">3</span>:</span><br><span class="line">        <span class="comment"># Note that weights are actually logits of weights</span></span><br><span class="line">        z3_weight = cls.model_args.hard_negative_weight</span><br><span class="line">        weights = torch.tensor(</span><br><span class="line">            [[<span class="number">0.0</span>] * (cos_sim.size(-<span class="number">1</span>) - z1_z3_cos.size(-<span class="number">1</span>)) + [<span class="number">0.0</span>] * i + [z3_weight] + [<span class="number">0.0</span>] * (z1_z3_cos.size(-<span class="number">1</span>) - i - <span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(z1_z3_cos.size(-<span class="number">1</span>))]</span><br><span class="line">        ).to(cls.device)</span><br><span class="line">        cos_sim = cos_sim + weights</span><br><span class="line"></span><br><span class="line">    loss = loss_fct(cos_sim, labels)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Calculate loss for MLM</span></span><br><span class="line">    <span class="keyword">if</span> mlm_outputs <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> mlm_labels <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        mlm_labels = mlm_labels.view(-<span class="number">1</span>, mlm_labels.size(-<span class="number">1</span>))</span><br><span class="line">        prediction_scores = cls.lm_head(mlm_outputs.last_hidden_state)</span><br><span class="line">        masked_lm_loss = loss_fct(prediction_scores.view(-<span class="number">1</span>, cls.config.vocab_size), mlm_labels.view(-<span class="number">1</span>))</span><br><span class="line">        loss = loss + cls.model_args.mlm_weight * masked_lm_loss</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> return_dict:</span><br><span class="line">        output = (cos_sim,) + outputs[<span class="number">2</span>:]</span><br><span class="line">        <span class="keyword">return</span> ((loss,) + output) <span class="keyword">if</span> loss <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">else</span> output</span><br><span class="line">    <span class="keyword">return</span> SequenceClassifierOutput(</span><br><span class="line">        loss=loss,</span><br><span class="line">        logits=cos_sim,</span><br><span class="line">        hidden_states=outputs.hidden_states,</span><br><span class="line">        attentions=outputs.attentions,</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<p>上述代码考虑诸多场景，比如分布式训练、难例三元组、mlm mask，写的较为复杂。</p>
+<p>以下是简化版，更加符合论文的表述：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">loss_func = nn.CrossEntropyLoss()</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">simcse_loss</span>(<span class="params">batch_emb</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;用于无监督SimCSE训练的loss</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    batch_size = batch_emb.size(<span class="number">0</span>)    <span class="comment"># [bs, hidden_size]</span></span><br><span class="line">    <span class="comment"># 构造标签, [bs, 2], bs=64</span></span><br><span class="line">    y_true = torch.cat([torch.arange(<span class="number">1</span>, batch_size, step=<span class="number">2</span>, dtype=torch.long).unsqueeze(<span class="number">1</span>),</span><br><span class="line">                        torch.arange(<span class="number">0</span>, batch_size, step=<span class="number">2</span>, dtype=torch.long).unsqueeze(<span class="number">1</span>)],</span><br><span class="line">                       dim=<span class="number">1</span>).reshape([batch_size,])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 计算score和loss</span></span><br><span class="line">    norm_emb = F.normalize(batch_emb, dim=<span class="number">1</span>, p=<span class="number">2</span>)</span><br><span class="line">    <span class="comment"># [bs, bs]，计算该样本与其它样本的相似度</span></span><br><span class="line">    sim_score = torch.matmul(norm_emb, norm_emb.transpose(<span class="number">0</span>,<span class="number">1</span>))</span><br><span class="line">    <span class="comment"># 对角线的位置，也就是自身的余弦相似度，肯定为1，不产生loss，需要mask掉</span></span><br><span class="line">    sim_score = sim_score - torch.eye(batch_size) * <span class="number">1e12</span></span><br><span class="line">    sim_score = sim_score * <span class="number">20</span>    <span class="comment"># 温度系数</span></span><br><span class="line">    loss = loss_func(sim_score, y_true)</span><br><span class="line">    <span class="keyword">return</span> loss</span><br></pre></td></tr></table></figure></p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><ul>
+<li>如果同一个batch里有其它语义相似的正样本，但在这里被当作了负样例处理，不是也拉远了同类样本的距离吗？</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/princeton-nlp/SimCSE" >princeton-nlp/SimCSE<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/IDWih5h2rLNqr3g0s8Y9zQ" >“被玩坏了”的Dropout<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/12UvfXnaB4NTy54wWIFZdQ" >细节满满！理解对比学习和SimCSE，就看这6个知识点<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/483453992" >SIMCSE算法源码分析<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Paper-Reading/">#Paper Reading</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Dropout/">#Dropout</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Contrastive-Learning/">#Contrastive Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/05/10/Relation-Classification-with-Entity-Type-Restriction/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Relation Classification with Entity Type Restriction</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/04/29/%E4%B8%93%E7%94%A8%E4%BA%8E%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86%E7%9A%84latex%E6%A8%A1%E6%9D%BF/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">专用于个人简历的latex模板</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FAQ"><span class="nav-number">2.</span> <span class="nav-text">FAQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

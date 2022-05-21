@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            UI设计常识 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">UI设计常识</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-12-18 12:15:02</span>
+        <span class="mobile">2018-12-18 12:15</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Software-Engineering/">Software Engineering</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/UI%E8%AE%BE%E8%AE%A1/">UI设计</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E5%88%86%E8%BE%A8%E7%8E%87/">分辨率</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>前端的一个基础知识：</p>
+<span id="more"></span>
+<h1 id="手机屏幕尺寸"><a href="#手机屏幕尺寸" class="headerlink" title="手机屏幕尺寸"></a>手机屏幕尺寸</h1><blockquote>
+<p>屏幕对角线长度，单位为英寸。</p>
+</blockquote>
+<img src="/2018/12/18/UI%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86/1.jpg" class="">
+<hr>
+
+<h1 id="显示分辨率"><a href="#显示分辨率" class="headerlink" title="显示分辨率"></a>显示分辨率</h1><blockquote>
+<p>屏幕拥有的像素总数，单位为像素（pixel，简写px）</p>
+</blockquote>
+<img src="/2018/12/18/UI%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86/2.jpg" class="">
+<hr>
+
+<h1 id="屏幕像素密度"><a href="#屏幕像素密度" class="headerlink" title="屏幕像素密度"></a>屏幕像素密度</h1><blockquote>
+<p>Pixels Per Inch，简写PPI或ppi，指的是每英寸所拥有的像素数。</p>
+</blockquote>
+<img src="/2018/12/18/UI%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86/3.jpg" class="">
+<img src="/2018/12/18/UI%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86/4.jpg" class="">
+<p>同样是尺寸大小为5英寸的屏幕，显示分辨率为 4 <em> 4px 的屏幕显示质量大于显示分辨率为 3 </em> 3px 的屏幕。</p>
+<hr>
+
+<h1 id="逻辑分辨率与虚拟尺寸单位"><a href="#逻辑分辨率与虚拟尺寸单位" class="headerlink" title="逻辑分辨率与虚拟尺寸单位"></a>逻辑分辨率与虚拟尺寸单位</h1><p>由于市面上手机种类繁多，不同的屏幕尺寸与不同的显示分辨率，为开发提供了极大的不便。</p>
+<img src="/2018/12/18/UI%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86/5.jpg" class="">
+<p>为了尽可能减少开发人员的工作成本，开发人员需要一套统一的分辨率和尺寸单位，由此衍生出一个新的分辨率——逻辑分辨率（单位是虚拟尺寸单位）：</p>
+<ul>
+<li>Android 的虚拟尺寸单位是dp（用于元素）和sp（用于字体）。</li>
+<li>iOS 的虚拟尺寸单位是pt。</li>
+</ul>
+<p>正常来说，设计师设计时采用的是显示分辨率（单位：px），程序员开发时采用的逻辑分辨率（单位：虚拟尺寸单位）。</p>
+<hr>
+
+<h1 id="逻辑分辨率与转换率的制定"><a href="#逻辑分辨率与转换率的制定" class="headerlink" title="逻辑分辨率与转换率的制定"></a>逻辑分辨率与转换率的制定</h1><p>设置逻辑分辨率的原因是为了通过将显示分辨率通过一定的倍数（转换率）缩放至一个新的分辨率大小，使得原本不同手机的显示分辨率差异缩小。开发中采用的分辨率时，方便于适配更多的机型。</p>
+<img src="/2018/12/18/UI%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86/6.jpg" class="">
+<p>在制定转换率与逻辑分辨率的时候，我们需要注意如下三点：</p>
+<ol>
+<li>不同iphone间的逻辑分辨率尽量接近。</li>
+<li>转换率最好是整数。</li>
+<li>不同iphone转换成逻辑分辨率后的ppi尽量接近。<hr>
+
+</li>
+</ol>
+<h1 id="切图"><a href="#切图" class="headerlink" title="切图"></a>切图</h1><p>对于@2x的设计来说，1 <em> 1 pt = 2 </em> 2px；对于@3x的设计来说，1 <em> 1 pt = 3 </em> 3 px.</p>
+<p>所以设计好的@1x的图，要把它切开，由 1 <em> 1 pt 的大小切成 2 </em> 2 px 和 3 * 3 px 的大小。故谓之切图。 </p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/26195746" >切图常说的@1X@2X@3X是什么意思？<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/UI%E8%AE%BE%E8%AE%A1/">#UI设计</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%88%86%E8%BE%A8%E7%8E%87/">#分辨率</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/01/16/js%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">js变量提升</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/07/15/ajax%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BD%E7%AD%89%E5%BE%85%E6%A8%A1%E6%80%81%E6%A1%86%EF%BC%9F/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ajax发送请求无法加载等待模态框？</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8"><span class="nav-number">1.</span> <span class="nav-text">手机屏幕尺寸</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%88%86%E8%BE%A8%E7%8E%87"><span class="nav-number">2.</span> <span class="nav-text">显示分辨率</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%8F%E5%B9%95%E5%83%8F%E7%B4%A0%E5%AF%86%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">屏幕像素密度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%88%86%E8%BE%A8%E7%8E%87%E4%B8%8E%E8%99%9A%E6%8B%9F%E5%B0%BA%E5%AF%B8%E5%8D%95%E4%BD%8D"><span class="nav-number">4.</span> <span class="nav-text">逻辑分辨率与虚拟尺寸单位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%88%86%E8%BE%A8%E7%8E%87%E4%B8%8E%E8%BD%AC%E6%8D%A2%E7%8E%87%E7%9A%84%E5%88%B6%E5%AE%9A"><span class="nav-number">5.</span> <span class="nav-text">逻辑分辨率与转换率的制定</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%87%E5%9B%BE"><span class="nav-number">6.</span> <span class="nav-text">切图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

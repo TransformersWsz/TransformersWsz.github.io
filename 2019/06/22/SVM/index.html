@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            SVM |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/huoyin.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/atom.svg","favicon":"/images/huoyin.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving !"},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                TAGS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >
+                                LINKS
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                ABOUT
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links">LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">SVM</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/atom.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Swift</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-06-22 22:01:08</span>
+        <span class="mobile">2019-06-22 22:01</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Machine-Learning/">Machine Learning</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Algorithm/">Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Classification/">Classification</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>支持向量机(Support Vector Machine)是一种二分类模型。它的基本模型是定义在特征空间上的间隔最大的线性分类器。SVM的学习算法是求解凸二次规划的最优化算法。</p>
+<span id="more"></span>
+<p>假设在一个二维线性可分的数据集中，图一A所示，我们要找到一条把两组数据分开，这条直线可以是图一B中的直线，也可以是图一C中的直线，或者图一D中的直线，但是哪条直线能够达到最好的泛化能力呢？那就是一个能使两类之间的空间大小最大的一个超平面。</p>
+<img src="/2019/06/22/SVM/1.png" class="">
+<p>这个超平面在二维平面上看到的就是一条直线，在三维空间中就是一个平面。因此，我们把这个划分数据的决策边界统称为超平面。<font color="green">离这个超平面最近的点就叫做支持向量，点到超平面的距离叫间隔。</font>支持向量机就是要使超平面和支持向量之间的间隔尽可能的大，这样超平面才可以将两类样本准确的分开，而保证间隔尽可能的大就是保证我们的分类器误差尽可能的小，尽可能的健壮。</p>
+<h1 id="线性可分SVM"><a href="#线性可分SVM" class="headerlink" title="线性可分SVM"></a>线性可分SVM</h1><p>要使得支持向量到超平面的间隔最大化，我们首先定义超平面 $h(x)$ ：</p>
+<script type="math/tex; mode=display">
+h(x) = w^Tx + b \qquad w为权重向量，b为偏置向量</script><p>样本点 $x$ 到最优超平面的几何间隔为：</p>
+<script type="math/tex; mode=display">
+r = \frac {h(x)} {||w||} = \frac {w^T + b} {||w||}</script><p>$||w||$ 是向量 $w$ 的内积，即 $||w|| = \sqrt{w_0^2 + w_1^2 + \dots +  w_n^2 }$ ，而 $h(x)$ 表示函数间隔：</p>
+<script type="math/tex; mode=display">
+\hat{r} = h(x)</script><p>函数间隔 $h(x)$ 不是一个标准的间隔度量，它不适合用来做最大化的间隔值。因为，一旦超平面固定以后，如果我们人为的放大或缩小 $w$ 和 $b$ 值，那这个超平面也会无限的放大或缩小，这将对分类造成严重影响。而几何间隔是函数间隔除以 $w$ ，当 $w$ 的值无限放大或缩小时，$||w||$ 也会等倍地放大或缩小，而整个 $r$ 保持不变，它只随着超平面的移动而变化，不受两个参数的影响。因而，我们用几何间隔来做最大化间隔度量。</p>
+<h2 id="最大化间隔"><a href="#最大化间隔" class="headerlink" title="最大化间隔"></a>最大化间隔</h2><p>在SVM中，我们把几何间隔 $r$ 作为最大化间隔，并且采用 $-1$ 和 $+1$ 作为类别标签。</p>
+<p>如下图所示，在这个 $\mathbb{R}^2$ 空间中，假设我们已经确定了一个超平面（图中虚线），这个超平面的函数关系式为 $h(x) = w^Tx + b = 0$ 。我们想要所有的样本点都尽可能的原理这个超平面，只需保证支持向量的点 $x^*$ 尽可能地远离它。</p>
+<img src="/2019/06/22/SVM/2.png" class="">
+<p>我们把其中一个支持向量 $x^*$ 到最优超平面的距离定义为：</p>
+<script type="math/tex; mode=display">
+r^* = \frac {h(x^*)} {||w||} = 
+\begin{cases}
+\frac {1} {||w||}&  \quad {if : y* = h(x^*) = +1}\\
+\frac {-1} {||w||}& \quad {if : y* = h(x^*) = -1}
+\end{cases}</script><p>这是我们通过把函数间隔 $h(x)$ 固定为 $1$ 而得来的。我们可以把这个式子想象成还存在两个平面，这两个平面分别是 $w^Tx_s+b=1$ 和 $w^Tx_s+b=-1$ ，对应上图中的两根实线。这些支持向量 $x_s$ 就在这两个平面上，这两个平面离最优超平面的距离越大，我们的间隔也就越大。对于其他的点 $x_i$ 如果满足 $w^Tx_i+b&gt;1$ ，则被分为 $1$ 类，如果满足满足 $w^Tx_i+b&lt;-1$ ，则被分为 $-1$ 类。即有约束条件：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+w^Tx_i+b \geqslant 1 &  \quad y_i = +1 \\
+w^Tx_i+b \leqslant -1 & \quad y_i = -1
+\end{cases}</script><p>支持向量到超平面的距离知道后，那么分割的间隔 $\gamma$ 为：</p>
+<script type="math/tex; mode=display">
+\gamma = 2r^* = \frac {2} {||w||}</script><p>注意到最大化 $\frac {2} {||w||}$ 和最小化 $\frac {1} {2} ||w||^2$ 是等价的，于是就得到下面的线性可分支持向量机学习的最优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\min_{w, b} \; \frac {1} {2} \|w\|^2 \\
+y_i(w^Tx_i+b) \geqslant 1, \quad (i = 1, \dots , n) 
+\end{cases}</script><p>这种式子采用拉格朗日乘数法来求解，即：</p>
+<script type="math/tex; mode=display">
+L(x) = f(x) + \sum \alpha g(x)</script><p>$f(x)$ 是我们需要最小化的目标函数， $g(x)$ 是不等式约束条件， $\alpha$ 是对应的约束系数，也称拉格朗日乘子。为了使得拉格朗日函数得到最优解，我们需要加入能使该函数有最优化解法的KKT条件，或者叫最优化条件。即假设存在一点 $x^*$：</p>
+<ul>
+<li>$L(x^{\star})$ 对 $x^{\star}$ 求导为 $0$</li>
+<li>$\alpha_ig_i(x^*)=0$ 对于所有的 $i = 1,\dots,n$</li>
+</ul>
+<p>这样构造的拉格朗日函数为：</p>
+<script type="math/tex; mode=display">
+L(w, b, a) = \frac {1} {2} w^Tw - \sum_{i=1}^n a_i[y_i(w^T x_i + b) - 1]</script><p>以上的KKT条件 $\alpha_i[y_i(w^Tx_i+b)-1] = 0$ 表示，只有距离最优超平面的支持向量 $(x_i, y_i)$ 对应的 $\alpha$ 非零，其他所有点集的 $\alpha$ 等于零。综上所述，引入拉格朗日乘子后，我们的目标变为：</p>
+<script type="math/tex; mode=display">
+\min_{w,b}\max_{a \geqslant 0} L(w, b, a)</script><p>根据拉格朗日对偶性，目标问题的对偶问题是极大极小问题，即先求 $L(w, b, \alpha)$ 对 $w, b$ 的极小，再求对 $\alpha$ 的极大：</p>
+<script type="math/tex; mode=display">
+\max_{a \geqslant 0} \min_{w, b} L(w, b, \alpha)</script><p>用 $L(w, b, \alpha)$ 对 $w$ 和 $b$ 分别求导，并令其等于 $0$ ：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\frac {\partial L(w, b, \alpha)} {\partial w} = 0\\
+\frac {\partial L(w, b, \alpha)} {\partial b} = 0
+\end{cases}</script><p>得到：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+w = \sum_{i=1}^n \alpha_i y_i x_i \\
+\sum_{i=1}^n \alpha_i y_i = 0
+\end{cases}</script><p>把该式代入原来的拉格朗日式子得（推导见《统计学习方法》P103~P105）：</p>
+<script type="math/tex; mode=display">
+L(\alpha) = \sum_{i=1}^n \alpha_i - \frac {1} {2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y_i y_j x_i^T x_j \\
+\sum_{i=1}^n \alpha_i y_i = 0, \quad \alpha_i \geqslant 0 (i = 1, \dots, n)</script><p>该 $L(\alpha)$ 函数消去了向量 $w$ 和向量 $b$ ，仅剩 $\alpha$ 这个未知参数，只要我们能够最大化 $L(\alpha)$，就能求出对应的 $\alpha$ ，进而求得  $w$ 和 $b$ 。对于如何求解 $\alpha$，SMO算法给出了完美的解决方案，下一节我们详细讲述。这里我们假设通过SMO算法确定了最优 $\alpha^*$，则：</p>
+<script type="math/tex; mode=display">
+w^* = \sum_{i=1}^n \alpha_i^* y_i x_i</script><p>最后使用一个正的支持向量 $x^*$ ，就可以计算出 $b$ ：</p>
+<script type="math/tex; mode=display">
+b^* = 1 - w^{*T} x^*</script><h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a><a id="softgap">软间隔</a></h2><p>以上的推导都是在<font color="red">完全线性可分</font>的条件下进行的，但是现实世界的许多问题并不都是线性可分的，尤其存在许多复杂的非线性可分的情形。要解决这些线性不可分问题，有如下两种方法：</p>
+<ul>
+<li>放宽严格的间隔，构造<a href="#softgap">软间隔</a>。</li>
+<li>运用<a href="#kernel">核函数</a>将数据映射到高维空间，然后在高维空间中寻找超平面进行线性划分。</li>
+</ul>
+<p>我们首先讨论软间隔。假设两个类有几个数据点混在一起，这些点对最优超平面形成了噪声干扰，软间隔就是要扩展一下我们的目标函数和KKT条件，允许少量这样的噪声存在。具体地说，就要引入松驰变量 $\xi$ 来量化分类器的违规行为：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+\min_{w, b} \; \frac {1} {2} \|w\|^2 + C\sum_{i=1}^n \xi_i, \quad C为惩罚因子 \\
+y_i (w^T x_i + b) \geqslant 1 - \xi_i , \quad i = 1,\dots, n \\
+\xi_i \geqslant 0 ,  \quad i = 1, \dots , n
+\end{cases}</script><h3 id="C-和-xi"><a href="#C-和-xi" class="headerlink" title="$C$ 和 $\xi$"></a>$C$ 和 $\xi$</h3><img src="/2019/06/22/SVM/3.jpg" class="">
+<p>如上图所示，$\xi$ 表示噪声样本点到本类样本点边界的偏移距离。$C$ 可被视为一个由用户依据经验或分析选定的“正则化”参数。噪声点在现实世界是天然存在的，如果对于他们不进行容错，那么我们是无论如何也不能把样本分开的。而引入惩罚因子，目的就是，对这类误分的样本进行容错，相当于把点拉到正确一侧：</p>
+<ul>
+<li>当 $C$ 很大时，$\xi$ 趋近于0，表示惩罚很大，容忍度很低。这样错分较少，对样本的拟合性较好，但容易过拟合。</li>
+<li>当 $C$ 很小时，$\xi$ 变大，表示惩罚很小，容忍度高。这样错分较多，对样本的拟合性下降。</li>
+</ul>
+<p>对上述不等式同样运用拉格朗日乘子法和KKT条件得（推导见《统计学习方法》P109~P111）：</p>
+<script type="math/tex; mode=display">
+L(\alpha) = \sum_{i=1}^n \alpha_i - \frac {1} {2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y_i y_j x_i^T x_j \\
+\sum_{i=1}^n \alpha_i y_i = 0, \quad 0 \leqslant \alpha_i \leqslant C (i = 1, \dots , n)</script><p>可以看到，松驰变量 $\xi$ 没有出现在 $L(\alpha)$ 中，线性可分与不可分的差异体现在约束 $\alpha_i \geqslant 0$ 被替换成了约束 $0 \leqslant \alpha_i \leqslant C$。但是，这两种情况下求解 $w$ 和 $b$ 是非常相似的，对于支持向量的定义也都是一致的。在不可分情况下，对应的KKT条件为：</p>
+<script type="math/tex; mode=display">
+\alpha_i[y_i(w^Tx_i + b) - 1 + \xi_i] = 0, \quad (i = 1, \dots, n)</script><h2 id="SMO算法"><a href="#SMO算法" class="headerlink" title="SMO算法"></a>SMO算法</h2><p>1996年， John Platt发布了一个称为SMO的强大算法，用于训练SVM。 SMO表示序列最小优化（Sequential Minimal Optimization）。 Platt的SMO算法是将大优化问题分解为多个小优化问题来求解，这些小优化问题往往很容易求解，并且对它们进行顺序求解的结果与将它们作为整体来求解的结果是完全一致的。</p>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>求出一系列 $\alpha$，一旦求出了这些  $\alpha$，就很容易计算出权重向量 $w$ 和 $b$，并得到分隔超平面。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>每次循环中选择两个 $\alpha$ 进行优化处理。一旦找到一对合适的 $\alpha$ ，那么就增大其中一个同时减小另一个。这里所谓的“合适”就是指两个 $\alpha$ 必须要符合一定的条件，条件之一就是这两个 $\alpha$ 必须要在间隔边界之外，而其第二个条件则是这两个  $\alpha$ 还没有进行过区间化处理或者不在边界上。<br>对SMO具体的分析如下，在上一节我们已经得出了：</p>
+<script type="math/tex; mode=display">
+L(\alpha) = \sum_{i=1}^n \alpha_i - \frac {1} {2} \sum_{i=1}^n \sum_{j=1}^n \alpha_i \alpha_j y_i y_j x_i^T x_j \\
+\sum_{i=1}^n \alpha_i y_i = 0, \quad 0 \leqslant \alpha_i \leqslant C (i = 1, \dots , n)</script><p>其中 $(x_i, y_i)$ 已知，$C$ 可以人为设定。现在就是要最大化 $L(\alpha)$ ，求得参数 $\alpha = [\alpha_1, \alpha_2, \dots, \alpha_n]$。SMO算法是一次选择两个 $\alpha$ 进行优化，那我们就选择 $\alpha_1$ 和 $\alpha_2$ ，然后把其它参数 $[\alpha_3, \alpha_4, \dots, \alpha_n]$ 固定，这样 $\alpha_1, \alpha_2$ 表示为下面的式子，其中 $\zeta$ 为实数值：</p>
+<script type="math/tex; mode=display">
+\alpha_1 y_1 + \alpha_2 y_2 = - \sum_{i=3}^n \alpha_i y_i = \zeta</script><p>然后用 $\alpha_2$ 来表示 $\alpha_1$ ：</p>
+<script type="math/tex; mode=display">
+\alpha_1 = \frac {\zeta - \alpha_2 y_2} {y_1}</script><p>把上式代入 $L(\alpha)$ 中：</p>
+<script type="math/tex; mode=display">
+L(\alpha) = L(\frac {\zeta - \alpha_2 y_2} {y_1}, \alpha_2, \dots, \alpha_n)</script><p>省略一系列化解过程后，最后会化解成我们熟悉的一元二次方程，$a, b, c$ 均是实数值：</p>
+<script type="math/tex; mode=display">
+L(\alpha_2) = a \alpha_2^2 + b \alpha_2 + c</script><p>最后对 $\alpha_2$ 求导，解得 $\alpha_2$ 的具体值，我们暂时把这个实数值叫 $\alpha_2^{\star}$ ，而这个 $\alpha_2^{\star}$ 需要满足一个条件 $L \leqslant \alpha_2^{\star} \leqslant H$ ，如下图所示：</p>
+<img src="/2019/06/22/SVM/4.png" class="">
+<p>根据之前的条件 $0 \leqslant \alpha_i \leqslant C$ 和等式 $\alpha_1 y_1 + \alpha_2 y_2 = \zeta$ ，当 $y_1$ 和 $y_2$ 异号时：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+L &= \max(0, \alpha_2 - \alpha_1) \\
+H &= \min(C, C + \alpha_2 - \alpha_1)
+\end{cases}</script><p>当 $y_1$ 和 $y_2$ 同号时：</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+L &= \max(0, \alpha_2 + \alpha_1 - C) \\
+H &= \min(C, \alpha_2 + \alpha_1)
+\end{cases}</script><p>最后，满足条件的 $\alpha_2$ 应该由下面的式子得到， $\alpha_2^{\star\star}$ 才为最终的值：</p>
+<script type="math/tex; mode=display">
+\alpha_2^{**} = \begin{cases}
+H, \quad \alpha_2^* > H \\
+\alpha_2^*, \quad L \leqslant \alpha_2^* \leqslant H \\
+L, \quad \alpha_2^* < L
+\end{cases}</script><p>求得 $\alpha_2^{\star\star}$ 后就能求得 $\alpha_1^{\star\star}$ 了，然后我们重复地按照最优化 $ (\alpha_1, \alpha_2) $ 的方式继续选择 $ (\alpha_3, \alpha_4), (\alpha_5, \alpha_6), \dots, (\alpha_{n-1}, \alpha_n) $ 进行优化求解，这样 $ \alpha = [\alpha_1, \alpha_2, \dots, \alpha_n] $ 求解出来后，整个线性划分问题就迎刃而解。</p>
+<h1 id="核函数"><a href="#核函数" class="headerlink" title="核函数"></a><a id="kernel">核函数</a></h1><p>对于以上几节讲的SVC算法，我们都在线性可分或存在一些噪声点的情况下进行的二分类，但是如果我们存在两组数据，它们的散点图如下图所示，你可以看出这完全是一个非线性不可分的问题，我们无法使用之前讲的SVC算法在这个二维空间中找到一个超平面把这些数据点准确的分开。</p>
+<img src="/2019/06/22/SVM/5.png" class="">
+<p>解决这个划分问题我们需要引入一个核函数，核函数能够恰当地计算给定数据的内积，将数据从输入空间的非线性转变到特征空间，特征空间具有更高甚至无限的维度，从而使得数据在该空间中被转换成线性可分的。如下图所示，我们把二维平面的一组数据，通过核函数映射到了一个三维空间中，这样，我们的超平面就面成了一个平面（在二维空间中是一条直线），这个平面就可以准确的把数据划分开了。</p>
+<img src="/2019/06/22/SVM/6.png" class="">
+<p>核函数有Sigmoid核、线性核、多项式核和高斯核等，其中高斯核和多项式核比较常用，两种核函数均可以把低维数据映射到高维数据。高斯核的公式如下，$\sigma$ 是达到率，即函数值跌落到 $0$ 的速度参数：</p>
+<script type="math/tex; mode=display">
+K(x_1, x_2) = e^{\frac {- \|x_1 - x_2\|^2} {2 \sigma^2}}</script><p>多项式核函数的公式如下，$R$ 为实数，$d$ 为低维空间的维数：</p>
+<script type="math/tex; mode=display">
+K(x_1, x_2) = (\langle x_1, x_2 \rangle + R)^d</script><p>应用于我们的上个例子，我们先定义用 $\phi : x \to H$ 表示从输入空间 $x \subset \mathbb{R}^n$ 到特征空间 $H$ 的一个非线性变换。假设在特征空间中的问题是线性可分的，那么对应的最优超平面为：</p>
+<script type="math/tex; mode=display">
+w^{\phi T} \phi(x) + b = 0</script><p>通过拉格朗日函数我们推导出：</p>
+<script type="math/tex; mode=display">
+w^{\phi *} = \sum_{i=1}^n \alpha_i^* y_i \phi(x_i)</script><p>代入上式的特征空间的最优超平面为：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n \alpha_i^* y_i \phi^T(x_i) \phi(x) + b = 0</script><p>这里的 $\phi^T(x_i) \phi(x)$ 表示内积，用核函数代替内积则为：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n \alpha_i^* y_i K(x_i, x) + b = 0</script><p>我们的核函数均是内积函数，通过在低维空间对输入向量求内积来映射到高维空间，从而解决在高维空间中数据线性可分的问题。</p>
+<p>我们以多项式核来解释一下为什么核函数可以把低维数据映射成高维数据。</p>
+<p>假设有两个输入样本，它们均为二维行向量 $a = [x_1, x_2], b = [x_3, x_4]$ ，他们的内积为：</p>
+<script type="math/tex; mode=display">
+\langle a, b \rangle = a b^T = \begin{bmatrix} x_1 & x_2 \end{bmatrix} \begin{bmatrix} x_3 \\ x_4 \end{bmatrix} = x_1 x_3 + x_2 x_4</script><p>用多项式核函数进行映射，令 $R=0, d=2$：</p>
+<script type="math/tex; mode=display">
+K(a, b) = (\langle x_1, x_2 \rangle)^2 = (x_1 x_3 + x_2 x_4)^2 = x_1^2 x_3^2 + 2x_1 x_2 x_3 x_4 + x_2^2 x_4^2 = \phi(a) \phi(b)</script><p>按照线性代数中的标准定义， $\phi(a)$ 和 $\phi(b)$ 为映射后的三维行向量和三维列向量，即：</p>
+<script type="math/tex; mode=display">
+\phi(a) = \begin{bmatrix} x_1^2 & \sqrt 2 x_1 x_2 & x_2^2 \end{bmatrix} \\
+\phi(b) = \begin{bmatrix} x_3^2 \\ \sqrt2 x_3 x_4 \\ x_4^2  \end{bmatrix}</script><p>它们的内积用向量的方式表示则更直观：</p>
+<script type="math/tex; mode=display">
+\phi(a) \phi(b) = \begin{bmatrix} x_1^2 & \sqrt 2 x_1 x_2 & x_2^2 \end{bmatrix} \begin{bmatrix} x_3^2 \\ \sqrt2 x_3 x_4 \\ x_4^2  \end{bmatrix} = x_1^2 x_3^2 + 2x_1 x_2 x_3 x_4 + x_2^2 x_4^2</script><p>这样我们就把二维数据映射成了三维数据。对于高斯核的映射，会用到泰勒展开式，这个后面再学习了。</p>
+<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p>上面说了那么多，全是从数学角度进行分析推导的。你可能明白了SVM的数学原理，当你进行编程的时候，还是一脸懵逼。因为如果按照上面的求解过程来的话，实在是太复杂了。但是在计算机里，求解SVM却是非常简单的事。我们只需给出SVC的损失函数，然后使用GD算法，就能很好地求出 $\theta$ ，也就是上述的 $w$ ：</p>
+<script type="math/tex; mode=display">
+J(\theta) = \min_{\theta} C [ \sum_{i=1}^m y^{(i)} cost_1(\theta^T x^{(i)}) + (1 - y^{(i)})cost_0(\theta^T x^{(i)}) ] + \frac {1} {2} \sum_{j=1}^n \theta_j^2 \quad C 为惩罚因子</script><p>上述函数分析具体可见 <a class="link"   target="_blank" rel="noopener" href="https://github.com/TransformersWsz/Halfrost-Field/blob/master/contents/Machine_Learning/Support_Vector_Machines.ipynb" >https://github.com/TransformersWsz/Halfrost-Field/blob/master/contents/Machine_Learning/Support_Vector_Machines.ipynb<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/vipyoumay/p/7560061.html?tdsourcetag=s_pcqq_aiomsg" >SVM原理以及Tensorflow 实现SVM分类(附代码) <i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1621964725382082396&amp;wfr=spider&amp;for=pc" >深度讲解支持向量机背后的数学思想<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/TransformersWsz/Halfrost-Field/blob/master/contents/Machine_Learning/Support_Vector_Machines.ipynb" >Support_Vector_Machines.ipynb<i class="fas fa-external-link-alt"></i></a></li>
+<li>《统计学习方法》</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://study.163.com/course/courseLearn.htm?courseId=1004570029#/learn/video?lessonId=1052089362&amp;courseId=1004570029" >吴恩达机器学习<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Algorithm/">#Algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/Classification/">#Classification</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/06/30/%E5%B8%B8%E8%A7%81%E7%9A%84%E7%A6%BB%E6%95%A3%E5%9E%8B%E5%88%86%E5%B8%83%E5%BE%8B/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">常见的离散型分布律</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/06/03/CNN%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CNN反向传播</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Swift</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%AF%E5%88%86SVM"><span class="nav-number">1.</span> <span class="nav-text">线性可分SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%8C%96%E9%97%B4%E9%9A%94"><span class="nav-number">1.1.</span> <span class="nav-text">最大化间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E9%97%B4%E9%9A%94"><span class="nav-number">1.2.</span> <span class="nav-text">软间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#C-%E5%92%8C-xi"><span class="nav-number">1.2.1.</span> <span class="nav-text">$C$ 和 $\xi$</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMO%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">SMO算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.3.1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">工作原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">核函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.1.</span> <span class="nav-text">参考</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
