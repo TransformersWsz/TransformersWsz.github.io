@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            XGBoost |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://heary.cn/images/avatar.jpg","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://github.com/tricktreat","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://www.agedcat.com/wp-content/uploads/2021/03/1616508591-bg-47.jpg","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://godweiyang.com/medias/banner/4.jpg","description":"LightSeq作者"},{"name":"x-hansong","link":"https://blog.xiaohansong.com/index.html","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"支付宝工程师"},{"name":"XPoet","link":"https://xpoet.cn/","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg","description":"hexo-theme-keep和PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者，WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬，现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士，NLP论文高产，热衷于知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://i2.hdslb.com/bfs/face/b7d1228d4df6bcea8f1b9eb01545bb0b02a2aa65.jpg@240w_240h_1c_1s.jpg","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东大本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lil","link":"https://lilianweng.github.io/","avatar":"https://pbs.twimg.com/profile_images/1052456981838086150/JcK3h5I1_400x400.jpg","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        XGBoost
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2021-05-31 01:04:36</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sun Apr 24 2022 12:06:57 GMT+0000">2022-04-24 12:06:57</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Machine-Learning/">Machine Learning</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Algorithm/">Algorithm</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>记录一下XGBoost的的学习过程。</p>
+<span id="more"></span>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>我们要预测一家人对电子游戏的喜好程度，有年龄、性别、职业这些特征。根据之前训练出来的多棵树来对这些样本打分，如下图所示：</p>
+<img   src="/2021/05/31/XGBoost/1.png"  class="">
+<p>注意，<font color="red">上述分数是由训练所得</font>。与GBDT类似，两棵树的结论累加起来便是最终结论。如果不考虑工程实现、解决问题上的一些差异，XGBoost与GBDT比较大的不同就是目标函数的定义：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Obj^{(t)} &=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t)}\right)+\sum_{i=1}^{t} \Omega\left(f_{i}\right) \\
+&=\sum_{i=1}^{n} l\left(y_{i}, \hat{y}_{i}^{(t-1)}+f_{t}\left(x_{i}\right)\right)+\Omega\left(f_{t}\right)+\text { constant }
+\end{aligned}</script><p>前 $t-1$ 棵树的复杂度之和可以用一个常量 $constant$ 表示。上述公式由两部分组成：</p>
+<ul>
+<li>损失函数：揭示训练误差</li>
+<li>正则化项：惩罚复杂模型</li>
+</ul>
+<h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><p>前沿知识：泰勒展开式：</p>
+<script type="math/tex; mode=display">
+f(x+\Delta x) \simeq f(x)+f^{\prime}(x) \Delta x+\frac{1}{2} f^{\prime \prime}(x) \Delta x^{2}</script><p>定义如下符号：</p>
+<script type="math/tex; mode=display">
+g_{i}=\frac{\partial \; l\left(y_{i}, \hat{y_i}^{(t-1)}\right)}{\partial \;  {\hat{y_i}^{(t-1)}} } \\ 
+
+h_{i}=\frac{\partial^2 \; l\left(y_{i}, \hat{y_i}^{(t-1)}\right)}{\partial^2 \;  {\hat{y_i}^{(t-1)}} }</script><p>因此：</p>
+<script type="math/tex; mode=display">
+O b j^{(t)} \simeq \sum_{i=1}^{n}\left[l\left(y_{i}, \hat{y}_{i}^{(t-1)}\right)+g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right]+\Omega\left(f_{t}\right)+\text { constant }</script><p>对应关系如下：</p>
+<ul>
+<li>(1)式 $x$ $\Leftrightarrow$ (2)式 $\hat{y_i}^{(t-1)}$</li>
+<li>(1)式 $\Delta x$ $\Leftrightarrow$ (2)式 $f<em>{t}\left(x</em>{i}\right)$</li>
+</ul>
+<p>由于 $\hat{y<em>i}^{(t-1)}$ 是已知的，因此 $l\left(y</em>{i}, \hat{y}_{i}^{(t-1)}\right)$ 也是个常数项，可以合并到 $constant$ 去。将 $constant$ 去掉，上述公式可以简化为：</p>
+<script type="math/tex; mode=display">
+O b j^{(t)} \simeq \sum_{i=1}^{n}\left[g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right]+\Omega\left(f_{t}\right)</script><h3 id="正则化项"><a href="#正则化项" class="headerlink" title="正则化项"></a>正则化项</h3><img   src="/2021/05/31/XGBoost/2.png"  class="">
+<ul>
+<li>$q(x)$ 表示将样本 $x$ 映射到某个叶子节点的编号上</li>
+<li>$w$ 表示叶子节点的得分</li>
+</ul>
+<p>注意，<font color="red">多个样本可以落到同一个叶子节点上，这时它们的得分是一样的</font>。</p>
+<p>XGBoost定义树的复杂度如下：</p>
+<img   src="/2021/05/31/XGBoost/3.png"  class="">
+<h3 id="重新组织损失函数"><a href="#重新组织损失函数" class="headerlink" title="重新组织损失函数"></a>重新组织损失函数</h3><p>由于 $w$ 是我们要求的参数，因此将上述公式组织成关于 $w$ 的函数：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+O b j^{(t)} & \simeq \sum_{i=1}^{n}\left[g_{i} f_{t}\left(x_{i}\right)+\frac{1}{2} h_{i} f_{t}^{2}\left(x_{i}\right)\right]+\Omega\left(f_{t}\right) \\
+&=\sum_{i=1}^{n}\left[g_{i} w_{q\left(x_{i}\right)}+\frac{1}{2} h_{i} w_{q\left(x_{i}\right)}^{2}\right]+\gamma T+\lambda \frac{1}{2} \sum_{j=1}^{T} w_{j}^{2} \\
+&=\sum_{j=1}^{T}\left[\left(\sum_{i \in I_{j}} g_{i}\right) w_{j}+\frac{1}{2}\left(\sum_{i \in I_{j}} h_{i}+\lambda\right) w_{j}^{2}\right]+\gamma T
+\end{aligned}</script><ul>
+<li>$I<em>{j}=\left{i \mid q\left(x</em>{i}\right)=j\right}$ 表示样本下标集合：这些样本可以落到下标为 $j$ 的叶子节点</li>
+</ul>
+<p>这样上式可以看作关于 $w$ 的一元二次函数。</p>
+<p>定义 $G<em>{j}=\sum</em>{i \in I<em>{j}} g</em>{i} \quad H<em>{j}=\sum</em>{i \in I<em>{j}} h</em>{i}$ ，上式继续简化为：</p>
+<script type="math/tex; mode=display">
+Obj^{(t)} = \sum_{j=1}^T \left[ \frac{1}{2} (H_j + \lambda) w_j^2 + G_j w_j \right] + \gamma T</script><p>当 $w<em>j = - \frac{G_j}{H_j + \lambda}$ 时，$Obj^{(t)}$ 取得最小：$-\frac{1}{2} \sum</em>{j=1}^{T} \frac{G<em>{j}^{2}}{H</em>{j}+\lambda}+\gamma T$</p>
+<p>下图给个示例：</p>
+<img   src="/2021/05/31/XGBoost/4.png"  class="">
+<hr>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h3 id="1-二阶泰勒展开的优势在哪儿？"><a href="#1-二阶泰勒展开的优势在哪儿？" class="headerlink" title="1. 二阶泰勒展开的优势在哪儿？"></a>1. 二阶泰勒展开的优势在哪儿？</h3><p>PPT上是这样说的：</p>
+<img   src="/2021/05/31/XGBoost/5.png"  class="">
+<p>主要有如下两点理由：</p>
+<ul>
+<li>XGBoost是以mse为基础推导出来的，在mse的情况下，xgboost的目标函数展开就是一阶项+二阶项的形式，而其他类似logloss这样的目标函数不能表示成这种形式。为了后续推导的统一，所以将目标函数进行二阶泰勒展开，就可以直接自定义损失函数了，只要二阶可导即可，增强了模型的扩展性。</li>
+<li>二阶信息能够让梯度收敛的更快，类似牛顿法比SGD收敛更快。一阶信息描述梯度变化方向，二阶信息可以描述梯度变化方向是如何变化的。</li>
+</ul>
+<h3 id="2-XGBoost与GBDT的区别"><a href="#2-XGBoost与GBDT的区别" class="headerlink" title="2. XGBoost与GBDT的区别"></a>2. XGBoost与GBDT的区别</h3><ul>
+<li>基分类器：XGBoost的基分类器不仅支持CART决策树，还支持线性分类器，此时XGBoost相当于带L1和L2正则化项的逻辑回归或者线性回归。</li>
+<li>导数信息：XGBoost对损失函数做了二阶泰勒展开，GBDT只用了一阶导数信息，并且XGBoost还支持自定义损失函数，只要损失函数一阶、二阶可导。</li>
+<li>正则项：XGBoost的目标函数加了正则项， 相当于预剪枝，使得学习出来的模型更加不容易过拟合。</li>
+<li>列抽样：XGBoost支持列采样，与随机森林类似，用于防止过拟合。</li>
+<li>缺失值处理：对树中的每个非叶子结点，XGBoost可以自动学习出它的默认分裂方向。如果某个样本该特征值缺失，会将其划入默认分支。</li>
+<li>并行化：注意不是tree维度的并行，而是特征维度的并行。XGBoost预先将每个特征按特征值排好序，存储为块结构，分裂结点时可以采用多线程并行查找每个特征的最佳分割点，极大提升训练速度。</li>
+</ul>
+<h3 id="3-XGBoost为什么可以并行训练？"><a href="#3-XGBoost为什么可以并行训练？" class="headerlink" title="3. XGBoost为什么可以并行训练？"></a>3. XGBoost为什么可以并行训练？</h3><ul>
+<li>XGBoost的并行，并不是说每棵树可以并行训练，XGB本质上仍然采用boosting思想，每棵树训练前需要等前面的树训练完成才能开始训练。</li>
+<li>XGBoost的并行，指的是特征维度的并行：在训练之前，每个特征按特征值对样本进行预排序，并存储为Block结构，在后面查找特征分割点时可以重复使用，而且特征已经被存储为一个个block结构，那么在寻找每个特征的最佳分割点时，可以利用多线程对每个block并行计算。</li>
+</ul>
+<h3 id="4-XGBoost如何防止过拟合？"><a href="#4-XGBoost如何防止过拟合？" class="headerlink" title="4. XGBoost如何防止过拟合？"></a>4. XGBoost如何防止过拟合？</h3><ul>
+<li>目标函数添加正则项：叶子节点个数+叶子节点权重的L2正则化</li>
+<li>列抽样：训练的时候只用一部分特征（不考虑剩余的block块即可）</li>
+<li>子采样：每轮计算可以不使用全部样本，使算法更加保守</li>
+<li>shrinkage: 可以叫学习率或步长，为了给后面的训练留出更多的学习空间</li>
+</ul>
+<h3 id="5-XGBoost如何处理缺失值？"><a href="#5-XGBoost如何处理缺失值？" class="headerlink" title="5. XGBoost如何处理缺失值？"></a>5. XGBoost如何处理缺失值？</h3><ul>
+<li>在特征 $k$ 上寻找最佳分割点时，不会对该列特征缺失的样本进行遍历，而只对该列特征值为非缺失的样本上对应的特征值进行遍历，通过这个技巧来减少了为稀疏离散特征寻找分割点的时间开销。</li>
+<li>在逻辑实现上，为了保证完备性，会将该特征值缺失的样本分别分配到左叶子结点和右叶子结点，两种情形都计算一遍后，选择分裂后增益最大的那个方向（左分支或是右分支），作为预测时特征值缺失样本的默认分支方向。</li>
+<li>如果在训练中没有缺失值而在预测中出现缺失，那么会自动将缺失值的划分方向放到右子结点。</li>
+</ul>
+<h3 id="6-XGBoost中的一棵树的停止生长条件"><a href="#6-XGBoost中的一棵树的停止生长条件" class="headerlink" title="6.  XGBoost中的一棵树的停止生长条件"></a>6.  XGBoost中的一棵树的停止生长条件</h3><ul>
+<li>当新引入的一次分裂所带来的增益 $Gain &lt; \gamma$ 时，放弃当前的分裂。</li>
+<li>当树达到最大深度时，停止建树，因为树的深度太深容易出现过拟合。</li>
+<li>当引入一次分裂后，重新计算新生成的左、右两个叶子结点的样本权重和。如果任一个叶子结点的样本权重低于某一个阈值，也会放弃此次分裂。如果一个叶子节点包含的样本数量太少也会放弃分裂，防止树分的太细。</li>
+</ul>
+<h3 id="7-XGBoost中如何对树进行剪枝？"><a href="#7-XGBoost中如何对树进行剪枝？" class="headerlink" title="7. XGBoost中如何对树进行剪枝？"></a>7. XGBoost中如何对树进行剪枝？</h3><ul>
+<li>在目标函数中增加了正则项：使用叶子结点的数目和叶子结点权重的L2模的平方，控制树的复杂度。</li>
+<li>在结点分裂时，定义了一个阈值，如果分裂后目标函数的增益小于该阈值，则不分裂。</li>
+<li>当引入一次分裂后，重新计算新生成的左、右两个叶子结点的样本权重和。如果任一个叶子结点的样本权重低于某一个阈值（最小样本权重和），也会放弃此次分裂。</li>
+<li>XGBoost 先从顶到底建立树直到最大深度，再从底到顶反向检查是否有不满足分裂条件的结点，进行剪枝。</li>
+</ul>
+<h3 id="8-XGBoost如何分裂节点？"><a href="#8-XGBoost如何分裂节点？" class="headerlink" title="8. XGBoost如何分裂节点？"></a>8. XGBoost如何分裂节点？</h3><p>从树深度0开始，每一节点都遍历所有的特征，比如年龄、性别等等，然后对于某个特征，<strong>先按照该特征里的值进行排序，然后线性扫描该特征进而确定最好的分割点</strong>，最后对所有特征进行分割后，我们选择所谓的增益Gain最高的那个特征。Gain的计算公式如下：</p>
+<img   src="/2021/05/31/XGBoost/6.png"  class="">
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/156047718" >XGBoost原理及常见面试题<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/v_JULY_v/article/details/81410574" >通俗理解kaggle比赛大杀器xgboost<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Algorithm/">Algorithm</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2021/06/01/C++%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%A4%9A%E6%80%81/"
+                                   title="C++学习笔记之多态"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">C++学习笔记之多态</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2021/05/10/git%E6%92%A4%E9%94%80%E6%93%8D%E4%BD%9C/"
+                                   title="git撤销操作"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">git撤销操作</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E9%A1%B9"><span class="nav-number">2.2.</span> <span class="nav-text">正则化项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E7%BB%84%E7%BB%87%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">重新组织损失函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FAQ"><span class="nav-number"></span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BA%8C%E9%98%B6%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80%E7%9A%84%E4%BC%98%E5%8A%BF%E5%9C%A8%E5%93%AA%E5%84%BF%EF%BC%9F"><span class="nav-number">0.1.</span> <span class="nav-text">1. 二阶泰勒展开的优势在哪儿？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-XGBoost%E4%B8%8EGBDT%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">0.2.</span> <span class="nav-text">2. XGBoost与GBDT的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-XGBoost%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83%EF%BC%9F"><span class="nav-number">0.3.</span> <span class="nav-text">3. XGBoost为什么可以并行训练？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-XGBoost%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E8%BF%87%E6%8B%9F%E5%90%88%EF%BC%9F"><span class="nav-number">0.4.</span> <span class="nav-text">4. XGBoost如何防止过拟合？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-XGBoost%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC%EF%BC%9F"><span class="nav-number">0.5.</span> <span class="nav-text">5. XGBoost如何处理缺失值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-XGBoost%E4%B8%AD%E7%9A%84%E4%B8%80%E6%A3%B5%E6%A0%91%E7%9A%84%E5%81%9C%E6%AD%A2%E7%94%9F%E9%95%BF%E6%9D%A1%E4%BB%B6"><span class="nav-number">0.6.</span> <span class="nav-text">6.  XGBoost中的一棵树的停止生长条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-XGBoost%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AF%B9%E6%A0%91%E8%BF%9B%E8%A1%8C%E5%89%AA%E6%9E%9D%EF%BC%9F"><span class="nav-number">0.7.</span> <span class="nav-text">7. XGBoost中如何对树进行剪枝？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-XGBoost%E5%A6%82%E4%BD%95%E5%88%86%E8%A3%82%E8%8A%82%E7%82%B9%EF%BC%9F"><span class="nav-number">0.8.</span> <span class="nav-text">8. XGBoost如何分裂节点？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number"></span> <span class="nav-text">参考</span></a>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E5%8C%96%E9%A1%B9"><span class="nav-number">2.2.</span> <span class="nav-text">正则化项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E7%BB%84%E7%BB%87%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.3.</span> <span class="nav-text">重新组织损失函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FAQ"><span class="nav-number"></span> <span class="nav-text">FAQ</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BA%8C%E9%98%B6%E6%B3%B0%E5%8B%92%E5%B1%95%E5%BC%80%E7%9A%84%E4%BC%98%E5%8A%BF%E5%9C%A8%E5%93%AA%E5%84%BF%EF%BC%9F"><span class="nav-number">0.1.</span> <span class="nav-text">1. 二阶泰勒展开的优势在哪儿？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-XGBoost%E4%B8%8EGBDT%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">0.2.</span> <span class="nav-text">2. XGBoost与GBDT的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-XGBoost%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E5%B9%B6%E8%A1%8C%E8%AE%AD%E7%BB%83%EF%BC%9F"><span class="nav-number">0.3.</span> <span class="nav-text">3. XGBoost为什么可以并行训练？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-XGBoost%E5%A6%82%E4%BD%95%E9%98%B2%E6%AD%A2%E8%BF%87%E6%8B%9F%E5%90%88%EF%BC%9F"><span class="nav-number">0.4.</span> <span class="nav-text">4. XGBoost如何防止过拟合？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-XGBoost%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%BC%BA%E5%A4%B1%E5%80%BC%EF%BC%9F"><span class="nav-number">0.5.</span> <span class="nav-text">5. XGBoost如何处理缺失值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-XGBoost%E4%B8%AD%E7%9A%84%E4%B8%80%E6%A3%B5%E6%A0%91%E7%9A%84%E5%81%9C%E6%AD%A2%E7%94%9F%E9%95%BF%E6%9D%A1%E4%BB%B6"><span class="nav-number">0.6.</span> <span class="nav-text">6.  XGBoost中的一棵树的停止生长条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-XGBoost%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AF%B9%E6%A0%91%E8%BF%9B%E8%A1%8C%E5%89%AA%E6%9E%9D%EF%BC%9F"><span class="nav-number">0.7.</span> <span class="nav-text">7. XGBoost中如何对树进行剪枝？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-XGBoost%E5%A6%82%E4%BD%95%E5%88%86%E8%A3%82%E8%8A%82%E7%82%B9%EF%BC%9F"><span class="nav-number">0.8.</span> <span class="nav-text">8. XGBoost如何分裂节点？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number"></span> <span class="nav-text">参考</span></a>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

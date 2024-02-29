@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            FM &amp; DeepFM |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://heary.cn/images/avatar.jpg","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://github.com/tricktreat","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://www.agedcat.com/wp-content/uploads/2021/03/1616508591-bg-47.jpg","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://godweiyang.com/medias/banner/4.jpg","description":"LightSeq作者"},{"name":"x-hansong","link":"https://blog.xiaohansong.com/index.html","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"支付宝工程师"},{"name":"XPoet","link":"https://xpoet.cn/","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg","description":"hexo-theme-keep和PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者，WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬，现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士，NLP论文高产，热衷于知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://i2.hdslb.com/bfs/face/b7d1228d4df6bcea8f1b9eb01545bb0b02a2aa65.jpg@240w_240h_1c_1s.jpg","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东大本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lil","link":"https://lilianweng.github.io/","avatar":"https://pbs.twimg.com/profile_images/1052456981838086150/JcK3h5I1_400x400.jpg","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        FM &amp; DeepFM
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2022-01-19 16:36:43</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Sat Apr 23 2022 13:51:48 GMT+0000">2022-04-23 13:51:48</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Machine-Learning/">Machine Learning</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Recommender-Systems/">Recommender Systems</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p><code>FM</code> 是搜广推里最经典的算法，这里记录一下原理与公式推导：</p>
+<span id="more"></span>
+<h1 id="FM"><a href="#FM" class="headerlink" title="FM"></a>FM</h1><h2 id="参数数量和时间复杂度优化"><a href="#参数数量和时间复杂度优化" class="headerlink" title="参数数量和时间复杂度优化"></a>参数数量和时间复杂度优化</h2><p>当我们使用一阶原始特征和二阶组合特征来刻画样本的时候，会得到如下式子：</p>
+<script type="math/tex; mode=display">
+\hat{y}=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\sum_{i=1}^{n-1} \sum_{j=i+1}^{n} w_{i j} x_{i} x_{j}</script><p>$x_i$ 和 $x_j$ 分别表示两个不同的特征取值，对于 $n$ 维的特征来说，这样的二阶组合特征一共有 $\frac{n(n-1)}{2}$ 种，也就意味着我们需要同样数量的权重参数。但是由于现实场景中的特征是高维稀疏的，导致 $n$ 非常大，比如上百万，这里<strong>两两特征组合的特征量级 $C_n^2$</strong> ，所带来的参数量就是一个天文数字。对于一个上百亿甚至更多参数空间的模型来说，我们需要海量训练样本才可以保证完全收敛。这是非常困难的。</p>
+<p>FM解决这个问题的方法非常简单，它不再是简单地为交叉之后的特征对设置参数，而是设置了一种计算特征参数的方法。</p>
+<p>FM模型引入了新的矩阵 $V$ ，它是一个 $n \times k$ 的二维矩阵。这里的 $k$ 是超参，一般不会很大，比如16、32之类。对于特征每一个维度 $x_i$ ，我们都可以找到一个表示向量 $v_i \in R^k$ 。从NLP的角度来说，就是为每个特征学习一个embedding。原先的参数量从 $O(n^2)$ 降低到了 $O(k \times n)$ 。ALBERT论文的因式分解思想跟这个非常相似：$O(V \times H) \ggg O(V \times E + E \times H)$</p>
+<p>有了 $V$ 矩阵，上式就可以改写成如下形式：</p>
+<script type="math/tex; mode=display">
+\hat{y}=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\sum_{i=1}^{n-1} \sum_{j=1}^{n} v_{i}^{T} v_{j} x_{i} x_{j}</script><p>当 $k$ 足够大的时候，即 $k = n$ ，那么就有 $W = V$ 。在实际的应用场景当中，我们并不需要设置非常大的K，因为特征矩阵往往非常稀疏，我们可能没有足够多的样本来训练这么大量的参数，并且<strong>限制K也可以一定程度上提升FM模型的泛化能力</strong>。</p>
+<p>此外这样做还有一个好处就是<strong>有利于模型训练</strong>，因为对于有些稀疏的特征组合来说，我们所有的样本当中可能都是空的。比如在刚才的例子当中用户A和电影B的组合，可能用户A在电影B上就没有过任何行为，那么这个数据就是空的，我们也不可能训练出任何参数来。但是引入了 $V$ 之后，虽然这两项缺失，但是我们针对用户A和电影B分别训练出了向量参数，我们用这两个向量参数点乘，就得到了这个交叉特征的系数。</p>
+<p>虽然我们将模型的参数降低到了 $O(k \times n)$ ，但预测一条样本所需要的时间复杂度仍为 $O(k \times n^2)$ ，这仍然是不可接受的。所以对它进行优化也是必须的，并且这里的优化非常简单，可以<strong>直接通过数学公式的变形推导</strong>得到：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\sum_{i=1}^{n} \sum_{j=i+1}^{n} v_{i}^{T} v_{j} x_{i} x_{j} &=\frac{1}{2} \sum_{i=1}^{n} \sum_{j=1}^{n} v_{i}^{T} v_{j} x_{i} x_{j}-\frac{1}{2} \sum_{i=1}^{n} v_{i}^{T} v_{j} x_{i} x_{j} \\
+&=\frac{1}{2}\left(\sum_{i=1}^{n} \sum_{j=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{j, f} x_{i} x_{j}-\sum_{i=1}^{n} \sum_{f=1}^{k} v_{i, f} v_{i, f} x_{i} x_{i}\right) \\
+&=\frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)\left(\sum_{j=1}^{n} v_{j, f} x_{j}\right)-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right) \\
+&=\frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)^{2}-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right)
+\end{aligned}</script><p>FM模型预测的时间复杂度优化到了 $O(k \times n)$ .</p>
+<h2 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h2><p>优化过后的式子如下：</p>
+<script type="math/tex; mode=display">
+\hat{y}=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\frac{1}{2} \sum_{f=1}^{k}\left(\left(\sum_{i=1}^{n} v_{i, f} x_{i}\right)^{2}-\sum_{i=1}^{n} v_{i, f}^{2} x_{i}^{2}\right)</script><p>针对FM模型我们一样可以使用梯度下降算法来进行优化。既然要使用梯度下降，那么我们就需要写出模型当中所有参数的偏导，主要分为三个部分：</p>
+<ul>
+<li>$w<em>0$ : $\frac{\partial \theta}{\partial w</em>{0}}=1$</li>
+<li>$\sum<em>{i=1}^{n} w</em>{i} x<em>{i}$ : $\frac{\partial 0}{\partial w</em>{i}}=x_{i}$</li>
+<li>$\frac{1}{2} \sum<em>{f=1}^{k}\left(\left(\sum</em>{i=1}^{n} v<em>{i, f} x</em>{i}\right)^{2}-\sum<em>{i=1}^{n} v</em>{i, f}^{2} x<em>{i}^{2}\right)$ : $\frac{\partial \hat{y}}{\partial v</em>{i, f}}  = \frac{1}{2} (2x<em>i (\sum</em>{j=1}^{n} v<em>{j, f} x</em>{j}) - 2v<em>{i,f} x_i^2) = x</em>{i} \sum<em>{j=1}^{n} v</em>{j, f} x<em>{j}-v</em>{i, f} x_{i}^{2}$</li>
+</ul>
+<p>综合如下：</p>
+<script type="math/tex; mode=display">
+\frac{\partial \hat{y}}{\partial \theta}= \begin{cases}1, & \text { if } \theta \text { is } w_{0} \\ x_{i}, & \text { if } \theta \text { is } w_{i} \\ x_{i} \sum_{j=1}^{n} v_{j, f} x_{j}-v_{i, f} x_{i}^{2} & \text { if } \theta \text { is } v_{i, f}\end{cases}</script><p>由于 $\sum<em>{j=1}^n v</em>{j,f} x_j$ 是可以提前计算好存储起来的，因此我们对所有参数的梯度计算也都能在 $O(1)$ 时间复杂度内完成。</p>
+<h2 id="拓展到-d-维"><a href="#拓展到-d-维" class="headerlink" title="拓展到 $d$ 维"></a>拓展到 $d$ 维</h2><p>参照刚才的公式，可以写出FM模型推广到d维的方程：</p>
+<script type="math/tex; mode=display">
+\hat{y}=w_{0}+\sum_{i=1}^{n} w_{i} x_{i}+\sum_{l=2}^{d} \sum_{i_1=1}^{n-l+1} \cdots \sum_{i_{l}=i_{l-1}+1}^{n}\left(\Pi_{j-1}^{l} x_{i_{j}}\right)\left(\sum_{f=1}^{k} \Pi_{j=1}^{l} v_{i_{j}, f}^{l}\right)</script><p>以 $d=3$ 为例，上式为：</p>
+<script type="math/tex; mode=display">
+\hat{y}=w_{0}+\sum_{i=1}^{n} w_{i} x_{i} + \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} x_{i} x_{j}\left(\sum_{t=1}^{k} v_{i, t} v_{j, t}\right)+\sum_{i=1}^{n-2} \sum_{j=i+1}^{n-1} \sum_{l=j+1}^{n} x_{i} x_{j} x_{l}\left(\sum_{t=1}^{k} v_{i, t} v_{j, t} v_{l, t}\right)</script><p>它的复杂度是 $O(k \times n^d)$ 。当 $d=2$ 的时候，我们通过一系列变形将它的复杂度优化到了 $O(k \times n)$ 。而当 $d &gt; 2$ 的时候，没有很好的优化方法，而且三重特征的交叉往往没有意义，并且会过于稀疏，所以我们一般情况下只会使用 $d=2$ 的情况。</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"></span><br><span class="line">ndim = <span class="built_in">len</span>(feature_names)  <span class="comment"># 原始特征数量</span></span><br><span class="line">k = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">FM</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, dim, k</span>):</span><br><span class="line">        <span class="built_in">super</span>(FM, self).__init__()</span><br><span class="line">        self.dim = dim</span><br><span class="line">        self.k = k</span><br><span class="line">        self.w = nn.Linear(self.dim, <span class="number">1</span>, bias=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># 初始化V矩阵</span></span><br><span class="line">        self.v = nn.Parameter(torch.rand(self.dim, self.k) / <span class="number">100</span>)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        linear = self.w(x)</span><br><span class="line">        <span class="comment"># 二次项</span></span><br><span class="line">        quadradic = <span class="number">0.5</span> * torch.<span class="built_in">sum</span>(torch.<span class="built_in">pow</span>(torch.mm(x, self.v), <span class="number">2</span>) - torch.mm(torch.<span class="built_in">pow</span>(x, <span class="number">2</span>), torch.<span class="built_in">pow</span>(self.v, <span class="number">2</span>)))</span><br><span class="line">        <span class="comment"># 套一层sigmoid转成分类模型，也可以不加，就是回归模型</span></span><br><span class="line">        <span class="keyword">return</span> torch.sigmoid(linear + quadradic)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">fm = FM(ndim, k)</span><br><span class="line">loss_fn = nn.BCELoss()</span><br><span class="line">optimizer = torch.optim.SGD(fm.parameters(), lr=<span class="number">0.005</span>, weight_decay=<span class="number">0.001</span>)</span><br><span class="line">iteration = <span class="number">0</span></span><br><span class="line">epochs = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs):</span><br><span class="line">    fm.train()</span><br><span class="line">    <span class="keyword">for</span> X, y <span class="keyword">in</span> data_iter:</span><br><span class="line">        output = fm(X)</span><br><span class="line">        l = loss_fn(output.squeeze(dim=<span class="number">1</span>), y)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        l.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">        iteration += <span class="number">1</span>        </span><br><span class="line">        <span class="keyword">if</span> iteration % <span class="number">200</span> == <span class="number">199</span>:</span><br><span class="line">            <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">                fm.<span class="built_in">eval</span>()</span><br><span class="line">                output = fm(X_eva_tensor)</span><br><span class="line">                l = loss_fn(output.squeeze(dim=<span class="number">1</span>), y_eva_tensor)</span><br><span class="line">                acc = ((torch.<span class="built_in">round</span>(output).long() == y_eva_tensor.view(-<span class="number">1</span>, <span class="number">1</span>).long()).<span class="built_in">sum</span>().<span class="built_in">float</span>().item()) / <span class="number">1024</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;Epoch: &#123;&#125;, iteration: &#123;&#125;, loss: &#123;&#125;, acc: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(epoch, iteration, l.item(), acc))</span><br><span class="line">            fm.train()</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h1><img   src="/2022/01/19/FM%20&%20DeepFM/DeepFM.png"  class="">
+<script type="math/tex; mode=display">
+\hat{y}=\operatorname{sigmoid}\left(y_{F M}+y_{D N N}\right)</script><h2 id="FM-1"><a href="#FM-1" class="headerlink" title="FM"></a>FM</h2><img   src="/2022/01/19/FM%20&%20DeepFM/FM.png"  class="">
+<p>该组件就是在计算FM：</p>
+<script type="math/tex; mode=display">
+y_{F M}=\langle w, x\rangle+\sum_{j_{1}=1}^{d} \sum_{j_{2}=j_{1}+1}^{d}\left\langle V_{i}, V_{j}\right\rangle x_{j_{1}} \cdot x_{j_{2}}</script><p>注意不是：$w<em>{0}+\sum</em>{i=1}^{n} w<em>{i} x</em>{i}+\frac{1}{2} \sum<em>{f=1}^{k}\left(\left(\sum</em>{i=1}^{n} v<em>{i, f} x</em>{i}\right)^{2}-\sum<em>{i=1}^{n} v</em>{i, f}^{2} x_{i}^{2}\right)$</p>
+<ul>
+<li>每个 $Field$ 是one-hot形式，黄色的圆表示 $1$ ，蓝色的代表 $0$</li>
+<li>连接黄色圆的黑线就是在做：$\langle w, x\rangle$</li>
+<li>连接embedding的红色线就是在做：$\sum<em>{j</em>{1}=1}^{d} \sum<em>{j</em>{2}=j<em>{1}+1}^{d}\left\langle V</em>{i}, V<em>{j}\right\rangle x</em>{j<em>{1}} \cdot x</em>{j_{2}}$</li>
+</ul>
+<h2 id="DNN"><a href="#DNN" class="headerlink" title="DNN"></a>DNN</h2><img   src="/2022/01/19/FM%20&%20DeepFM/Deep.png"  class="">
+<p>DNN部分比较简单，但它是与FM部分共享Embedding的。</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg5NTYyMDgyNg==&amp;mid=2247489278&amp;idx=1&amp;sn=f3652394955d719bf02a91ca3b179ed2&amp;source=41#wechat_redirect" >原创 | 想做推荐算法？先把FM模型搞懂再说<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://fancyerii.github.io/2019/12/19/deepfm/" >DeepFM模型CTR预估理论与实战<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/57873613" >深度推荐模型之DeepFM<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/techflow/p/14260630.html" >吃透论文——推荐算法不可不看的DeepFM模型<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Recommender-Systems/">Recommender Systems</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2022/03/01/Windows%20Terminal%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/"
+                                   title="Windows Terminal主题配置"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Windows Terminal主题配置</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2022/01/12/VAE/"
+                                   title="VAE"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">VAE</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FM"><span class="nav-number">1.</span> <span class="nav-text">FM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%95%B0%E9%87%8F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">参数数量和时间复杂度优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.</span> <span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E5%88%B0-d-%E7%BB%B4"><span class="nav-number">1.3.</span> <span class="nav-text">拓展到 $d$ 维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.4.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DeepFM"><span class="nav-number">2.</span> <span class="nav-text">DeepFM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FM-1"><span class="nav-number">2.1.</span> <span class="nav-text">FM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNN"><span class="nav-number">2.2.</span> <span class="nav-text">DNN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#FM"><span class="nav-number">1.</span> <span class="nav-text">FM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%95%B0%E9%87%8F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.</span> <span class="nav-text">参数数量和时间复杂度优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="nav-number">1.2.</span> <span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E5%88%B0-d-%E7%BB%B4"><span class="nav-number">1.3.</span> <span class="nav-text">拓展到 $d$ 维</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.4.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DeepFM"><span class="nav-number">2.</span> <span class="nav-text">DeepFM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FM-1"><span class="nav-number">2.1.</span> <span class="nav-text">FM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNN"><span class="nav-number">2.2.</span> <span class="nav-text">DNN</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

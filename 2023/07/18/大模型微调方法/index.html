@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            大模型微调方法 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://heary.cn/images/avatar.jpg","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://github.com/tricktreat","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://www.agedcat.com/wp-content/uploads/2021/03/1616508591-bg-47.jpg","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://godweiyang.com/medias/banner/4.jpg","description":"LightSeq作者"},{"name":"x-hansong","link":"https://blog.xiaohansong.com/index.html","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"支付宝工程师"},{"name":"XPoet","link":"https://xpoet.cn/","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg","description":"hexo-theme-keep和PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者，WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬，现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士，NLP论文高产，热衷于知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://i2.hdslb.com/bfs/face/b7d1228d4df6bcea8f1b9eb01545bb0b02a2aa65.jpg@240w_240h_1c_1s.jpg","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东大本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lil","link":"https://lilianweng.github.io/","avatar":"https://pbs.twimg.com/profile_images/1052456981838086150/JcK3h5I1_400x400.jpg","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        大模型微调方法
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2023-07-18 23:57:18</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Sep 18 2023 17:05:20 GMT+0000">2023-09-18 17:05:20</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/NLP/">NLP</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/LLM/">LLM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PEFT/">PEFT</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>下面是一些参数高效的微调大模型方法：</p>
+<span id="more"></span>
+<h2 id="Adapter"><a href="#Adapter" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览"><a href="#模型总览" class="headerlink" title="模型总览"></a>模型总览</h4><p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-1"><a href="#Adapter-1" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-1"><a href="#模型总览-1" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA"><a href="#LoRA" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-2"><a href="#模型总览-2" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning"><a href="#Prefix-Tuning" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-3"><a href="#模型总览-3" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning"><a href="#Prompt-tuning" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-4"><a href="#模型总览-4" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同"><a href="#Prompt-tuning-与-Prefix-Tuning-不同" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2"><a href="#P-tuning-V1-amp-P-tuning-V2" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-5"><a href="#模型总览-5" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-1"><a href="#LoRA-1" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-6"><a href="#模型总览-6" class="headerlink" title="模型总览"></a>模型总览</h4><p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-2"><a href="#Adapter-2" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-7"><a href="#模型总览-7" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-2"><a href="#LoRA-2" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-8"><a href="#模型总览-8" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-1"><a href="#Prefix-Tuning-1" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-9"><a href="#模型总览-9" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-1"><a href="#Prompt-tuning-1" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-10"><a href="#模型总览-10" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-1"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-1" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-1"><a href="#P-tuning-V1-amp-P-tuning-V2-1" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-11"><a href="#模型总览-11" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-3"><a href="#Adapter-3" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-12"><a href="#模型总览-12" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-3"><a href="#LoRA-3" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-13"><a href="#模型总览-13" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-2"><a href="#Prefix-Tuning-2" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-14"><a href="#模型总览-14" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-2"><a href="#Prompt-tuning-2" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-15"><a href="#模型总览-15" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-2"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-2" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-2"><a href="#P-tuning-V1-amp-P-tuning-V2-2" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-16"><a href="#模型总览-16" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-2"><a href="#参考-2" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-3"><a href="#Prefix-Tuning-3" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-17"><a href="#模型总览-17" class="headerlink" title="模型总览"></a>模型总览</h4><p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-4"><a href="#Adapter-4" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-18"><a href="#模型总览-18" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-4"><a href="#LoRA-4" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-19"><a href="#模型总览-19" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-4"><a href="#Prefix-Tuning-4" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-20"><a href="#模型总览-20" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-3"><a href="#Prompt-tuning-3" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-21"><a href="#模型总览-21" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-3"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-3" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-3"><a href="#P-tuning-V1-amp-P-tuning-V2-3" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-22"><a href="#模型总览-22" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-3"><a href="#参考-3" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>Prefix tokens初始化如下：</p>
+<p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-5"><a href="#Adapter-5" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-23"><a href="#模型总览-23" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-5"><a href="#LoRA-5" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-24"><a href="#模型总览-24" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-5"><a href="#Prefix-Tuning-5" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-25"><a href="#模型总览-25" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-4"><a href="#Prompt-tuning-4" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-26"><a href="#模型总览-26" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-4"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-4" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-4"><a href="#P-tuning-V1-amp-P-tuning-V2-4" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-27"><a href="#模型总览-27" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-4"><a href="#参考-4" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-6"><a href="#Adapter-6" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-28"><a href="#模型总览-28" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-6"><a href="#LoRA-6" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-29"><a href="#模型总览-29" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-6"><a href="#Prefix-Tuning-6" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-30"><a href="#模型总览-30" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-5"><a href="#Prompt-tuning-5" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-31"><a href="#模型总览-31" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-5"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-5" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-5"><a href="#P-tuning-V1-amp-P-tuning-V2-5" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-32"><a href="#模型总览-32" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-5"><a href="#参考-5" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h2 id="Prompt-tuning-6"><a href="#Prompt-tuning-6" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-33"><a href="#模型总览-33" class="headerlink" title="模型总览"></a>模型总览</h4><p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-7"><a href="#Adapter-7" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-34"><a href="#模型总览-34" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-7"><a href="#LoRA-7" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-35"><a href="#模型总览-35" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-7"><a href="#Prefix-Tuning-7" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-36"><a href="#模型总览-36" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-7"><a href="#Prompt-tuning-7" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-37"><a href="#模型总览-37" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-6"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-6" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-6"><a href="#P-tuning-V1-amp-P-tuning-V2-6" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-38"><a href="#模型总览-38" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-6"><a href="#参考-6" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</p>
+</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-8"><a href="#Adapter-8" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-39"><a href="#模型总览-39" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-8"><a href="#LoRA-8" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-40"><a href="#模型总览-40" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-8"><a href="#Prefix-Tuning-8" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-41"><a href="#模型总览-41" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-8"><a href="#Prompt-tuning-8" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-42"><a href="#模型总览-42" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-7"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-7" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-7"><a href="#P-tuning-V1-amp-P-tuning-V2-7" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-43"><a href="#模型总览-43" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-7"><a href="#参考-7" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-8"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-8" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-8"><a href="#P-tuning-V1-amp-P-tuning-V2-8" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-44"><a href="#模型总览-44" class="headerlink" title="模型总览"></a>模型总览</h4><p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-9"><a href="#Adapter-9" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-45"><a href="#模型总览-45" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-9"><a href="#LoRA-9" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-46"><a href="#模型总览-46" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-9"><a href="#Prefix-Tuning-9" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-47"><a href="#模型总览-47" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-9"><a href="#Prompt-tuning-9" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-48"><a href="#模型总览-48" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-9"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-9" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-9"><a href="#P-tuning-V1-amp-P-tuning-V2-9" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-49"><a href="#模型总览-49" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-8"><a href="#参考-8" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p>下面是一些参数高效的微调大模型方法：</p>
+<!--more-->
+<h2 id="Adapter-10"><a href="#Adapter-10" class="headerlink" title="Adapter"></a>Adapter</h2><h4 id="模型总览-50"><a href="#模型总览-50" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1ocq1j9sds1s.webp"  alt="Adapter"></p>
+<p>Adapter作为一个插件加入到大模型内，微调下游任务时，固定大模型参数，只训练Adapter参数。</p>
+<h2 id="LoRA-10"><a href="#LoRA-10" class="headerlink" title="LoRA"></a>LoRA</h2><p>LoRA名为大语言模型的低阶适应，最初设计用于微调LLM，但却在文生图领域大放异彩，并逐渐被人数知。其思想跟ResNet非常相似，通过在大模型旁侧添加一路分支，冻结大模型参数，学习分支参数（也即残差），达到微调效果。</p>
+<h4 id="模型总览-51"><a href="#模型总览-51" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.2nti7ywk7se0.webp"  alt="lora"></p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6rua2cocjfs0.webp"  alt="formula"></p>
+<p>如果 $\Delta W$ 跟 $W_0$ 一样，也是 $\mathbb{R}^{d \times d}$，那么残差学习同样需要训练大量的参数，并没有达到参数高效的目标。而在我们学习中，常用的减少矩阵参数大小方法就是矩阵分解，因此作者对输入先降采样，再上采样，实现输入与输出维度一致。</p>
+<h2 id="Prefix-Tuning-10"><a href="#Prefix-Tuning-10" class="headerlink" title="Prefix-Tuning"></a>Prefix-Tuning</h2><p>该方法主要用来做NLG任务（Table-to-text Generation、 Summarization），在输入token之前构造一段任务相关的virtual tokens作为Prefix，然后训练的时候只更新Prefix部分的参数，而大模型参数冻结。</p>
+<h4 id="模型总览-52"><a href="#模型总览-52" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.1lj0d2s95wsg.webp"  alt="prefix tuning"></p>
+<p>Prefix tokens初始化如下：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lq7qaw0w668.webp"  alt="init"></p>
+<p>需要注意的是，在低资源场景下，用任务相关的单词来初始化prefix tokens，效果更好：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.36f27jncegw0.webp"  alt="words"></p>
+<h2 id="Prompt-tuning-10"><a href="#Prompt-tuning-10" class="headerlink" title="Prompt-tuning"></a>Prompt-tuning</h2><p>Prompt-Tunning算是prefix-Tunning的简化版本，面向NLU任务，进行了更全面的效果对比，并且在大模型上成功打平了LM微调的效果。</p>
+<h4 id="模型总览-53"><a href="#模型总览-53" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.3w6seu3s3tm0.webp"  alt="prompt tuning"></p>
+<ul>
+<li>初始化：Prompt-tuning在输入层前置多个可训练的tokens，固定住大模型参数。实验结果表明用类标签来初始化prompts效果最好。</li>
+<li>prompt ensembling：针对同一个任务，构造多个不同的prompts，就相当于训练了多个模型。</li>
+</ul>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.5md9psbb9i40.webp"  alt="ensemble"></p>
+<h4 id="Prompt-tuning-与-Prefix-Tuning-不同-10"><a href="#Prompt-tuning-与-Prefix-Tuning-不同-10" class="headerlink" title="Prompt-tuning 与 Prefix-Tuning 不同"></a>Prompt-tuning 与 Prefix-Tuning 不同</h4><ul>
+<li>两者的基座模型不同，一个是T5，一个是BART和GPT2</li>
+<li>前者关注NLU，后者关注NLG</li>
+<li>前者参数更少，只需微调embeding层；后者需要微调所有层embedding，以及需要在输入层之后接一个MLP来稳定训练</li>
+</ul>
+<h2 id="P-tuning-V1-amp-P-tuning-V2-10"><a href="#P-tuning-V1-amp-P-tuning-V2-10" class="headerlink" title="P-tuning V1 &amp; P-tuning V2"></a>P-tuning V1 &amp; P-tuning V2</h2><p>P-tuning主要用GPT来做NLU任务，达到甚至超过BERT同等水平。</p>
+<h4 id="模型总览-54"><a href="#模型总览-54" class="headerlink" title="模型总览"></a>模型总览</h4><p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.6krujsjxqj40.webp"  alt="v1"></p>
+<p>v1做了如下两点优化：</p>
+<ul>
+<li>考虑到预训练模型本身的embedding就比较离散了（随机初始化+梯度传回来小，最后只是小范围优化），同时prompt本身也是互相关联的，所以作者先用LSTM对prompt进行编码。</li>
+<li>在prompt模板中，加入一些anchor tokens效果会更好。</li>
+</ul>
+<p>v2主要是在大模型的每一层加入可训练prompts：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.77uorheyphc0.webp"  alt="v2"></p>
+<hr>
+<h2 id="参考-9"><a href="#参考-9" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="参考-10"><a href="#参考-10" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/gogoSandy/p/17202169.html" >解密Prompt系列3. 冻结LM微调Prompt: Prefix-Tuning &amp; Prompt-Tuning &amp; P-Tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/400790006" >Prompt范式第二阶段｜Prefix-tuning、P-tuning、Prompt-tuning<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/7242677017057755191" >大模型参数高效微调技术原理综述（四）-Adapter Tuning及其变体<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/LLM/">LLM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PEFT/">PEFT</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2023/07/27/AUC-GAUC/"
+                                   title="AUC &amp; GAUC"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">AUC &amp; GAUC</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2023/07/12/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8%E8%AF%AF%E5%88%A4%E7%8E%87%E8%AE%A1%E7%AE%97/"
+                                   title="布隆过滤器误判率计算"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">布隆过滤器误判率计算</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter"><span class="nav-number">1.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88"><span class="nav-number">1.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-1"><span class="nav-number">2.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA"><span class="nav-number">3.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning"><span class="nav-number">4.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning"><span class="nav-number">5.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C"><span class="nav-number">5.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2"><span class="nav-number">6.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-5"><span class="nav-number">6.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-1"><span class="nav-number">8.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-6"><span class="nav-number">8.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-2"><span class="nav-number">9.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-7"><span class="nav-number">9.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-2"><span class="nav-number">10.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-8"><span class="nav-number">10.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-1"><span class="nav-number">11.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-9"><span class="nav-number">11.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-1"><span class="nav-number">12.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-10"><span class="nav-number">12.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-1"><span class="nav-number">12.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-1"><span class="nav-number">13.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-11"><span class="nav-number">13.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-1"><span class="nav-number">14.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-3"><span class="nav-number">15.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-12"><span class="nav-number">15.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-3"><span class="nav-number">16.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-13"><span class="nav-number">16.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-2"><span class="nav-number">17.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-14"><span class="nav-number">17.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-2"><span class="nav-number">18.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-15"><span class="nav-number">18.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-2"><span class="nav-number">18.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-2"><span class="nav-number">19.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-16"><span class="nav-number">19.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-2"><span class="nav-number">20.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-3"><span class="nav-number">21.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-17"><span class="nav-number">21.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-4"><span class="nav-number">22.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-18"><span class="nav-number">22.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-4"><span class="nav-number">23.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-19"><span class="nav-number">23.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-4"><span class="nav-number">24.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-20"><span class="nav-number">24.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-3"><span class="nav-number">25.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-21"><span class="nav-number">25.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-3"><span class="nav-number">25.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-3"><span class="nav-number">26.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-22"><span class="nav-number">26.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-3"><span class="nav-number">27.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-5"><span class="nav-number">28.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-23"><span class="nav-number">28.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-5"><span class="nav-number">29.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-24"><span class="nav-number">29.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-5"><span class="nav-number">30.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-25"><span class="nav-number">30.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-4"><span class="nav-number">31.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-26"><span class="nav-number">31.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-4"><span class="nav-number">31.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-4"><span class="nav-number">32.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-27"><span class="nav-number">32.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-4"><span class="nav-number">33.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-6"><span class="nav-number">34.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-28"><span class="nav-number">34.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-6"><span class="nav-number">35.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-29"><span class="nav-number">35.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-6"><span class="nav-number">36.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-30"><span class="nav-number">36.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-5"><span class="nav-number">37.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-31"><span class="nav-number">37.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-5"><span class="nav-number">37.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-5"><span class="nav-number">38.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-32"><span class="nav-number">38.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-5"><span class="nav-number">39.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-6"><span class="nav-number">40.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-33"><span class="nav-number">40.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-7"><span class="nav-number">41.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-34"><span class="nav-number">41.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-7"><span class="nav-number">42.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-35"><span class="nav-number">42.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-7"><span class="nav-number">43.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-36"><span class="nav-number">43.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-7"><span class="nav-number">44.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-37"><span class="nav-number">44.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-6"><span class="nav-number">44.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-6"><span class="nav-number">45.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-38"><span class="nav-number">45.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-6"><span class="nav-number">46.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-8"><span class="nav-number">47.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-39"><span class="nav-number">47.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-8"><span class="nav-number">48.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-40"><span class="nav-number">48.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-8"><span class="nav-number">49.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-41"><span class="nav-number">49.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-8"><span class="nav-number">50.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-42"><span class="nav-number">50.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-7"><span class="nav-number">50.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-7"><span class="nav-number">51.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-43"><span class="nav-number">51.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-7"><span class="nav-number">52.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-8"><span class="nav-number">52.0.1.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-8"><span class="nav-number">53.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-44"><span class="nav-number">53.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-9"><span class="nav-number">54.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-45"><span class="nav-number">54.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-9"><span class="nav-number">55.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-46"><span class="nav-number">55.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-9"><span class="nav-number">56.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-47"><span class="nav-number">56.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-9"><span class="nav-number">57.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-48"><span class="nav-number">57.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-9"><span class="nav-number">57.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-9"><span class="nav-number">58.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-49"><span class="nav-number">58.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-8"><span class="nav-number">59.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-10"><span class="nav-number">60.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-50"><span class="nav-number">60.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-10"><span class="nav-number">61.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-51"><span class="nav-number">61.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-10"><span class="nav-number">62.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-52"><span class="nav-number">62.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-10"><span class="nav-number">63.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-53"><span class="nav-number">63.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-10"><span class="nav-number">63.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-10"><span class="nav-number">64.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-54"><span class="nav-number">64.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-9"><span class="nav-number">65.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-10"><span class="nav-number">66.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter"><span class="nav-number">1.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88"><span class="nav-number">1.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-1"><span class="nav-number">2.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA"><span class="nav-number">3.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-2"><span class="nav-number">3.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning"><span class="nav-number">4.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-3"><span class="nav-number">4.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning"><span class="nav-number">5.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-4"><span class="nav-number">5.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C"><span class="nav-number">5.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2"><span class="nav-number">6.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-5"><span class="nav-number">6.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-1"><span class="nav-number">8.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-6"><span class="nav-number">8.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-2"><span class="nav-number">9.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-7"><span class="nav-number">9.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-2"><span class="nav-number">10.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-8"><span class="nav-number">10.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-1"><span class="nav-number">11.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-9"><span class="nav-number">11.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-1"><span class="nav-number">12.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-10"><span class="nav-number">12.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-1"><span class="nav-number">12.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-1"><span class="nav-number">13.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-11"><span class="nav-number">13.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-1"><span class="nav-number">14.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-3"><span class="nav-number">15.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-12"><span class="nav-number">15.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-3"><span class="nav-number">16.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-13"><span class="nav-number">16.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-2"><span class="nav-number">17.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-14"><span class="nav-number">17.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-2"><span class="nav-number">18.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-15"><span class="nav-number">18.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-2"><span class="nav-number">18.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-2"><span class="nav-number">19.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-16"><span class="nav-number">19.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-2"><span class="nav-number">20.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-3"><span class="nav-number">21.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-17"><span class="nav-number">21.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-4"><span class="nav-number">22.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-18"><span class="nav-number">22.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-4"><span class="nav-number">23.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-19"><span class="nav-number">23.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-4"><span class="nav-number">24.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-20"><span class="nav-number">24.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-3"><span class="nav-number">25.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-21"><span class="nav-number">25.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-3"><span class="nav-number">25.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-3"><span class="nav-number">26.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-22"><span class="nav-number">26.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-3"><span class="nav-number">27.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-5"><span class="nav-number">28.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-23"><span class="nav-number">28.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-5"><span class="nav-number">29.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-24"><span class="nav-number">29.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-5"><span class="nav-number">30.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-25"><span class="nav-number">30.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-4"><span class="nav-number">31.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-26"><span class="nav-number">31.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-4"><span class="nav-number">31.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-4"><span class="nav-number">32.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-27"><span class="nav-number">32.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-4"><span class="nav-number">33.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-6"><span class="nav-number">34.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-28"><span class="nav-number">34.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-6"><span class="nav-number">35.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-29"><span class="nav-number">35.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-6"><span class="nav-number">36.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-30"><span class="nav-number">36.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-5"><span class="nav-number">37.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-31"><span class="nav-number">37.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-5"><span class="nav-number">37.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-5"><span class="nav-number">38.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-32"><span class="nav-number">38.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-5"><span class="nav-number">39.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-6"><span class="nav-number">40.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-33"><span class="nav-number">40.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-7"><span class="nav-number">41.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-34"><span class="nav-number">41.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-7"><span class="nav-number">42.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-35"><span class="nav-number">42.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-7"><span class="nav-number">43.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-36"><span class="nav-number">43.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-7"><span class="nav-number">44.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-37"><span class="nav-number">44.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-6"><span class="nav-number">44.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-6"><span class="nav-number">45.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-38"><span class="nav-number">45.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-6"><span class="nav-number">46.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-8"><span class="nav-number">47.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-39"><span class="nav-number">47.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-8"><span class="nav-number">48.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-40"><span class="nav-number">48.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-8"><span class="nav-number">49.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-41"><span class="nav-number">49.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-8"><span class="nav-number">50.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-42"><span class="nav-number">50.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-7"><span class="nav-number">50.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-7"><span class="nav-number">51.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-43"><span class="nav-number">51.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-7"><span class="nav-number">52.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-8"><span class="nav-number">52.0.1.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-8"><span class="nav-number">53.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-44"><span class="nav-number">53.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-9"><span class="nav-number">54.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-45"><span class="nav-number">54.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-9"><span class="nav-number">55.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-46"><span class="nav-number">55.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-9"><span class="nav-number">56.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-47"><span class="nav-number">56.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-9"><span class="nav-number">57.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-48"><span class="nav-number">57.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-9"><span class="nav-number">57.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-9"><span class="nav-number">58.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-49"><span class="nav-number">58.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-8"><span class="nav-number">59.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adapter-10"><span class="nav-number">60.</span> <span class="nav-text">Adapter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-50"><span class="nav-number">60.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoRA-10"><span class="nav-number">61.</span> <span class="nav-text">LoRA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-51"><span class="nav-number">61.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Tuning-10"><span class="nav-number">62.</span> <span class="nav-text">Prefix-Tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-52"><span class="nav-number">62.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prompt-tuning-10"><span class="nav-number">63.</span> <span class="nav-text">Prompt-tuning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-53"><span class="nav-number">63.0.1.</span> <span class="nav-text">模型总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Prompt-tuning-%E4%B8%8E-Prefix-Tuning-%E4%B8%8D%E5%90%8C-10"><span class="nav-number">63.0.2.</span> <span class="nav-text">Prompt-tuning 与 Prefix-Tuning 不同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P-tuning-V1-amp-P-tuning-V2-10"><span class="nav-number">64.</span> <span class="nav-text">P-tuning V1 &amp; P-tuning V2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%80%BB%E8%A7%88-54"><span class="nav-number">64.0.1.</span> <span class="nav-text">模型总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-9"><span class="nav-number">65.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83-10"><span class="nav-number">66.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

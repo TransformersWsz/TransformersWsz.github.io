@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            GCN |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg.svg","background_img_dark":"/images/bg.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":false,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":false,"img_link":null,"text":null}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":false,"provider":"cdnjs"},"pjax":{"enable":false},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":false,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":false,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://heary.cn/images/avatar.jpg","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://github.com/tricktreat","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://www.agedcat.com/wp-content/uploads/2021/03/1616508591-bg-47.jpg","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://godweiyang.com/medias/banner/4.jpg","description":"LightSeq作者"},{"name":"x-hansong","link":"https://blog.xiaohansong.com/index.html","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"支付宝工程师"},{"name":"XPoet","link":"https://xpoet.cn/","avatar":"https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/common-use/avatar.jpg","description":"hexo-theme-keep和PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者，WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬，现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士，NLP论文高产，热衷于知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://i2.hdslb.com/bfs/face/b7d1228d4df6bcea8f1b9eb01545bb0b02a2aa65.jpg@240w_240h_1c_1s.jpg","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东大本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lil","link":"https://lilianweng.github.io/","avatar":"https://pbs.twimg.com/profile_images/1052456981838086150/JcK3h5I1_400x400.jpg","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        GCN
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-calendar-plus"></i>&nbsp;
+                <span class="datetime">2020-05-24 12:32:37</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime" data-updated="Wed Aug 03 2022 17:10:53 GMT+0000">2022-08-03 17:10:53</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/NLP/">NLP</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/GNN/">GNN</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>最近两周断断续续学习了GCN有关的知识，在此主要记录一下GCN状态更新的公式推导。</p>
+<span id="more"></span>
+<h2 id="图卷积起缘"><a href="#图卷积起缘" class="headerlink" title="图卷积起缘"></a>图卷积起缘</h2><p>我们先探讨一个问题：<strong>为什么研究者们要设计图卷积操作，传统的卷积不能直接用在图上吗？</strong> 要理解这个问题，我们首先要理解能够应用传统卷积的<strong>图像(欧式空间)</strong>与<strong>图(非欧空间)</strong>的区别。如果把图像中的每个像素点视作一个结点，如下图左侧所示，一张图片就可以看作一个非常稠密的图；下图右侧则是一个普通的图。阴影部分代表<strong>卷积核</strong>，左侧是一个传统的卷积核，右侧则是一个图卷积核。</p>
+<img   src="/2020/05/24/GCN/convolution.png"  class="">
+<p>仔细观察上图，可以发现两点不同：</p>
+<ol>
+<li><p>在图像为代表的欧式空间中，结点的邻居数量都是固定的。比如说绿色结点的邻居始终是8个(边缘上的点可以做Padding填充)。但在图这种非欧空间中，结点有多少邻居并不固定。目前绿色结点的邻居结点有2个，但其他结点也会有5个邻居的情况。</p>
+</li>
+<li><p>欧式空间中的卷积操作实际上是用<strong>固定大小可学习的卷积核</strong>来抽取像素的特征，比如这里就是抽取绿色结点对应像素及其相邻像素点的特征。但是因为图里的邻居结点不固定，所以传统的卷积核不能直接用于抽取图上结点的特征。</p>
+</li>
+</ol>
+<p>真正的难点聚焦于<strong>邻居结点数量不固定</strong>上。目前主流的研究从2条路来解决这件事：</p>
+<ol>
+<li><p>提出一种方式把非欧空间的图转换成欧式空间。</p>
+</li>
+<li><p>找出一种可处理变长邻居结点的卷积核在图上抽取特征。</p>
+</li>
+</ol>
+<p>这两条实际上也是后续图卷积神经网络的设计原则，<strong>图卷积</strong>的本质是想找到<strong>适用于图的可学习卷积核</strong>。</p>
+<h2 id="图卷积框架"><a href="#图卷积框架" class="headerlink" title="图卷积框架"></a>图卷积框架</h2><img   src="/2020/05/24/GCN/framework.png"  class="">
+<p>如上图所示，输入的是整张图，前向传播过程如下：</p>
+<ol>
+<li><p>在<code>Convolution Layer 1</code>里，对每个结点的邻居都进行一次卷积操作，并用卷积的结果更新该结点；</p>
+</li>
+<li><p>经过激活函数如<code>ReLU</code>；</p>
+</li>
+<li><p>再过一层卷积层<code>Convolution Layer 2</code>与一层激活函数；</p>
+</li>
+<li><p>重复1~3步骤，直到层数达到预期深度。</p>
+</li>
+</ol>
+<p>与GNN类似，图卷积神经网络也有一个局部输出函数，用于将结点的状态(包括隐藏状态与结点特征)转换成任务相关的标签，比如水军账号分类，这种任务称为<code>Node-Level</code>的任务；也有一些任务是对整张图进行分类的，比如化合物分类，这种任务称为<code>Graph-Level</code>的任务。<strong>卷积操作关心每个结点的隐藏状态如何更新</strong>，而对于<code>Graph-Level</code>的任务，它们会在卷积层后加入更多操作。</p>
+<h3 id="卷积操作"><a href="#卷积操作" class="headerlink" title="卷积操作"></a>卷积操作</h3><h4 id="空域卷积-Spatial-Convolution"><a href="#空域卷积-Spatial-Convolution" class="headerlink" title="空域卷积(Spatial Convolution)"></a>空域卷积(Spatial Convolution)</h4><p>从设计理念上看，空域卷积与深度学习中的卷积的应用方式类似，其核心在于<strong>聚合邻居结点的信息</strong>。比如说，一种最简单的无参卷积方式可以是：将所有直连邻居结点的隐藏状态加和，来更新当前结点的隐藏状态。</p>
+<img   src="/2020/05/24/GCN/spatial.png"  class="">
+<p>常见的空域卷积网络有如下几种：</p>
+<ul>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1704.01212" >消息传递网络(Message Passing Neural Network)<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.02216" >图采样与聚合(Graph Sample and Aggregate)<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/pdf/1605.05273" >图结构序列化(PATCHY-SAN)<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+<h4 id="频域卷积-Spectral-Convolution"><a href="#频域卷积-Spectral-Convolution" class="headerlink" title="频域卷积(Spectral Convolution)"></a>频域卷积(Spectral Convolution)</h4><p>空域卷积非常直观地借鉴了图像里的卷积操作，但它缺乏一定的理论基础。而频域卷积则不同，它主要利用的是<strong>图傅里叶变换(Graph Fourier Transform)</strong>实现卷积。简单来讲，它利用图的<strong>拉普拉斯矩阵(Laplacian matrix)</strong>导出其频域上的的拉普拉斯算子，再类比频域上的欧式空间中的卷积，导出图卷积的公式。虽然公式的形式与空域卷积非常相似，但频域卷积的推导过程却有些艰深晦涩。因此本文主要来推导GCN的状态更新公式。</p>
+<h5 id="傅里叶变换-Fourier-Transform"><a href="#傅里叶变换-Fourier-Transform" class="headerlink" title="傅里叶变换(Fourier Transform)"></a>傅里叶变换(Fourier Transform)</h5><p><strong>FT</strong>会将一个在空域(或时域)上定义的函数分解成频域上的若干频率成分。换句话说，傅里叶变换可以将一个函数从空域变到频域。用 $F$ 来表示傅里叶变换的话，这里有一个很重要的恒等式：</p>
+<script type="math/tex; mode=display">
+(f * g)(t) = F^{-1}[F[f(t)] \odot F[g(t)]]</script><p>$f$ 经过傅里叶变换后 $\hat{f}$ 如下所示：</p>
+<script type="math/tex; mode=display">
+\hat{f}(t)=\int f(x) e^{-2 \pi i x t} d x</script><p>其中$i = \sqrt{-1}$ 是虚数单位，$t$ 是任意实数。$e^{-2 \pi i x t}$ 是类比构造傅里叶变换的关键。它实际上是拉普拉斯算子$\Delta$的广义特征函数。</p>
+<p>特征向量需要满足的定义式是：对于矩阵$A$，其特征向量满足的条件应是矩阵与特征向量$x$做乘法的结果，与特征向量乘标量λλ的结果一样，即满足如下等式：</p>
+<script type="math/tex; mode=display">
+Ax = \lambda x</script><p>$\Delta$ 作用在 $e^{-2 \pi i x t}$ 满足上述特征向量的定义：</p>
+<script type="math/tex; mode=display">
+\Delta e^{-2 \pi i x t}=\frac{\partial^{2}}{\partial t^{2}} e^{-2 \pi i x t}=-4 \pi^{2} x^{2} \exp ^{-2 \pi i x t}</script><p>$\Delta$ 即为 $-4 \pi^2 x^2$，注意这里 $t$ 是变量，$x$ 是常量。本质上，傅里叶变换是将$f(t)$映射到了以$\left{e^{-2 \pi i x t}\right}$为基向量的空间中。</p>
+<h5 id="图上的傅里叶变换"><a href="#图上的傅里叶变换" class="headerlink" title="图上的傅里叶变换"></a>图上的傅里叶变换</h5><p>图上的拉普拉斯矩阵 $L$ 可以按照如下公式分解：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+    L= I_N - D^{- \frac {1} {2}}AD^{- \frac {1} {2}} = U \Lambda U^{T} \\
+    U=\left(u_{1}, u_{2}, \cdots, u_{n}\right) \\
+    \Lambda=\left[\begin{array}{ccc}
+    \lambda_{1} & \dots & 0 \\
+    \dots & \dots & \dots \\
+    0 & \dots & \lambda_{n}
+    \end{array}\right]
+\end{array}</script><p>$I_N$ 为单位矩阵，$D$ 为度矩阵，$A$ 为领阶矩阵，$u$ 是特征向量，$\lambda$ 是特征值。</p>
+<p>图上的卷积与传统的卷积非常相似，这里 $f$ 是特征函数，$g$ 是卷积核：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}
+(f * g)=F^{-1}[F[f] \odot F[g]] \\
+\left(f *_{G} g\right)=U\left(U^{T} f \odot U^{T} g\right)=U\left(U^{T} g \odot U^{T} f\right)
+\end{array}</script><p>如果把 $U^{T} g$ 整体看作可学习的卷积核，记作 $g_{\theta}$ ，最终图上的卷积公式即是：</p>
+<script type="math/tex; mode=display">
+o=\left(f *_{G} g\right)_{\theta}=U g_{\theta} U^{T} f</script><h5 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h5><p>频域卷积即是在 $g<em>\theta$ 上做文章。类比 $L$ 的分解公式，我们将 $g</em>\theta$ 看作是 $\Lambda$ 的函数 $g<em>\theta(\Lambda)$ 。由于特征分解计算量是非常巨大的，使用Chebyshev对 $g</em>\theta(\Lambda)$ 做近似估计：</p>
+<script type="math/tex; mode=display">
+g_{\theta^{\prime}}(\Lambda) \approx \sum_{k=0}^{K} \theta_{k}^{\prime} T_{k}(\tilde{\Lambda})</script><p>$\tilde{\Lambda}=\frac{2}{\lambda<em>{\max }} \Lambda-I</em>{N}$ ，$\theta^{\prime} \in \mathbb{R}^{K}$ 是Chebyshev系数。切比雪夫多项式是递归定义的：$T<em>k(x) = 2xT</em>{k-1}(x) - T_{k-2}(x), T_0(x) = 1, T_1(x) = x$ 。</p>
+<p>基于上述假设，图上卷积公式近似为：</p>
+<script type="math/tex; mode=display">
+o \approx  \sum_{k=0}^{K} \theta_{k}^{\prime} T_{k}(\tilde{\Lambda}) f =  \sum_{k=0}^{K} \theta_{k}^{\prime} T_{k}(\tilde{L}) f</script><p>$\tilde{L}=\frac{2}{\lambda<em>{max}} L-I</em>{N}$，因为$\left(U \Lambda U^{\top}\right)^{k}=U \Lambda^{k} U^{\top}$ </p>
+<p>取$K = 1$，将上述公式展开：</p>
+<script type="math/tex; mode=display">
+o \approx \theta_{0}^{\prime} f + \theta_{1}^{\prime}\left(L-I_{N}\right) f = \theta_{0}^{\prime} f - \theta_{1}^{\prime} D^{-\frac{1}{2}} A D^{-\frac{1}{2}} f</script><p>为了防止模型过拟合，我们还可以将参数进一步合并：</p>
+<script type="math/tex; mode=display">
+o \approx \theta\left(I_{N}+D^{-\frac{1}{2}} A D^{-\frac{1}{2}}\right) f</script><p>$\theta=\theta<em>{0}^{\prime}=-\theta</em>{1}^{\prime}$，$I_{N}+D^{-\frac{1}{2}} A D^{-\frac{1}{2}}$ 的特征值取值范围现在是 $[0, 2]$ 。为了防止误差在反向传播的过程中出现梯度弥散，将该式进行归一化：</p>
+<script type="math/tex; mode=display">
+I_{N}+D^{-\frac{1}{2}} A D^{-\frac{1}{2}} \rightarrow \tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} \\
+\tilde{A}=A+I_{N} \\
+\tilde{D}_{i i}=\sum_{j} \tilde{A}_{i j}</script><p>现在我们可以将 $l$ 层隐藏状态 $H^l \in \mathbb{R}^{N \times C}$ ，$C$ 是某个node的特征数量，那么最终的状态更新公式为：</p>
+<script type="math/tex; mode=display">
+H^{l+1} = \tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^l \Theta</script><p>$\Theta \in \mathbb{R}^{C \times F}$ 是可训练的卷积核参数。</p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p><a class="link"   target="_blank" rel="noopener" href="https://arxiv.org/abs/1809.05679" >Graph Convolutional Networks for Text Classification<i class="fas fa-external-link-alt"></i></a> 该篇论文使用GCN对圣经的章节进行分类。具体的实现思路见<a target="_blank" rel="noopener" href="https://towardsdatascience.com/text-based-graph-convolutional-network-for-semi-supervised-bible-book-classification-c71f6f61ff0f"><strong>Text-based Graph Convolutional Network — Bible Book Classification</strong></a>，代码见 <a class="link"   target="_blank" rel="noopener" href="https://github.com/plkmo/Bible_Text_GCN" >https://github.com/plkmo/Bible_Text_GCN<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/SivilTaram/p/graph_neural_network_2.html" >从图(Graph)到图卷积(Graph Convolution)：漫谈图神经网络模型 (二)
+<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/54505069" >图卷积网络(GCN)新手村完全指南<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/GNN/">GNN</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2020/12/08/pytorch%E4%B8%AD%E7%9A%84%E4%BA%8C%E5%88%86%E7%B1%BB%E5%8F%8A%E5%A4%9A%E5%88%86%E7%B1%BB%E4%BA%A4%E5%8F%89%E7%86%B5%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0/"
+                                   title="PyTorch中的二分类及多分类交叉熵损失函数"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">PyTorch中的二分类及多分类交叉熵损失函数</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2020/01/05/BOSCH%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/"
+                                   title="BOSCH实习总结"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">BOSCH实习总结</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E8%B5%B7%E7%BC%98"><span class="nav-number">1.</span> <span class="nav-text">图卷积起缘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text">图卷积框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">卷积操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E5%9F%9F%E5%8D%B7%E7%A7%AF-Spatial-Convolution"><span class="nav-number">2.1.1.</span> <span class="nav-text">空域卷积(Spatial Convolution)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E5%8D%B7%E7%A7%AF-Spectral-Convolution"><span class="nav-number">2.1.2.</span> <span class="nav-text">频域卷积(Spectral Convolution)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2-Fourier-Transform"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">傅里叶变换(Fourier Transform)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">图上的傅里叶变换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">推导</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">3.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2024
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E8%B5%B7%E7%BC%98"><span class="nav-number">1.</span> <span class="nav-text">图卷积起缘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%8D%B7%E7%A7%AF%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text">图卷积框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">卷积操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A9%BA%E5%9F%9F%E5%8D%B7%E7%A7%AF-Spatial-Convolution"><span class="nav-number">2.1.1.</span> <span class="nav-text">空域卷积(Spatial Convolution)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%91%E5%9F%9F%E5%8D%B7%E7%A7%AF-Spectral-Convolution"><span class="nav-number">2.1.2.</span> <span class="nav-text">频域卷积(Spectral Convolution)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2-Fourier-Transform"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">傅里叶变换(Fourier Transform)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">图上的傅里叶变换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">推导</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">3.</span> <span class="nav-text">最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/toggle-theme.js"></script>
+
+<script src="/js/code-block.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+
+<!-- local-search -->
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+<!-- lazyload -->
+
+
+<div class="">
+    
+        <!-- post-helper -->
+        
+<script src="/js/post/post-helper.js"></script>
+
+
+        <!-- toc -->
+        
+            
+<script src="/js/post/toc.js"></script>
+
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            
+<script src="/js/post/share.js"></script>
+
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+
+<!-- pjax -->
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
