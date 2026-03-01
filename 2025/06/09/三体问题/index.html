@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            三体问题 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://tricktreat.github.io/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        三体问题
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2025-06-09 02:46:06</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Mon Jun 09 2025 02:46:06 GMT+0000">2025-06-09 02:46:06</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Three-Body/">Three-Body</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>从物理学角度，三体问题之所以不稳定，是因为三个天体在万有引力作用下相互作用，形成一个非线性耦合系统。我们可以从牛顿经典力学出发，列出具体的运动方程，并说明为何这个系统本质上是混沌的，无法得到一般解析解。</p>
+<span id="more"></span>
+<h2 id="🧭-问题设定：三体系统的基本假设"><a href="#🧭-问题设定：三体系统的基本假设" class="headerlink" title="🧭 问题设定：三体系统的基本假设"></a>🧭 问题设定：三体系统的基本假设</h2><p>假设我们有三个质量分别为 $m_1, m_2, m_3$ 的天体，位置向量分别为：</p>
+<ul>
+<li>$\mathbf{r}_1(t)$</li>
+<li>$\mathbf{r}_2(t)$</li>
+<li>$\mathbf{r}_3(t)$</li>
+</ul>
+<p>在牛顿引力定律下，每个天体受到其余两个天体的引力，总加速度由牛顿第二定律（$\mathbf{F} = m\mathbf{a}$）给出。</p>
+<hr>
+<h2 id="📐-一般形式的运动方程（牛顿引力-牛顿第二定律）"><a href="#📐-一般形式的运动方程（牛顿引力-牛顿第二定律）" class="headerlink" title="📐 一般形式的运动方程（牛顿引力 + 牛顿第二定律）"></a>📐 一般形式的运动方程（牛顿引力 + 牛顿第二定律）</h2><p>对第一个天体 $m_1$，其加速度为：</p>
+<script type="math/tex; mode=display">
+m_1 \frac{d^2 \mathbf{r}_1}{dt^2} = G \frac{m_1 m_2}{|\mathbf{r}_2 - \mathbf{r}_1|^3} (\mathbf{r}_2 - \mathbf{r}_1) + G \frac{m_1 m_3}{|\mathbf{r}_3 - \mathbf{r}_1|^3} (\mathbf{r}_3 - \mathbf{r}_1)</script><p>类似地，对 $m_2, m_3$ 分别有：</p>
+<script type="math/tex; mode=display">
+m_2 \frac{d^2 \mathbf{r}_2}{dt^2} = G \frac{m_2 m_1}{|\mathbf{r}_1 - \mathbf{r}_2|^3} (\mathbf{r}_1 - \mathbf{r}_2) + G \frac{m_2 m_3}{|\mathbf{r}_3 - \mathbf{r}_2|^3} (\mathbf{r}_3 - \mathbf{r}_2)</script><script type="math/tex; mode=display">
+m_3 \frac{d^2 \mathbf{r}_3}{dt^2} = G \frac{m_3 m_1}{|\mathbf{r}_1 - \mathbf{r}_3|^3} (\mathbf{r}_1 - \mathbf{r}_3) + G \frac{m_3 m_2}{|\mathbf{r}_2 - \mathbf{r}_3|^3} (\mathbf{r}_2 - \mathbf{r}_3)</script><hr>
+<h2 id="⚠️-为什么不稳定？"><a href="#⚠️-为什么不稳定？" class="headerlink" title="⚠️ 为什么不稳定？"></a>⚠️ 为什么不稳定？</h2><h3 id="1-非线性耦合微分方程组"><a href="#1-非线性耦合微分方程组" class="headerlink" title="1. 非线性耦合微分方程组"></a>1. 非线性耦合微分方程组</h3><p>这三组式子彼此高度耦合：每个加速度都依赖于另外两个天体的位置，而且这种依赖是非线性（距离的三次方在分母）。</p>
+<p>这是典型的非线性二阶常微分方程组，形式上如下：</p>
+<script type="math/tex; mode=display">
+\frac{d^2 \mathbf{r}_i}{dt^2} = \sum_{j \ne i} G m_j \frac{\mathbf{r}_j - \mathbf{r}_i}{|\mathbf{r}_j - \mathbf{r}_i|^3}, \quad i = 1,2,3</script><p>这种系统存在如下三大特性：</p>
+<ul>
+<li>不可分解成单体运动 + 微扰项</li>
+<li>无法通过代数方法求出通解</li>
+<li>随时间演化会展现出对初始条件的极度敏感</li>
+</ul>
+<hr>
+<h3 id="2-初始条件敏感性（混沌特征）"><a href="#2-初始条件敏感性（混沌特征）" class="headerlink" title="2. 初始条件敏感性（混沌特征）"></a>2. 初始条件敏感性（混沌特征）</h3><p>在数值模拟中，即使两个三体系统初始位置差异为 $10^{-10}$ 米，几十个周期后轨道会完全不同。</p>
+<p>这是混沌系统的定义特征：</p>
+<blockquote>
+<p>初始条件微小扰动会被放大，导致长期行为完全不可预测。</p>
+</blockquote>
+<hr>
+<h3 id="3-守恒定律约束不足以稳定系统"><a href="#3-守恒定律约束不足以稳定系统" class="headerlink" title="3. 守恒定律约束不足以稳定系统"></a>3. 守恒定律约束不足以稳定系统</h3><p>虽然系统满足以下守恒定律：</p>
+<ul>
+<li><p>总动量守恒：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^3 m_i \frac{d \mathbf{r}_i}{dt} = \text{常量}</script></li>
+<li><p>总能量守恒：</p>
+<script type="math/tex; mode=display">
+E = \sum_{i=1}^3 \frac{1}{2} m_i v_i^2 - \sum_{i<j} \frac{G m_i m_j}{|\mathbf{r}_i - \mathbf{r}_j|}</script></li>
+</ul>
+<p>但这些守恒量（常数）无法限制轨道在高维空间的发散演化，只是提供一些“整体约束”。</p>
+<h2 id="📉-所以为什么不能稳定运行？"><a href="#📉-所以为什么不能稳定运行？" class="headerlink" title="📉 所以为什么不能稳定运行？"></a>📉 所以为什么不能稳定运行？</h2><p>从物理角度总结三点：</p>
+<ol>
+<li>多体引力是非线性且时变的力学系统；</li>
+<li>无解析解（除极少对称情况），必须数值求解；</li>
+<li>即使数值解，也极度依赖初始条件，最终表现为混沌轨道；</li>
+</ol>
+<h3 id="🎯-实际结果是什么？"><a href="#🎯-实际结果是什么？" class="headerlink" title="🎯 实际结果是什么？"></a>🎯 实际结果是什么？</h3><p>小说中三体行星文明面临的核心困境——无法预测三颗恒星的运动。正是这个真实的物理问题，使得三体文明的“乱纪元”和“恒纪元”交替成为必然，也解释了为什么他们需要寻找新的家园。数值模拟证实了这种不稳定性是三体系统的内在属性，而非外部干扰的结果。</p>
+<h2 id="三体运动的模拟动画"><a href="#三体运动的模拟动画" class="headerlink" title="三体运动的模拟动画"></a>三体运动的模拟动画</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.animation <span class="keyword">import</span> FuncAnimation</span><br><span class="line"><span class="keyword">import</span> matplotlib.patches <span class="keyword">as</span> patches</span><br><span class="line"><span class="keyword">from</span> matplotlib.widgets <span class="keyword">import</span> Button</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置中文字体</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>, <span class="string">&#x27;DejaVu Sans&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ThreeBodySystem</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, masses, positions, velocities, G=<span class="number">1.0</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        三体系统</span></span><br><span class="line"><span class="string">        masses: [m1, m2, m3] 三个天体的质量</span></span><br><span class="line"><span class="string">        positions: [[x1,y1], [x2,y2], [x3,y3]] 初始位置</span></span><br><span class="line"><span class="string">        velocities: [[vx1,vy1], [vx2,vy2], [vx3,vy3]] 初始速度</span></span><br><span class="line"><span class="string">        G: 引力常数</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.masses = np.array(masses)</span><br><span class="line">        self.positions = np.array(positions, dtype=<span class="built_in">float</span>)</span><br><span class="line">        self.velocities = np.array(velocities, dtype=<span class="built_in">float</span>)</span><br><span class="line">        self.G = G</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 轨迹历史记录 - 为每个天体单独记录</span></span><br><span class="line">        self.trail_length = <span class="number">800</span></span><br><span class="line">        self.trails = [deque(maxlen=self.trail_length) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 初始化轨迹记录</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            self.trails[i].append([self.positions[i][<span class="number">0</span>], self.positions[i][<span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">        self.dt = <span class="number">0.005</span>  <span class="comment"># 基础时间步长</span></span><br><span class="line">        self.speed_multiplier = <span class="number">1.0</span>  <span class="comment"># 速度倍数</span></span><br><span class="line">        self.time = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 天体属性</span></span><br><span class="line">        self.colors = [<span class="string">&#x27;#FF6B35&#x27;</span>, <span class="string">&#x27;#004E89&#x27;</span>, <span class="string">&#x27;#00A86B&#x27;</span>]  <span class="comment"># 橙色、深蓝、绿色</span></span><br><span class="line">        self.names = [<span class="string">&#x27;恒星Alpha&#x27;</span>, <span class="string">&#x27;恒星Beta&#x27;</span>, <span class="string">&#x27;恒星Gamma&#x27;</span>]</span><br><span class="line">        self.base_sizes = [<span class="number">300</span>, <span class="number">250</span>, <span class="number">280</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 统计数据记录</span></span><br><span class="line">        self.energy_history = deque(maxlen=<span class="number">500</span>)</span><br><span class="line">        self.distance_history = &#123;<span class="string">&#x27;AB&#x27;</span>: deque(maxlen=<span class="number">500</span>),</span><br><span class="line">                                 <span class="string">&#x27;AC&#x27;</span>: deque(maxlen=<span class="number">500</span>),</span><br><span class="line">                                 <span class="string">&#x27;BC&#x27;</span>: deque(maxlen=<span class="number">500</span>)&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_speed_multiplier</span>(<span class="params">self, multiplier</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;设置速度倍数&quot;&quot;&quot;</span></span><br><span class="line">        self.speed_multiplier = <span class="built_in">max</span>(<span class="number">0.1</span>, <span class="built_in">min</span>(<span class="number">10.0</span>, multiplier))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">compute_gravitational_forces</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;计算每个天体受到的引力&quot;&quot;&quot;</span></span><br><span class="line">        forces = np.zeros_like(self.positions)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    <span class="comment"># 位置差矢量: 从i指向j</span></span><br><span class="line">                    r_vec = self.positions[j] - self.positions[i]</span><br><span class="line">                    r_magnitude = np.linalg.norm(r_vec)</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># 避免数值奇点</span></span><br><span class="line">                    <span class="keyword">if</span> r_magnitude &gt; <span class="number">1e-8</span>:</span><br><span class="line">                        <span class="comment"># 万有引力: F = G*m1*m2/r^2 * 单位矢量</span></span><br><span class="line">                        force_magnitude = self.G * self.masses[i] * self.masses[j] / (r_magnitude ** <span class="number">3</span>)</span><br><span class="line">                        forces[i] += force_magnitude * r_vec</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> forces</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">runge_kutta_4th_order</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;四阶龙格-库塔法数值积分（带速度控制）&quot;&quot;&quot;</span></span><br><span class="line">        effective_dt = self.dt * self.speed_multiplier</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 当前状态</span></span><br><span class="line">        pos = self.positions.copy()</span><br><span class="line">        vel = self.velocities.copy()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># k1 计算</span></span><br><span class="line">        k1_vel = vel</span><br><span class="line">        k1_acc = self.compute_gravitational_forces() / self.masses.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># k2 计算</span></span><br><span class="line">        pos_k2 = pos + <span class="number">0.5</span> * effective_dt * k1_vel</span><br><span class="line">        self.positions = pos_k2  <span class="comment"># 临时更新位置用于力计算</span></span><br><span class="line">        k2_vel = vel + <span class="number">0.5</span> * effective_dt * k1_acc</span><br><span class="line">        k2_acc = self.compute_gravitational_forces() / self.masses.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># k3 计算</span></span><br><span class="line">        pos_k3 = pos + <span class="number">0.5</span> * effective_dt * k2_vel</span><br><span class="line">        self.positions = pos_k3</span><br><span class="line">        k3_vel = vel + <span class="number">0.5</span> * effective_dt * k2_acc</span><br><span class="line">        k3_acc = self.compute_gravitational_forces() / self.masses.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># k4 计算</span></span><br><span class="line">        pos_k4 = pos + effective_dt * k3_vel</span><br><span class="line">        self.positions = pos_k4</span><br><span class="line">        k4_vel = vel + effective_dt * k3_acc</span><br><span class="line">        k4_acc = self.compute_gravitational_forces() / self.masses.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 最终更新</span></span><br><span class="line">        self.positions = pos + effective_dt * (k1_vel + <span class="number">2</span> * k2_vel + <span class="number">2</span> * k3_vel + k4_vel) / <span class="number">6</span></span><br><span class="line">        self.velocities = vel + effective_dt * (k1_acc + <span class="number">2</span> * k2_acc + <span class="number">2</span> * k3_acc + k4_acc) / <span class="number">6</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 记录轨迹</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            self.trails[i].append([self.positions[i][<span class="number">0</span>], self.positions[i][<span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">        self.time += effective_dt</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">calculate_total_energy</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;计算系统总能量（动能+势能）&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 动能</span></span><br><span class="line">        kinetic_energy = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            v_squared = np.<span class="built_in">sum</span>(self.velocities[i] ** <span class="number">2</span>)</span><br><span class="line">            kinetic_energy += <span class="number">0.5</span> * self.masses[i] * v_squared</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 引力势能</span></span><br><span class="line">        potential_energy = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, <span class="number">3</span>):</span><br><span class="line">                r = np.linalg.norm(self.positions[i] - self.positions[j])</span><br><span class="line">                <span class="keyword">if</span> r &gt; <span class="number">1e-8</span>:</span><br><span class="line">                    potential_energy -= self.G * self.masses[i] * self.masses[j] / r</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> kinetic_energy + potential_energy</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_statistics</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;更新统计数据&quot;&quot;&quot;</span></span><br><span class="line">        <span class="comment"># 总能量</span></span><br><span class="line">        energy = self.calculate_total_energy()</span><br><span class="line">        self.energy_history.append(energy)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 天体间距离</span></span><br><span class="line">        r_AB = np.linalg.norm(self.positions[<span class="number">0</span>] - self.positions[<span class="number">1</span>])</span><br><span class="line">        r_AC = np.linalg.norm(self.positions[<span class="number">0</span>] - self.positions[<span class="number">2</span>])</span><br><span class="line">        r_BC = np.linalg.norm(self.positions[<span class="number">1</span>] - self.positions[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        self.distance_history[<span class="string">&#x27;AB&#x27;</span>].append(r_AB)</span><br><span class="line">        self.distance_history[<span class="string">&#x27;AC&#x27;</span>].append(r_AC)</span><br><span class="line">        self.distance_history[<span class="string">&#x27;BC&#x27;</span>].append(r_BC)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">SpeedController</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;速度控制器类&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, system</span>):</span><br><span class="line">        self.system = system</span><br><span class="line">        self.speed_levels = [<span class="number">0.1</span>, <span class="number">0.25</span>, <span class="number">0.5</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">4.0</span>, <span class="number">8.0</span>]</span><br><span class="line">        self.current_level = <span class="number">3</span>  <span class="comment"># 默认1.0倍速</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speed_up</span>(<span class="params">self, event=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;加速&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.current_level &lt; <span class="built_in">len</span>(self.speed_levels) - <span class="number">1</span>:</span><br><span class="line">            self.current_level += <span class="number">1</span></span><br><span class="line">            self.current_level = <span class="built_in">min</span>(self.current_level, <span class="built_in">len</span>(self.speed_levels)-<span class="number">1</span>)</span><br><span class="line">            self.system.set_speed_multiplier(self.speed_levels[self.current_level])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">slow_down</span>(<span class="params">self, event=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;减速&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> self.current_level &gt; <span class="number">0</span>:</span><br><span class="line">            self.current_level -= <span class="number">1</span></span><br><span class="line">            self.current_level = <span class="built_in">max</span>(self.current_level, <span class="number">0</span>)</span><br><span class="line">            self.system.set_speed_multiplier(self.speed_levels[self.current_level])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">reset_speed</span>(<span class="params">self, event=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;重置到正常速度&quot;&quot;&quot;</span></span><br><span class="line">        self.current_level = <span class="number">3</span></span><br><span class="line">        self.system.set_speed_multiplier(self.speed_levels[self.current_level])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_current_speed_text</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;获取当前速度显示文本&quot;&quot;&quot;</span></span><br><span class="line">        speed = self.speed_levels[self.current_level]</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;播放速度: <span class="subst">&#123;speed:<span class="number">.1</span>f&#125;</span>x&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_three_body_animation</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;创建带速度控制的三体运动动画&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化系统 - 选择一个展现混沌特性的配置</span></span><br><span class="line">    masses = [<span class="number">1.5</span>, <span class="number">1.0</span>, <span class="number">1.2</span>]  <span class="comment"># 三个不同质量的恒星</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 三角形初始配置，但有适当的速度产生复杂轨道</span></span><br><span class="line">    positions = [</span><br><span class="line">        [-<span class="number">2.0</span>, <span class="number">0.0</span>],  <span class="comment"># Alpha星</span></span><br><span class="line">        [<span class="number">1.0</span>, <span class="number">1.732</span>],  <span class="comment"># Beta星</span></span><br><span class="line">        [<span class="number">1.0</span>, -<span class="number">1.732</span>]  <span class="comment"># Gamma星</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    velocities = [</span><br><span class="line">        [<span class="number">0.2</span>, <span class="number">0.8</span>],  <span class="comment"># Alpha星初始速度</span></span><br><span class="line">        [-<span class="number">0.6</span>, -<span class="number">0.2</span>],  <span class="comment"># Beta星初始速度</span></span><br><span class="line">        [<span class="number">0.4</span>, -<span class="number">0.6</span>]  <span class="comment"># Gamma星初始速度</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    system = ThreeBodySystem(masses, positions, velocities, G=<span class="number">3.0</span>)</span><br><span class="line">    speed_controller = SpeedController(system)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建图形界面</span></span><br><span class="line">    fig = plt.figure(figsize=(<span class="number">19</span>, <span class="number">12</span>), facecolor=<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 主动画区域 (左侧大图)</span></span><br><span class="line">    ax_main = plt.subplot2grid((<span class="number">3</span>, <span class="number">5</span>), (<span class="number">0</span>, <span class="number">0</span>), colspan=<span class="number">3</span>, rowspan=<span class="number">3</span>, facecolor=<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 监控面板 (右侧)</span></span><br><span class="line">    ax_energy = plt.subplot2grid((<span class="number">3</span>, <span class="number">5</span>), (<span class="number">0</span>, <span class="number">3</span>), colspan=<span class="number">2</span>, facecolor=<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line">    ax_distances = plt.subplot2grid((<span class="number">3</span>, <span class="number">5</span>), (<span class="number">1</span>, <span class="number">3</span>), colspan=<span class="number">2</span>, facecolor=<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line">    ax_info = plt.subplot2grid((<span class="number">3</span>, <span class="number">5</span>), (<span class="number">2</span>, <span class="number">3</span>), colspan=<span class="number">2</span>, facecolor=<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 在底部为按钮留出空间</span></span><br><span class="line">    plt.subplots_adjust(bottom=<span class="number">0.15</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建速度控制按钮</span></span><br><span class="line">    button_height = <span class="number">0.04</span></span><br><span class="line">    button_width = <span class="number">0.08</span></span><br><span class="line">    button_y = <span class="number">0.02</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 减速按钮</span></span><br><span class="line">    ax_slow = plt.axes([<span class="number">0.25</span>, button_y, button_width, button_height])</span><br><span class="line">    btn_slow = Button(ax_slow, <span class="string">&#x27;减速&#x27;</span>, color=<span class="string">&#x27;#FF4444&#x27;</span>, hovercolor=<span class="string">&#x27;#FF6666&#x27;</span>)</span><br><span class="line">    btn_slow.label.set_color(<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    btn_slow.label.set_fontweight(<span class="string">&#x27;bold&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 重置按钮</span></span><br><span class="line">    ax_reset = plt.axes([<span class="number">0.35</span>, button_y, button_width, button_height])</span><br><span class="line">    btn_reset = Button(ax_reset, <span class="string">&#x27;正常&#x27;</span>, color=<span class="string">&#x27;#4CAF50&#x27;</span>, hovercolor=<span class="string">&#x27;#6BCF7F&#x27;</span>)</span><br><span class="line">    btn_reset.label.set_color(<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    btn_reset.label.set_fontweight(<span class="string">&#x27;bold&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加速按钮</span></span><br><span class="line">    ax_fast = plt.axes([<span class="number">0.45</span>, button_y, button_width, button_height])</span><br><span class="line">    btn_fast = Button(ax_fast, <span class="string">&#x27;加速&#x27;</span>, color=<span class="string">&#x27;#2196F3&#x27;</span>, hovercolor=<span class="string">&#x27;#42A5F5&#x27;</span>)</span><br><span class="line">    btn_fast.label.set_color(<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    btn_fast.label.set_fontweight(<span class="string">&#x27;bold&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 暂停/继续按钮</span></span><br><span class="line">    ax_pause = plt.axes([<span class="number">0.55</span>, button_y, button_width, button_height])</span><br><span class="line">    btn_pause = Button(ax_pause, <span class="string">&#x27;暂停&#x27;</span>, color=<span class="string">&#x27;#FF9800&#x27;</span>, hovercolor=<span class="string">&#x27;#FFB74D&#x27;</span>)</span><br><span class="line">    btn_pause.label.set_color(<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    btn_pause.label.set_fontweight(<span class="string">&#x27;bold&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 速度显示文本</span></span><br><span class="line">    speed_text = fig.text(<span class="number">0.65</span>, button_y + button_height / <span class="number">2</span>,</span><br><span class="line">                          speed_controller.get_current_speed_text(),</span><br><span class="line">                          fontsize=<span class="number">12</span>, color=<span class="string">&#x27;white&#x27;</span>, va=<span class="string">&#x27;center&#x27;</span>, weight=<span class="string">&#x27;bold&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置主画布</span></span><br><span class="line">    ax_main.set_xlim(-<span class="number">8</span>, <span class="number">8</span>)</span><br><span class="line">    ax_main.set_ylim(-<span class="number">8</span>, <span class="number">8</span>)</span><br><span class="line">    ax_main.set_aspect(<span class="string">&#x27;equal&#x27;</span>)</span><br><span class="line">    ax_main.set_facecolor(<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line">    ax_main.tick_params(colors=<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    ax_main.set_xlabel(<span class="string">&#x27;X 坐标&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    ax_main.set_ylabel(<span class="string">&#x27;Y 坐标&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>, fontsize=<span class="number">14</span>)</span><br><span class="line">    ax_main.set_title(<span class="string">&#x27;三体问题：三颗恒星的混沌舞蹈&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>, fontsize=<span class="number">16</span>, pad=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建星空背景</span></span><br><span class="line">    np.random.seed(<span class="number">123</span>)</span><br><span class="line">    star_x = np.random.uniform(-<span class="number">8</span>, <span class="number">8</span>, <span class="number">200</span>)</span><br><span class="line">    star_y = np.random.uniform(-<span class="number">8</span>, <span class="number">8</span>, <span class="number">200</span>)</span><br><span class="line">    star_sizes = np.random.uniform(<span class="number">0.5</span>, <span class="number">3</span>, <span class="number">200</span>)</span><br><span class="line">    ax_main.scatter(star_x, star_y, c=<span class="string">&#x27;white&#x27;</span>, s=star_sizes, alpha=<span class="number">0.4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 添加网格</span></span><br><span class="line">    ax_main.grid(<span class="literal">True</span>, alpha=<span class="number">0.15</span>, color=<span class="string">&#x27;gray&#x27;</span>, linestyle=<span class="string">&#x27;-&#x27;</span>, linewidth=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化绘图元素</span></span><br><span class="line">    <span class="comment"># 1. 三个恒星天体</span></span><br><span class="line">    stars = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        star = ax_main.scatter([], [], s=system.base_sizes[i],</span><br><span class="line">                               c=system.colors[i], edgecolors=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">                               linewidth=<span class="number">3</span>, alpha=<span class="number">0.95</span>, zorder=<span class="number">20</span>)</span><br><span class="line">        stars.append(star)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 三条轨迹线</span></span><br><span class="line">    orbit_trails = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        trail, = ax_main.plot([], [], color=system.colors[i],</span><br><span class="line">                              linewidth=<span class="number">2.5</span>, alpha=<span class="number">0.8</span>, zorder=<span class="number">10</span>)</span><br><span class="line">        orbit_trails.append(trail)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 引力连接线</span></span><br><span class="line">    gravity_lines = []</span><br><span class="line">    gravity_colors = [<span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;orange&#x27;</span>, <span class="string">&#x27;red&#x27;</span>]</span><br><span class="line">    line_pairs = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">0</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">2</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, (a, b) <span class="keyword">in</span> <span class="built_in">enumerate</span>(line_pairs):</span><br><span class="line">        line, = ax_main.plot([], [], color=gravity_colors[i],</span><br><span class="line">                             alpha=<span class="number">0.4</span>, linewidth=<span class="number">2</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, zorder=<span class="number">5</span>)</span><br><span class="line">        gravity_lines.append(line)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. 恒星标签</span></span><br><span class="line">    star_labels = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        label = ax_main.text(<span class="number">0</span>, <span class="number">0</span>, system.names[i], fontsize=<span class="number">12</span>, color=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">                             ha=<span class="string">&#x27;center&#x27;</span>, va=<span class="string">&#x27;center&#x27;</span>, weight=<span class="string">&#x27;bold&#x27;</span>,</span><br><span class="line">                             bbox=<span class="built_in">dict</span>(boxstyle=<span class="string">&quot;round,pad=0.3&quot;</span>, facecolor=system.colors[i], alpha=<span class="number">0.7</span>))</span><br><span class="line">        star_labels.append(label)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 5. 信息显示</span></span><br><span class="line">    status_text = ax_main.text(<span class="number">0.02</span>, <span class="number">0.98</span>, <span class="string">&#x27;&#x27;</span>, transform=ax_main.transAxes,</span><br><span class="line">                               fontsize=<span class="number">12</span>, color=<span class="string">&#x27;white&#x27;</span>, verticalalignment=<span class="string">&#x27;top&#x27;</span>,</span><br><span class="line">                               bbox=<span class="built_in">dict</span>(boxstyle=<span class="string">&quot;round,pad=0.5&quot;</span>,</span><br><span class="line">                                         facecolor=<span class="string">&quot;black&quot;</span>, alpha=<span class="number">0.8</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置监控图表</span></span><br><span class="line">    <span class="keyword">for</span> ax <span class="keyword">in</span> [ax_energy, ax_distances]:</span><br><span class="line">        ax.set_facecolor(<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line">        ax.tick_params(colors=<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">        ax.grid(<span class="literal">True</span>, alpha=<span class="number">0.3</span>, color=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 能量图</span></span><br><span class="line">    ax_energy.set_title(<span class="string">&#x27;系统总能量守恒&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">    ax_energy.set_ylabel(<span class="string">&#x27;总能量&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    energy_line, = ax_energy.plot([], [], color=<span class="string">&#x27;cyan&#x27;</span>, linewidth=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 距离图</span></span><br><span class="line">    ax_distances.set_title(<span class="string">&#x27;恒星间距离变化&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">    ax_distances.set_ylabel(<span class="string">&#x27;距离&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line">    ax_distances.set_xlabel(<span class="string">&#x27;时间步&#x27;</span>, color=<span class="string">&#x27;white&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    dist_lines = &#123;&#125;</span><br><span class="line">    dist_colors = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;green&#x27;</span>]</span><br><span class="line">    dist_labels = [<span class="string">&#x27;Alpha-Beta&#x27;</span>, <span class="string">&#x27;Alpha-Gamma&#x27;</span>, <span class="string">&#x27;Beta-Gamma&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, key <span class="keyword">in</span> <span class="built_in">enumerate</span>([<span class="string">&#x27;AB&#x27;</span>, <span class="string">&#x27;AC&#x27;</span>, <span class="string">&#x27;BC&#x27;</span>]):</span><br><span class="line">        line, = ax_distances.plot([], [], color=dist_colors[i],</span><br><span class="line">                                  linewidth=<span class="number">2</span>, label=dist_labels[i])</span><br><span class="line">        dist_lines[key] = line</span><br><span class="line">    ax_distances.legend(fontsize=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 信息面板</span></span><br><span class="line">    ax_info.set_facecolor(<span class="string">&#x27;#0a0a0a&#x27;</span>)</span><br><span class="line">    ax_info.axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    info_display = ax_info.text(<span class="number">0.05</span>, <span class="number">0.95</span>, <span class="string">&#x27;&#x27;</span>, transform=ax_info.transAxes,</span><br><span class="line">                                fontsize=<span class="number">11</span>, color=<span class="string">&#x27;white&#x27;</span>, verticalalignment=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 动画状态控制</span></span><br><span class="line">    animation_paused = [<span class="literal">False</span>]  <span class="comment"># 使用列表以便在闭包中修改</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">toggle_pause</span>(<span class="params">event</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;切换暂停/继续&quot;&quot;&quot;</span></span><br><span class="line">        animation_paused[<span class="number">0</span>] = <span class="keyword">not</span> animation_paused[<span class="number">0</span>]</span><br><span class="line">        btn_pause.label.set_text(<span class="string">&#x27;继续&#x27;</span> <span class="keyword">if</span> animation_paused[<span class="number">0</span>] <span class="keyword">else</span> <span class="string">&#x27;暂停&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">update_speed_display</span>():</span><br><span class="line">        <span class="string">&quot;&quot;&quot;更新速度显示&quot;&quot;&quot;</span></span><br><span class="line">        speed_text.set_text(speed_controller.get_current_speed_text())</span><br><span class="line">        fig.canvas.draw_idle()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">on_speed_up</span>(<span class="params">event</span>):</span><br><span class="line">        speed_controller.speed_up()</span><br><span class="line">        update_speed_display()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">on_slow_down</span>(<span class="params">event</span>):</span><br><span class="line">        speed_controller.slow_down()</span><br><span class="line">        update_speed_display()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">on_reset_speed</span>(<span class="params">event</span>):</span><br><span class="line">        speed_controller.reset_speed()</span><br><span class="line">        update_speed_display()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 连接按钮事件</span></span><br><span class="line">    btn_fast.on_clicked(on_speed_up)</span><br><span class="line">    btn_slow.on_clicked(on_slow_down)</span><br><span class="line">    btn_reset.on_clicked(on_reset_speed)</span><br><span class="line">    btn_pause.on_clicked(toggle_pause)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">animate_frame</span>(<span class="params">frame</span>):</span><br><span class="line">        <span class="comment"># 如果暂停则不更新</span></span><br><span class="line">        <span class="keyword">if</span> animation_paused[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> (stars + orbit_trails + gravity_lines + star_labels +</span><br><span class="line">                    [status_text, energy_line] + <span class="built_in">list</span>(dist_lines.values()) + [info_display])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 执行物理计算 - 每帧多步提高精度</span></span><br><span class="line">        steps_per_frame = <span class="built_in">max</span>(<span class="number">1</span>, <span class="built_in">int</span>(<span class="number">3</span> / <span class="built_in">max</span>(<span class="number">0.1</span>, system.speed_multiplier)))</span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(steps_per_frame):</span><br><span class="line">            system.runge_kutta_4th_order()</span><br><span class="line">            system.update_statistics()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新三个恒星的位置</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            <span class="comment"># 更新恒星位置</span></span><br><span class="line">            current_pos = system.positions[i].reshape(<span class="number">1</span>, -<span class="number">1</span>)</span><br><span class="line">            stars[i].set_offsets(current_pos)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 添加脉动效果</span></span><br><span class="line">            pulse = <span class="number">1</span> + <span class="number">0.2</span> * np.sin(system.time * <span class="number">4</span> + i * <span class="number">2</span>)</span><br><span class="line">            stars[i].set_sizes([system.base_sizes[i] * pulse])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 更新标签位置</span></span><br><span class="line">            star_labels[i].set_position((system.positions[i][<span class="number">0</span>] + <span class="number">0.5</span>,</span><br><span class="line">                                         system.positions[i][<span class="number">1</span>] + <span class="number">0.5</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新轨迹</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(system.trails[i]) &gt; <span class="number">1</span>:</span><br><span class="line">                trail_array = np.array(<span class="built_in">list</span>(system.trails[i]))</span><br><span class="line">                orbit_trails[i].set_data(trail_array[:, <span class="number">0</span>], trail_array[:, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新引力连接线</span></span><br><span class="line">        <span class="keyword">for</span> i, (a, b) <span class="keyword">in</span> <span class="built_in">enumerate</span>(line_pairs):</span><br><span class="line">            pos_a = system.positions[a]</span><br><span class="line">            pos_b = system.positions[b]</span><br><span class="line">            gravity_lines[i].set_data([pos_a[<span class="number">0</span>], pos_b[<span class="number">0</span>]], [pos_a[<span class="number">1</span>], pos_b[<span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 根据距离调整线条粗细和透明度</span></span><br><span class="line">            distance = np.linalg.norm(pos_a - pos_b)</span><br><span class="line">            alpha = <span class="built_in">max</span>(<span class="number">0.2</span>, <span class="built_in">min</span>(<span class="number">0.8</span>, <span class="number">5.0</span> / distance))</span><br><span class="line">            linewidth = <span class="built_in">max</span>(<span class="number">1</span>, <span class="built_in">min</span>(<span class="number">4</span>, <span class="number">8.0</span> / distance))</span><br><span class="line">            gravity_lines[i].set_alpha(alpha)</span><br><span class="line">            gravity_lines[i].set_linewidth(linewidth)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新状态信息</span></span><br><span class="line">        current_energy = system.calculate_total_energy()</span><br><span class="line">        max_velocity = <span class="built_in">max</span>([np.linalg.norm(v) <span class="keyword">for</span> v <span class="keyword">in</span> system.velocities])</span><br><span class="line"></span><br><span class="line">        status_info = (</span><br><span class="line">            <span class="string">f&quot;模拟时间: <span class="subst">&#123;system.time:<span class="number">.2</span>f&#125;</span>\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;播放速度: <span class="subst">&#123;system.speed_multiplier:<span class="number">.1</span>f&#125;</span>x\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;系统总能量: <span class="subst">&#123;current_energy:<span class="number">.4</span>f&#125;</span>\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;最大速度: <span class="subst">&#123;max_velocity:<span class="number">.3</span>f&#125;</span>\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;计算步数: <span class="subst">&#123;frame * steps_per_frame&#125;</span>\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;\n三体位置坐标:\n&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            pos = system.positions[i]</span><br><span class="line">            vel_mag = np.linalg.norm(system.velocities[i])</span><br><span class="line">            status_info += <span class="string">f&quot;<span class="subst">&#123;system.names[i]&#125;</span>: (<span class="subst">&#123;pos[<span class="number">0</span>]:<span class="number">.2</span>f&#125;</span>, <span class="subst">&#123;pos[<span class="number">1</span>]:<span class="number">.2</span>f&#125;</span>)\n&quot;</span></span><br><span class="line">            status_info += <span class="string">f&quot;   速度: <span class="subst">&#123;vel_mag:<span class="number">.3</span>f&#125;</span>\n&quot;</span></span><br><span class="line"></span><br><span class="line">        status_text.set_text(status_info)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新能量图</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(system.energy_history) &gt; <span class="number">1</span>:</span><br><span class="line">            time_points = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(system.energy_history)))</span><br><span class="line">            energy_line.set_data(time_points, <span class="built_in">list</span>(system.energy_history))</span><br><span class="line">            ax_energy.relim()</span><br><span class="line">            ax_energy.autoscale_view()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新距离图</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(system.distance_history[<span class="string">&#x27;AB&#x27;</span>]) &gt; <span class="number">1</span>:</span><br><span class="line">            time_points = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(system.distance_history[<span class="string">&#x27;AB&#x27;</span>])))</span><br><span class="line">            <span class="keyword">for</span> key <span class="keyword">in</span> [<span class="string">&#x27;AB&#x27;</span>, <span class="string">&#x27;AC&#x27;</span>, <span class="string">&#x27;BC&#x27;</span>]:</span><br><span class="line">                dist_lines[key].set_data(time_points, <span class="built_in">list</span>(system.distance_history[key]))</span><br><span class="line">            ax_distances.relim()</span><br><span class="line">            ax_distances.autoscale_view()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 更新信息面板</span></span><br><span class="line">        min_dist = <span class="built_in">min</span>([<span class="built_in">list</span>(system.distance_history[key])[-<span class="number">1</span>]</span><br><span class="line">                        <span class="keyword">for</span> key <span class="keyword">in</span> system.distance_history.keys()</span><br><span class="line">                        <span class="keyword">if</span> <span class="built_in">len</span>(system.distance_history[key]) &gt; <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">        info_text = (</span><br><span class="line">            <span class="string">&quot;=== 三体系统状态 ===\n\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;恒星质量:\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;  <span class="subst">&#123;system.names[<span class="number">0</span>]&#125;</span>: <span class="subst">&#123;system.masses[<span class="number">0</span>]:<span class="number">.1</span>f&#125;</span>M☉\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;  <span class="subst">&#123;system.names[<span class="number">1</span>]&#125;</span>: <span class="subst">&#123;system.masses[<span class="number">1</span>]:<span class="number">.1</span>f&#125;</span>M☉\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;  <span class="subst">&#123;system.names[<span class="number">2</span>]&#125;</span>: <span class="subst">&#123;system.masses[<span class="number">2</span>]:<span class="number">.1</span>f&#125;</span>M☉\n\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;最近距离: <span class="subst">&#123;min_dist:<span class="number">.3</span>f&#125;</span>\n&quot;</span></span><br><span class="line">            <span class="string">f&quot;引力常数: <span class="subst">&#123;system.G:<span class="number">.1</span>f&#125;</span>\n\n&quot;</span></span><br><span class="line">            <span class="string">&quot;观察要点:\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  轨道的不规则性\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  近距离遭遇事件\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  能量守恒定律\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  混沌敏感依赖性\n\n&quot;</span></span><br><span class="line">            <span class="string">&quot;控制说明:\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  加速/减速按钮调节播放速度\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  暂停按钮停止/继续动画\n&quot;</span></span><br><span class="line">            <span class="string">&quot;*  正常按钮重置为1x速度&quot;</span></span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        info_display.set_text(info_text)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (stars + orbit_trails + gravity_lines + star_labels +</span><br><span class="line">                [status_text, energy_line] + <span class="built_in">list</span>(dist_lines.values()) + [info_display])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建动画对象</span></span><br><span class="line">    anim = FuncAnimation(fig, animate_frame, frames=<span class="number">3000</span>,</span><br><span class="line">                         interval=<span class="number">30</span>, blit=<span class="literal">False</span>, repeat=<span class="literal">True</span>, cache_frame_data=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 总标题</span></span><br><span class="line">    fig.suptitle(<span class="string">&#x27;三体问题数值模拟：混沌引力系统（速度可控）&#x27;</span>,</span><br><span class="line">                 fontsize=<span class="number">18</span>, color=<span class="string">&#x27;white&#x27;</span>, y=<span class="number">0.96</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 底部说明</span></span><br><span class="line">    fig.text(<span class="number">0.02</span>, <span class="number">0.085</span>,</span><br><span class="line">             <span class="string">&#x27;物理原理: 三个质量不等的恒星在万有引力作用下的非周期运动 | &#x27;</span></span><br><span class="line">             <span class="string">&#x27;混沌特征: 轨道不可预测、对初始条件敏感、长期行为无法确定 | &#x27;</span></span><br><span class="line">             <span class="string">&#x27;数值方法: 四阶龙格-库塔法求解牛顿引力方程组&#x27;</span>,</span><br><span class="line">             fontsize=<span class="number">10</span>, color=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">             bbox=<span class="built_in">dict</span>(boxstyle=<span class="string">&quot;round,pad=0.5&quot;</span>, facecolor=<span class="string">&quot;#1a1a2e&quot;</span>, alpha=<span class="number">0.9</span>))</span><br><span class="line"></span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    plt.subplots_adjust(top=<span class="number">0.92</span>, bottom=<span class="number">0.18</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> anim</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动三体动画</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🌟 启动三体恒星系统动态模拟（带速度控制）...&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n系统配置:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;*  三颗质量不等的恒星: Alpha(1.5M☉), Beta(1.0M☉), Gamma(1.2M☉)&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;*  初始三角形配置，赋予复杂初始速度&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;*  高精度数值积分(RK4)确保长期稳定性&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n可视化特征:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;✓ 三个不同颜色的恒星实时运动&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;✓ 彩色轨迹显示历史路径&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;✓ 虚线显示引力相互作用&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;✓ 恒星大小脉动模拟真实效果&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;✓ 实时监控能量守恒和距离变化&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n新增速度控制功能:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🎮 减速按钮: 降低播放速度(0.1x-8x)&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🎮 加速按钮: 提高播放速度(0.1x-8x)&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🎮 正常按钮: 重置为1x正常速度&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🎮 暂停按钮: 暂停/继续动画播放&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🎮 实时速度显示: 当前播放倍数&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n观察重点:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🔍 轨道的复杂性和不可预测性&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🔍 恒星间距离的剧烈变化&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🔍 近距离遭遇引起的轨道突变&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🔍 系统总能量的精确守恒&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n操作提示:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;💡 使用加速功能快速观察长期行为&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;💡 使用减速功能仔细研究细节变化&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;💡 暂停功能方便截图和观察&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;\n正在加载动画...&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行动画</span></span><br><span class="line">animation = create_three_body_animation()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;🎬 三体动画已启动！使用底部按钮控制播放速度...&quot;</span>)</span><br></pre></td></tr></table></figure>
+<div style="position: relative; width: 100%; padding-bottom: 56.25%; margin: 20px 0;">
+  <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114649370462296&bvid=BV1qaTdzWEcD&cid=30395404225&p=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allowfullscreen>
+    </iframe>
+</div>
+
+
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Fj421Z7MF/?spm_id_from=333.337.search-card.all.click&amp;vd_source=3f2411263f367ccf993c28b58688c0e7" >三体问题究竟是什么？为什么说科学的尽头是神学？<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Three-Body/">Three-Body</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2025/06/18/%E5%85%89%E9%94%A5/"
+                                   title="光锥"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">光锥</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/06/03/%E5%AF%B9%E6%95%B0%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83/"
+                                   title="对数正态分布LogNormal"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">对数正态分布LogNormal</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-%E9%97%AE%E9%A2%98%E8%AE%BE%E5%AE%9A%EF%BC%9A%E4%B8%89%E4%BD%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE"><span class="nav-number">1.</span> <span class="nav-text">🧭 问题设定：三体系统的基本假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%90-%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B%EF%BC%88%E7%89%9B%E9%A1%BF%E5%BC%95%E5%8A%9B-%E7%89%9B%E9%A1%BF%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">📐 一般形式的运动方程（牛顿引力 + 牛顿第二定律）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%A0%EF%B8%8F-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%A8%B3%E5%AE%9A%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">⚠️ 为什么不稳定？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%80%A6%E5%90%88%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">3.1.</span> <span class="nav-text">1. 非线性耦合微分方程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6%E6%95%8F%E6%84%9F%E6%80%A7%EF%BC%88%E6%B7%B7%E6%B2%8C%E7%89%B9%E5%BE%81%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2. 初始条件敏感性（混沌特征）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%88%E6%81%92%E5%AE%9A%E5%BE%8B%E7%BA%A6%E6%9D%9F%E4%B8%8D%E8%B6%B3%E4%BB%A5%E7%A8%B3%E5%AE%9A%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.3.</span> <span class="nav-text">3. 守恒定律约束不足以稳定系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%89-%E6%89%80%E4%BB%A5%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%A8%B3%E5%AE%9A%E8%BF%90%E8%A1%8C%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">📉 所以为什么不能稳定运行？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%AF-%E5%AE%9E%E9%99%85%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">🎯 实际结果是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%BD%93%E8%BF%90%E5%8A%A8%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%8A%A8%E7%94%BB"><span class="nav-number">5.</span> <span class="nav-text">三体运动的模拟动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%A7%AD-%E9%97%AE%E9%A2%98%E8%AE%BE%E5%AE%9A%EF%BC%9A%E4%B8%89%E4%BD%93%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%81%87%E8%AE%BE"><span class="nav-number">1.</span> <span class="nav-text">🧭 问题设定：三体系统的基本假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%90-%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F%E7%9A%84%E8%BF%90%E5%8A%A8%E6%96%B9%E7%A8%8B%EF%BC%88%E7%89%9B%E9%A1%BF%E5%BC%95%E5%8A%9B-%E7%89%9B%E9%A1%BF%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">📐 一般形式的运动方程（牛顿引力 + 牛顿第二定律）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%9A%A0%EF%B8%8F-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%A8%B3%E5%AE%9A%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">⚠️ 为什么不稳定？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%80%A6%E5%90%88%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="nav-number">3.1.</span> <span class="nav-text">1. 非线性耦合微分方程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9D%E5%A7%8B%E6%9D%A1%E4%BB%B6%E6%95%8F%E6%84%9F%E6%80%A7%EF%BC%88%E6%B7%B7%E6%B2%8C%E7%89%B9%E5%BE%81%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">2. 初始条件敏感性（混沌特征）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%88%E6%81%92%E5%AE%9A%E5%BE%8B%E7%BA%A6%E6%9D%9F%E4%B8%8D%E8%B6%B3%E4%BB%A5%E7%A8%B3%E5%AE%9A%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.3.</span> <span class="nav-text">3. 守恒定律约束不足以稳定系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%89-%E6%89%80%E4%BB%A5%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E7%A8%B3%E5%AE%9A%E8%BF%90%E8%A1%8C%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">📉 所以为什么不能稳定运行？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%8E%AF-%E5%AE%9E%E9%99%85%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">4.1.</span> <span class="nav-text">🎯 实际结果是什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E4%BD%93%E8%BF%90%E5%8A%A8%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%8A%A8%E7%94%BB"><span class="nav-number">5.</span> <span class="nav-text">三体运动的模拟动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            CRF |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://tricktreat.github.io/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        CRF
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2019-07-07 21:36:16</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Sun Jul 07 2019 21:36:16 GMT+0000">2019-07-07 21:36:16</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Machine-Learning/">Machine Learning</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/MRF/">MRF</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Linear-CRF/">Linear CRF</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>条件随机场(Conditional Random Fields)是给定一组输入序列条件下另一组输出序列的概率分布模型，在NLP中应用很广泛。</p>
+<span id="more"></span>
+<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><p>假设我们有Bob一天从早到晚的一系列照片，Bob想考考我们，要我们猜这一系列的每张照片对应的活动，比如: 工作的照片，吃饭的照片，唱歌的照片等等。一个比较直观的办法就是，我们找到Bob之前的日常生活的一系列照片，然后找Bob问清楚这些照片代表的活动标记，这样我们就可以用监督学习的方法来训练一个分类模型，比如逻辑回归，接着用模型去预测这一天的每张照片最可能的活动标记。</p>
+<p>这种办法虽然是可行的，但是却忽略了一个重要的问题，就是这些照片之间的顺序其实是有很大的时间顺序关系的，而用上面的方法则会忽略这种关系。比如我们现在看到了一张Bob闭着嘴的照片，那么这张照片我们怎么标记Bob的活动呢？比较难去打标记。但是如果我们有Bob在这一张照片前一点点时间的照片的话，那么这张照片就好标记了。如果在时间序列上前一张的照片里Bob在吃饭，那么这张闭嘴的照片很有可能是在吃饭咀嚼。而如果在时间序列上前一张的照片里Bob在唱歌，那么这张闭嘴的照片很有可能是在唱歌。</p>
+<p>为了让我们的分类器表现的更好，在标记数据的时候，可以考虑相邻数据的标记信息。这一点，是普通的分类器难以做到的。而这一块，也是CRF比较擅长的地方。</p>
+<p>在实际应用中，自然语言处理中的词性标注(POS Tagging)就是非常适合CRF使用的地方。词性标注的目标是给出一个句子中每个词的词性（名词，动词，形容词等）。而这些词的词性往往和上下文的词的词性有关，因此，使用CRF来处理是很适合的。</p>
+<h1 id="MRF"><a href="#MRF" class="headerlink" title="MRF"></a>MRF</h1><p>随机场是由若干个位置组成的整体，当给每一个位置中按照某种分布随机赋予一个值之后，其全体就叫做随机场。举个词性标注的例子：假如我们有一个十个词形成的句子需要做词性标注。这十个词每个词的词性可以在我们已知的词性集合（名词，动词…)中去选择。当我们为每个词选择完词性后，这就形成了一个随机场。</p>
+<p>马尔可夫随机场是随机场的特例，它假设随机场中某一个位置的赋值仅与它相邻的位置的赋值有关。就拿上面的例子来说，我们假设所有词的词性只和它相邻的词的词性有关，这个随机场就特化成MRF。比如第三个词的词性除了与自己本身的位置有关外，只与第二个词和第四个词的词性相关。</p>
+<h1 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h1><p>CRF是MRF的特例，它假设MRF中只有 $X$ 和 $Y$ 两种变量。$X$ 一般是给定的，而 $Y$ 是在给定 $X$ 的条件下的输出。这样MRF就特化成了CRF。在十个词的句子词性标注中，$X$ 是词，$Y$ 是词性。因此，如果我们假设它是一个MRF，那么它也是CRF。</p>
+<p>我们用准确的数学语言来描述：</p>
+<p>设 $X$ 和 $Y$ 是随机变量，$P(Y|X)$ 是给定 $X$ 时 $Y$ 的条件概率分布。若 $Y$ 构成MRF，则称条件概率分布 $P(Y|X)$ 是CRF。</p>
+<h1 id="Linear-CRF"><a href="#Linear-CRF" class="headerlink" title="Linear CRF"></a>Linear CRF</h1><p>设 $X = (X_1, X_2, \dots , X_n), Y = (Y_1, Y_2, \dots, Y_n)$ 均为线性链的随机变量序列。在给定随机变量序列 $X$ 的情况下，随机变量 $Y$ 的条件概率分布 $P(Y|X)$ 满足马尔可夫性：</p>
+<script type="math/tex; mode=display">
+P(Y_i | X, Y_1, Y_2, \dots , Y_n) = P(Y_i | X, Y_{i-1}, Y_{i+1})</script><p>则称 $P(Y|X)$ 为线性链条件随机场。</p>
+<h2 id="参数化形式"><a href="#参数化形式" class="headerlink" title="参数化形式"></a>参数化形式</h2><p>我们通过特征函数及其权重系数来将Linear CRF转化为机器学习模型。</p>
+<p>特征函数分为两类，一类是定义在 $Y$ 节点上的状态特征函数，这类特征函数只与当前节点有关，记为：</p>
+<script type="math/tex; mode=display">
+s_l(y_i, x, i), \quad l=1, 2, \dots, L</script><p>$i$ 是当前节点在序列的位置，$L$ 表示当前节点的状态特征函数的个数。</p>
+<p>另一类是定义在 $Y$ 上下文的转移特征函数，这类特征函数只和当前节点和上一个节点有关，记为：</p>
+<script type="math/tex; mode=display">
+t_k(y_{i-1}, y_i, x, i), \quad k = 1, 2, \dots, K</script><p> $i$ 是当前节点在序列的位置，$K$ 表示当前节点的转移特征函数的个数。</p>
+<p>无论是状态特征函数还是转移特征函数，它们的取值只能是0或1。即满足特征条件或不满足特征条件。同时，我们可以为每个特征函数赋予一个权值，用以表达我们对这个特征函数的信任度。假设 $t_k$ 的权重系数是 $\lambda_k$ ，$s_l$ 权重系数是 $\mu_l$ , 由此得到Linear CRF的参数化形式：</p>
+<script type="math/tex; mode=display">
+P(y|x) = \frac {1} {Z(x)} e^{\sum_{i, k} \lambda_k t_k(y_{i-1}, y_i, x, i) + \sum_{i, l} \mu_l s_l (y_i, x, i)}</script><p>其中，$Z(x)$ 为规范化因子：</p>
+<script type="math/tex; mode=display">
+Z(x) = \sum_y e^{\sum_{i, k} \lambda_k t_k(y_{i-1}, y_i, x, i) + \sum_{i, l} \mu_l s_l (y_i, x, i)}</script><p>每个特征函数定义了一个Linear CRF的规则，其系数定义了这个规则的可信度。两者一起构成了Linear CRF的条件概率分布。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>这里举一个词性标注的例子。假设输入的都是三个词的句子，即 $X = (X_1, X_2, X_3)$，输出的词性标记为 $Y = (Y_1, Y_2, Y_3)$，其中 $Y \in {\lbrace   1(名词), 2(动词) \rbrace}$。这里只标记出取值为1的特征函数：</p>
+<script type="math/tex; mode=display">
+t_1 = t_1(y_{i-1}=1, y_i=2, x, i), \quad i = 2, 3, \quad \lambda_1=1 \\
+t_2 = t_2(y_1=1, y_2=1, x, 2), \quad \lambda_2 = 0.5 \\
+t_3 = t_3(y_2=2, y_3=1, x, 3), \quad \lambda_3 = 1 \\
+t_4 = t_4(y_1=2, y_2=1, x, 2), \quad \lambda_4 = 1 \\
+t_5 = t_5(y_2=2, y_3=2, x, 3), \quad \lambda_5 = 0.2 \\
+s_1 = s_1(y_1=1, x, 1), \quad \mu_1=1 \\
+s_2 = s_2(y_i=2, x, i), \quad i=1, 2, \quad \mu_2 = 0.5 \\
+s_3 = s_3(y_i=1, x, i), \quad i=2, 3 \quad \mu_3 = 0.8 \\
+s_4 = s_4(y_3=2, x, 3) \quad \mu_4 = 0.5</script><p>求标记(1, 2, 2)的概率。</p>
+<p>根据上述参数化公式我们有：</p>
+<script type="math/tex; mode=display">
+P(y|x) \propto e^{\sum_{i, k} \lambda_k t_k(y_{i-1}, y_i, x, i) + \sum_{i, l} \mu_l s_l (y_i, x, i)}</script><p>代入(1, 2, 2)得到：</p>
+<script type="math/tex; mode=display">
+P(y_1=1, y_2=2, y_3=2|x) \propto e^{3.2}</script><h2 id="简化形式"><a href="#简化形式" class="headerlink" title="简化形式"></a>简化形式</h2><p>我们用 $s_l$ 表示状态特征函数，用 $t_k$ 表示转移特征函数，同时也使用了不同的符号表示权重系数，导致表示起来非常麻烦。这里我们简化一下表示形式。</p>
+<p>假设在某节点有 $K_1$ 个状态特征函数和 $K_2$ 个转移特征函数。我们用一个特征函数 $f_k(y_{i-1}, y_i, x, i)$ 来统一表示：</p>
+<script type="math/tex; mode=display">
+f_k(y_{i-1}, y_i, x, i) = \begin{cases}
+t_k(y_{i-1}, y_i, x, i) \quad k=1, 2, \dots, K_1 \\
+s_l(y_i, x, i) \quad k = K_1+l, \quad l=1, 2, \dots, K2
+\end{cases}</script><p>同时我们也统一 $f_k(y_{i-1}, y_i, x, i)$ 对应的权重系数 $w_k$ 如下：</p>
+<script type="math/tex; mode=display">
+w_k = \begin{cases}
+\lambda_k \quad k = 1, 2, \dots, K_1 \\
+\mu_l \quad k = K_1 + l, \quad l = 1, 2, \dots, K_2
+\end{cases}</script><p>最终Linear CRF的参数化形式简化如下：</p>
+<script type="math/tex; mode=display">
+P_w(y|x) = \frac {e^{\sum_{k=1}^K w_k f_k(y_{i-1}, y_i, x, i)}} {\sum_y e^{\sum_{k=1}^K w_k f_k(y_{i-1}, y_i, x, i)}}</script><p>其中，$y$ 表示一条输出序列，如上例的(1, 2, 2)</p>
+<hr>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/7048333.html" >条件随机场CRF(一)从随机场到线性链条件随机场<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/53458773/answer/554436625" >条件随机场（CRF）和隐马尔科夫模型（HMM）最大区别在哪里？CRF的全局最优体现在哪里？<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/MRF/">MRF</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Linear-CRF/">Linear CRF</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2019/07/25/Attention%20Model/"
+                                   title="Attention Model"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">Attention Model</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2019/07/07/LSTM/"
+                                   title="LSTM"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">LSTM</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MRF"><span class="nav-number">2.</span> <span class="nav-text">MRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRF"><span class="nav-number">3.</span> <span class="nav-text">CRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linear-CRF"><span class="nav-number">4.</span> <span class="nav-text">Linear CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8C%96%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">参数化形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">简化形式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%BA%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MRF"><span class="nav-number">2.</span> <span class="nav-text">MRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRF"><span class="nav-number">3.</span> <span class="nav-text">CRF</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linear-CRF"><span class="nav-number">4.</span> <span class="nav-text">Linear CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8C%96%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">参数化形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E5%BD%A2%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">简化形式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            四种常见的POST提交数据方式 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://tricktreat.github.io/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        四种常见的POST提交数据方式
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2017-12-15 22:39:53</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Fri Dec 15 2017 22:39:53 GMT+0000">2017-12-15 22:39:53</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Software-Engineering/">Software Engineering</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/POST/">POST</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/HTTP/">HTTP</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>HTTP/1.1 协议规定的 HTTP 请求方法有 <code>OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT</code> 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。</p>
+<span id="more"></span>
+<p>我们知道，HTTP 协议是以 ASCII 码传输，建立在 TCP/IP 协议之上的应用层规范。规范把 HTTP 请求分为三个部分：<font color="green">状态行、请求头、消息主体</font>。类似于下面这样：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">method</span>&gt;</span> <span class="tag">&lt;<span class="name">request-URL</span>&gt;</span> <span class="tag">&lt;<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">headers</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">entity-body</span>&gt;</span></span><br></pre></td></tr></table></figure><br>协议规定 POST 提交的数据必须放在消息主体（entity-body）中，但协议并没有规定数据必须使用什么编码方式。实际上，开发者完全可以自己决定消息主体的格式，只要最后发送的 HTTP 请求满足上面的格式就可以。</p>
+<p>但是，数据发送出去，还要服务端解析成功才有意义。一般服务端语言如 php、python 等，以及它们的 framework，都内置了自动解析常见数据格式的功能。服务端通常是根据请求头（headers）中的 Content-Type 字段来获知请求中的消息主体是用何种方式编码，再对主体进行解析。所以说到 POST 提交数据方案，包含了 Content-Type 和消息主体编码方式两部分。下面就正式开始介绍它们。</p>
+<h2 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a><font color="blue">application/x-www-form-urlencoded</font></h2><p>这应该是最常见的 POST 提交数据的方式了。浏览器的原生 <code>&lt;form&gt;</code> 表单，如果不设置 <code>enctype</code> 属性，那么最终就会以 <code>application/x-www-form-urlencoded</code> 方式提交数据。请求类似于下面这样（无关的请求头在本文中都省略掉了）：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.example.com HTTP/1.1</span><br><span class="line">Content-Type: application/x-www-form-urlencoded;charset=utf-8</span><br><span class="line"></span><br><span class="line">title=test&amp;sub%5B%5D=1&amp;sub%5B%5D=2&amp;sub%5B%5D=3</span><br></pre></td></tr></table></figure><br>首先，<code>Content-Type</code> 被指定为 <code>application/x-www-form-urlencoded</code>；其次，提交的数据按照 <code>key1=val1&amp;key2=val2</code> 的方式进行编码，key 和 val 都进行了 URL 转码。大部分服务端语言都对这种方式有很好的支持。例如 PHP 中，<code>$_POST[&#39;title&#39;]</code> 可以获取到 title 的值，<code>$_POST[&#39;sub&#39;]</code> 可以得到 sub 数组。</p>
+<p>很多时候，我们用 Ajax 提交数据时，也是使用这种方式。例如 JQuery 和 QWrap 的 Ajax，Content-Type 默认值都是<code>application/x-www-form-urlencoded;charset=utf-8</code>。</p>
+<h2 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a><font color="blue">multipart/form-data</font></h2><p>这又是一个常见的 POST 数据提交的方式。我们使用表单上传文件时，必须让 <code>&lt;form&gt;</code> 表单的 <code>enctype</code> 等于 <code>multipart/form-data</code>。直接来看一个请求示例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.example.com HTTP/1.1</span><br><span class="line">Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundaryrGKCBY7qhFd3TrwA</span><br><span class="line">Content-Disposition: form-data; name=&quot;text&quot;</span><br><span class="line"></span><br><span class="line">title</span><br><span class="line">------WebKitFormBoundaryrGKCBY7qhFd3TrwA</span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;chrome.png&quot;</span><br><span class="line">Content-Type: image/png</span><br><span class="line"></span><br><span class="line">PNG ... content of chrome.png ...</span><br><span class="line">------WebKitFormBoundaryrGKCBY7qhFd3TrwA--</span><br></pre></td></tr></table></figure>
+<p>这个例子稍微复杂点。首先生成了一个 <code>boundary</code> 用于分割不同的字段，为了避免与正文内容重复，<code>boundary</code> 很长很复杂。然后 <code>Content-Type</code> 里指明了数据是以 <code>multipart/form-data</code> 来编码，本次请求的 <code>boundary</code> 是什么内容。消息主体里按照字段个数又分为多个结构类似的部分，每部分都是以 <code>--boundary</code> 开始，紧接着是内容描述信息，然后是回车，最后是字段具体内容（文本或二进制）。如果传输的是文件，还要包含文件名和文件类型信息。消息主体最后以 <code>--boundary--</code> 标示结束。关于 <code>multipart/form-data</code> 的详细定义，请前往 <a class="link"   target="_blank" rel="noopener" href="http://www.ietf.org/rfc/rfc1867.txt" >rfc1867<i class="fas fa-external-link-alt"></i></a> 查看。</p>
+<p>这种方式一般用来上传文件，各大服务端语言对它也有着良好的支持。</p>
+<p>上面提到的这两种 POST 数据的方式，都是浏览器原生支持的，而且现阶段标准中原生 <code>&lt;form&gt;</code> 表单也只支持这两种方式（通过 <code>&lt;form&gt;</code> 元素的 <code>enctype</code> 属性指定，默认为 <code>application/x-www-form-urlencoded</code>。其实 <code>enctype</code> 还支持 <code>text/plain</code>，不过用得非常少）。</p>
+<p>随着越来越多的 Web 站点，尤其是 WebApp，全部使用 Ajax 进行数据交互之后，我们完全可以定义新的数据提交方式，给开发带来更多便利。</p>
+<h2 id="application-json"><a href="#application-json" class="headerlink" title="application/json"></a><font color="blue">application/json</font></h2><p><code>application/json</code> 这个 <code>Content-Type</code> 作为响应头大家肯定不陌生。实际上，现在越来越多的人把它作为请求头，用来告诉服务端消息主体是序列化后的 JSON 字符串。由于 JSON 规范的流行，除了低版本 IE 之外的各大浏览器都原生支持 <code>JSON.stringify</code>，服务端语言也都有处理 JSON 的函数，使用 JSON 不会遇上什么麻烦。</p>
+<p>JSON 格式支持比键值对复杂得多的结构化数据，这一点也很有用。记得我几年前做一个项目时，需要提交的数据层次非常深，我就是把数据 JSON 序列化之后来提交的。不过当时我是把 JSON 字符串作为 val，仍然放在键值对里，以 <code>x-www-form-urlencoded</code> 方式提交。</p>
+<p>Google 的 <a class="link"   target="_blank" rel="noopener" href="http://angularjs.org/" >AngularJS<i class="fas fa-external-link-alt"></i></a> 中的 Ajax 功能，默认就是提交 JSON 字符串。例如下面这段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;<span class="string">&#x27;title&#x27;</span>:<span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;sub&#x27;</span> : [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]&#125;;</span><br><span class="line">$http.<span class="title function_">post</span>(url, data).<span class="title function_">success</span>(<span class="keyword">function</span>(<span class="params">result</span>) &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>最终发送的请求是：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST http<span class="punctuation">:</span><span class="comment">//www.example.com HTTP/1.1 </span></span><br><span class="line">Content-Type<span class="punctuation">:</span> application/json;charset=utf<span class="number">-8</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;title&quot;</span><span class="punctuation">:</span><span class="string">&quot;test&quot;</span><span class="punctuation">,</span><span class="attr">&quot;sub&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">]</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure><br>这种方案，可以方便的提交复杂的结构化数据，特别适合 <code>RESTful</code> 的接口。各大抓包工具如 Chrome 自带的开发者工具、Firebug、Fiddler，都会以树形结构展示 JSON 数据，非常友好。但也有些服务端语言还没有支持这种方式，例如 php 就无法通过 <code>$_POST</code> 对象从上面的请求中获得内容。这时候，需要自己动手处理下：在请求头中 <code>Content-Type</code> 为 <code>application/json</code> 时，从 <code>php://input</code> 里获得原始输入流，再 <code>json_decode</code> 成对象。一些 php 框架已经开始这么做了。</p>
+<p>当然 <a class="link"   target="_blank" rel="noopener" href="http://angularjs.org/" >AngularJS<i class="fas fa-external-link-alt"></i></a> 也可以配置为使用 <code>x-www-form-urlencoded</code> 方式提交数据。如有需要，可以参考 <a class="link"   target="_blank" rel="noopener" href="http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/" >这篇文章<i class="fas fa-external-link-alt"></i></a>。</p>
+<h2 id="text-xml"><a href="#text-xml" class="headerlink" title="text/xml"></a><font color="blue">text/xml</font></h2><p>我的博客之前提到过 <a class="link"   target="_blank" rel="noopener" href="http://www.imququ.com/post/64.html" >XML-RPC (XML Remote Procedure Call)<i class="fas fa-external-link-alt"></i></a>。它是一种使用 HTTP 作为传输协议，XML 作为编码方式的远程调用规范。典型的 XML-RPC 请求是这样的：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">POST http://www.example.com HTTP/1.1 </span><br><span class="line">Content-Type: text/xml</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">methodCall</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">methodName</span>&gt;</span>examples.getStateName<span class="tag">&lt;/<span class="name">methodName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">params</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">value</span>&gt;</span><span class="tag">&lt;<span class="name">i4</span>&gt;</span>41<span class="tag">&lt;/<span class="name">i4</span>&gt;</span><span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">params</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">methodCall</span>&gt;</span></span><br></pre></td></tr></table></figure><br>XML-RPC 协议简单、功能够用，各种语言的实现都有。它的使用也很广泛，如 WordPress 的 <a class="link"   target="_blank" rel="noopener" href="http://codex.wordpress.org/XML-RPC_WordPress_API" >XML-RPC Api<i class="fas fa-external-link-alt"></i></a>，搜索引擎的 <a class="link"   target="_blank" rel="noopener" href="http://help.baidu.com/question?prod_en=master&amp;class=476&amp;id=1000423" >ping 服务<i class="fas fa-external-link-alt"></i></a> 等等。JavaScript 中，也有 <a class="link"   target="_blank" rel="noopener" href="http://plugins.jquery.com/xmlrpc/" >现成的库<i class="fas fa-external-link-alt"></i></a> 支持以这种方式进行数据交互，能很好的支持已有的 XML-RPC 服务。不过，我个人觉得 XML 结构还是过于臃肿，一般场景用 JSON 会更灵活方便。</p>
+<hr>
+<h2 id="转载"><a href="#转载" class="headerlink" title="转载"></a>转载</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://imququ.com/post/four-ways-to-post-data-in-http.html" >四种常见的 POST 提交数据方式<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/POST/">POST</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/HTTP/">HTTP</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2017/12/20/chmod%20&%20chown/"
+                                   title="chmod &amp; chown"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">chmod &amp; chown</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2017/10/24/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/"
+                                   title="装饰器模式"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">装饰器模式</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">1.</span> <span class="nav-text">application&#x2F;x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">2.</span> <span class="nav-text">multipart&#x2F;form-data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application-json"><span class="nav-number">3.</span> <span class="nav-text">application&#x2F;json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-xml"><span class="nav-number">4.</span> <span class="nav-text">text&#x2F;xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E8%BD%BD"><span class="nav-number">5.</span> <span class="nav-text">转载</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">1.</span> <span class="nav-text">application&#x2F;x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">2.</span> <span class="nav-text">multipart&#x2F;form-data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application-json"><span class="nav-number">3.</span> <span class="nav-text">application&#x2F;json</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-xml"><span class="nav-number">4.</span> <span class="nav-text">text&#x2F;xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E8%BD%BD"><span class="nav-number">5.</span> <span class="nav-text">转载</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

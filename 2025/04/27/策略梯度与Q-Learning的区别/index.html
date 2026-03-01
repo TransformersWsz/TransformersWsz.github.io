@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            策略梯度与Q-Learning的区别 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://tricktreat.github.io/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        策略梯度与Q-Learning的区别
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2025-04-27 02:33:34</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Sun Apr 27 2025 02:33:34 GMT+0000">2025-04-27 02:33:34</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Reinforcement-Learning/">Reinforcement Learning</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Q-Learning/">Q-Learning</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Policy-Gradient/">Policy Gradient</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>PG和Q-Learning都是RL的两大主流算法，记录下两者差异。</p>
+<span id="more"></span>
+<h2 id="策略梯度（Policy-Gradient）简介"><a href="#策略梯度（Policy-Gradient）简介" class="headerlink" title="策略梯度（Policy Gradient）简介"></a>策略梯度（Policy Gradient）简介</h2><p>策略梯度（Policy Gradient, PG）是强化学习中的一类直接优化策略的方法，通过梯度上升（Gradient Ascent）更新策略参数，以最大化期望回报。与Q-Learning等基于值函数的方法不同，PG直接对策略 $\pi_\theta(a|s)$（参数为$\theta$）进行优化，适用于连续动作空间或随机策略的场景。</p>
+<hr>
+<h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><ol>
+<li>策略参数化：用神经网络或其他函数近似策略 $\pi_\theta(a|s)$，输入状态s，输出动作a的概率分布（或连续动作的均值/方差）</li>
+<li>目标函数：最大化期望回报 $J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$，其中$\tau$是轨迹（状态-动作序列），$R(\tau)$是轨迹的总奖励</li>
+<li>梯度上升：计算目标函数对策略参数$\theta$的梯度 $\nabla_\theta J(\theta)$，并沿梯度方向更新参数：<script type="math/tex; mode=display">
+\theta \leftarrow \theta + \alpha \nabla_\theta J(\theta)</script></li>
+</ol>
+<h3 id="策略梯度定理"><a href="#策略梯度定理" class="headerlink" title="策略梯度定理"></a>策略梯度定理</h3><p>梯度 $\nabla_\theta J(\theta)$ 的数学形式为：</p>
+<script type="math/tex; mode=display">
+\nabla_\theta J(\theta)=\mathbb{E}_{\tau \sim \pi_\theta}\left[\sum_{t=0}^T \nabla_\theta \log \pi_\theta\left(a_t \mid s_t\right) \cdot Q^{\pi_\theta}\left(s_t, a_t\right)\right]</script><ul>
+<li>$\log \pi_\theta(a_t|s_t)$：策略的对数概率  </li>
+<li>$Q^{\pi_\theta}(s_t, a_t)$：状态-动作值函数（即从$s_t$执行$a_t$后的累计奖励期望）</li>
+</ul>
+<h3 id="经典算法：REINFORCE"><a href="#经典算法：REINFORCE" class="headerlink" title="经典算法：REINFORCE"></a>经典算法：REINFORCE</h3><p>REINFORCE 是最简单的策略梯度算法，通过蒙特卡洛采样估计梯度：</p>
+<ol>
+<li>用当前策略 $\pi_\theta$ 生成一条轨迹 $\tau = (s_0, a_0, r_0, \dots, s_T)$</li>
+<li>计算轨迹的累计奖励 $R(\tau) = \sum_{t=0}^T \gamma^t r_t$（$\gamma$为折扣因子）</li>
+<li>更新策略参数：<script type="math/tex; mode=display">
+\theta \leftarrow \theta+\alpha \gamma^t R(\tau) \nabla_\theta \log \pi_\theta\left(a_t \mid s_t\right)</script></li>
+</ol>
+<h3 id="举例1（离散型动作）"><a href="#举例1（离散型动作）" class="headerlink" title="举例1（离散型动作）"></a>举例1（离散型动作）</h3><p><strong>CartPole（平衡杆问题）</strong></p>
+<ul>
+<li>目标：控制小车左右移动，使杆子保持直立不倒</li>
+<li>状态$s$：小车位置、速度、杆子角度、角速度</li>
+<li>动作$a$：离散（左移/右移）或连续（施加的力）</li>
+<li>奖励$r$：每步杆子未倒下时+1，倒下后终止</li>
+</ul>
+<p><strong>PG实现步骤（以REINFORCE为例）</strong></p>
+<ol>
+<li>初始化策略网络：输入状态s，输出动作概率（如左移概率0.7，右移0.3）</li>
+<li>采样轨迹：根据当前策略运行游戏，得到轨迹 $\tau = (s_0, a_0, r_0, \dots, s_T)$</li>
+<li>计算梯度：对每一步t，计算 $\nabla_\theta \log \pi_\theta(a_t|s_t)$，乘以累计奖励 $R(\tau)$</li>
+<li>更新策略：沿梯度方向调整 $\theta$，使高奖励动作的概率增加</li>
+</ol>
+<p>经过多次迭代，策略会学会在杆子右倾时选择左移动作（反之亦然），最终保持平衡</p>
+<h3 id="举例2（连续型动作）"><a href="#举例2（连续型动作）" class="headerlink" title="举例2（连续型动作）"></a>举例2（连续型动作）</h3><p>当动作空间是连续的（例如机器人控制、自动驾驶中的转向角度等），策略梯度方法可以通过以下方式输出连续动作：</p>
+<ol>
+<li>参数学习：策略网络 $\pi_\theta(a|s)$ 不再输出离散动作的概率分布，而是输出连续动作的概率分布参数，通常选择高斯分布（正态分布），其参数为：<ul>
+<li>均值 $\mu$：表示动作的中心值（如转向角度为0.5弧度）</li>
+<li>标准差 $\sigma$（或对数标准差 $\log \sigma$）：表示动作的探索范围（$\sigma=0.1$表示小幅随机扰动）</li>
+</ul>
+</li>
+</ol>
+<p>代码示例：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PolicyNetwork</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, state_dim, action_dim</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__()</span><br><span class="line">        self.fc1 = nn.Linear(state_dim, <span class="number">64</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">64</span>, <span class="number">64</span>)</span><br><span class="line">        self.mu_head = nn.Linear(<span class="number">64</span>, action_dim)    <span class="comment"># 输出均值</span></span><br><span class="line">        self.log_std_head = nn.Linear(<span class="number">64</span>, action_dim)  <span class="comment"># 输出对数标准差</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, state</span>):</span><br><span class="line">        x = torch.relu(self.fc1(state))</span><br><span class="line">        x = torch.relu(self.fc2(x))</span><br><span class="line">        mu = torch.tanh(self.mu_head(x))  <span class="comment"># 均值限制在[-1,1]（假设动作范围）</span></span><br><span class="line">        log_std = self.log_std_head(x)    <span class="comment"># 对数标准差</span></span><br><span class="line">        <span class="keyword">return</span> mu, log_std</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>动作采样：在状态$s$下，策略网络输出均值和标准差后，通过重参数化技巧采样动作：<script type="math/tex; mode=display">
+a \sim \mathcal{N}(\mu_\theta(s), \sigma_\theta(s))</script>代码示例：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">select_action</span>(<span class="params">state</span>):</span><br><span class="line">    mu, log_std = policy_network(state)</span><br><span class="line">    std = torch.exp(log_std)  <span class="comment"># 保证标准差为正</span></span><br><span class="line">    normal_dist = torch.distributions.Normal(mu, std)</span><br><span class="line">    action = normal_dist.rsample()  <span class="comment"># 可导的采样</span></span><br><span class="line">    <span class="keyword">return</span> action.clamp(-<span class="number">1.0</span>, <span class="number">1.0</span>)  <span class="comment"># 限制动作范围</span></span><br></pre></td></tr></table></figure></li>
+<li>策略梯度的计算：连续动作空间的策略梯度公式与离散情况类似，但需使用连续概率密度函数（PDF）的对数：<script type="math/tex; mode=display">
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^T \nabla_\theta \log \pi_\theta(a_t|s_t) \cdot Q^{\pi_\theta}(s_t, a_t) \right]</script>其中 $\log \pi_\theta(a_t|s_t)$ 是高斯分布的对数概率密度：<script type="math/tex; mode=display">
+\log \pi_\theta(a_t|s_t) = -\frac{(a_t - \mu_\theta(s_t))^2}{2 \sigma_\theta(s_t)^2} - \log \sigma_\theta(s_t) - \text{常数}</script>代码示例：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">compute_loss</span>(<span class="params">states, actions, rewards</span>):</span><br><span class="line">    mu, log_std = policy_network(states)</span><br><span class="line">    std = torch.exp(log_std)</span><br><span class="line">    normal_dist = torch.distributions.Normal(mu, std)</span><br><span class="line">    log_probs = normal_dist.log_prob(actions)  <span class="comment"># 计算对数概率</span></span><br><span class="line">    loss = -log_probs * rewards  <span class="comment"># 梯度上升转化为梯度下降</span></span><br><span class="line">    <span class="keyword">return</span> loss.mean()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>具体例子：连续动作的平衡杆问题</strong></p>
+<p>假设我们需要控制小车的连续推力（范围$[-1, 1]$）：</p>
+<ol>
+<li>状态$s$：杆子角度、角速度、小车位置、速度</li>
+<li>动作$a$：推力值（如0.3表示向右的力，-0.8表示向左的力）</li>
+<li>策略网络：输出均值$\mu \in [-1,1]$和标准差$\sigma$（探索噪声）</li>
+<li>训练过程：<ul>
+<li>采样动作 $a \sim \mathcal{N}(\mu, \sigma)$</li>
+<li>执行动作后获得奖励（如杆子保持直立的时间）</li>
+<li>用策略梯度更新网络，使高奖励动作的$\mu$向$a$靠近，同时自适应调整$\sigma$</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>离散动作：策略网络输出离散动作的概率分布（如Softmax）</li>
+<li>连续动作：策略网络输出高斯分布的参数（$\mu, \sigma$），通过采样得到连续值  </li>
+<li>核心公式：$\nabla_\theta J(\theta) = \mathbb{E}[\nabla_\theta \log \pi_\theta(a|s) \cdot Q(s,a)]$，其中$\log \pi_\theta(a|s)$需按连续分布计算</li>
+</ul>
+<hr>
+<h2 id="PG与Q-Learning差异"><a href="#PG与Q-Learning差异" class="headerlink" title="PG与Q-Learning差异"></a>PG与Q-Learning差异</h2><p>以下是两者的核心对比：</p>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.64e2128tb1.webp"  alt="diff"></p>
+<h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><p><strong>场景：CartPole（平衡杆问题）</strong></p>
+<ul>
+<li>状态$s$：杆子角度、角速度、小车位置、速度</li>
+<li>动作$a$：离散（左/右移动）或连续（施加的力）</li>
+<li>奖励$r$：每步杆子未倒下时+1，倒下后终止</li>
+</ul>
+<h4 id="Q-Learning-的实现（离散动作）"><a href="#Q-Learning-的实现（离散动作）" class="headerlink" title="Q-Learning 的实现（离散动作）"></a>Q-Learning 的实现（离散动作）</h4><ol>
+<li>Q表或Q网络：维护 $Q(s,a)$，输入状态$s$，输出每个动作的Q值（如左/右）  </li>
+<li><p>动作选择：</p>
+<ul>
+<li>训练时：ε-greedy（以概率ε随机探索，否则选$\arg\max_a Q(s,a)$）  </li>
+<li>测试时：纯贪婪策略 $\arg\max_a Q(s,a)$  </li>
+</ul>
+</li>
+<li><p>更新规则（TD学习）：  </p>
+<script type="math/tex; mode=display">
+Q(s,a) \leftarrow Q(s,a) + \alpha \left[ r + \gamma \max_{a'} Q(s',a') - Q(s,a) \right]</script><p>其中 $s’$ 是下一状态，$\gamma$ 是折扣因子</p>
+</li>
+</ol>
+<p>代码示例（DQN）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Q网络预测Q值</span></span><br><span class="line">q_values = q_network(state)</span><br><span class="line"><span class="comment"># ε-greedy选择动作</span></span><br><span class="line"><span class="keyword">if</span> np.random.rand() &lt; epsilon:</span><br><span class="line">    action = env.action_space.sample()  <span class="comment"># 随机探索</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    action = np.argmax(q_values)  <span class="comment"># 贪婪动作</span></span><br><span class="line"><span class="comment"># 更新Q网络（最小化TD误差）</span></span><br><span class="line">loss = (target_q - q_values[action]) ** <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p>特点：  </p>
+<ul>
+<li>只能处理离散动作（如左/右）  </li>
+<li>策略隐含在Q值中（$\arg\max Q$ 是确定性策略）  </li>
+</ul>
+<h4 id="策略梯度的实现（连续动作）"><a href="#策略梯度的实现（连续动作）" class="headerlink" title="策略梯度的实现（连续动作）"></a>策略梯度的实现（连续动作）</h4><ol>
+<li>策略网络：输出动作分布参数（如高斯分布的均值$\mu$和标准差$\sigma$）  </li>
+<li>动作采样：<ul>
+<li>从分布中采样连续动作 $a \sim \mathcal{N}(\mu, \sigma)$  </li>
+<li>例如：输出推力值 $a \in [-1,1]$  </li>
+</ul>
+</li>
+<li>更新规则（REINFORCE）：  <script type="math/tex; mode=display">
+\theta \leftarrow \theta + \alpha \nabla_\theta \log \pi_\theta(a|s) \cdot R(\tau)</script>其中 $R(\tau)$ 是轨迹的总奖励</li>
+</ol>
+<p>代码示例（PG）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 策略网络输出均值和标准差</span></span><br><span class="line">mu, log_std = policy_network(state)</span><br><span class="line">std = torch.exp(log_std)</span><br><span class="line">normal_dist = torch.distributions.Normal(mu, std)</span><br><span class="line">action = normal_dist.rsample()  <span class="comment"># 可导采样</span></span><br><span class="line"><span class="comment"># 计算对数概率</span></span><br><span class="line">log_prob = normal_dist.log_prob(action)</span><br><span class="line"><span class="comment"># 更新策略网络（最大化期望奖励）</span></span><br><span class="line">loss = -log_prob * discounted_reward</span><br></pre></td></tr></table></figure></p>
+<p>特点：  </p>
+<ul>
+<li>直接输出连续动作（如推力值0.73）  </li>
+<li>策略本身是随机的（通过$\sigma$控制探索）  </li>
+</ul>
+<h3 id="关键区别总结"><a href="#关键区别总结" class="headerlink" title="关键区别总结"></a>关键区别总结</h3><ol>
+<li>策略 vs Q值：  <ul>
+<li>PG显式学习策略 $\pi_\theta(a|s)$，适合复杂动作空间（如机器人控制）  </li>
+<li>Q-Learning隐式策略依赖Q值最大化，难以处理连续动作（需DDPG等扩展）  </li>
+</ul>
+</li>
+<li>探索方式：  <ul>
+<li>PG通过策略的随机性自然探索（如高斯噪声）  </li>
+<li>Q-Learning需人工设计探索（如ε-greedy）  </li>
+</ul>
+</li>
+<li>适用场景：  <ul>
+<li>PG：连续控制（如机械臂抓取）、需要随机策略的任务（如博弈）  </li>
+<li>Q-Learning：离散动作空间（如游戏AI、广告推荐）  </li>
+</ul>
+</li>
+</ol>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Q-Learning/">Q-Learning</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Policy-Gradient/">Policy Gradient</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2025/05/14/%E6%96%AF%E8%AF%BA%E5%85%8B%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD/"
+                                   title="斯诺克专业术语"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">斯诺克专业术语</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2025/04/21/%E7%9F%A9%E9%98%B5%E7%9A%84%E7%A7%A9/"
+                                   title="矩阵的秩"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">矩阵的秩</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%EF%BC%88Policy-Gradient%EF%BC%89%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">策略梯度（Policy Gradient）简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">策略梯度定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%EF%BC%9AREINFORCE"><span class="nav-number">1.3.</span> <span class="nav-text">经典算法：REINFORCE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B1%EF%BC%88%E7%A6%BB%E6%95%A3%E5%9E%8B%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">举例1（离散型动作）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B2%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%9E%8B%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">举例2（连续型动作）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PG%E4%B8%8EQ-Learning%E5%B7%AE%E5%BC%82"><span class="nav-number">2.</span> <span class="nav-text">PG与Q-Learning差异</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">举例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q-Learning-%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%88%E7%A6%BB%E6%95%A3%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">Q-Learning 的实现（离散动作）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">策略梯度的实现（连续动作）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB%E6%80%BB%E7%BB%93"><span class="nav-number">2.2.</span> <span class="nav-text">关键区别总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%EF%BC%88Policy-Gradient%EF%BC%89%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">策略梯度（Policy Gradient）简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">策略梯度定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%EF%BC%9AREINFORCE"><span class="nav-number">1.3.</span> <span class="nav-text">经典算法：REINFORCE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B1%EF%BC%88%E7%A6%BB%E6%95%A3%E5%9E%8B%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">举例1（离散型动作）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B2%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%9E%8B%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">举例2（连续型动作）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PG%E4%B8%8EQ-Learning%E5%B7%AE%E5%BC%82"><span class="nav-number">2.</span> <span class="nav-text">PG与Q-Learning差异</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">举例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Q-Learning-%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%88%E7%A6%BB%E6%95%A3%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">2.1.1.</span> <span class="nav-text">Q-Learning 的实现（离散动作）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%88%E8%BF%9E%E7%BB%AD%E5%8A%A8%E4%BD%9C%EF%BC%89"><span class="nav-number">2.1.2.</span> <span class="nav-text">策略梯度的实现（连续动作）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB%E6%80%BB%E7%BB%93"><span class="nav-number">2.2.</span> <span class="nav-text">关键区别总结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

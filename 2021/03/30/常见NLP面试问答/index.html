@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            常见NLP面试问答 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://tricktreat.github.io/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        常见NLP面试问答
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2021-03-30 22:58:28</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Mar 30 2021 22:58:28 GMT+0000">2021-03-30 22:58:28</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/Algorithm/">Algorithm</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>NLP面试中的经典八股文。</p>
+<span id="more"></span>
+<h2 id="1-HMM-vs-MEMM-vs-CRF"><a href="#1-HMM-vs-MEMM-vs-CRF" class="headerlink" title="1. HMM vs MEMM vs CRF"></a>1. HMM vs MEMM vs CRF</h2><h4 id="HMM-gt-MEMM"><a href="#HMM-gt-MEMM" class="headerlink" title="HMM -&gt; MEMM"></a>HMM -&gt; MEMM</h4><p>HMM模型中存在两个假设：</p>
+<ol>
+<li>输出观察值之间严格独立。MEMM解决了HMM输出独立性假设的问题。因为HMM只限定在了观测与状态之间的依赖，而MEMM引入自定义特征函数，不仅可以表达观测之间的依赖，还可表示当前观测与前后多个状态之间的复杂依赖。</li>
+<li>状态的转移过程中当前状态只与前一状态有关。但实际上序列标注问题不仅和单个词相关，而且和观察序列的长度，单词的上下文，等等相关。</li>
+</ol>
+<h4 id="MEMM-gt-CRF"><a href="#MEMM-gt-CRF" class="headerlink" title="MEMM -&gt; CRF:"></a>MEMM -&gt; CRF:</h4><ul>
+<li>CRF不仅解决了HMM输出独立性假设的问题，还解决了MEMM的标注偏置问题，MEMM容易陷入局部最优是因为只在局部做归一化，而CRF统计了全局概率，在做归一化时考虑了数据在全局的分布，而不是仅仅在局部归一化，这样就解决了MEMM中的标记偏置的问题。使得序列标注的解码变得最优解。</li>
+<li>HMM、MEMM属于有向图，所以考虑了x与y的影响，但没将x当做整体考虑进去（这点问题应该只有HMM）。CRF属于无向图，没有这种依赖性，克服此问题。</li>
+</ul>
+<hr>
+<h2 id="2-常见的几种优化器"><a href="#2-常见的几种优化器" class="headerlink" title="2. 常见的几种优化器"></a>2. 常见的几种优化器</h2><ol>
+<li>SGD</li>
+</ol>
+<script type="math/tex; mode=display">
+\theta \leftarrow \theta-\eta \nabla_{\theta} J(\theta)</script><p>$\eta$ 是学习率，$J(\theta)$ 是损失函数</p>
+<ol>
+<li>Momentum</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+v_{t}=\gamma v_{t-1}+\eta \nabla_{\theta} J(\theta) \\
+\theta=\theta-v_{t}
+\end{array}</script><p>当我们将一个小球从山上滚下来时，没有阻力的话，它的动量会越来越大，但是如果遇到了阻力，速度就会变小。<br>加入的这一项，可以使得梯度方向不变的维度上速度变快，梯度方向有所改变的维度上的更新速度变慢，这样就可以加快收敛并减小震荡。</p>
+<p><strong>超参数设定值:  一般 γ 取值 0.9 左右。</strong></p>
+<ol>
+<li>Nesterov</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+v_{t}=\gamma v_{t-1}+\eta \nabla_{\theta} J\left(\theta-\gamma v_{t-1}\right) \\
+\theta=\theta-v_{t}
+\end{array}</script><p>用 $\theta-\gamma v_{t-1}$ 来近似当做参数下一步会变成的值，则在计算梯度时，不是在当前位置，而是未来的位置上。</p>
+<ol>
+<li>AdaGrad</li>
+</ol>
+<p>这个算法就可以对低频的参数做较大的更新，对高频的做较小的更新，也因此，对于稀疏的数据它的表现很好，很好地提高了 SGD 的鲁棒性。</p>
+<script type="math/tex; mode=display">
+\theta_{t+1, i}=\theta_{t, i}-\frac{\eta}{\sqrt{G_{t, i i}+\epsilon}} \cdot g_{t, i}</script><p>其中 $g_{t,i}$ 是 $t$ 时刻参数 $\theta_{i}$ 的梯度，$G_{t, ii}$ (对角矩阵 $G_t$ 的 $(i,i)$ 元素)就是 $t$ 时刻参数 $\theta_i$ 的梯度平方和。</p>
+<p>超参数设定值：一般 $\eta$ 选取0.01</p>
+<ol>
+<li>RMSprop</li>
+</ol>
+<p>RMSprop 都是为了解决 Adagrad 学习率急剧下降问题的：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+E\left[g^{2}\right]_{t}=0.9 E\left[g^{2}\right]_{t-1}+0.1 g_{t}^{2} \\
+\theta_{t+1}=\theta_{t}-\frac{\eta}{\sqrt{E\left[g^{2}\right]_{t}+\epsilon}} g_{t}
+\end{array}</script><p>使用的是指数加权平均，旨在消除梯度下降中的摆动，与Momentum的效果一样，某一维度的导数比较大，则指数加权平均就大，某一维度的导数比较小，则其指数加权平均就小，这样就保证了各维度导数都在一个量级，进而减少了摆动。允许使用一个更大的学习率 $\eta$ 。</p>
+<p>超参数设定值： $\gamma$ 为 0.9，$\eta$ 为 0.001</p>
+<ol>
+<li>Adam</li>
+</ol>
+<p>相当于 RMSprop + Momentum：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+m_{t}=\beta_{1} m_{t-1}+\left(1-\beta_{1}\right) g_{t} \\
+v_{t}=\beta_{2} v_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2}
+\end{array}</script><p>除了像 momentum 一样保持了过去梯度 $m_t$ 的指数衰减平均值， 也像Adadelta 和 RMSprop 一样存储了过去梯度的平方 $v_t$ 的指数衰减平均值。</p>
+<p>如果 $m_t$ 和 $v_t$ 都被初始化为0，那么它们会向0偏置，要做偏差纠正。通过计算偏差校正后的 $m_t$ 和 $v_t$ 来抵消这些偏差：</p>
+<script type="math/tex; mode=display">
+\hat{m}_t = \frac{m_t} {1-\beta_1^t} \\
+\hat{v}_t = \frac{v_t} {1-\beta_2^t}</script><p>梯度更新规则：</p>
+<script type="math/tex; mode=display">
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t}+\epsilon} \hat{m}_t</script><p>超参数设定值： $\beta_1$ 为 0.9，$\beta_2$ 为0.999，$\epsilon$ 为 $10^{-8}$</p>
+<hr>
+<h2 id="3-Self-Attention添加head数量是否会增加计算复杂度？"><a href="#3-Self-Attention添加head数量是否会增加计算复杂度？" class="headerlink" title="3. Self-Attention添加head数量是否会增加计算复杂度？"></a>3. Self-Attention添加head数量是否会增加计算复杂度？</h2><p>不会。self-attention的时间复杂度为$O(n^2 \times d)$，$n$ 为序列长度，$d$ 为维度。假设分成 $h$ 个头，那么张量shape为 $h \times n \times m$ 。其中 $d = h \times m$ 。每个头做self-attention的时间复杂度为 $O(n^2 \times m)$ ，那么 $h$ 个头的总时间复杂度为 $O(h \times n^2 \times m) = O(n^2 \times d)$ 。因此增加头的数量不会导致计算复杂度增加。</p>
+<hr>
+<h2 id="4-L1和L2正则化"><a href="#4-L1和L2正则化" class="headerlink" title="4. L1和L2正则化"></a>4. L1和L2正则化</h2><h3 id="L1正则化"><a href="#L1正则化" class="headerlink" title="L1正则化"></a>L1正则化</h3><ul>
+<li>优点：输出具有稀疏性，即产生一个稀疏模型，进而可以用于特征选择；一定程度上，L1可以防止过拟合</li>
+<li>缺点：非稀疏情况下计算效率低</li>
+</ul>
+<h3 id="L2正则化"><a href="#L2正则化" class="headerlink" title="L2正则化"></a>L2正则化</h3><ul>
+<li>优点：计算效率高（因为存在解析解）；可以防止模型过拟合</li>
+<li>缺点：非稀疏输出；无特征选择</li>
+</ul>
+<hr>
+<h2 id="5-方差与偏差"><a href="#5-方差与偏差" class="headerlink" title="5. 方差与偏差"></a>5. 方差与偏差</h2><blockquote>
+<p>偏差：用所有可能的训练数据集训练出的所有模型的输出的平均值与真实模型的输出值之间的差异。<br>方差：不同的训练数据集训练出的模型输出值之间的差异。</p>
+</blockquote>
+<ul>
+<li>欠拟合：高偏差，低方差</li>
+<li>过拟合：高偏差，高方差</li>
+</ul>
+<hr>
+<h2 id="6-正负样例分布不均衡解决办法"><a href="#6-正负样例分布不均衡解决办法" class="headerlink" title="6. 正负样例分布不均衡解决办法"></a>6. 正负样例分布不均衡解决办法</h2><ol>
+<li>过采样与欠采样：<ul>
+<li>过抽样：通过增加分类中少数类样本的数量来实现样本均衡</li>
+<li>欠抽样：通过减少分类中多数类样本的数量来实现样本均衡</li>
+</ul>
+</li>
+<li>通过正负样本的惩罚权重解决样本不均衡：对于分类中不同样本数量的类别分别赋予不同的权重，一般是小样本量类别权重高，大样本量类别权重低。</li>
+</ol>
+<hr>
+<h2 id="7-词汇表太大，softmax计算如何优化？"><a href="#7-词汇表太大，softmax计算如何优化？" class="headerlink" title="7. 词汇表太大，softmax计算如何优化？"></a>7. 词汇表太大，softmax计算如何优化？</h2><p>Hierarchical Softmax根据单词出现的频率来构建一颗霍夫曼树。树的叶子结点代表一个单词，在每一个非叶子节点处都需要作一次二分类，走左边的概率和走右边的概率，这里用逻辑回归的公式表示：</p>
+<ul>
+<li>正类别：$\sigma\left(X_{i} \theta\right)=\frac{1}{1+e^{-x_{i} \theta}}$</li>
+<li>负类别：$1-\sigma\left(X_{i} \theta\right)$<br>每个词都会有一条路径，根据训练样本的特征向量 $X_i$ 预测目标label词 $Y_i$ 的概率为：<script type="math/tex; mode=display">
+P\left(Y_{i} \mid X_{i}\right)=\prod_{j=2}^{l} P\left(d_{j} \mid X_{i}, \theta_{j-1}\right) \\
+P\left(d_{j} \mid X_{i}, \theta_{j-1}\right)=\left\{\begin{array}{ll}
+\sigma\left(X_{i} \theta\right), & \text { if } \mathrm{d_j}=1 \\
+1-\sigma\left(X_{i} \theta\right), & \text { if } \mathrm{d_j}=0
+\end{array}\right.</script>详细见：</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/eniac1946/p/8818892.html" >层次softmax函数（hierarchical softmax）<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/56139075" >Hierarchical Softmax（层次Softmax）<i class="fas fa-external-link-alt"></i></a><h2 id="8-LSTM如何解决梯度弥散或爆炸？"><a href="#8-LSTM如何解决梯度弥散或爆炸？" class="headerlink" title="8. LSTM如何解决梯度弥散或爆炸？"></a>8. LSTM如何解决梯度弥散或爆炸？</h2>LSTM的介绍见：<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/44124492" >LSTM：RNN最常用的变体<i class="fas fa-external-link-alt"></i></a><br>梯度问题见：</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/bonelee/p/10475453.html" >LSTM如何解决梯度消失或爆炸的？<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.zhihu.com/question/34878706" >LSTM如何来避免梯度弥散和梯度爆炸？<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="9-简述EM算法的流程"><a href="#9-简述EM算法的流程" class="headerlink" title="9. 简述EM算法的流程"></a>9. 简述EM算法的流程</h2><p>输入：观察数据 $x=\left(x^{(1)}, x^{(2)}, \ldots x^{(m)}\right),$ 联合分布 $p(x, z ; \theta),$ 条件分布 $p(z \mid x ; \theta),$ 最大迭代次数 $J$</p>
+<ol>
+<li>随机初始化模型参数 $\theta$ 的初值 $\theta^{0}$</li>
+<li>$for \quad j \quad from \quad 1 \quad to \quad j$:<br>a) E步。计算联合分布的条件概率期望：<script type="math/tex; mode=display">
+\begin{array}{c}
+Q_{i}\left(z^{(i)}\right)=P\left(z^{(i)} \mid x^{(i)}, \theta^{j}\right) \\
+L\left(\theta, \theta^{j}\right)=\sum_{i=1}^{m} \sum_{z^{(i)}} Q_{i}\left(z^{(i)}\right) \log P\left(x^{(i)}, z^{(i)} ; \theta\right)
+\end{array}</script>b) M步。极大化 $L\left(\theta, \theta^{j}\right),$ 得到 $\theta^{j+1}$ :<script type="math/tex; mode=display">
+\theta^{j+1}=\underset{\theta}{\arg \max } L\left(\theta, \theta^{j}\right)</script>c) 如果 $\theta^{j+1}$ 收敛, 则算法结束。否则继续回到步骤 a) 进行E步迭代<br>输出：模型参数 $\theta$ 。<h3 id="具体示例可见："><a href="#具体示例可见：" class="headerlink" title="具体示例可见："></a>具体示例可见：</h3></li>
+</ol>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36331115" >人人都懂EM算法<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/v_JULY_v/article/details/81708386" >如何通俗理解EM算法<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/pinard/p/6912636.html" >EM算法原理总结<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="10-LR、SVM、决策树的对比"><a href="#10-LR、SVM、决策树的对比" class="headerlink" title="10. LR、SVM、决策树的对比"></a>10. LR、SVM、决策树的对比</h2><h3 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>实现简单高效</li>
+<li>对观测样本概率输出<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4></li>
+<li>特征空间太大时表现不太好</li>
+<li>对于非线性特征须要作特征变换</li>
+<li>需要额外添加正则项<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h3><h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4></li>
+<li>能够处理高维特征 </li>
+<li>自带正则项</li>
+<li>使用核函数轻松应对非线性特征空间</li>
+<li>分类面不依赖于全部数据<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4></li>
+<li>核函数选择较难</li>
+<li>样本量非常大，核函数映射维度非常高时，计算量过大</li>
+<li>对缺失数据敏感</li>
+</ol>
+<h3 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h3><h4 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h4><ol>
+<li>决策过程直观</li>
+<li>可以处理非线性特征<h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4></li>
+<li>容易过拟合</li>
+<li>无法输出概率，只能输出分类结果</li>
+</ol>
+<hr>
+<h2 id="11-SVM常用核函数"><a href="#11-SVM常用核函数" class="headerlink" title="11. SVM常用核函数"></a>11. SVM常用核函数</h2><ol>
+<li>线性核函数</li>
+<li>多项式核函数</li>
+<li>高斯核函数</li>
+<li>sigmoid核函数</li>
+</ol>
+<p>详细见：<a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/batuwuhanpei/article/details/52354822" >svm常用核函数<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h2 id="12-k-means与EM联系与区别"><a href="#12-k-means与EM联系与区别" class="headerlink" title="12. k-means与EM联系与区别"></a>12. k-means与EM联系与区别</h2><blockquote>
+<p>两者都是无监督学习。</p>
+</blockquote>
+<p>k-means可以看成是两阶段的：</p>
+<ul>
+<li>第一阶段，确定每一个样本所属的聚类，在这个过程中，聚类的中心保持不变。可以看作EM的E步。</li>
+<li>第二阶段，确定聚类中心，在这个过程中，每一个样本所属的类别保持不变。可以看作EM的M步。</li>
+</ul>
+<p>EM算法和K-Means算法的迭代过程比较类似，不同的是K-Means算法中每次对参数的更新是硬猜测，而EM中每次对参数的更新是软猜测；相同的是，两个算法都可能得到局部最优解，采用不同的初始参数迭代会有利于得到全局最优解。</p>
+<p>详细见：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/2c42c567e893" >机器学习笔记11: K-Means算法和EM算法<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/youyouzaLearn/p/9471409.html" >k-Means与EM之间的关系<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="13-Xavier原理"><a href="#13-Xavier原理" class="headerlink" title="13. Xavier原理"></a>13. Xavier原理</h2><blockquote>
+<p>为了使得网络中信息更好的流动，每一层输出的方差应该尽量相等。</p>
+</blockquote>
+<p>先贴结论：</p>
+<script type="math/tex; mode=display">
+w \sim U\left[-\frac{\sqrt{6}}{\sqrt{n_{i n}+n_{\text {out }}}}, \frac{\sqrt{6}}{\sqrt{n_{\text {in }}+n_{\text {out }}}}\right]</script><p>具体的公式推导见：</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27919794" >深度前馈网络与Xavier初始化原理
+<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/VictoriaW/article/details/73000632" >深度学习之参数初始化（一）——Xavier初始化<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/f2d800388d1c" >一文搞懂深度网络初始化（Xavier and Kaiming initialization）<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="14-目标检测综述"><a href="#14-目标检测综述" class="headerlink" title="14. 目标检测综述"></a>14. 目标检测综述</h2><h3 id="Two-stage方法"><a href="#Two-stage方法" class="headerlink" title="Two-stage方法"></a>Two-stage方法</h3><h4 id="R-CNN"><a href="#R-CNN" class="headerlink" title="R-CNN"></a>R-CNN</h4><ol>
+<li>通过Selective Search（SS）方法筛选出一些备选的区域框（Region proposal）；</li>
+<li>CNN提取特征，SVM分类；</li>
+<li>分类完成后，对bbox进行回归，修正bbox中的坐标的值，得到更精确的bbox。</li>
+</ol>
+<h4 id="SPP-net"><a href="#SPP-net" class="headerlink" title="SPP-net"></a>SPP-net</h4><ul>
+<li>R-CNN中，每个区域都要过一次CNN 提取特征。而SPP-net中，一张图片只需要过一次CNN，特征提取是针对整张图进行的，候选区域的框定以及特征向量化是在CNN的feature map层面进行的。</li>
+<li>提出自适应池化的方法，它分别对输入的feature map（可以由不定尺寸的输入图像进CNN得到，也可由region proposal 框定后进CNN 得到）进行多个尺度（实际上就是改变pooling 的size 和stride）的池化，分别得到特征，并进行向量化后拼接起来。无需像R-CNN一样对所有的Region proposal进行缩放得到相同的大小。</li>
+</ul>
+<h4 id="Fast-RCNN"><a href="#Fast-RCNN" class="headerlink" title="Fast RCNN"></a>Fast RCNN</h4><ul>
+<li>提出了ROI pooling 的结构，实际上就是一种特殊的SPP（相当于SPP 的金字塔层数设置为了1，即只计算一次池化）。</li>
+<li>将最终的SVM分类去掉了，直接做成了端到端的一个网络结构。对这个网络进行多任务训练，即分类和回归，得到物体类别和bbox的位置。</li>
+</ul>
+<h4 id="Faster-R-CNN"><a href="#Faster-R-CNN" class="headerlink" title="Faster R-CNN"></a>Faster R-CNN</h4><p>提出RPN网络：利用一个与检测器共享部分权重的RPN 网络来直接对图片生成候选框，然后基于RPN 得到的候选框进行分类和位置回归：</p>
+<blockquote>
+<p>定义anchor box 的尺寸（scale）和比例（aspect ratio）。按上图，预先定义了k个anchor box。在实际的RPN网络实现中，共采用了3个不同的scale（大中小）和3种不同的比例（宽中窄）。然后通过组合，得到了9个anchor box，即 $k=9$ 。在训练RPN的过程中，对于每个feature map上的像素点，都生成 $k$ 个anchor box 的预测。由于预测需要有两个输出用来分类（前景/背景），以及4个用来定位 $(x, y, w, h)$ ，所以RPN的分类层生成的是 $2k$ 维度的向量，RPN的回归层生成的是 $4k$ 维度的向量。</p>
+</blockquote>
+<h3 id="One-stage方法"><a href="#One-stage方法" class="headerlink" title="One-stage方法"></a>One-stage方法</h3><h4 id="YOLO-v1"><a href="#YOLO-v1" class="headerlink" title="YOLO v1"></a>YOLO v1</h4><p>YOLO的过程如下：首先，将整个图像分成 $S \times S$ 的小格子（cell），对于每个格子，分别预测 $B$ 个bbox，以及 $C$ 个类别的条件概率（注意是条件概率，即已经确定有目标的情况下，该目标属于哪个类别的概率，因此不需要对每个bbox分别预测类别，每个格子只预测一个概率向量即可）。每个bbox都有5个变量，分别是四个描述位置坐标的值，以及一个objectness，即是否有目标（相当于RPN 网络里的那个前景/背景预测）。这样一来，每个格子需要输出 $5B+C$ 维度的向量，因此，CNN最终的输出的tensor的形态为 $S \times S \times (5B + C)$ 。</p>
+<p>YOLO的训练过程如下：对于每个GT bbox，找到它的中心位置，该中心位置所在的cell负责该物体的预测。因此，对于该cell 中的输出，其objectness应该尽可能的增加，同时其位置坐标尽可能拟合GTbbox（注意，由于每个cell可以输出多个备选的bbox，因此这里需要选择和GT最相近的那个预测的bbox进行调优）。另外，根据其实际的类别，对类别概率向量进行优化，使其输出真实的类别。对于不负责任何类别的那些cell 的预测值，不必进行优化。</p>
+<h4 id="SSD"><a href="#SSD" class="headerlink" title="SSD"></a>SSD</h4><p>SSD 也是一种one-stage的直接检测的模型。它相比起YOLO v1主要的改进点在于两个方面：</p>
+<ol>
+<li>利用了先验框（Prior Box）的方法，预先给定scale 和aspect ratio，实际上就是之前Faster R-CNN 中的anchor box的概念。</li>
+<li>多尺度（multi-scale）预测，即对CNN输出的后面的多个不同尺度的feature map 都进行预测。</li>
+</ol>
+<h4 id="YOLO-v2"><a href="#YOLO-v2" class="headerlink" title="YOLO v2"></a>YOLO v2</h4><ol>
+<li>对所有卷积层增加了BN层。</li>
+<li>用高分辨率的图片fine-tune 网络10个epoch。</li>
+<li>通过k-means进行聚类，得到 $k$ 个手工选择的先验框（Prior anchor box）。这里的聚类用到的距离函数为 $1 - IoU$ ，这个距离函数可以很直接地反映出IoU 的情况。</li>
+<li>直接预测位置坐标。之前的坐标回归实际上回归的不是坐标点，而是需要对预测结果做一个变换才能得到坐标点，即 $x = tx \times wa − xa$ （纵坐标同理），其中 $tx$ 为预测的直接结果。从该变换的形式可以看出，对于坐标点的预测不仅和直接预测位置结果相关，还和预测的宽和高也相关。因此，这样的预测方式可以使得任何anchor box可以出现在图像中的任意位置，导致模型可能不稳定。在YOLO v2 中，中心点预测结果为相对于该cell的角点的坐标（0-1 之间）。</li>
+<li>多尺度训练（随机选择一个缩放尺度）、跳连层（paththrough layer）将前面的fine-grained特征直接拼接到后面的feature map 中。</li>
+</ol>
+<h4 id="FPN"><a href="#FPN" class="headerlink" title="FPN"></a>FPN</h4><p>通过将所有scale 的feature map 进行打通和结合，兼顾了速度和准确率。</p>
+<p>FPN的block 结构分为两个部分：一个自顶向下通路（top-down pathway），另一个是侧边通路（lateral pathway）。所谓自顶向下通路，具体指的是上一个小尺寸的feature map（语义更高层）做2倍上采样，并连接到下一层。而侧边通路则指的是下面的feature map（高分辨率低语义）先利用一个1x1 的卷积核进行通道压缩，然后和上面下来的采样后结果进行合并。合并方式为逐元素相加（element-wise addition）。合并之后的结果在通过一个3x3的卷积核进行处理，得到该scale下的feature map。</p>
+<h4 id="RetinaNet"><a href="#RetinaNet" class="headerlink" title="RetinaNet"></a>RetinaNet</h4><p>RetinaNet 的最大的贡献不在于网络结构，而是在于提出了一个one-stage 检测的重要的问题，及其对应的解决方案。这个问题就是one-stage 为何比two-stage 的准确率低，两者的区别在哪里？解决方案就是平衡正负样本+平衡难易样本的focal loss。</p>
+<h4 id="Mask-R-CNN"><a href="#Mask-R-CNN" class="headerlink" title="Mask R-CNN"></a>Mask R-CNN</h4><p>本模型将实例分割（instance segmentation）与目标检测（object detection）两个任务相结合，并在两个任务上都达到了SOTA。</p>
+<p>整个过程的pipeline 如下：首先，输入图片，根据RoI进行RoIAlign操作，得到该区域内的特征，然后将该特征feature map 进行逐点sigmoid（pixel-wise sigmoid），用于产生mask。另外，还有两个支路用于分类和回归。</p>
+<h4 id="YOLO-v3"><a href="#YOLO-v3" class="headerlink" title="YOLO v3"></a>YOLO v3</h4><p>YOLO v3 是针对YOLO模型的又一次改进版本，是一个incremental improvement，并无太大创新，基本都是一些调优和trick。主要包括以下几个方面。</p>
+<ol>
+<li>用单类别的binary logistic 作为分类方式，代替全类别的softmax（和mask R-CNN 的mask 生成方式类似）。这样的好处在于可以处理有些数据集中有目标重叠的情况。</li>
+<li>YOLO v3采用了FPN网络做预测，并且沿用了k-means聚类选择先验框，v3中选择了9个prior box，并选择了三个尺度。</li>
+<li>backbone做了改进，从darknet-19变成了darknet-53，darknet-53除了3x3和1x1的交替以外，还加入了residual方法，因此层数得到扩展。</li>
+</ol>
+<h3 id="参考自"><a href="#参考自" class="headerlink" title="参考自"></a>参考自</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Hh5EioN_pVnstfHcR777VQ" >从R-CNN到YOLO，2020 图像目标检测算法综述<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<hr>
+<h2 id="15-过拟合的原因"><a href="#15-过拟合的原因" class="headerlink" title="15. 过拟合的原因"></a>15. 过拟合的原因</h2><ul>
+<li>训练集的数量和模型的复杂度不匹配，比如训练集太小或者模型太复杂</li>
+<li>训练集和测试集分布不一致</li>
+<li>训练集的噪声样本太多，导致模型只学习到了噪声特征，反而忽略了真实的输入输出关系</li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2021/04/07/%E5%86%B3%E7%AD%96%E6%A0%91/"
+                                   title="决策树"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">决策树</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2021/03/25/BERT%E3%80%81RoBerta%E3%80%81XLNet%E3%80%81ALBERT%E5%AF%B9%E6%AF%94/"
+                                   title="BERT、RoBerta、XLNet、ALBERT对比"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">BERT、RoBerta、XLNet、ALBERT对比</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HMM-vs-MEMM-vs-CRF"><span class="nav-number">1.</span> <span class="nav-text">1. HMM vs MEMM vs CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM-gt-MEMM"><span class="nav-number">1.0.1.</span> <span class="nav-text">HMM -&gt; MEMM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MEMM-gt-CRF"><span class="nav-number">1.0.2.</span> <span class="nav-text">MEMM -&gt; CRF:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">2. 常见的几种优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Self-Attention%E6%B7%BB%E5%8A%A0head%E6%95%B0%E9%87%8F%E6%98%AF%E5%90%A6%E4%BC%9A%E5%A2%9E%E5%8A%A0%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3. Self-Attention添加head数量是否会增加计算复杂度？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">4. L1和L2正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L1%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">L1正则化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.2.</span> <span class="nav-text">L2正则化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%81%8F%E5%B7%AE"><span class="nav-number">5.</span> <span class="nav-text">5. 方差与偏差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%AD%A3%E8%B4%9F%E6%A0%B7%E4%BE%8B%E5%88%86%E5%B8%83%E4%B8%8D%E5%9D%87%E8%A1%A1%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">6. 正负样例分布不均衡解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E8%AF%8D%E6%B1%87%E8%A1%A8%E5%A4%AA%E5%A4%A7%EF%BC%8Csoftmax%E8%AE%A1%E7%AE%97%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7. 词汇表太大，softmax计算如何优化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-LSTM%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%A2%AF%E5%BA%A6%E5%BC%A5%E6%95%A3%E6%88%96%E7%88%86%E7%82%B8%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">8. LSTM如何解决梯度弥散或爆炸？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%AE%80%E8%BF%B0EM%E7%AE%97%E6%B3%95%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">9. 简述EM算法的流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%A4%BA%E4%BE%8B%E5%8F%AF%E8%A7%81%EF%BC%9A"><span class="nav-number">9.1.</span> <span class="nav-text">具体示例可见：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-LR%E3%80%81SVM%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">10.</span> <span class="nav-text">10. LR、SVM、决策树的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LR"><span class="nav-number">10.1.</span> <span class="nav-text">LR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">10.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">10.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM"><span class="nav-number">10.2.</span> <span class="nav-text">SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-number">10.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-number">10.2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">10.3.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-2"><span class="nav-number">10.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="nav-number">10.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-SVM%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">11.</span> <span class="nav-text">11. SVM常用核函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-k-means%E4%B8%8EEM%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="nav-number">12.</span> <span class="nav-text">12. k-means与EM联系与区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Xavier%E5%8E%9F%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">13. Xavier原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0"><span class="nav-number">14.</span> <span class="nav-text">14. 目标检测综述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-stage%E6%96%B9%E6%B3%95"><span class="nav-number">14.1.</span> <span class="nav-text">Two-stage方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R-CNN"><span class="nav-number">14.1.1.</span> <span class="nav-text">R-CNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPP-net"><span class="nav-number">14.1.2.</span> <span class="nav-text">SPP-net</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fast-RCNN"><span class="nav-number">14.1.3.</span> <span class="nav-text">Fast RCNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">14.1.4.</span> <span class="nav-text">Faster R-CNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-stage%E6%96%B9%E6%B3%95"><span class="nav-number">14.2.</span> <span class="nav-text">One-stage方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YOLO-v1"><span class="nav-number">14.2.1.</span> <span class="nav-text">YOLO v1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">14.2.2.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YOLO-v2"><span class="nav-number">14.2.3.</span> <span class="nav-text">YOLO v2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FPN"><span class="nav-number">14.2.4.</span> <span class="nav-text">FPN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RetinaNet"><span class="nav-number">14.2.5.</span> <span class="nav-text">RetinaNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mask-R-CNN"><span class="nav-number">14.2.6.</span> <span class="nav-text">Mask R-CNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YOLO-v3"><span class="nav-number">14.2.7.</span> <span class="nav-text">YOLO v3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%87%AA"><span class="nav-number">14.3.</span> <span class="nav-text">参考自</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">15.</span> <span class="nav-text">15. 过拟合的原因</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-HMM-vs-MEMM-vs-CRF"><span class="nav-number">1.</span> <span class="nav-text">1. HMM vs MEMM vs CRF</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMM-gt-MEMM"><span class="nav-number">1.0.1.</span> <span class="nav-text">HMM -&gt; MEMM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MEMM-gt-CRF"><span class="nav-number">1.0.2.</span> <span class="nav-text">MEMM -&gt; CRF:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%A0%E7%A7%8D%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">2. 常见的几种优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Self-Attention%E6%B7%BB%E5%8A%A0head%E6%95%B0%E9%87%8F%E6%98%AF%E5%90%A6%E4%BC%9A%E5%A2%9E%E5%8A%A0%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3. Self-Attention添加head数量是否会增加计算复杂度？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-L1%E5%92%8CL2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">4. L1和L2正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L1%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">L1正则化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L2%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">4.2.</span> <span class="nav-text">L2正则化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%96%B9%E5%B7%AE%E4%B8%8E%E5%81%8F%E5%B7%AE"><span class="nav-number">5.</span> <span class="nav-text">5. 方差与偏差</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%AD%A3%E8%B4%9F%E6%A0%B7%E4%BE%8B%E5%88%86%E5%B8%83%E4%B8%8D%E5%9D%87%E8%A1%A1%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">6. 正负样例分布不均衡解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E8%AF%8D%E6%B1%87%E8%A1%A8%E5%A4%AA%E5%A4%A7%EF%BC%8Csoftmax%E8%AE%A1%E7%AE%97%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7. 词汇表太大，softmax计算如何优化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-LSTM%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%A2%AF%E5%BA%A6%E5%BC%A5%E6%95%A3%E6%88%96%E7%88%86%E7%82%B8%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">8. LSTM如何解决梯度弥散或爆炸？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E7%AE%80%E8%BF%B0EM%E7%AE%97%E6%B3%95%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">9.</span> <span class="nav-text">9. 简述EM算法的流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%A4%BA%E4%BE%8B%E5%8F%AF%E8%A7%81%EF%BC%9A"><span class="nav-number">9.1.</span> <span class="nav-text">具体示例可见：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-LR%E3%80%81SVM%E3%80%81%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">10.</span> <span class="nav-text">10. LR、SVM、决策树的对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LR"><span class="nav-number">10.1.</span> <span class="nav-text">LR</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">10.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">10.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM"><span class="nav-number">10.2.</span> <span class="nav-text">SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-1"><span class="nav-number">10.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-1"><span class="nav-number">10.2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">10.3.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9-2"><span class="nav-number">10.3.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9-2"><span class="nav-number">10.3.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-SVM%E5%B8%B8%E7%94%A8%E6%A0%B8%E5%87%BD%E6%95%B0"><span class="nav-number">11.</span> <span class="nav-text">11. SVM常用核函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-k-means%E4%B8%8EEM%E8%81%94%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="nav-number">12.</span> <span class="nav-text">12. k-means与EM联系与区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-Xavier%E5%8E%9F%E7%90%86"><span class="nav-number">13.</span> <span class="nav-text">13. Xavier原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0"><span class="nav-number">14.</span> <span class="nav-text">14. 目标检测综述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Two-stage%E6%96%B9%E6%B3%95"><span class="nav-number">14.1.</span> <span class="nav-text">Two-stage方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R-CNN"><span class="nav-number">14.1.1.</span> <span class="nav-text">R-CNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SPP-net"><span class="nav-number">14.1.2.</span> <span class="nav-text">SPP-net</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fast-RCNN"><span class="nav-number">14.1.3.</span> <span class="nav-text">Fast RCNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Faster-R-CNN"><span class="nav-number">14.1.4.</span> <span class="nav-text">Faster R-CNN</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-stage%E6%96%B9%E6%B3%95"><span class="nav-number">14.2.</span> <span class="nav-text">One-stage方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YOLO-v1"><span class="nav-number">14.2.1.</span> <span class="nav-text">YOLO v1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SSD"><span class="nav-number">14.2.2.</span> <span class="nav-text">SSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YOLO-v2"><span class="nav-number">14.2.3.</span> <span class="nav-text">YOLO v2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FPN"><span class="nav-number">14.2.4.</span> <span class="nav-text">FPN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RetinaNet"><span class="nav-number">14.2.5.</span> <span class="nav-text">RetinaNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mask-R-CNN"><span class="nav-number">14.2.6.</span> <span class="nav-text">Mask R-CNN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YOLO-v3"><span class="nav-number">14.2.7.</span> <span class="nav-text">YOLO v3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%87%AA"><span class="nav-number">14.3.</span> <span class="nav-text">参考自</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">15.</span> <span class="nav-text">15. 过拟合的原因</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
