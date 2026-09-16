@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            训练越久，模型反而越会泛化吗？理解 Grokking 现象 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://github.com/tricktreat/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        训练越久，模型反而越会泛化吗？理解 Grokking 现象
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2026-09-01 03:12:39</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Tue Sep 01 2026 03:12:39 GMT+0000">2026-09-01 03:12:39</span>
+            </span>
+        
+
+        
+
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>在<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=4" >Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets<i class="fas fa-external-link-alt"></i></a>这篇论文中，神经网络在训练集上早已达到接近 100% 的准确率，但继续训练很长时间后，验证集准确率才突然从接近随机水平上升到接近完美，作者把这种现象称为 <strong>grokking</strong>。</p>
+<span id="more"></span>
+<p><img   src="https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.2ksnu99mu5.webp"  alt="grok"></p>
+<h2 id="一、这篇文章到底研究了什么？"><a href="#一、这篇文章到底研究了什么？" class="headerlink" title="一、这篇文章到底研究了什么？"></a>一、这篇文章到底研究了什么？</h2><p>我们通常希望神经网络学习数据背后的规律，而不是简单地记住训练样本。</p>
+<p>例如，假设我们给模型一些这样的题目：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$a \circ b$</td>
+<td>$c$</td>
+</tr>
+<tr>
+<td>$a \circ d$</td>
+<td>$e$</td>
+</tr>
+<tr>
+<td>$b \circ c$</td>
+<td>$f$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>模型需要根据已经看到的部分答案，推断没有见过的组合。</p>
+<p>它可以采用两种方式：</p>
+<ol>
+<li><strong>记忆训练样本</strong>：见过的输入直接查表，没见过的输入不会做；</li>
+<li><strong>学习底层规则</strong>：发现 $a \circ b$ 背后存在一种统一的运算规律，然后推断新的输入。</li>
+</ol>
+<p>这篇论文研究的正是：模型什么时候会从第一种方式转向第二种方式。</p>
+<p>作者构造了许多小型的算法数据集，包括模 $97$ 的加法、减法、除法，以及抽象群 $S_5$ 中的排列运算。每条数据都可以写成：</p>
+<script type="math/tex; mode=display">
+a \circ b = c</script><p>其中 $a$、$b$ 和 $c$ 都被表示成没有内部结构的离散符号。模型不能直接看到“这是数字 3”或“这是某个排列”，只能通过符号之间的关系自己发现规律。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=2" >Datasets<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="二、什么是-Grokking？"><a href="#二、什么是-Grokking？" class="headerlink" title="二、什么是 Grokking？"></a>二、什么是 Grokking？</h2><p>Grokking 的典型过程可以分成两个阶段。</p>
+<h3 id="第一阶段：模型先学会“背答案”"><a href="#第一阶段：模型先学会“背答案”" class="headerlink" title="第一阶段：模型先学会“背答案”"></a>第一阶段：模型先学会“背答案”</h3><p>训练刚开始时，模型很快就能把训练集做对。因为模型参数很多，它可以给每个训练样本单独存储一个答案。</p>
+<p>于是会出现这样的情况：</p>
+<ul>
+<li>训练准确率：接近 100%</li>
+<li>验证准确率：接近随机水平</li>
+<li>模型：已经记住训练数据，但还不会处理新数据</li>
+</ul>
+<p>在论文的模 $97$ 除法实验中，训练准确率不到 $10^3$ 步就接近完美，但验证准确率可能要到接近 $10^6$ 步才达到同样水平。也就是说，模型在很长时间内都处于“训练集全会，验证集不会”的状态。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=1" >Grokking Example<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="第二阶段：模型逐渐找到统一规则"><a href="#第二阶段：模型逐渐找到统一规则" class="headerlink" title="第二阶段：模型逐渐找到统一规则"></a>第二阶段：模型逐渐找到统一规则</h3><p>如果继续训练，模型的内部参数还会持续变化。它可能逐渐从大量零散的记忆，转向一种更加统一、简单、可泛化的表示。</p>
+<p>此时，验证准确率可能长期没有明显变化，然后突然快速上升：</p>
+<script type="math/tex; mode=display">
+\text{记忆训练样本}
+\;\longrightarrow\;
+\text{形成内部规则}
+\;\longrightarrow\;
+\text{泛化到未见样本}</script><p>从外部观察，这就像模型突然“顿悟”了。</p>
+<p>但这里的“顿悟”不是模型产生了人类式的意识，也不是某一步突然写入了一个“理解模块”。更准确地说，它是模型参数经过长时间优化后，逐渐从一个复杂的记忆解转移到了一个更简单的规则解。</p>
+<h2 id="三、模型为什么会从记忆转向规则？"><a href="#三、模型为什么会从记忆转向规则？" class="headerlink" title="三、模型为什么会从记忆转向规则？"></a>三、模型为什么会从记忆转向规则？</h2><p>关键在于：<strong>能够拟合训练集的模型解并不只有一种。</strong></p>
+<p>假设训练集中有 $100$ 个样本，那么模型至少可以有两种解：</p>
+<ul>
+<li>一个复杂的解：专门记住这 $100$ 个答案；</li>
+<li>一个简单的解：学习背后的规则，并因此正确回答更多未见样本。</li>
+</ul>
+<p>这两种解在训练集上的表现可能完全一样，都是 100% 准确率。但它们的泛化能力不同。</p>
+<p>可以把它类比成学生做数学题。</p>
+<p>学生拿到一组题目后，可能先把题目和答案背下来：</p>
+<blockquote>
+<p>看到题目 A，回答 7；看到题目 B，回答 3。</p>
+</blockquote>
+<p>这样，他可以把练习册上的题全部答对，但遇到新题就不会。</p>
+<p>如果他继续思考，可能最终发现：</p>
+<blockquote>
+<p>原来这些题都遵循同一个公式。</p>
+</blockquote>
+<p>这时，他不再需要逐题查答案，而是可以通过公式解决新的题目。Grokking 在模型身上呈现出来的现象，与这个过程有些相似。</p>
+<h2 id="四、为什么训练更久，有时反而有利于泛化？"><a href="#四、为什么训练更久，有时反而有利于泛化？" class="headerlink" title="四、为什么训练更久，有时反而有利于泛化？"></a>四、为什么训练更久，有时反而有利于泛化？</h2><p>这和“模型偏好什么样的解”有关。</p>
+<p>在训练集上，复杂的记忆解和简单的规则解都可以得到零训练误差。但在某些训练条件下，优化过程可能逐渐偏向参数更简单、结构更规则的解。</p>
+<p>尤其是权重衰减可能发挥重要作用。权重衰减会惩罚过大的参数，使模型不太容易维持一个极其复杂的记忆方案。论文发现，在这些算法任务中，权重衰减对数据效率的提升非常明显，所需样本量相比多数其他干预甚至减少了一半以上。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=4" >Weight Decay<i class="fas fa-external-link-alt"></i></a></p>
+<p>此外，优化过程中的噪声也可能帮助模型找到泛化更好的解。小批量随机梯度下降，或者对梯度和参数加入噪声，有时会促使模型进入更平坦的损失区域，而较平坦的解通常对参数的小变化不那么敏感。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=4" >Optimization Noise<i class="fas fa-external-link-alt"></i></a></p>
+<p>因此，模型可能经历下面的过程：</p>
+<pre class="mermaid">flowchart LR
+    A[开始训练] --> B[快速拟合训练集]
+    B --> C[训练集接近100%]
+    C --> D[继续优化与参数调整]
+    D --> E[形成更简单的内部表示]
+    E --> F[验证集性能突然提升]</pre>
+
+<h2 id="五、这是否意味着训练越久越好？"><a href="#五、这是否意味着训练越久越好？" class="headerlink" title="五、这是否意味着训练越久越好？"></a>五、这是否意味着训练越久越好？</h2><p><strong>不是。</strong></p>
+<p>这正是我在理解这篇论文时产生的疑问：按照通常的机器学习经验，训练太久容易过拟合。既然如此，为什么这篇论文里训练更久反而提升了泛化？</p>
+<p>答案是：<strong>传统过拟合和 Grokking 是两种可能出现的训练动态。</strong></p>
+<h3 id="普通过拟合"><a href="#普通过拟合" class="headerlink" title="普通过拟合"></a>普通过拟合</h3><p>普通过拟合通常表现为：</p>
+<script type="math/tex; mode=display">
+\text{训练误差持续下降}
+\;\longrightarrow\;
+\text{验证误差持续上升}</script><p>模型逐渐学会训练数据中的噪声和偶然细节，因此在训练集上更好，在验证集上更差。</p>
+<h3 id="Grokking"><a href="#Grokking" class="headerlink" title="Grokking"></a>Grokking</h3><p>Grokking 则可能表现为：</p>
+<script type="math/tex; mode=display">
+\text{训练误差下降}
+\;\longrightarrow\;
+\text{验证性能暂时变差}
+\;\longrightarrow\;
+\text{验证性能再次提升}</script><p>论文观察到，验证损失在某些实验中会出现第二次下降。作者认为，这种现象可能和经典的 double descent 有关联，但也强调 Grokking 发生在训练集已经被拟合很久之后，因此可能是不同的现象。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=9" >Double Descent<i class="fas fa-external-link-alt"></i></a></p>
+<p>所以，“训练越久越好”并不是一般规律。更准确的说法是：</p>
+<blockquote>
+<p>在某些任务上，模型可能需要很长时间才能从记忆解转向规则解；但在另一些任务上，继续训练只会让模型越来越严重地过拟合。</p>
+</blockquote>
+<h2 id="六、什么类型的任务更容易出现-Grokking？"><a href="#六、什么类型的任务更容易出现-Grokking？" class="headerlink" title="六、什么类型的任务更容易出现 Grokking？"></a>六、什么类型的任务更容易出现 Grokking？</h2><p>我的进一步理解是：<strong>任务类型确实非常重要。</strong></p>
+<p>如果一个任务存在明确、统一、可压缩的规则，那么模型才有可能从训练样本中发现这个规则。比如：</p>
+<ul>
+<li>模运算</li>
+<li>排列和群运算</li>
+<li>简单程序</li>
+<li>符号推理</li>
+<li>数学公式</li>
+<li>某些人工构造的算法任务</li>
+</ul>
+<p>这篇论文中的任务都具有明确的生成规则，而且训练数据量很小、标签没有明显噪声，模型又足够大，可以同时表达“记忆解”和“规则解”。</p>
+<p>在这种情况下，长时间训练有可能让模型逐渐找到更具泛化能力的规律。</p>
+<p>可以粗略地表示为：</p>
+<script type="math/tex; mode=display">
+\text{明确规则}
++
+\text{少量干净数据}
++
+\text{足够大的模型}
++
+\text{合适的优化}
+\longrightarrow
+\text{更可能出现 Grokking}</script><p>不过，<strong>有规则并不代表一定会 Grokking</strong>。</p>
+<p>论文中也有一些看似有规律的任务，例如：</p>
+<script type="math/tex; mode=display">
+x^3 + xy^2 + y \pmod{97}</script><p>在允许的训练预算内，模型并没有成功泛化，基本上只是记住了训练数据。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=3" >Failed Generalization<i class="fas fa-external-link-alt"></i></a></p>
+<p>这说明还需要满足几个条件：</p>
+<ol>
+<li>规则必须足够简单，或至少对当前模型来说足够容易发现</li>
+<li>模型必须能够表达这种规则</li>
+<li>优化过程必须有机会找到这个规则</li>
+<li>训练数据不能包含太多随机噪声</li>
+<li>训练步数和超参数要合适</li>
+</ol>
+<h2 id="七、噪声会不会阻止-Grokking？"><a href="#七、噪声会不会阻止-Grokking？" class="headerlink" title="七、噪声会不会阻止 Grokking？"></a>七、噪声会不会阻止 Grokking？</h2><p>通常会。</p>
+<p>作者还专门研究了训练集中加入随机标签的情况。结果显示，少量异常样本对泛化的影响可能不明显，但大量异常样本会显著降低模型最终成功泛化的范围。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=9" >Outliers<i class="fas fa-external-link-alt"></i></a></p>
+<p>这也很好理解。</p>
+<p>如果训练集中的每个样本都遵循同一个规则，模型有机会发现统一规律。但如果训练集中混入大量错误答案，模型可能不得不学习：</p>
+<script type="math/tex; mode=display">
+\text{简单规则}
++
+\text{许多例外}</script><p>此时，纯粹学习规则已经无法完全拟合训练集，模型更容易被迫保留记忆和例外。</p>
+<p>因此，Grokking 更容易出现在标签干净、规律明确的数据集上，而不是噪声很多的现实数据中。</p>
+<h2 id="八、模型真的“理解”了吗？"><a href="#八、模型真的“理解”了吗？" class="headerlink" title="八、模型真的“理解”了吗？"></a>八、模型真的“理解”了吗？</h2><p>这里需要谨慎使用“理解”这个词。</p>
+<p>从行为上看，模型确实从“只能回答见过的问题”变成了“可以回答没见过的问题”。这说明它学到了一些能够支持泛化的内部结构。</p>
+<p>作者还对模型的 embedding 进行了可视化，发现模型有时会形成与底层数学对象对应的结构。例如，模加法中的 embedding 可能呈现类似圆环的拓扑，排列运算中的 embedding 则可能形成与群结构有关的簇。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=4" >Embedding Structure<i class="fas fa-external-link-alt"></i></a></p>
+<p>但这并不等于模型像人一样理解了数学概念。我们更稳妥的说法是：</p>
+<blockquote>
+<p>模型形成了一个能够复现底层规则、并支持新样本预测的内部表示。</p>
+</blockquote>
+<p>至于模型为什么一定会形成这个表示，作者在这篇文章中并没有给出完整答案。</p>
+<p>论文提供了一个重要线索：在 $S_5$ 实验中，验证准确率和 sharpness 的 Spearman 相关系数为 $-0.79548$。这意味着验证集表现更好的模型，往往位于更平坦的损失区域。但这仍然是相关性，并不能证明“平坦性”就是 Grokking 的唯一原因。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=10" >Sharpness<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="九、实际训练时要不要刻意训练久一点？"><a href="#九、实际训练时要不要刻意训练久一点？" class="headerlink" title="九、实际训练时要不要刻意训练久一点？"></a>九、实际训练时要不要刻意训练久一点？</h2><p>结论：</p>
+<blockquote>
+<p><strong>不要无条件地延长训练；但对于规则型、小数据、低噪声任务，值得专门测试更长的训练周期。</strong></p>
+</blockquote>
+<p>对于一般的图像分类、文本分类或业务预测任务，建议仍然观察验证集：</p>
+<ul>
+<li>训练集性能上升、验证集性能也上升：可以继续训练；</li>
+<li>训练集性能上升、验证集性能下降：可能正在普通过拟合；</li>
+<li>训练集已经很好、验证集长期停滞：可以尝试更长训练，但要同时调整正则化和学习率；</li>
+<li>验证集性能在长时间停滞后重新上升：这可能是 Grokking 的迹象。</li>
+</ul>
+<p>实际操作中，可以保存不同训练阶段的 checkpoint：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">训练 10,000 步  → 保存模型并评估验证集</span><br><span class="line">训练 100,000 步 → 保存模型并评估验证集</span><br><span class="line">训练 1,000,000 步 → 保存模型并评估验证集</span><br><span class="line">选择验证集表现最好的 checkpoint</span><br></pre></td></tr></table></figure>
+<p>不要简单地认为“最后一个模型一定最好”，也不要因为训练准确率已经达到 100% 就立刻停止。</p>
+<h2 id="十、最佳实践"><a href="#十、最佳实践" class="headerlink" title="十、最佳实践"></a>十、最佳实践</h2><p>该论文复现较为容易，对数据集、模型、算力要求不高。详细复现的pipeline见：<a class="link"   target="_blank" rel="noopener" href="https://github.com/TransformersWsz/grokking_reproduction" >grokking_reproduction<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="十一、总结"><a href="#十一、总结" class="headerlink" title="十一、总结"></a>十一、总结</h2><p>我对这篇论文的理解可以总结为：</p>
+<blockquote>
+<p><strong>模型训练过程不一定是从“不会”逐渐变成“会”，而可能先从“记住训练样本”开始，再经过很长时间的优化，转向“发现数据背后的规则”。</strong></p>
+</blockquote>
+<p>因此，训练集准确率达到 100% 并不总意味着模型已经学会了任务。它可能只是找到了一个能够记忆训练数据的复杂解。</p>
+<p>如果任务背后存在明确、简单、可表达的规律，那么继续训练可能让模型逐渐偏向更简单、更统一的规则解，从而出现 Grokking。论文中的权重衰减和优化噪声实验，也说明正则化和优化路径可能帮助模型摆脱单纯的记忆。<a class="link"   target="_blank" rel="noopener" href="https://www.alphaxiv.org/abs/2201.02177?page=2" >Main Findings<i class="fas fa-external-link-alt"></i></a></p>
+<p>但这并不推翻“训练过久会过拟合”的常识。更准确的经验应该是：</p>
+<blockquote>
+<p><strong>普通任务要依靠验证集早停；规则明确的小数据任务，则要警惕过早早停，并尝试检查验证性能是否会在长时间停滞后重新上升。</strong></p>
+</blockquote>
+<p>这也是 Grokking 最有价值的地方：它提醒我们，<strong>过拟合并不总是学习过程的终点，有时只是模型从记忆走向泛化之前的中间阶段。</strong></p>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                            <div class="prev-post">
+                                <a class="prev"
+                                   rel="prev"
+                                   href="/2026/09/17/RLHF%E8%AF%A6%E8%A7%A3/"
+                                   title="RLHF详解"
+                                >
+                                    <span class="left arrow-icon flex-center">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">RLHF详解</span>
+                                        <span class="post-nav-item">Prev posts</span>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2026/08/14/GAE%E6%8E%A8%E5%AF%BC/"
+                                   title="GAE推导"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">GAE推导</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%B0%E5%BA%95%E7%A0%94%E7%A9%B6%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一、这篇文章到底研究了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Grokking%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">二、什么是 Grokking？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9E%8B%E5%85%88%E5%AD%A6%E4%BC%9A%E2%80%9C%E8%83%8C%E7%AD%94%E6%A1%88%E2%80%9D"><span class="nav-number">2.1.</span> <span class="nav-text">第一阶段：模型先学会“背答案”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9E%8B%E9%80%90%E6%B8%90%E6%89%BE%E5%88%B0%E7%BB%9F%E4%B8%80%E8%A7%84%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">第二阶段：模型逐渐找到统一规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E4%BB%8E%E8%AE%B0%E5%BF%86%E8%BD%AC%E5%90%91%E8%A7%84%E5%88%99%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">三、模型为什么会从记忆转向规则？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%AD%E7%BB%83%E6%9B%B4%E4%B9%85%EF%BC%8C%E6%9C%89%E6%97%B6%E5%8F%8D%E8%80%8C%E6%9C%89%E5%88%A9%E4%BA%8E%E6%B3%9B%E5%8C%96%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">四、为什么训练更久，有时反而有利于泛化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%99%E6%98%AF%E5%90%A6%E6%84%8F%E5%91%B3%E7%9D%80%E8%AE%AD%E7%BB%83%E8%B6%8A%E4%B9%85%E8%B6%8A%E5%A5%BD%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">五、这是否意味着训练越久越好？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">5.1.</span> <span class="nav-text">普通过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grokking"><span class="nav-number">5.2.</span> <span class="nav-text">Grokking</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%BB%E5%8A%A1%E6%9B%B4%E5%AE%B9%E6%98%93%E5%87%BA%E7%8E%B0-Grokking%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">六、什么类型的任务更容易出现 Grokking？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%99%AA%E5%A3%B0%E4%BC%9A%E4%B8%8D%E4%BC%9A%E9%98%BB%E6%AD%A2-Grokking%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">七、噪声会不会阻止 Grokking？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%A8%A1%E5%9E%8B%E7%9C%9F%E7%9A%84%E2%80%9C%E7%90%86%E8%A7%A3%E2%80%9D%E4%BA%86%E5%90%97%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">八、模型真的“理解”了吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%AE%9E%E9%99%85%E8%AE%AD%E7%BB%83%E6%97%B6%E8%A6%81%E4%B8%8D%E8%A6%81%E5%88%BB%E6%84%8F%E8%AE%AD%E7%BB%83%E4%B9%85%E4%B8%80%E7%82%B9%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">九、实际训练时要不要刻意训练久一点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">10.</span> <span class="nav-text">十、最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">11.</span> <span class="nav-text">十一、总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%BF%99%E7%AF%87%E6%96%87%E7%AB%A0%E5%88%B0%E5%BA%95%E7%A0%94%E7%A9%B6%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一、这篇文章到底研究了什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF-Grokking%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">二、什么是 Grokking？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9E%8B%E5%85%88%E5%AD%A6%E4%BC%9A%E2%80%9C%E8%83%8C%E7%AD%94%E6%A1%88%E2%80%9D"><span class="nav-number">2.1.</span> <span class="nav-text">第一阶段：模型先学会“背答案”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E6%A8%A1%E5%9E%8B%E9%80%90%E6%B8%90%E6%89%BE%E5%88%B0%E7%BB%9F%E4%B8%80%E8%A7%84%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">第二阶段：模型逐渐找到统一规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%A8%A1%E5%9E%8B%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E4%BB%8E%E8%AE%B0%E5%BF%86%E8%BD%AC%E5%90%91%E8%A7%84%E5%88%99%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">三、模型为什么会从记忆转向规则？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AE%AD%E7%BB%83%E6%9B%B4%E4%B9%85%EF%BC%8C%E6%9C%89%E6%97%B6%E5%8F%8D%E8%80%8C%E6%9C%89%E5%88%A9%E4%BA%8E%E6%B3%9B%E5%8C%96%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">四、为什么训练更久，有时反而有利于泛化？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%99%E6%98%AF%E5%90%A6%E6%84%8F%E5%91%B3%E7%9D%80%E8%AE%AD%E7%BB%83%E8%B6%8A%E4%B9%85%E8%B6%8A%E5%A5%BD%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">五、这是否意味着训练越久越好？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">5.1.</span> <span class="nav-text">普通过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grokking"><span class="nav-number">5.2.</span> <span class="nav-text">Grokking</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BB%BB%E5%8A%A1%E6%9B%B4%E5%AE%B9%E6%98%93%E5%87%BA%E7%8E%B0-Grokking%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">六、什么类型的任务更容易出现 Grokking？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%99%AA%E5%A3%B0%E4%BC%9A%E4%B8%8D%E4%BC%9A%E9%98%BB%E6%AD%A2-Grokking%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">七、噪声会不会阻止 Grokking？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%A8%A1%E5%9E%8B%E7%9C%9F%E7%9A%84%E2%80%9C%E7%90%86%E8%A7%A3%E2%80%9D%E4%BA%86%E5%90%97%EF%BC%9F"><span class="nav-number">8.</span> <span class="nav-text">八、模型真的“理解”了吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%AE%9E%E9%99%85%E8%AE%AD%E7%BB%83%E6%97%B6%E8%A6%81%E4%B8%8D%E8%A6%81%E5%88%BB%E6%84%8F%E8%AE%AD%E7%BB%83%E4%B9%85%E4%B8%80%E7%82%B9%EF%BC%9F"><span class="nav-number">9.</span> <span class="nav-text">九、实际训练时要不要刻意训练久一点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">10.</span> <span class="nav-text">十、最佳实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">11.</span> <span class="nav-text">十一、总结</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Swift">
+    
+    <title>
+        
+            RLHF详解 |
+        
+        Swift&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        <link rel="shortcut icon" href="/images/huoyin.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/font/css/brands.min.css">
+    
+        
+            
+                
+<link rel="stylesheet" href="/css/custom.css">
+
+            
+        
+    
+    <script class="keep-theme-configurations">
+    const KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"}
+    KEEP.theme_config = {"base_info":{"primary_color":"#0066cc","title":"Swift's Blog","author":"Swift","avatar":"/images/atom.svg","logo":"/images/atom.svg","favicon":"/images/huoyin.png"},"menu":{"Archives":"/archives","Tags":"/tags","Categories":"/categories","Links":"/links","About":"/about"},"first_screen":{"enable":true,"background_img":"/images/bg2.svg","background_img_dark":"/images/bg2.svg","description":"Keep writing and Keep loving!","hitokoto":false},"social_contact":{"enable":true,"links":{"github":"https://github.com/TransformersWsz","weixin":null,"qq":null,"weibo":null,"zhihu":null,"twitter":null,"facebook":null,"email":"antcoder@outlook.com"}},"scroll":{"progress_bar":true,"percent":false,"hide_header":true},"home":{"category":true,"tag":true,"announcement":null},"post":{"author_badge":{"enable":true,"level_badge":true,"custom_badge":["One","Two","Three"]},"word_count":{"wordcount":false,"min2read":false},"datetime_format":"YYYY-MM-DD HH:mm:ss","copyright_info":false,"share":true,"reward":{"enable":true,"img_link":"https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp","text":"请作者喝杯奶茶🧋"}},"code_block":{"tools":{"enable":true,"style":"mac"},"highlight_theme":"obsidian"},"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false,"layout":"left"},"website_count":{"busuanzi_count":{"enable":true,"site_uv":true,"site_pv":true,"page_pv":true}},"local_search":{"enable":true,"preload":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.21"},"waline":{"server_url":null,"reaction":false,"version":2},"giscus":{"repo":null,"repo_id":null,"category":"Announcements","category_id":null,"reactions_enabled":false},"artalk":{"server":null},"disqus":{"shortname":null}},"rss":{"enable":false},"lazyload":{"enable":false},"cdn":{"enable":true,"provider":"cdnjs"},"pjax":{"enable":true},"footer":{"since":2017,"word_count":false,"icp":{"enable":false,"record_code":null,"url":"https://beian.miit.gov.cn"},"site_deploy":{"enable":true,"provider":"github","url":null},"shields_style":{"enable":false,"custom":[{"link_url":null,"img_url":null}]}},"inject":{"enable":true,"css":["/css/custom.css"],"js":[null]},"root":"","links":[{"name":"heary","link":"https://heary.cn/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.5c0vutsght.webp","description":"本科及研究生学长"},{"name":"知识就是力量","link":"https://github.com/tricktreat/","avatar":"https://avatars.githubusercontent.com/u/25740077?v=4","description":"学长"},{"name":"myths","link":"https://blog.mythsman.com/","avatar":"https://blog.mythsman.com/content/images/2019/07/----_20190713220203.jpg","description":"丁神"},{"name":"mikito","link":"https://mikito.mythsman.com/","avatar":"https://mikito.mythsman.com/content/images/2019/07/2-1.jpg","description":"丁神女友"},{"name":"老猫轩仔","link":"https://www.agedcat.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1lbq9l6ju9.webp","description":"郭尔轩"},{"name":"韦阳","link":"https://godweiyang.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5lpze.webp","description":"华师大本硕第一、LightSeq作者"},{"name":"x-hansong","link":"https://www.zhihu.com/people/xiao-han-song","avatar":"https://avatars.githubusercontent.com/u/5747697?v=4","description":"华南理工本科、支付宝工程师"},{"name":"指间的诗意","link":"https://xpoet.cn/","avatar":"https://xpoet.cn/images/avatar.png","description":"hexo-theme-keep & PicX的开发者"},{"name":"Molunerfinn","link":"https://molunerfinn.com/","avatar":"https://avatars.githubusercontent.com/u/12621342?v=4","description":"PicGo的开发者、WXG员工"},{"name":"Jerry Qu","link":"https://imququ.com/","avatar":"https://cdn.jsdelivr.net/gh/TransformersWsz/image_hosting@master/jerryqu.3yhp1au3nii0.webp","description":"前端开发大佬、现在转向偏管理"},{"name":"Qian Liu","link":"https://siviltaram.github.io/","avatar":"https://siviltaram.github.io/images/profile.png","description":"北航博士、NLP论文高产、热衷知识分享"},{"name":"浩然","link":"https://ayanamirei1997.github.io/","avatar":"https://avatars.githubusercontent.com/u/31766871?v=4","description":"本科舍友及同学"},{"name":"海鸥","link":"https://hyrious.me/","avatar":"https://avatars.githubusercontent.com/u/8097890?v=4","description":"本科舍友及同学"},{"name":"李长顺","link":"https://zangailcs.github.io/","avatar":"https://transformerswsz.github.io/2019/09/19/picture%20bed/lcs.jpeg","description":"东南大学研究生同学"},{"name":"老石谈芯","link":"https://shilicon.com/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/image.1e8ie5iwsh.webp","description":"帝国理工博士、芯片工程师"},{"name":"LZY","link":"https://blog.luzy.top/","avatar":"https://avatars.githubusercontent.com/u/43703357?v=4","description":"东南大学本科生"},{"name":"wulc","link":"https://wulc.me/","avatar":"https://wulc.me/files/profile.jpg","description":"字节广告算法工程师"},{"name":"Lilian Weng","link":"https://lilianweng.github.io/","avatar":"https://avatars.githubusercontent.com/u/901179?v=4","description":"OpenAI工程师"},{"name":"Hugging Face","link":"https://huggingface.co/blog","avatar":"https://huggingface.co/front/assets/huggingface_logo-noborder.svg","description":"Hugging Face官方博客"},{"name":"小小将","link":"https://www.zhihu.com/people/xiaohuzc/posts","avatar":"https://pica.zhimg.com/v2-4c580ad38bc656abf65b1a7fb14d4573_xl.jpg?source=32738c0c","description":"知乎上的某位大佬"},{"name":"BlueFishManCN","link":"https://bluefishmancn.github.io/home/","avatar":"https://avatars.githubusercontent.com/u/13911814?v=4","description":"百度广告算法专家"},{"name":"苏剑林","link":"https://spaces.ac.cn/","avatar":"https://spaces.ac.cn/usr/themes/geekg/images/avatar.png","description":"苏神"},{"name":"梦里风林","link":"https://blog.cweihang.io/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/d479d2df7bcf6c7933b481bd83e4ce8a_xl.5mny5pw0es.webp","description":"华南理工本硕、大疆CV算法工程师"},{"name":"Lianmin Zheng","link":"https://lmzheng.net/","avatar":"https://raw.githubusercontent.com/TransformersWsz/picx-images-hosting/master/15100009.5fkqaac93c.webp","description":"xAI工程师、SGLang核心开发者"}],"version":"4.0.7"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original post title","author":"Original post author","link":"Original post link"}
+  </script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container border-box">
+
+    <!-- home first screen  -->
+    
+
+    <!-- page content -->
+    <div class="page-main-content border-box">
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="border-box header-content">
+        <div class="left border-box">
+            
+                <a class="logo-image border-box" href="/">
+                    <img src="/images/atom.svg">
+                </a>
+            
+            <a class="site-name border-box" href="/">
+               Swift&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right border-box">
+            <div class="pc">
+                <ul class="menu-list">
+                    <li class="menu-item">
+                        <a class=""
+                           href="/"
+                        >HOME</a>
+                    </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >ARCHIVES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >TAGS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >CATEGORIES</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/links"
+                            >LINKS</a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >ABOUT</a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas search fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            <li class="drawer-menu-item flex-center">
+                <a class=""
+                   href="/"
+                >HOME</a>
+            </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives"
+                    >ARCHIVES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags"
+                    >TAGS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories"
+                    >CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/links"
+                    >LINKS</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about"
+                    >ABOUT</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle border-box">
+
+            <div class="main-content border-box">
+                
+
+                    
+<div class="fade-in-down-animation">
+    <div class="post-page-container border-box">
+        <div class="post-content-container border-box">
+            
+
+            <div class="post-content-bottom border-box">
+                
+                    <div class="post-title">
+                        RLHF详解
+                    </div>
+                
+
+                
+                    <div class="post-header border-box">
+                        
+                            <div class="avatar-box border-box">
+                                <img src="/images/atom.svg">
+                            </div>
+                        
+                        <div class="info-box">
+                            <div class="author border-box">
+                                <span class="name">Swift</span>
+                                
+                                    <span class="author-badge">Lv6</span>
+                                
+                            </div>
+                            <div class="meta-info border-box">
+                                
+
+<div class="post-meta-info-container border-box post">
+    <div class="post-meta-info border-box">
+        
+
+        
+            <span class="meta-info-item post-create-date">
+                <i class="icon fa-solid fa-file-pen"></i>&nbsp;
+                <span class="datetime">2026-09-17 01:47:49</span>
+            </span>
+
+            <span class="meta-info-item post-update-date">
+                <i class="icon fa-solid fa-rotate"></i>&nbsp;
+                <span class="datetime" data-updated="Thu Sep 17 2026 01:47:49 GMT+0000">2026-09-17 01:47:49</span>
+            </span>
+        
+
+        
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/NLP/">NLP</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+            <span class="post-tag meta-info-item border-box">
+                <i class="icon fas fa-tags"></i>&nbsp;
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/LLM/">LLM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/RM/">RM</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/PPO/">PPO</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Actor-Critic/">Actor-Critic</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
+
+        
+        
+        
+        
+            <span class="meta-info-item post-pv">
+                <i class="icon fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+            </span>
+        
+    </div>
+
+    
+</div>
+
+                            </div>
+                        </div>
+                    </div>
+                
+
+                <div class="post-content keep-markdown-body">
+                    
+
+                    <p>在 RLHF（Reinforcement Learning from Human Feedback）的 PPO 训练阶段，一共涉及四个模型：<strong>Actor、Critic、Reference、Reward</strong>。它们各司其职，协作完成“让语言模型输出更符合人类偏好”的目标。</p>
+<p>本文将从每个模型的作用出发，详细推导各自的Loss，最后给出总 Loss的完整形式。</p>
+<span id="more"></span>
+<p><img   src="https://github.com/TransformersWsz/picx-images-hosting/raw/master/image.lwhqpqe2b.webp"  alt="rlhf"></p>
+<h2 id="一、四个模型分别是什么？"><a href="#一、四个模型分别是什么？" class="headerlink" title="一、四个模型分别是什么？"></a>一、四个模型分别是什么？</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>是否训练</th>
+<th>作用</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actor</strong> $\pi_\theta$</td>
+<td>✅ 训练</td>
+<td>生成回答，被优化</td>
+<td>每个 token 的概率</td>
+</tr>
+<tr>
+<td><strong>Critic</strong> $V_\phi$</td>
+<td>✅ 训练</td>
+<td>估计状态价值，算优势</td>
+<td>标量 $V(s)$</td>
+</tr>
+<tr>
+<td><strong>Reference</strong> $\pi_{ref}$</td>
+<td>❌ 冻结</td>
+<td>提供 KL 基准，防跑偏</td>
+<td>每个 token 的概率</td>
+</tr>
+<tr>
+<td><strong>Reward</strong> $r_\psi$</td>
+<td>❌ 冻结</td>
+<td>对完整回答打分</td>
+<td>标量 $r$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="1-Actor（策略模型）"><a href="#1-Actor（策略模型）" class="headerlink" title="1. Actor（策略模型）"></a>1. Actor（策略模型）</h3><ul>
+<li>就是我们要训练的语言模型本身，通常从 SFT 模型初始化</li>
+<li>给定 prompt，自回归生成回答</li>
+<li>通过 PPO 更新参数，使得生成的回答获得更高 reward，同时不偏离 Reference 太远</li>
+</ul>
+<h3 id="2-Critic（价值模型）"><a href="#2-Critic（价值模型）" class="headerlink" title="2. Critic（价值模型）"></a>2. Critic（价值模型）</h3><ul>
+<li>一个与 Actor 规模相近的模型，输出一个标量价值 $V(s)$</li>
+<li>估计当前状态（已生成的 token 序列）的“预期回报”，用于计算优势函数</li>
+<li>只在训练时使用，推理时不参与</li>
+</ul>
+<h3 id="3-Reference（参考模型）"><a href="#3-Reference（参考模型）" class="headerlink" title="3. Reference（参考模型）"></a>3. Reference（参考模型）</h3><ul>
+<li>通常是冻结的 SFT 模型（Actor 的初始副本），参数不更新</li>
+<li>提供“原始行为”的基准，用来计算 KL 散度惩罚</li>
+<li>防止 Actor 为了刷高 reward 而过度偏离原始语言模型，导致输出退化</li>
+</ul>
+<h3 id="4-Reward（奖励模型）"><a href="#4-Reward（奖励模型）" class="headerlink" title="4. Reward（奖励模型）"></a>4. Reward（奖励模型）</h3><ul>
+<li>用人类偏好数据训练出来的打分模型，输出一个标量奖励</li>
+<li>对 Actor 生成的完整回答打分，衡量它有多符合人类偏好</li>
+<li>参数冻结，只做推理打分</li>
+</ul>
+<h2 id="二、训练流程概览"><a href="#二、训练流程概览" class="headerlink" title="二、训练流程概览"></a>二、训练流程概览</h2><p>以一条训练样本为例：</p>
+<ol>
+<li><strong>Actor</strong> 根据 prompt $x$ 生成回答 $y = (y_1, …, y_n)$</li>
+<li><strong>Reward</strong> 对完整回答打分 $r(x,y)$</li>
+<li><strong>Reference</strong> 对同一回答计算 log 概率，用于 KL 惩罚</li>
+<li>计算每步奖励 $R_t$</li>
+<li><strong>Critic</strong> 估计每个状态的价值 $V_t$</li>
+<li>用 GAE 计算优势 $\hat{A}_t$</li>
+<li>用 PPO 更新 Actor 和 Critic</li>
+</ol>
+<h2 id="三、设定与符号"><a href="#三、设定与符号" class="headerlink" title="三、设定与符号"></a>三、设定与符号</h2><ul>
+<li>输入 prompt：$x = (x_1, …, x_m)$</li>
+<li>Actor 生成的输出：$y = (y_1, …, y_n)$</li>
+<li>每个 $y_t$ 是一个 token</li>
+</ul>
+<p>四个模型的前向输出：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Actor $\pi_\theta$</td>
+<td>$x, y_{&lt;t}$</td>
+<td>$\log \pi_\theta(y_t \mid x, y_{&lt;t})$</td>
+</tr>
+<tr>
+<td>Reference $\pi_{ref}$</td>
+<td>$x, y_{&lt;t}$</td>
+<td>$\log \pi_{ref}(y_t \mid x, y_{&lt;t})$</td>
+</tr>
+<tr>
+<td>Reward $r_\psi$</td>
+<td>$x, y$</td>
+<td>标量 $r$</td>
+</tr>
+<tr>
+<td>Critic $V_\phi$</td>
+<td>$x, y_{&lt;t}$</td>
+<td>标量 $V_t$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="四、每步奖励-R-t-的计算"><a href="#四、每步奖励-R-t-的计算" class="headerlink" title="四、每步奖励 $R_t$ 的计算"></a>四、每步奖励 $R_t$ 的计算</h2><h3 id="4-1-KL-惩罚"><a href="#4-1-KL-惩罚" class="headerlink" title="4.1 KL 惩罚"></a>4.1 KL 惩罚</h3><p>逐 token 的 log 概率差，衡量 Actor 相对 Reference 偏离了多少：</p>
+<script type="math/tex; mode=display">
+\text{KL}_t = \log \pi_\theta(y_t \mid x, y_{<t}) - \log \pi_{ref}(y_t \mid x, y_{<t})</script><h3 id="4-2-每步奖励"><a href="#4-2-每步奖励" class="headerlink" title="4.2 每步奖励"></a>4.2 每步奖励</h3><script type="math/tex; mode=display">
+R_t = -\beta \cdot \text{KL}_t, \quad t = 1, ..., n-1</script><script type="math/tex; mode=display">
+R_n = -\beta \cdot \text{KL}_n + r</script><ul>
+<li>中间 token：只有 KL 惩罚</li>
+<li>最后一个 token：KL 惩罚 + Reward 模型的分数</li>
+</ul>
+<p><strong>直观</strong>：</p>
+<ul>
+<li>Actor 和 Reference 概率一样时，$\text{KL}_t = 0$，无惩罚</li>
+<li>Actor 偏离越大，$\text{KL}_t$ 越大，$R_t$ 越负</li>
+<li>最后一步加上 $r$，注入人类偏好信号</li>
+</ul>
+<h2 id="五、Critic-的-Loss"><a href="#五、Critic-的-Loss" class="headerlink" title="五、Critic 的 Loss"></a>五、Critic 的 Loss</h2><h3 id="5-1-TD-残差"><a href="#5-1-TD-残差" class="headerlink" title="5.1 TD 残差"></a>5.1 TD 残差</h3><script type="math/tex; mode=display">
+\delta_t = R_t + \gamma V_{t+1} - V_t</script><p>其中 $V_{n+1} = 0$。</p>
+<ul>
+<li>$R_t$：这一步实际拿到的奖励</li>
+<li>$\gamma V_{t+1}$：对下一步价值的折扣估计</li>
+<li>$V_t$：对当前价值的估计</li>
+<li>差值 $\delta_t$：实际比预期好多少</li>
+</ul>
+<h3 id="5-2-优势函数-GAE"><a href="#5-2-优势函数-GAE" class="headerlink" title="5.2 优势函数 GAE"></a>5.2 优势函数 GAE</h3><p>从后往前递推：</p>
+<script type="math/tex; mode=display">
+\hat{A}_n = \delta_n</script><script type="math/tex; mode=display">
+\hat{A}_t = \delta_t + \gamma \lambda \hat{A}_{t+1}, \quad t = n-1, ..., 1</script><p>展开形式：</p>
+<script type="math/tex; mode=display">
+\hat{A}_t = \sum_{l=0}^{n-t} (\gamma \lambda)^l \delta_{t+l}</script><blockquote>
+<p><strong>含义</strong>：第 $t$ 个 token 的优势 = 当前 TD 误差 + 未来 TD 误差的折扣加权和。</p>
+</blockquote>
+<h3 id="5-3-Critic-的-target"><a href="#5-3-Critic-的-target" class="headerlink" title="5.3 Critic 的 target"></a>5.3 Critic 的 target</h3><script type="math/tex; mode=display">
+\hat{V}_t^{target} = \hat{A}_t + V_{\phi_{old}}(s_t)</script><h3 id="5-4-Critic-的-Loss"><a href="#5-4-Critic-的-Loss" class="headerlink" title="5.4 Critic 的 Loss"></a>5.4 Critic 的 Loss</h3><script type="math/tex; mode=display">
+L^{critic} = \frac{1}{n} \sum_{t=1}^{n} \left( V_\phi(x, y_{<t}) - \hat{V}_t^{target} \right)^2</script><ul>
+<li>$V_\phi(x, y_{&lt;t})$：当前 Critic 预测，参与梯度。</li>
+<li>$\hat{V}_t^{target}$：目标值，不参与梯度。</li>
+<li>均方误差，让 Critic 逼近目标。</li>
+</ul>
+<blockquote>
+<p><strong>直观</strong>：Critic 学着预测“从这个前缀出发能拿多少分”，预测越准，优势估计越可靠。</p>
+</blockquote>
+<h2 id="六、Actor-的-Loss"><a href="#六、Actor-的-Loss" class="headerlink" title="六、Actor 的 Loss"></a>六、Actor 的 Loss</h2><h3 id="6-1-重要性采样比"><a href="#6-1-重要性采样比" class="headerlink" title="6.1 重要性采样比"></a>6.1 重要性采样比</h3><script type="math/tex; mode=display">
+\rho_t = \frac{\pi_\theta(y_t \mid x, y_{<t})}{\pi_{\theta_{old}}(y_t \mid x, y_{<t})}</script><ul>
+<li>$\pi_\theta$：当前策略（参与梯度）</li>
+<li>$\pi_{\theta_{old}}$：采样时的旧策略（不参与梯度）</li>
+<li>$\rho_t$：同一个 token，新旧策略概率的比值</li>
+</ul>
+<h3 id="6-2-裁剪项"><a href="#6-2-裁剪项" class="headerlink" title="6.2 裁剪项"></a>6.2 裁剪项</h3><script type="math/tex; mode=display">
+L^{clip}_t = \text{clip}(\rho_t, 1-\epsilon, 1+\epsilon) \hat{A}_t</script><p>其中 $\epsilon$ 通常取 0.1 或 0.2。</p>
+<h3 id="6-3-Actor-的-Loss"><a href="#6-3-Actor-的-Loss" class="headerlink" title="6.3 Actor 的 Loss"></a>6.3 Actor 的 Loss</h3><script type="math/tex; mode=display">
+L^{actor} = -\frac{1}{n} \sum_{t=1}^{n} \min\left( L^{unclip}_t, L^{clip}_t \right)</script><p>前面加负号是因为我们要<strong>最大化</strong>这个目标，而优化器默认<strong>最小化</strong> loss。</p>
+<h3 id="6-4-Clip-机制逐情况分析"><a href="#6-4-Clip-机制逐情况分析" class="headerlink" title="6.4 Clip 机制逐情况分析"></a>6.4 Clip 机制逐情况分析</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>概率变化</th>
+<th>clip 后行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\hat{A}_t &gt; 0$</td>
+<td>想提高</td>
+<td>超过 $1+\epsilon$ 就不再奖励</td>
+</tr>
+<tr>
+<td>$\hat{A}_t &lt; 0$</td>
+<td>想降低</td>
+<td>低于 $1-\epsilon$ 就不再惩罚</td>
+</tr>
+<tr>
+<td>$\rho_t$ 在范围内</td>
+<td>正常更新</td>
+<td>clip 不起作用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><strong>一句话</strong>：PPO 用 clip 把每次策略更新限制在一个“信任域”内，避免一步走太远导致训练不稳定。</p>
+</blockquote>
+<h2 id="七、熵奖励"><a href="#七、熵奖励" class="headerlink" title="七、熵奖励"></a>七、熵奖励</h2><script type="math/tex; mode=display">
+L^{entropy} = \frac{1}{n} \sum_{t=1}^{n} \sum_{v} \pi_\theta(v \mid x, y_{<t}) \log \pi_\theta(v \mid x, y_{<t})</script><ul>
+<li>熵衡量策略的“随机性”或“探索程度”</li>
+<li>加熵奖励防止策略过早收敛到局部最优、输出多样性下降</li>
+<li>在 RLHF 中，熵奖励通常很小（$c_2 = 0.01$ 或更小）</li>
+</ul>
+<h2 id="八、总-Loss"><a href="#八、总-Loss" class="headerlink" title="八、总 Loss"></a>八、总 Loss</h2><script type="math/tex; mode=display">
+\boxed{
+L^{PPO} = L^{actor} + c_1 L^{critic} - c_2 L^{entropy}
+}</script><p>展开形式：</p>
+<script type="math/tex; mode=display">
+L^{PPO} =
+\underbrace{-\frac{1}{n} \sum_{t=1}^{n} \min\left( \rho_t \hat{A}_t, \ \text{clip}(\rho_t, 1-\epsilon, 1+\epsilon) \hat{A}_t \right)}_{Actor}</script><script type="math/tex; mode=display">
++ \ c_1 \underbrace{\frac{1}{n} \sum_{t=1}^{n} \left( V_\phi(s_t) - \hat{V}_t^{target} \right)^2}_{Critic}</script><script type="math/tex; mode=display">
+- \ c_2 \underbrace{\frac{1}{n} \sum_{t=1}^{n} \sum_{v} \pi_\theta(v \mid s_t) \log \pi_\theta(v \mid s_t)}_{Entropy}</script><p>其中：</p>
+<ul>
+<li>$c_1$：Critic 损失权重（通常 0.5）</li>
+<li>$c_2$：熵奖励权重（通常 0.01）</li>
+<li>$\epsilon$：clip 范围（通常 0.1~0.2）</li>
+<li>$\gamma$：折扣因子（通常 0.99~1.0）</li>
+<li>$\lambda$：GAE 参数（通常 0.95）</li>
+<li>$\beta$：KL 惩罚强度（通常 0.01~0.1）</li>
+</ul>
+<h2 id="九、各模型-Loss-一览表"><a href="#九、各模型-Loss-一览表" class="headerlink" title="九、各模型 Loss 一览表"></a>九、各模型 Loss 一览表</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>Loss 公式</th>
+<th>输入</th>
+<th>目标</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Actor</strong></td>
+<td>$-\frac{1}{n}\sum_t \min(\rho_t\hat{A}_t, \text{clip}(\rho_t)\hat{A}_t)$</td>
+<td>$x, y$</td>
+<td>提高好 token 概率，压低差 token</td>
+</tr>
+<tr>
+<td><strong>Critic</strong></td>
+<td>$\frac{1}{n}\sum_t (V_\phi(x,y_{&lt;t}) - \hat{V}_t^{target})^2$</td>
+<td>$x, y_{&lt;t}$</td>
+<td>准确预测价值</td>
+</tr>
+<tr>
+<td><strong>Reference</strong></td>
+<td>无 loss（冻结）</td>
+<td>$x, y_{&lt;t}$</td>
+<td>提供 KL 基准</td>
+</tr>
+<tr>
+<td><strong>Reward</strong></td>
+<td>无 loss（冻结）</td>
+<td>$x, y$</td>
+<td>提供终端分数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="十、协作关系图"><a href="#十、协作关系图" class="headerlink" title="十、协作关系图"></a>十、协作关系图</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">prompt x</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line">┌─────────┐   生成 y    ┌──────────┐</span><br><span class="line">│  Actor  │───────────▶│  Reward  │──▶ r(x,y)</span><br><span class="line">│ (训练)  │            │ (冻结)   │</span><br><span class="line">└─────────┘            └──────────┘</span><br><span class="line">   │  │</span><br><span class="line">   │  │ logπ_θ(y_t)</span><br><span class="line">   │  ▼</span><br><span class="line">   │ ┌──────────┐</span><br><span class="line">   │ │ Reference│──▶ logπ_ref(y_t) ──▶ KL惩罚</span><br><span class="line">   │ │ (冻结)   │</span><br><span class="line">   │ └──────────┘</span><br><span class="line">   │</span><br><span class="line">   │ 状态 s_t</span><br><span class="line">   ▼</span><br><span class="line">┌─────────┐</span><br><span class="line">│  Critic │──▶ V(s_t) ──▶ 优势 Â_t</span><br><span class="line">│ (训练)  │</span><br><span class="line">└─────────┘</span><br><span class="line">   │</span><br><span class="line">   ▼</span><br><span class="line"> PPO更新 Actor 和 Critic</span><br></pre></td></tr></table></figure>
+<h2 id="十一、完整训练伪代码"><a href="#十一、完整训练伪代码" class="headerlink" title="十一、完整训练伪代码"></a>十一、完整训练伪代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> iteration <span class="keyword">in</span> <span class="built_in">range</span>(N):</span><br><span class="line">    <span class="comment"># 1. 采集数据</span></span><br><span class="line">    prompts = sample_batch()</span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        responses, logprobs_old = actor.generate(prompts)</span><br><span class="line">        logprobs_ref = reference.logprobs(prompts, responses)</span><br><span class="line">        rewards = reward_model(prompts, responses)  <span class="comment"># 终端标量</span></span><br><span class="line">        values_old = critic(prompts, responses)     <span class="comment"># 旧价值，不参与梯度</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 计算每步奖励</span></span><br><span class="line">    kl = logprobs_old - logprobs_ref</span><br><span class="line">    R = -beta * kl</span><br><span class="line">    R[:, -<span class="number">1</span>] += rewards  <span class="comment"># 最后一步加偏好分</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. GAE 算优势</span></span><br><span class="line">    advantages = compute_gae(R, values_old, gamma, <span class="keyword">lambda</span>)</span><br><span class="line">    returns = advantages + values_old</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. 多轮 PPO 更新</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(K):</span><br><span class="line">        logprobs_new = actor.logprobs(prompts, responses)</span><br><span class="line">        values_new = critic(prompts, responses)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 重要性比</span></span><br><span class="line">        ratio = torch.exp(logprobs_new - logprobs_old)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Actor loss</span></span><br><span class="line">        surr1 = ratio * advantages</span><br><span class="line">        surr2 = torch.clamp(ratio, <span class="number">1</span>-eps, <span class="number">1</span>+eps) * advantages</span><br><span class="line">        actor_loss = -torch.<span class="built_in">min</span>(surr1, surr2).mean()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Critic loss</span></span><br><span class="line">        critic_loss = ((values_new - returns) ** <span class="number">2</span>).mean()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 熵</span></span><br><span class="line">        entropy = -(logprobs_new * torch.exp(logprobs_new)).<span class="built_in">sum</span>(-<span class="number">1</span>).mean()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 总 loss</span></span><br><span class="line">        loss = actor_loss + c1 * critic_loss - c2 * entropy</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br></pre></td></tr></table></figure>
+<h2 id="十二、关键点总结"><a href="#十二、关键点总结" class="headerlink" title="十二、关键点总结"></a>十二、关键点总结</h2><ol>
+<li><strong>Reward 模型</strong>只给最后一步一个标量 $r$，注入偏好信号</li>
+<li><strong>Reference 模型</strong>提供每步 KL 惩罚，防止 Actor 跑偏</li>
+<li><strong>Critic</strong> 的 loss 是均方误差，target 是 $\hat{A}_t + V_{\phi_{old}}$，让价值估计越来越准</li>
+<li><strong>Actor</strong> 的 loss 是 clip 后的策略梯度，用 $\hat{A}_t$ 决定每个 token 该鼓励还是抑制</li>
+<li><strong>总 loss</strong> = Actor loss + $c_1$ × Critic loss − $c_2$ × Entropy</li>
+</ol>
+<blockquote>
+<p><strong>协作核心</strong>：Reward 给终点分，Reference 给每步约束，Critic 把稀疏信号变成逐 token 优势，Actor 按优势更新。四者缺一不可。</p>
+</blockquote>
+<h2 id="十三、常见超参数速查"><a href="#十三、常见超参数速查" class="headerlink" title="十三、常见超参数速查"></a>十三、常见超参数速查</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>超参数</th>
+<th>典型值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\epsilon$ (clip)</td>
+<td>0.1~0.2</td>
+<td>限制策略更新幅度</td>
+</tr>
+<tr>
+<td>$\gamma$</td>
+<td>0.99~1.0</td>
+<td>折扣因子</td>
+</tr>
+<tr>
+<td>$\lambda$ (GAE)</td>
+<td>0.95</td>
+<td>偏差-方差权衡</td>
+</tr>
+<tr>
+<td>$\beta$ (KL)</td>
+<td>0.01~0.1</td>
+<td>偏离 Reference 的惩罚强度</td>
+</tr>
+<tr>
+<td>$c_1$ (critic)</td>
+<td>0.5</td>
+<td>Critic 损失权重</td>
+</tr>
+<tr>
+<td>$c_2$ (entropy)</td>
+<td>0.01</td>
+<td>熵奖励权重</td>
+</tr>
+<tr>
+<td>K (PPO epochs)</td>
+<td>4~10</td>
+<td>每批数据重复更新次数</td>
+</tr>
+<tr>
+<td>batch size</td>
+<td>64~512</td>
+<td>每次采集的 prompt 数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="十四、总结"><a href="#十四、总结" class="headerlink" title="十四、总结"></a>十四、总结</h2><script type="math/tex; mode=display">
+\boxed{
+L^{PPO} = L^{actor} + c_1 L^{critic} - c_2 L^{entropy}
+}</script><ul>
+<li><strong>Actor</strong>：用 clip 后的优势做策略梯度，稳定提升好动作概率</li>
+<li><strong>Critic</strong>：回归价值目标 $\hat{A}_t + V_{\phi_{old}}$，为优势估计提供低方差基线</li>
+<li><strong>Entropy</strong>：保持探索，防止过早收敛</li>
+<li><strong>Reward + Reference</strong>：提供终端偏好信号和 KL 约束，定义每步奖励</li>
+</ul>
+<p>四模型协作的最终产出，就是让 Actor 在“拿高分”和“不跑偏”之间找到平衡。</p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/677607581" >图解大模型RLHF系列之：人人都能看懂的PPO原理与源码解读<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1984387073625593089" >看完能和外婆解释的PPO, DPO, GRPO强化学习<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+                </div>
+
+                
+
+                <div class="post-bottom-tags-and-share border-box">
+                    <div>
+                        
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/LLM/">LLM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/RM/">RM</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/PPO/">PPO</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Actor-Critic/">Actor-Critic</a>
+                                    </li>
+                                
+                            </ul>
+                        
+                    </div>
+                    <div>
+                        
+                            <div class="post-share-container border-box">
+    <ul class="share-list-wrap border-box">
+        <li class="qq share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to QQ"
+        >
+            <i class="fa-brands fa-qq"></i>
+        </li>
+        <li class="wechat share-item border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="Share to WeChat"
+            data-tooltip-img-tip="Scan by WeChat"
+            data-tooltip-img-style="background-color: #fff; top: -10px; padding: 0.6rem 0.6rem 0.1rem 0.6rem;"
+        >
+            <i class="fa-brands fa-weixin"></i>
+        </li>
+        <li class="weibo share-item border-box flex-center tooltip"
+            data-tooltip-content="Share to WeiBo"
+        >
+            <i class="fa-brands fa-weibo"></i>
+        </li>
+    </ul>
+</div>
+
+                        
+                    </div>
+                </div>
+
+                
+                    <div class="reward-author-container border-box flex-center">
+    <div class="reward-btn keep-button border-box flex-center tooltip tooltip-img"
+            data-tooltip-content="请作者喝杯奶茶🧋"
+            data-tooltip-img-url="https://github.com/TransformersWsz/picx-images-hosting/raw/master/code6.8s3kp5tiv9.webp"
+            data-tooltip-img-trigger="click"
+            data-tooltip-img-style="top: -8px;"
+    >
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+</div>
+
+                
+
+                
+                    <div class="post-nav border-box">
+                        
+                        
+                            <div class="next-post">
+                                <a class="next"
+                                   rel="next"
+                                   href="/2026/09/01/%E8%AE%AD%E7%BB%83%E8%B6%8A%E4%B9%85%EF%BC%8C%E6%A8%A1%E5%9E%8B%E5%8F%8D%E8%80%8C%E8%B6%8A%E4%BC%9A%E6%B3%9B%E5%8C%96%E5%90%97%EF%BC%9F%E7%90%86%E8%A7%A3-Grokking-%E7%8E%B0%E8%B1%A1/"
+                                   title="训练越久，模型反而越会泛化吗？理解 Grokking 现象"
+                                >
+                                    <span class="title flex-center">
+                                        <span class="post-nav-title-item text-ellipsis">训练越久，模型反而越会泛化吗？理解 Grokking 现象</span>
+                                        <span class="post-nav-item">Next posts</span>
+                                    </span>
+                                    <span class="right arrow-icon flex-center">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        
+                    </div>
+                
+
+                
+                    
+
+
+
+
+
+
+                
+            </div>
+        </div>
+
+        
+            <div class="pc-post-toc left-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9B%9B%E4%B8%AA%E6%A8%A1%E5%9E%8B%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一、四个模型分别是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Actor%EF%BC%88%E7%AD%96%E7%95%A5%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. Actor（策略模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Critic%EF%BC%88%E4%BB%B7%E5%80%BC%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. Critic（价值模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Reference%EF%BC%88%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. Reference（参考模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Reward%EF%BC%88%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. Reward（奖励模型）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">二、训练流程概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%BE%E5%AE%9A%E4%B8%8E%E7%AC%A6%E5%8F%B7"><span class="nav-number">3.</span> <span class="nav-text">三、设定与符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%AF%8F%E6%AD%A5%E5%A5%96%E5%8A%B1-R-t-%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">四、每步奖励 $R_t$ 的计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-KL-%E6%83%A9%E7%BD%9A"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 KL 惩罚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%AF%8F%E6%AD%A5%E5%A5%96%E5%8A%B1"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 每步奖励</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81Critic-%E7%9A%84-Loss"><span class="nav-number">5.</span> <span class="nav-text">五、Critic 的 Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-TD-%E6%AE%8B%E5%B7%AE"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 TD 残差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E4%BC%98%E5%8A%BF%E5%87%BD%E6%95%B0-GAE"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 优势函数 GAE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Critic-%E7%9A%84-target"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Critic 的 target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Critic-%E7%9A%84-Loss"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Critic 的 Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Actor-%E7%9A%84-Loss"><span class="nav-number">6.</span> <span class="nav-text">六、Actor 的 Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7%E6%AF%94"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 重要性采样比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E8%A3%81%E5%89%AA%E9%A1%B9"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 裁剪项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Actor-%E7%9A%84-Loss"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 Actor 的 Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Clip-%E6%9C%BA%E5%88%B6%E9%80%90%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 Clip 机制逐情况分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%86%B5%E5%A5%96%E5%8A%B1"><span class="nav-number">7.</span> <span class="nav-text">七、熵奖励</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%80%BB-Loss"><span class="nav-number">8.</span> <span class="nav-text">八、总 Loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%90%84%E6%A8%A1%E5%9E%8B-Loss-%E4%B8%80%E8%A7%88%E8%A1%A8"><span class="nav-number">9.</span> <span class="nav-text">九、各模型 Loss 一览表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%8D%8F%E4%BD%9C%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="nav-number">10.</span> <span class="nav-text">十、协作关系图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%AE%8C%E6%95%B4%E8%AE%AD%E7%BB%83%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">11.</span> <span class="nav-text">十一、完整训练伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">12.</span> <span class="nav-text">十二、关键点总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E5%B8%B8%E8%A7%81%E8%B6%85%E5%8F%82%E6%95%B0%E9%80%9F%E6%9F%A5"><span class="nav-number">13.</span> <span class="nav-text">十三、常见超参数速查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">14.</span> <span class="nav-text">十四、总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">15.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom border-box">
+            
+<footer class="footer border-box">
+    <div class="border-box website-info-box default">
+        
+            <div class="copyright-info info-item default">
+                &copy;&nbsp;<span>2017</span>&nbsp;-&nbsp;2026
+                
+                    &nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;&nbsp;<a href="/">Swift</a>
+                
+            </div>
+
+            <div class="theme-info info-item default">
+                Powered by&nbsp;<a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;&&nbsp;Theme&nbsp;<a class="keep-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep</a>
+            </div>
+
+            
+
+            
+                
+                <div class="deploy-info info-item default">
+                    
+                        This site is deployed on <span class="tooltip" data-tooltip-content="GitHub Pages"><img src="/images/deploy-provider/github.png"></span>
+                    
+                </div>
+            
+        
+
+        <div class="count-item info-item default">
+            
+
+            
+                <span class="count-box border-box uv">
+                    <span class="item-type border-box">Unique Visitor</span>
+                    <span class="item-value border-box uv" id="busuanzi_value_site_uv"></span>
+                </span>
+            
+
+            
+                <span class="count-box border-box pv">
+                    <span class="item-type border-box">Page View</span>
+                    <span class="item-value border-box pv" id="busuanzi_value_site_pv"></span>
+                </span>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    <!-- post tools -->
+    
+        <div class="post-tools left-toc">
+            <div class="post-tools-container border-box">
+    <ul class="tools-list border-box">
+        <!-- PC TOC show toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- PC go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <!-- side tools -->
+    <div class="side-tools">
+        <div class="side-tools-container border-box ">
+    <ul class="side-tools-list side-tools-show-handle border-box">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-toggle-theme-mode flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list border-box">
+        
+            <li class="tools-item toggle-show-toc-tablet flex-center">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        
+
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+
+        <li class="tools-item tool-scroll-to-top flex-center show-arrow">
+            <i class="arrow fas fa-arrow-up"></i>
+            <span class="percent"></span>
+        </li>
+    </ul>
+</div>
+
+    </div>
+
+    <!-- image mask -->
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    <!-- local search -->
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+    <!-- tablet toc -->
+    
+        <div class="tablet-post-toc-mask">
+            <div class="tablet-post-toc">
+                <div class="post-toc-wrap border-box">
+    <div class="post-toc border-box">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9B%9B%E4%B8%AA%E6%A8%A1%E5%9E%8B%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一、四个模型分别是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Actor%EF%BC%88%E7%AD%96%E7%95%A5%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. Actor（策略模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Critic%EF%BC%88%E4%BB%B7%E5%80%BC%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. Critic（价值模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Reference%EF%BC%88%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. Reference（参考模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Reward%EF%BC%88%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. Reward（奖励模型）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%AD%E7%BB%83%E6%B5%81%E7%A8%8B%E6%A6%82%E8%A7%88"><span class="nav-number">2.</span> <span class="nav-text">二、训练流程概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%BE%E5%AE%9A%E4%B8%8E%E7%AC%A6%E5%8F%B7"><span class="nav-number">3.</span> <span class="nav-text">三、设定与符号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%AF%8F%E6%AD%A5%E5%A5%96%E5%8A%B1-R-t-%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="nav-number">4.</span> <span class="nav-text">四、每步奖励 $R_t$ 的计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-KL-%E6%83%A9%E7%BD%9A"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 KL 惩罚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E6%AF%8F%E6%AD%A5%E5%A5%96%E5%8A%B1"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 每步奖励</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81Critic-%E7%9A%84-Loss"><span class="nav-number">5.</span> <span class="nav-text">五、Critic 的 Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-TD-%E6%AE%8B%E5%B7%AE"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 TD 残差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E4%BC%98%E5%8A%BF%E5%87%BD%E6%95%B0-GAE"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 优势函数 GAE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Critic-%E7%9A%84-target"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 Critic 的 target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Critic-%E7%9A%84-Loss"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 Critic 的 Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81Actor-%E7%9A%84-Loss"><span class="nav-number">6.</span> <span class="nav-text">六、Actor 的 Loss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E9%87%8D%E8%A6%81%E6%80%A7%E9%87%87%E6%A0%B7%E6%AF%94"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 重要性采样比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E8%A3%81%E5%89%AA%E9%A1%B9"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 裁剪项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Actor-%E7%9A%84-Loss"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 Actor 的 Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-Clip-%E6%9C%BA%E5%88%B6%E9%80%90%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 Clip 机制逐情况分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%86%B5%E5%A5%96%E5%8A%B1"><span class="nav-number">7.</span> <span class="nav-text">七、熵奖励</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%80%BB-Loss"><span class="nav-number">8.</span> <span class="nav-text">八、总 Loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%90%84%E6%A8%A1%E5%9E%8B-Loss-%E4%B8%80%E8%A7%88%E8%A1%A8"><span class="nav-number">9.</span> <span class="nav-text">九、各模型 Loss 一览表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%8D%8F%E4%BD%9C%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="nav-number">10.</span> <span class="nav-text">十、协作关系图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%AE%8C%E6%95%B4%E8%AE%AD%E7%BB%83%E4%BC%AA%E4%BB%A3%E7%A0%81"><span class="nav-number">11.</span> <span class="nav-text">十一、完整训练伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">12.</span> <span class="nav-text">十二、关键点总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E5%B8%B8%E8%A7%81%E8%B6%85%E5%8F%82%E6%95%B0%E9%80%9F%E6%9F%A5"><span class="nav-number">13.</span> <span class="nav-text">十三、常见超参数速查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">14.</span> <span class="nav-text">十四、总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">15.</span> <span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- common -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/header-shrink.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/back2top.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/toggle-theme.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/code-block.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/main.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/anime.min.js"></script>
+
+<!-- local-search -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/local-search.min.js"></script>
+
+
+<!-- lazyload -->
+
+
+<div class="pjax">
+    
+        <!-- post-helper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/post-helper.min.js"></script>
+
+        <!-- toc -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/toc.min.js"></script>
+        
+
+        <!-- copyright-info -->
+        
+
+        <!-- share -->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/post/share.min.js"></script>
+        
+    
+
+    <!-- category-page -->
+    
+
+    <!-- links-page -->
+    
+
+    <!-- photos-page -->
+    
+</div>
+
+<!-- mermaid -->
+
+    
+<script src="//cdn.jsdelivr.net/npm/mermaid@10.5.0/dist/mermaid.min.js"></script>
+
+    <script data-pjax>
+      if (window.mermaid) {
+        mermaid.init()
+      }
+    </script>
+
+
+
+
+
+
+<!-- pjax -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-keep/4.0.7/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart()
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd()
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'))
+            KEEP.initExecute()
+        });
+    });
+</script>
+
+
+
+
+    
+        
+    
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
